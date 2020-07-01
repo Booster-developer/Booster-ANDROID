@@ -1,6 +1,7 @@
-# Booster-ANDROID
+# 🚀We are BOOSTER ANDROID🚀
 
-#### 🚀We are BOOSTER ANDROID🚀
+### Developer
+
 
 - [김예진](https://github.com/jineeee)
 - [김찬영](https://github.com/ghkdua1829)
