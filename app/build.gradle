@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.booster"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -34,4 +34,29 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //Retrofit 라이브러리 : https://github.com/square/retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
+    //Retrofit 라이브러리
+    implementation 'com.squareup.retrofit2:retrofit-mock:2.6.2'
+    // Retrofit2.
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+
+    //객체 시리얼라이즈를 위한 Gson 라이브러리 : https://github.com/google/gson
+    implementation 'com.google.code.gson:gson:2.8.6'
+    //Retrofit 에서 Gson 을 사용하기 위한 라이브러리
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+
+    //okHttp
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
+
+    //리사이클러뷰 라이브러리
+    implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha04'
+
+    //동그란 이미지 커스텀 뷰 라이브러리 : https://github.com/hdodenhof/CircleImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
 }
