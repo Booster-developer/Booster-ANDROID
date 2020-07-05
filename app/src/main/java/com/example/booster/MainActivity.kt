@@ -8,21 +8,19 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
-import android.graphics.Bitmap
-import android.graphics.pdf.PdfRenderer
 import android.net.Uri
-import android.os.*
+import android.os.Build
+import android.os.Bundle
+import android.os.Environment
+import android.os.ParcelFileDescriptor
 import android.provider.DocumentsContract
 import android.provider.MediaStore
-import android.text.Layout
+import android.provider.OpenableColumns
 import android.text.TextUtils
 import android.util.Log
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.Toast
+import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.loader.content.CursorLoader
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 import java.io.IOException
@@ -76,10 +74,30 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == PICK_PDF_FILE && resultCode == Activity.RESULT_OK) {
             val imageUri: Uri? = resultData!!.data
             val filePath = getRealPathFromURIAPI19(this, imageUri!!)
+            Log.e("filePath -> ", filePath)
             val file = File(filePath!!)
             openPDF(file)
         }
     }
+
+//    fun getFileName(uri: Uri): String? {
+//        var result: String? = null
+//        if (uri.scheme == "content") {
+//            val cursor =
+//                contentResolver.query(uri, null, null, null, null)
+//            try {
+//                if (cursor != null && cursor.moveToFirst()) {
+//                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
+//                }
+//            } finally {
+//                cursor?.close()
+//            }
+//        }
+//        if (result == null) {
+//            result = uri.lastPathSegment
+//        }
+//        return result
+//    }
 
     @Throws(IOException::class)
     private fun openPDF(file : File) {
@@ -87,24 +105,26 @@ class MainActivity : AppCompatActivity() {
         fileDescriptor = ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY)
 
         //min. API Level 21
-        val pdfRenderer: PdfRenderer?
-        pdfRenderer = PdfRenderer(fileDescriptor)
-        val pageCount: Int = pdfRenderer.pageCount
-        Toast.makeText(this, "pageCount = $pageCount", Toast.LENGTH_LONG).show()
-
-        for(i in 0 until pageCount-1){
-            val imageView = ImageView(this)
-            imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) // value is in pixels
-            val rendererPage = pdfRenderer.openPage(i)
-            val rendererPageWidth: Int = rendererPage.getWidth()
-            val rendererPageHeight: Int = rendererPage.getHeight()
-            val bitmap = Bitmap.createBitmap(rendererPageWidth, rendererPageHeight, Bitmap.Config.ARGB_8888)
-            rendererPage.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
-            imageView.setImageBitmap(bitmap)
-            act_main_ll.addView(imageView)
-            rendererPage!!.close()
-        }
-        pdfRenderer.close()
+//        val pdfRenderer: PdfRenderer?
+//        pdfRenderer = PdfRenderer(fileDescriptor)
+//        val pageCount: Int = pdfRenderer.pageCount
+//        act_main_total_page.text = pageCount.toString()
+//        Toast.makeText(this, "pageCount = $pageCount", Toast.LENGTH_LONG).show()
+//
+//        for(i in 0 until pageCount-1){
+//            act_main_cur_page.text = (i+1).toString()
+//            val imageView = ImageView(this)
+//            imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) // value is in pixels
+//            val rendererPage = pdfRenderer.openPage(i)
+//            val rendererPageWidth: Int = rendererPage.width
+//            val rendererPageHeight: Int = rendererPage.height
+//            val bitmap = Bitmap.createBitmap(rendererPageWidth, rendererPageHeight, Bitmap.Config.ARGB_8888)
+//            rendererPage.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
+//            imageView.setImageBitmap(bitmap)
+//            act_main_ll.addView(imageView)
+//            rendererPage!!.close()
+//        }
+//        pdfRenderer.close()
         fileDescriptor.close()
     }
 
