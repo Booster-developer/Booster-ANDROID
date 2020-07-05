@@ -1,4 +1,4 @@
-package com.example.booster
+package com.example.booster.ui
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -8,6 +8,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
+import android.graphics.Bitmap
+import android.graphics.pdf.PdfRenderer
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -15,17 +17,19 @@ import android.os.Environment
 import android.os.ParcelFileDescriptor
 import android.provider.DocumentsContract
 import android.provider.MediaStore
-import android.provider.OpenableColumns
 import android.text.TextUtils
 import android.util.Log
-import android.webkit.WebViewClient
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.booster.R
+import kotlinx.android.synthetic.main.activity_pdf_text.*
 import java.io.File
 import java.io.IOException
 
-class MainActivity : AppCompatActivity() {
+class PdfTestActivity : AppCompatActivity() {
 
     private val PICK_PDF_FILE = 2
     private val REQUEST_EXTERNAL_STORAGE = 1
@@ -36,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_pdf_text)
 
         verifyStoragePermissions(this)
         act_main_btn_pdf.setOnClickListener {
@@ -105,26 +109,26 @@ class MainActivity : AppCompatActivity() {
         fileDescriptor = ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY)
 
         //min. API Level 21
-//        val pdfRenderer: PdfRenderer?
-//        pdfRenderer = PdfRenderer(fileDescriptor)
-//        val pageCount: Int = pdfRenderer.pageCount
-//        act_main_total_page.text = pageCount.toString()
-//        Toast.makeText(this, "pageCount = $pageCount", Toast.LENGTH_LONG).show()
-//
-//        for(i in 0 until pageCount-1){
-//            act_main_cur_page.text = (i+1).toString()
-//            val imageView = ImageView(this)
-//            imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) // value is in pixels
-//            val rendererPage = pdfRenderer.openPage(i)
-//            val rendererPageWidth: Int = rendererPage.width
-//            val rendererPageHeight: Int = rendererPage.height
-//            val bitmap = Bitmap.createBitmap(rendererPageWidth, rendererPageHeight, Bitmap.Config.ARGB_8888)
-//            rendererPage.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
-//            imageView.setImageBitmap(bitmap)
-//            act_main_ll.addView(imageView)
-//            rendererPage!!.close()
-//        }
-//        pdfRenderer.close()
+        val pdfRenderer: PdfRenderer?
+        pdfRenderer = PdfRenderer(fileDescriptor)
+        val pageCount: Int = pdfRenderer.pageCount
+        act_main_total_page.text = pageCount.toString()
+        Toast.makeText(this, "pageCount = $pageCount", Toast.LENGTH_LONG).show()
+
+        for(i in 0 until pageCount-1){
+            act_main_cur_page.text = (i+1).toString()
+            val imageView = ImageView(this)
+            imageView.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) // value is in pixels
+            val rendererPage = pdfRenderer.openPage(i)
+            val rendererPageWidth: Int = rendererPage.width
+            val rendererPageHeight: Int = rendererPage.height
+            val bitmap = Bitmap.createBitmap(rendererPageWidth, rendererPageHeight, Bitmap.Config.ARGB_8888)
+            rendererPage.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
+            imageView.setImageBitmap(bitmap)
+            act_main_ll.addView(imageView)
+            rendererPage!!.close()
+        }
+        pdfRenderer.close()
         fileDescriptor.close()
     }
 
