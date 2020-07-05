@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.booster"
-        minSdkVersion 21
+        minSdkVersion 26
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -73,4 +73,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:1.1.0"
     //LiveData를 사용하기 위한 라이브러리
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.2.0"
+
+    // CardView Library
+    implementation 'androidx.cardview:cardview:1.0.0'
 }
