@@ -12,7 +12,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/dial_frag_store_list_cl"
-            android:layout_width="300dp"
+            android:layout_width="@dimen/dialog_width"
             android:layout_height="235dp"
             android:background="@drawable/bg_ffffff_round"
             app:layout_constraintTop_toTopOf="parent"
