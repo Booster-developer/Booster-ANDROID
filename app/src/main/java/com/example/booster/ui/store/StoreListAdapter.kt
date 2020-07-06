@@ -10,9 +10,10 @@ import com.example.booster.databinding.ItemStoreSearchBinding
 class StoreListAdapter(private val context : Context) : RecyclerView.Adapter<StoreListAdapter.ViewHolder>(){
 
     var data = mutableListOf<StoreListData>()
+    lateinit var binding : ItemStoreSearchBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemStoreSearchBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        binding = ItemStoreSearchBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 

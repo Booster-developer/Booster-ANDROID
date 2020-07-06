@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        
+        <variable
+            name="vm"
+            type="com.example.booster.ui.storeDetail.StoreDetailViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f2f2f2"
+        tools:context=".ui.storeDetail.StoreDetailFragment">
+
+        <ImageView
+            android:id="@+id/frag_store_detail_iv"
+            android:layout_width="match_parent"
+            android:layout_height="205dp"
+            android:src="@color/main_color"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/store_detail_ic_map"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/frag_store_detail_cl_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frag_store_detail_iv">
+
+            <TextView
+                android:id="@+id/frag_store_detail_tv_store_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="26sp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:textColor="@color/black"
+                android:text="복사왕 김제본"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/store_detail_ic_star_inactive"
+                android:layout_marginEnd="3dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/frag_store_detail_tv_store_name"
+                app:layout_constraintBottom_toBottomOf="@id/frag_store_detail_tv_store_name" />
+
+            <TextView
+                android:id="@+id/grag_store_detail_tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="#9a9a9a"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:layout_marginTop="8dp"
+                android:text="서울시 동작구 사당로 36"
+                app:layout_constraintTop_toBottomOf="@id/frag_store_detail_tv_store_name"
+                app:layout_constraintStart_toStartOf="@id/frag_store_detail_tv_store_name"/>
+
+            <LinearLayout
+                android:id="@+id/frag_store_detail_ll_dist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@id/grag_store_detail_tv_address"
+                app:layout_constraintStart_toStartOf="@id/grag_store_detail_tv_address">
+
+                <LinearLayout
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:gravity="center"
+                    android:background="@drawable/bg_subway_circle">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="7"
+                        android:textSize="11sp"
+                        android:textColor="@color/white"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/noto_sans_kr_regular"
+                    android:layout_marginStart="8dp"
+                    android:text="숭실대입구역 3번 출구에서 100m" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/frag_store_detail_tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@color/black"
+                android:lineSpacingExtra="6sp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:text="영업 시간"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="@id/frag_store_detail_ll_dist"
+                app:layout_constraintTop_toBottomOf="@id/frag_store_detail_ll_dist"/>
+
+            <TextView
+                android:id="@+id/frag_store_detail_tv_week"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@color/black"
+                android:lineSpacingExtra="6sp"
+                android:text="평일"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                app:layout_constraintStart_toEndOf="@id/frag_store_detail_tv_time"
+                app:layout_constraintTop_toTopOf="@id/frag_store_detail_tv_time"
+                app:layout_constraintBottom_toBottomOf="@id/frag_store_detail_tv_time"/>
+
+            <TextView
+                android:id="@+id/frag_store_detail_tv_week_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="#000000"
+                android:layout_marginStart="4dp"
+                android:text="08:30 ~ 20:00"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                app:layout_constraintStart_toEndOf="@id/frag_store_detail_tv_week"
+                app:layout_constraintTop_toTopOf="@id/frag_store_detail_tv_week"
+                app:layout_constraintBottom_toBottomOf="@id/frag_store_detail_tv_week"/>
+
+            <TextView
+                android:id="@+id/frag_store_detail_tv_sat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:textColor="@color/black"
+                android:text="토요일"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@+id/frag_store_detail_tv_week"
+                app:layout_constraintStart_toStartOf="@id/frag_store_detail_tv_week"/>
+
+            <TextView
+                android:id="@+id/frag_store_detail_tv_sat_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="#000000"
+                android:lineSpacingExtra="6sp"
+                android:text="10:00 ~ 18:00"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:layout_marginStart="4dp"
+                app:layout_constraintStart_toEndOf="@id/frag_store_detail_tv_sat"
+                app:layout_constraintTop_toTopOf="@id/frag_store_detail_tv_sat"
+                app:layout_constraintBottom_toBottomOf="@id/frag_store_detail_tv_sat"/>
+
+            <TextView
+                android:id="@+id/frag_store_detail_tv_sun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:textColor="@color/black"
+                android:text="일요일"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@+id/frag_store_detail_tv_sat_time"
+                app:layout_constraintTop_toTopOf="@id/frag_store_detail_tv_sat_time"
+                app:layout_constraintBottom_toBottomOf="@id/frag_store_detail_tv_sat_time"/>
+
+            <TextView
+                android:id="@+id/frag_store_detail_tv_sun_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:text="휴무"
+                android:textSize="13sp"
+                android:textColor="#ff1200"
+                android:layout_marginStart="4dp"
+                app:layout_constraintStart_toEndOf="@id/frag_store_detail_tv_sun"
+                app:layout_constraintTop_toTopOf="@id/frag_store_detail_tv_sun"
+                app:layout_constraintBottom_toBottomOf="@id/frag_store_detail_tv_sun"/>
+
+            <TextView
+                android:id="@+id/frag_store_detail_tv_call"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:textColor="@color/black"
+                android:text="문의전화"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="@id/frag_store_detail_tv_time"
+                app:layout_constraintTop_toBottomOf="@id/frag_store_detail_tv_sat"/>
+
+            <TextView
+                android:id="@+id/frag_store_detail_tv_call_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:textColor="#000000"
+                android:layout_marginStart="8dp"
+                android:text="02-823-3575"
+                app:layout_constraintStart_toEndOf="@id/frag_store_detail_tv_call"
+                app:layout_constraintTop_toTopOf="@id/frag_store_detail_tv_call"
+                app:layout_constraintBottom_toBottomOf="@id/frag_store_detail_tv_call"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#d5d5d5"
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toBottomOf="@id/frag_store_detail_tv_call"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/frag_store_detail_cl_info"
+            app:layout_constraintBottom_toTopOf="@+id/frag_store_detail_cl_order">
+
+            <TextView
+                android:id="@+id/frag_store_detail_tv_price_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:text="출력 가격표"
+                android:layout_marginTop="19dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="11sp"
+                android:textColor="@color/tab_grey"
+                android:lineSpacingExtra="6sp"
+                android:text="(단위 : 장)"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                app:layout_constraintStart_toEndOf="@id/frag_store_detail_tv_price_title"
+                app:layout_constraintTop_toTopOf="@id/frag_store_detail_tv_price_title"
+                app:layout_constraintBottom_toBottomOf="@id/frag_store_detail_tv_price_title"/>
+
+            <LinearLayout
+                android:id="@+id/frag_store_detail_ll_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@id/frag_store_detail_tv_price_title"
+                app:layout_constraintStart_toStartOf="@id/frag_store_detail_tv_price_title">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/noto_sans_kr_medium"
+                        android:textColor="@color/main_color"
+                        android:lineSpacingExtra="6sp"
+                        android:text="A4" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:textColor="#7d7d7d"
+                        android:lineSpacingExtra="6sp"
+                        android:text="흑백" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:textColor="#7d7d7d"
+                        android:lineSpacingExtra="6sp"
+                        android:text="컬러" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="32dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:textColor="#7d7d7d"
+                        android:lineSpacingExtra="6sp"
+                        android:text="단면" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="40"
+                            android:textSize="13sp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
+                            android:textColor="@color/black"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="원"
+                            android:textSize="13sp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="100"
+                            android:textSize="13sp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
+                            android:textColor="@color/black"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="원"
+                            android:textSize="13sp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="32dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:textColor="#7d7d7d"
+                        android:lineSpacingExtra="6sp"
+                        android:text="양면" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="30"
+                            android:textSize="13sp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
+                            android:textColor="@color/black"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="원"
+                            android:textSize="13sp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="80"
+                            android:textSize="13sp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
+                            android:textColor="@color/black"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="원"
+                            android:textSize="13sp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
+                            android:textColor="@color/black"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/frag_store_detail_cl_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#d5d5d5"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_progress_ready_to_pick"
+                android:textSize="20sp"
+                android:textColor="#ffffff"
+                android:lineSpacingExtra="-10sp"
+                android:gravity="center_horizontal"
+                android:text="인쇄 주문하기"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:paddingTop="11dp"
+                android:paddingBottom="11dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
