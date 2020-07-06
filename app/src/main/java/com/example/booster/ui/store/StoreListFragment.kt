@@ -33,18 +33,26 @@ class StoreListFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(StoreListViewModel::class.java)
         initRv()
+        setClick()
     }
 
-    fun initRv(){
+
+    fun setClick(){
+        frag_store_list_ll_univ.setOnClickListener {
+            val univListDialog = StoreListDialongFragment()
+            univListDialog.show(requireActivity().supportFragmentManager,"schedule_dialog_fragment")
+        }
+    }
+
+    private fun initRv(){
         adapter = StoreListAdapter(requireContext())
         frag_store_list_rv.adapter = adapter
         frag_store_list_rv.layoutManager = LinearLayoutManager(requireContext())
         frag_store_list_rv.addItemDecoration(ItemDecorator(24))
 
         viewModel.storeList.observe(viewLifecycleOwner, Observer {
-            adapter.data = it //Livedata를 지켜보고 있다가 data 변경이 있으면 adapter의 data를 바꿔줌
-            adapter.notifyDataSetChanged() //data가 바뀌었음을 알려줌
+            adapter.data = it
+            adapter.notifyDataSetChanged()
         })
     }
-
 }

@@ -21,19 +21,16 @@ class StoreListViewModel : ViewModel() {
             name = "가게 3"
         ),
         StoreListData(
-            name = "가게 4"
+            name = "가게 3"
         ),
         StoreListData(
-            name = "가게 5"
+            name = "가게 3"
         ),
         StoreListData(
-            name = "가게 6"
+            name = "가게 3"
         ),
         StoreListData(
-            name = "가게 7"
-        ),
-        StoreListData(
-            name = "가게 8"
+            name = "가게 3"
         )
     )
 
