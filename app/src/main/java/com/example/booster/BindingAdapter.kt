@@ -1,9 +1,13 @@
 package com.example.booster
 
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.util.Log
 import android.view.View.GONE
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 
 @BindingAdapter("changeCircleF")
@@ -59,5 +63,14 @@ fun TextView.setPickUpBtn(status : Int) {
 fun TextView.setCancelVisible(status : Int) {
     if (status!=1){
         visibility = GONE
+    }
+}
+
+@BindingAdapter("setSubwayCircle")
+fun LinearLayout.setSubwayCircle(subway : Int) {
+    Log.e("setSub", subway.toString())
+    if (subway==2){
+        setBackgroundResource(R.drawable.bg_subway_circle)
+        backgroundTintList = ColorStateList.valueOf(Color.parseColor("#3db449"))
     }
 }

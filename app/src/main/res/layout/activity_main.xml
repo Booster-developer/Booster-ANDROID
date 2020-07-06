@@ -17,10 +17,19 @@
         android:layout_marginTop="100dp"/>
 
     <Button
+        android:id="@+id/act_main_btn_store_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="매장 상세"
+        android:layout_marginTop="10dp"/>
+
+    <Button
         android:id="@+id/act_main_btn_order_condition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="주문현황"
         android:layout_marginTop="10dp"/>
+
+
 
 </LinearLayout>
