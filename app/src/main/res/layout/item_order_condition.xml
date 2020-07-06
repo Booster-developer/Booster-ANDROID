@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="conditionRes"
+            type="com.example.booster.data.datasource.model.OrderConditionData" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/item_order_progress_tv_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11sp"
+            android:textColor="@color/tab_grey"
+            android:lineSpacingExtra="6sp"
+            android:text="no."
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:layout_marginTop="14dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:lineSpacingExtra="6sp"
+            android:text="121"
+            android:textColor="@color/tab_grey"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@+id/item_order_progress_tv_no"
+            app:layout_constraintStart_toEndOf="@+id/item_order_progress_tv_no" />
+
+        <TextView
+            android:id="@+id/item_order_progress_tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:lineSpacingExtra="9sp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:text="@{conditionRes.name}"
+            android:layout_marginTop="2dp"
+            app:layout_constraintTop_toBottomOf="@id/item_order_progress_tv_no"
+            app:layout_constraintStart_toStartOf="@id/item_order_progress_tv_no"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/process_btn_right_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/item_order_progress_tv_name"
+            app:layout_constraintBottom_toBottomOf="@id/item_order_progress_tv_name"/>
+
+        <TextView
+            android:id="@+id/item_order_progress_tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:lineSpacingExtra="6sp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:text="주문 일시"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/item_order_progress_tv_name"
+            app:layout_constraintStart_toStartOf="@id/item_order_progress_tv_name"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:lineSpacingExtra="6sp"
+            android:text="2020.07.18 07:32"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:layout_marginStart="12dp"
+            app:layout_constraintStart_toEndOf="@id/item_order_progress_tv_date"
+            app:layout_constraintTop_toTopOf="@+id/item_order_progress_tv_date"
+            app:layout_constraintBottom_toBottomOf="@+id/item_order_progress_tv_date"/>
+
+        <TextView
+            android:id="@+id/item_order_progress_tv_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:lineSpacingExtra="6sp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:text="주문 내역"
+            android:layout_marginTop="2dp"
+            app:layout_constraintTop_toBottomOf="@id/item_order_progress_tv_date"
+            app:layout_constraintStart_toStartOf="@id/item_order_progress_tv_date"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/main_color"
+            android:lineSpacingExtra="6sp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:text="데이터 분석.pdf 외 2건"
+            android:layout_marginStart="12dp"
+            app:layout_constraintStart_toEndOf="@id/item_order_progress_tv_list"
+            app:layout_constraintTop_toTopOf="@+id/item_order_progress_tv_list"
+            app:layout_constraintBottom_toBottomOf="@+id/item_order_progress_tv_list"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/item_order_prodress_cl_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/item_order_progress_tv_list"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@drawable/bg_progress_receipt"
+                setGradation="@{conditionRes.status}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <ImageView
+                android:id="@+id/item_order_condition_iv_cicle_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                changeCircleF="@{conditionRes.status}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <ImageView
+                android:id="@+id/item_order_condition_iv_cicle_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                changeCircleS="@{conditionRes.status}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <ImageView
+                android:id="@+id/item_order_condition_iv_cicle_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                changeCircleT="@{conditionRes.status}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/item_order_progress_cl_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="23dp"
+            android:layout_marginEnd="23dp"
+            android:layout_marginTop="3dp"
+            app:layout_constraintTop_toBottomOf="@id/item_order_prodress_cl_bar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/item_order_condition_tv_text_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="8sp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:text="접수"
+                android:textColor="#467fff"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/item_order_condition_tv_text_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:textColor="@color/tab_grey"
+                android:lineSpacingExtra="8sp"
+                android:gravity="center_horizontal"
+                android:text="인쇄중"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/item_order_condition_tv_text_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:textColor="@color/tab_grey"
+                android:lineSpacingExtra="8sp"
+                android:gravity="center_horizontal"
+                android:text="완료"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="@color/tab_grey"
+            android:lineSpacingExtra="17sp"
+            android:gravity="center_horizontal"
+            android:text="주문 취소"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            setCancelVisible="@{conditionRes.status}"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@id/item_order_progress_tv_done_pick"
+            app:layout_constraintEnd_toStartOf="@id/item_order_progress_tv_done_pick" />
+
+        <TextView
+            android:id="@+id/item_order_progress_tv_done_pick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"
+            android:textColor="@color/white"
+            android:gravity="center_horizontal"
+            android:text="픽업 완료"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            setPickUpBtn="@{conditionRes.status}"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="14dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_order_progress_cl_text"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d5d5d5"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/item_order_progress_tv_done_pick" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
