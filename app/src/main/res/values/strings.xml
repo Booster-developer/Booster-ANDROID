@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">booster</string>
+    <string name="goto_join"><u>회원가입하기</u></string>
 </resources>
