@@ -2,13 +2,11 @@ package com.example.booster
 
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.util.Log
 import android.view.View
 import android.view.View.GONE
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 
 @BindingAdapter("changeCircleF")
@@ -75,5 +73,22 @@ fun LinearLayout.setSubwayCircle(subway : Int) {
         backgroundTintList = ColorStateList.valueOf(Color.parseColor("#8a8623"))
     } else if (subway==9){
         backgroundTintList = ColorStateList.valueOf(Color.parseColor("#cda43a"))
+    }
+}
+
+@BindingAdapter("setClosedText")
+fun TextView.setClosedText(close : String?) {
+    if (close == "휴무"){
+        setTextColor(Color.parseColor("#ff1200"))
+    }
+    text = close
+}
+
+@BindingAdapter("setFavStar")
+fun ImageView.setFavStar(status : Int) {
+    if (status==0){
+        setImageResource(R.drawable.store_detail_ic_star_inactive)
+    }else{
+        setImageResource(R.drawable.store_detail_ic_star_active)
     }
 }
