@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.booster.R
+import com.example.booster.ui.storeList.StoreListFragment
 import kotlinx.android.synthetic.main.fragment_order_condition.*
 
 class OrderConditionFragment : Fragment() {
