@@ -18,7 +18,7 @@
 
 - ID NAMING : 뷰이름_위젯줄인말_기능이름
 
-## 🌞 Github branching
+## 🌞 Github Branching
 
 - 개인 Branch를 이름으로 판 뒤 개발한다.
 
@@ -28,7 +28,11 @@
 
 ## 🚀 Project Purpose
 
-- 
+- 빠르게 출력하는 편리함
+
+- 대학생을 위한 빠르고 간편한 인쇄 서비스
+
+- 사전 인쇄 주문 서비스
 
 ## 🛠 Technology Stack
 
@@ -124,7 +128,7 @@ implementation "org.koin:koin-androidx-ext:$koin_version"
 
 
 
-## 👨‍👨‍👧‍👧 Developer
+## 👨‍👨‍👧‍👧‍👧 Developer
 
 
 - 김예진 - [jineee](https://github.com/jineeee)
