@@ -15,13 +15,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a2nd_seminar.ui.ItemDecorator
 import com.example.booster.R
 import com.example.booster.ui.storeDetail.StoreDetailActivity
+import com.example.booster.ui.storeDetail.StoreDetailViewModel
 import kotlinx.android.synthetic.main.fragment_store_list.*
-import kotlinx.android.synthetic.main.item_store_search.*
+import kotlinx.android.synthetic.main.item_store_list.*
 
 
 class StoreListFragment : Fragment() {
 
     private lateinit var viewModel: StoreListViewModel
+    private lateinit var viewModel2: StoreDetailViewModel
     lateinit var adapter: StoreListAdapter
 
     override fun onCreateView(
@@ -35,6 +37,7 @@ class StoreListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(StoreListViewModel::class.java)
+        viewModel2 = ViewModelProvider(this).get(StoreDetailViewModel::class.java)
         initRv()
         setClick()
     }
@@ -68,6 +71,7 @@ class StoreListFragment : Fragment() {
                 override fun onClickFav(position: Int,imageView: ImageView) {
                     Toast.makeText(requireContext(), position.toString(), Toast.LENGTH_SHORT).show()
                     imageView.setImageResource(R.drawable.store_ic_active_star)
+                    viewModel2.postStoreFav(position+1)
                 }
             })
         frag_store_list_rv.adapter = adapter
