@@ -9,19 +9,16 @@ import com.example.booster.R
 import com.example.booster.databinding.ActivityStoreDetailBinding
 
 class StoreDetailActivity : AppCompatActivity() {
-    lateinit var storeDetailViewModel: StoreDetailViewModel
-
 
     lateinit var viewModel: StoreDetailViewModel
-    lateinit var storeDetailBinding: ActivityStoreDetailBinding
+    lateinit var binding: ActivityStoreDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        storeDetailBinding = DataBindingUtil.setContentView(this, R.layout.activity_store_detail)
-        storeDetailViewModel =
-            ViewModelProvider(this@StoreDetailActivity).get(StoreDetailViewModel::class.java)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_store_detail)
+        viewModel = ViewModelProvider(this@StoreDetailActivity).get(StoreDetailViewModel::class.java)
 
-        storeDetailBinding.vm = storeDetailViewModel
+        binding.vm = viewModel
 
         val position = intent.getIntExtra("position", -1)
 
