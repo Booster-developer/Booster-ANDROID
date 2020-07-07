@@ -129,7 +129,7 @@ implementation "org.koin:koin-androidx-viewmodel:$koin_version"
 implementation "org.koin:koin-androidx-ext:$koin_version"
 
 //Naver Map api
-implementation("com.naver.maps:map-sdk:3.8.0")
+implementation "com.naver.maps:map-sdk:3.8.0"
 ```
 
 
