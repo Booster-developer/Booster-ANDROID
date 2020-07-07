@@ -3,6 +3,7 @@ package com.example.booster
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.util.Log
+import android.view.View
 import android.view.View.GONE
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -40,7 +41,7 @@ fun ImageView.changeCircleT(status : Int) {
 }
 
 @BindingAdapter("setGradation")
-fun LinearLayout.setGradation(status : Int) {
+fun View.setGradation(status : Int) {
     if (status==1){
         setBackgroundResource(R.drawable.bg_progress_receipt)
     }else if(status==2){
