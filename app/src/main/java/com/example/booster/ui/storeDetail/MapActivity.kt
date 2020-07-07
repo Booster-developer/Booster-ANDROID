@@ -6,10 +6,7 @@ import androidx.fragment.app.FragmentActivity
 import com.example.booster.R
 import com.example.booster.data.datasource.model.MarkerData
 import com.naver.maps.geometry.LatLng
-import com.naver.maps.map.CameraUpdate
-import com.naver.maps.map.MapFragment
-import com.naver.maps.map.NaverMap
-import com.naver.maps.map.OnMapReadyCallback
+import com.naver.maps.map.*
 import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
@@ -43,34 +40,33 @@ class MapActivity : FragmentActivity(), OnMapReadyCallback {
     @UiThread
     override fun onMapReady(nMap: NaverMap) {
 
-//        //인터페이스 세팅 안됨
-//        val uiSettings = nMap.uiSettings
-//        uiSettings.isZoomControlEnabled = true
-//        uiSettings.isCompassEnabled = true
+        val uiSettings = nMap.uiSettings
+        uiSettings.isZoomControlEnabled = true
+        uiSettings.isLocationButtonEnabled = true
 
-        val cameraUpdate = CameraUpdate.scrollTo(LatLng(37.496575, 126.957427))
+        nMap.locationSource
+        nMap.locationTrackingMode
+        uiSettings.isScaleBarEnabled = false
+
+        if(intent.getStringExtra("school")=="숭실대학교"){
+            markers.clear()
+            array.clear()
+            val cameraUpdate = CameraUpdate.scrollTo(LatLng(37.496575, 126.957427))
             nMap.moveCamera(cameraUpdate)
 
             loadDatas1()
             draw(nMap)
+        }
 
-//        if(intent.getStringExtra("school")=="숭실"){
-//            val cameraUpdate = CameraUpdate.scrollTo(LatLng(37.496575, 126.957427))
-//            nMap.moveCamera(cameraUpdate)
-//
-//            loadDatas1()
-//            draw(nMap)
-//        }
-//
-//        if(intent.getStringExtra("school")=="중앙") {
-//            markers.clear()
-//            array.clear()
-//            val cameraUpdate = CameraUpdate.scrollTo(LatLng(37.504210, 126.956788))
-//            nMap.moveCamera(cameraUpdate)
-//
-//            loadDatas2()
-//            draw(nMap)
-//        }
+        if(intent.getStringExtra("school")=="중앙대학교") {
+            markers.clear()
+            array.clear()
+            val cameraUpdate = CameraUpdate.scrollTo(LatLng(37.504210, 126.956788))
+            nMap.moveCamera(cameraUpdate)
+
+            loadDatas2()
+            draw(nMap)
+        }
     }
 
 
