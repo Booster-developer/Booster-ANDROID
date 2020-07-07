@@ -127,6 +127,9 @@ implementation "org.koin:koin-androidx-scope:$koin_version"
 implementation "org.koin:koin-androidx-viewmodel:$koin_version"
 // Koin AndroidX Experimental features
 implementation "org.koin:koin-androidx-ext:$koin_version"
+
+//Naver Map api
+implementation("com.naver.maps:map-sdk:3.8.0")
 ```
 
 
