@@ -18,21 +18,15 @@ class StoreDetailActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_store_detail)
         viewModel = ViewModelProvider(this@StoreDetailActivity).get(StoreDetailViewModel::class.java)
 
+
         binding.vm = viewModel
+
+        storeDetailViewModel.getData()
 
         val position = intent.getIntExtra("position", -1)
 
         Toast.makeText(this@StoreDetailActivity, "$position", Toast.LENGTH_SHORT).show()
 
-//        getObserved()
     }
 
-    fun getObserved() {
-//        storeDetailViewModel.viewModel.observe(this, Observer {
-//            storeDetailBinding.vm =it
-//        })
-//        storeDetailViewModel.subway.observe(this, Observer {
-//            storeDetailBinding.subway = it
-//        })
-    }
 }
