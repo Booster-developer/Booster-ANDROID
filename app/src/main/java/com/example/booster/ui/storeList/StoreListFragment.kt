@@ -1,18 +1,18 @@
-package com.example.booster.ui.store
+package com.example.booster.ui.storeList
 
-import androidx.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LifecycleOwner
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.a2nd_seminar.ui.ItemDecorator
-
 import com.example.booster.R
+import com.example.booster.ui.storeDetail.StoreDetailActivity
 import kotlinx.android.synthetic.main.fragment_store_list.*
 
 class StoreListFragment : Fragment() {
@@ -31,7 +31,8 @@ class StoreListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(StoreListViewModel::class.java)
+//        viewModel = ViewModelProviders.of(this).get(StoreListViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(StoreListViewModel::class.java)
         initRv()
         setClick()
     }
@@ -45,7 +46,13 @@ class StoreListFragment : Fragment() {
     }
 
     private fun initRv(){
-        adapter = StoreListAdapter(requireContext())
+        adapter = StoreListAdapter(requireContext(), object : StoreListViewHolder.onClickStoreItemListener{
+            override fun onClickStoreItem(position: Int) {
+                val intent = Intent(requireContext(), StoreDetailActivity::class.java)
+                intent.putExtra("position", position)
+                startActivity(intent)
+            }
+        })
         frag_store_list_rv.adapter = adapter
         frag_store_list_rv.layoutManager = LinearLayoutManager(requireContext())
         frag_store_list_rv.addItemDecoration(ItemDecorator(24))

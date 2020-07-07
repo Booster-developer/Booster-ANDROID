@@ -4,9 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.booster.R
+import com.example.booster.ui.bottomtap.BottomTabActivity
 import com.example.booster.ui.orderCondition.OrderConditionActivity
-import com.example.booster.ui.store.StoreListActivity
-import com.example.booster.ui.store.StoreListFragment
+import com.example.booster.ui.storeList.StoreListActivity
+import com.example.booster.ui.storeDetail.StoreDetailActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -20,9 +21,20 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        act_main_btn_store_detail.setOnClickListener {
+            val intent = Intent(this@MainActivity, StoreDetailActivity::class.java)
+            startActivity(intent)
+        }
+
         act_main_btn_order_condition.setOnClickListener {
             val intent = Intent(this@MainActivity, OrderConditionActivity::class.java)
             startActivity(intent)
         }
+
+        act_main_btn_tap.setOnClickListener {
+            val intent = Intent(this@MainActivity, BottomTabActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }
