@@ -10,9 +10,11 @@ class StoreDetailViewModel : ViewModel() {
     private var _storeDetail = MutableLiveData<StoreDetailData>() //변경 가능한 mutableLiveData 변수
     val storeDetail : LiveData<StoreDetailData> get() = _storeDetail //LiveData 변수인 newsList는 변경이 안되므로 변경 가능한 _newsList를 가져옴
 
-    val dummy = StoreDetailData( subway = 2 )
+    private val dummy = StoreDetailData( subway = 2 )
 
-    init {
-        _storeDetail.postValue(dummy)
+    fun getData(){
+        _storeDetail.value = dummy
     }
+
+
 }
