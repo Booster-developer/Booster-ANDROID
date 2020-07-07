@@ -122,10 +122,85 @@ implementation "org.koin:koin-androidx-ext:$koin_version"
 
 ### 0. ConstraintLayout 사용하기
 
-```kotlin
+- 대부분의 레이아웃을 ConstraintLayout으로 구성.
 
+- chain 과 match_parent 를 적극 활용하여 뷰 구성.
+
+```kotlin
+<androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/item_order_prodress_cl_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/item_order_progress_tv_list"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@drawable/bg_progress_receipt"
+                setGradation="@{conditionRes.status}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <ImageView
+                android:id="@+id/item_order_condition_iv_cicle_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                changeCircleF="@{conditionRes.status}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            ...
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
+- Guidline을 사용해서 개행 효과 구현.
+
+```kotlin
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="380dp"
+    android:layout_height="96dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg_ffffff_round"
+    android:elevation="5dp"
+    android:layout_gravity="center_horizontal">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/my_file_guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintGuide_begin="350dp"/>
+
+    <ImageView
+        android:id="@+id/iv_file"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        tools:src="@drawable/order_wait_img_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"/>
+    
+   ...
+   
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
 
 
 ## 👨‍👨‍👧‍👧‍👧 Developer
