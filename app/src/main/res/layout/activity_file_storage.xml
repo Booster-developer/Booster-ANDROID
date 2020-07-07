@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.FileStorageActivity"
+    android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/FileStorage_img_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/close_24px"
+            android:onClick="onClick"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="40dp"/>
+
+        <TextView
+            android:id="@+id/FileStorage_tv_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="대기리스트"
+            android:textSize="18sp"
+            android:textColor="#131313"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            app:layout_constraintBottom_toBottomOf="@id/FileStorage_img_close"
+            app:layout_constraintStart_toEndOf="@id/FileStorage_img_close"
+            android:layout_marginLeft="32dp"/>
+
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d5d5d5"
+            app:layout_constraintTop_toBottomOf="@id/FileStorage_tv_heading"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:id="@+id/tv_selected_store"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내가 선택한 매장"
+            android:textSize="12sp"
+            android:textColor="#304fff"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            app:layout_constraintTop_toBottomOf="@id/divider1"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:id="@+id/tv_store_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="복사왕 김제본"
+            android:textSize="24sp"
+            android:textColor="#131313"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_selected_store"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/tv_store_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="서울시 동작구 사당로 36"
+            android:textSize="12sp"
+            android:textColor="#7d7d7d"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            app:layout_constraintTop_toBottomOf="@id/tv_store_name"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="16dp"/>
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d5d5d5"
+            app:layout_constraintTop_toBottomOf="@id/tv_store_address"
+            android:layout_marginTop="16dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="#f5f5f5">
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="파일 선택"
+        android:textColor="#467fff"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:textSize="12sp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_file_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                tools:visibility="visible"
+                tools:listitem="@layout/my_file"
+                android:nestedScrollingEnabled="false"
+                tools:itemCount="3"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/white"/>
+
+            <!-- shape ripple 넣기 , rectangle shape 백그라운드-->
+            <ImageView
+                android:id="@+id/iv_file_add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/list_btn_add_file"
+                android:onClick="onClick"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:scaleType="fitXY"
+                android:background="?android:attr/selectableItemBackground"/>
+
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
