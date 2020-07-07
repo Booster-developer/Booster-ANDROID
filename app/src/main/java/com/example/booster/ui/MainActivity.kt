@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.example.booster.R
 import com.example.booster.ui.bottomtap.BottomTabActivity
 import com.example.booster.ui.orderCondition.OrderConditionActivity
+import com.example.booster.ui.storeDetail.MapActivity
 import com.example.booster.ui.storeList.StoreListActivity
 import com.example.booster.ui.storeDetail.StoreDetailActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -33,6 +34,11 @@ class MainActivity : AppCompatActivity() {
 
         act_main_btn_tap.setOnClickListener {
             val intent = Intent(this@MainActivity, BottomTabActivity::class.java)
+            startActivity(intent)
+        }
+
+        act_main_btn_map.setOnClickListener {
+            val intent = Intent(this@MainActivity, MapActivity::class.java)
             startActivity(intent)
         }
 

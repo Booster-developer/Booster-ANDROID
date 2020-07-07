@@ -13,5 +13,6 @@ class StoreListActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.act_store_list, StoreListFragment())
             .commit()
+
     }
 }

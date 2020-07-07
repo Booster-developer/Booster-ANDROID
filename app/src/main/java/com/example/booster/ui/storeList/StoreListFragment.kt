@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.booster.ui.storeDetail.MapActivity
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -16,6 +17,7 @@ import com.example.booster.R
 import com.example.booster.ui.storeDetail.StoreDetailActivity
 import kotlinx.android.synthetic.main.fragment_store_list.*
 import kotlinx.android.synthetic.main.item_store_search.*
+
 
 class StoreListFragment : Fragment() {
 
@@ -45,6 +47,11 @@ class StoreListFragment : Fragment() {
                 "schedule_dialog_fragment"
             )
         }
+
+        frag_store_list_iv_map.setOnClickListener {
+            val intent = Intent(context, MapActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun initRv() {
@@ -71,4 +78,5 @@ class StoreListFragment : Fragment() {
             adapter.notifyDataSetChanged()
         })
     }
+
 }
