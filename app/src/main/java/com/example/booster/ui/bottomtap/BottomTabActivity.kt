@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.viewpager.widget.ViewPager
 import com.example.booster.R
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import kotlinx.android.synthetic.main.activity_bottom_tab.*
 
 class BottomTabActivity : AppCompatActivity() {
@@ -14,13 +17,13 @@ class BottomTabActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bottom_tab)
 
+        setAdapter()
         setTabBar()
     }
 
     private fun setTabBar() {
         val bottomTabBar: View = LayoutInflater.from(this).inflate(R.layout.tab_layout, null)
         bottom_tab_layout.run {
-            setupWithViewPager(bottom_vp)
 
             addTab(
                 this.newTab()
@@ -45,8 +48,31 @@ class BottomTabActivity : AppCompatActivity() {
 
             // 인디케이터 없애기
             setSelectedTabIndicator(0)
-
-
         }
+    }
+
+    private fun setAdapter(){
+        bottom_vp.adapter =
+            BottomTabAdapter(
+                supportFragmentManager,
+                5
+            )
+
+        bottom_vp.offscreenPageLimit = 4
+        bottom_vp.currentItem = 0
+
+        bottom_vp.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(bottom_tab_layout))
+
+        bottom_tab_layout!!.addOnTabSelectedListener(object : OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                bottom_vp!!.currentItem = tab.position
+            }
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+
+            }
+            override fun onTabReselected(tab: TabLayout.Tab) {
+
+            }
+        })
     }
 }

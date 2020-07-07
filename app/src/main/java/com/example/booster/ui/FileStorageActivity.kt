@@ -125,6 +125,7 @@ class FileStorageActivity : AppCompatActivity() {
         }
     }
 
+
     private fun fileAdd() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
         builder.setTitle("추가할 파일의 종류를 선택해주세요")
