@@ -14,6 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.PdfTestActivity"></activity>
+        <activity android:name=".ui.bottomtap.BottomTabActivity"/>
         <activity android:name=".ui.storeDetail.StoreDetailActivity"></activity>
         <activity android:name=".ui.orderCondition.OrderConditionActivity" />
         <activity android:name=".ui.store.StoreListActivity" />
