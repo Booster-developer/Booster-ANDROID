@@ -18,7 +18,7 @@
         <activity android:name=".ui.bottomtap.BottomTabActivity"/>
         <activity android:name=".ui.storeDetail.StoreDetailActivity"></activity>
         <activity android:name=".ui.orderCondition.OrderConditionActivity" />
-        <activity android:name=".ui.store.StoreListActivity" />
+        <activity android:name=".ui.storeList.StoreListActivity" />
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

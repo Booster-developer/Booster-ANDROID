@@ -3,7 +3,6 @@ package com.example.booster.ui.orderCondition
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.booster.R
-import com.example.booster.ui.store.StoreListFragment
 
 class OrderConditionActivity : AppCompatActivity() {
 

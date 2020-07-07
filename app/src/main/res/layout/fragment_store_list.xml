@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.store.StoreListFragment">
+    tools:context=".ui.storeList.StoreListFragment">
 
     <TextView
         android:id="@+id/frag_store_list_tv_title"

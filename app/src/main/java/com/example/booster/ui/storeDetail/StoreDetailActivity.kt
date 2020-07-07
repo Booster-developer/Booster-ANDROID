@@ -2,8 +2,8 @@ package com.example.booster.ui.storeDetail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.booster.R
-import com.example.booster.ui.store.StoreListFragment
 
 class StoreDetailActivity : AppCompatActivity() {
 
@@ -11,8 +11,8 @@ class StoreDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_store_detail)
 
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.act_store_detail, StoreDetailFragment())
-            .commit()
+        val position = intent.getIntExtra("position", -1)
+
+        Toast.makeText(this@StoreDetailActivity, "$position", Toast.LENGTH_SHORT).show()
     }
 }

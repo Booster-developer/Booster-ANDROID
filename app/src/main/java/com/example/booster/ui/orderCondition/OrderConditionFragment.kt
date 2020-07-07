@@ -8,12 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.a2nd_seminar.ui.ItemDecorator
 
 import com.example.booster.R
-import com.example.booster.ui.store.StoreListAdapter
 import kotlinx.android.synthetic.main.fragment_order_condition.*
-import kotlinx.android.synthetic.main.fragment_store_list.*
 
 class OrderConditionFragment : Fragment() {
 
