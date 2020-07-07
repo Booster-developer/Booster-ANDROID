@@ -21,7 +21,7 @@ class StoreDetailActivity : AppCompatActivity() {
 
         binding.vm = viewModel
 
-        storeDetailViewModel.getData()
+        viewModel.getData()
 
         val position = intent.getIntExtra("position", -1)
 
