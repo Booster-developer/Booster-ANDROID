@@ -58,6 +58,9 @@ class BottomTabActivity : AppCompatActivity() {
                 5
             )
 
+        bottom_vp.offscreenPageLimit = 4
+        bottom_vp.currentItem = 0
+
         bottom_vp.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(bottom_tab_layout))
 
         bottom_tab_layout!!.addOnTabSelectedListener(object : OnTabSelectedListener {

@@ -68,9 +68,11 @@ fun TextView.setCancelVisible(status : Int) {
 
 @BindingAdapter("setSubwayCircle")
 fun LinearLayout.setSubwayCircle(subway : Int) {
-    Log.e("setSub", subway.toString())
     if (subway==2){
-        setBackgroundResource(R.drawable.bg_subway_circle)
         backgroundTintList = ColorStateList.valueOf(Color.parseColor("#3db449"))
+    } else if (subway==7){
+        backgroundTintList = ColorStateList.valueOf(Color.parseColor("#8a8623"))
+    } else if (subway==9){
+        backgroundTintList = ColorStateList.valueOf(Color.parseColor("#cda43a"))
     }
 }
