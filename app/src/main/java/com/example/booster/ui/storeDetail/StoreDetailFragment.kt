@@ -12,10 +12,6 @@ import com.example.booster.R
 
 class StoreDetailFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = StoreDetailFragment()
-    }
-
     private lateinit var viewModel: StoreDetailViewModel
 
     override fun onCreateView(
