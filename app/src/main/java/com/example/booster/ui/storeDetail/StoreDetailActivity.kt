@@ -9,17 +9,17 @@ import com.example.booster.R
 import com.example.booster.databinding.ActivityStoreDetailBinding
 
 class StoreDetailActivity : AppCompatActivity() {
-    private lateinit var storeDetailViewModel: StoreDetailViewModel
-    lateinit var storeDetailBinding: ActivityStoreDetailBinding
+
+    lateinit var viewModel: StoreDetailViewModel
+    lateinit var binding: ActivityStoreDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        storeDetailBinding = DataBindingUtil.setContentView(this, R.layout.activity_store_detail)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_store_detail)
+        viewModel = ViewModelProvider(this@StoreDetailActivity).get(StoreDetailViewModel::class.java)
 
-        storeDetailViewModel =
-            ViewModelProvider(this@StoreDetailActivity).get(StoreDetailViewModel::class.java)
 
-        storeDetailBinding.vm = storeDetailViewModel
+        binding.vm = viewModel
 
         storeDetailViewModel.getData()
 

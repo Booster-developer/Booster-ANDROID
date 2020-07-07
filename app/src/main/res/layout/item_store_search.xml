@@ -39,6 +39,7 @@
                     app:layout_constraintEnd_toEndOf="parent" />
 
                 <ImageView
+                    android:id="@+id/item_store_search_iv_fav"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/store_ic_inactive_star"
