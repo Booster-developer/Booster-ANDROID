@@ -1,16 +1,48 @@
 # 🚀We are BOOSTER ANDROID🚀
 
-### 부스터 - 빠르게 출력하는 편리함
+## BOOSTER - 빠르게 출력하는 편리함
 
 > SOPT 26기 Appjam '부스터'
 >
+> Faster / Easier / Together
+>
 > 프로젝트 기간 2020.07 ~ 진행중
 
-### Workflow
+## Workflow
 
 <img src="https://user-images.githubusercontent.com/45157374/86798602-eb6dbe80-c0ab-11ea-86cb-23cc73b472c1.png" width="80%"></img>
 
-### Dependency
+## Code Convention
+
+- 변수명은 기본적으로 camelCase로 작성.
+
+- ID NAMING : 뷰이름_위젯줄인말_기능이름
+
+## Github branching
+
+- 개인 Branch를 이름으로 판 뒤 개발한다.
+
+- 개인 Branch에서 develop branch로 PR을 보낸다.
+
+- 모든 기능이 완벽하면서, 모든 팀원이 동의할 때 Master 브랜치로 PR을 보낸다.
+
+## Project Purpose
+
+- 
+
+## Technology Stack
+
+- Minimum SDK version 24
+
+- Language : Kotlin
+
+- Retrofit : REST API Library
+
+- Gson : Json Data process Library
+
+- Glide : Image Process Library
+
+## Dependency
 
 ```kotlin
 //Retrofit 라이브러리 : https://github.com/square/retrofit
