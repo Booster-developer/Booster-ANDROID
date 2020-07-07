@@ -13,7 +13,7 @@
         android:id="@+id/act_main_btn_store"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="매장찾기"
+        android:text="매장 리스트"
         android:layout_marginTop="100dp"/>
 
     <Button
@@ -30,6 +30,11 @@
         android:text="주문현황"
         android:layout_marginTop="10dp"/>
 
-
+    <Button
+        android:id="@+id/act_main_btn_tap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="하단탭바"
+        android:layout_marginTop="10dp"/>
 
 </LinearLayout>

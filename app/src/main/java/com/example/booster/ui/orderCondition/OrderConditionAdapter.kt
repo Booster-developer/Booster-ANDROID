@@ -6,8 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.booster.data.datasource.model.OrderConditionData
 import com.example.booster.databinding.ItemOrderConditionBinding
-import com.example.booster.databinding.ItemStoreSearchBinding
-import com.example.booster.ui.store.StoreListAdapter
 
 class OrderConditionAdapter (private val context : Context) : RecyclerView.Adapter<OrderConditionAdapter.ViewHolder>(){
 

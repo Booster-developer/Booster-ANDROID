@@ -1,4 +1,4 @@
-package com.example.booster.ui.store
+package com.example.booster.ui.storeList
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
