@@ -8,17 +8,17 @@
 >
 > 프로젝트 기간 2020.07 ~ 진행중
 
-## Workflow
+## 📈 Workflow
 
 <img src="https://user-images.githubusercontent.com/45157374/86798602-eb6dbe80-c0ab-11ea-86cb-23cc73b472c1.png" width="80%"></img>
 
-## Code Convention
+## 📌 Code Convention
 
 - 변수명은 기본적으로 camelCase로 작성.
 
 - ID NAMING : 뷰이름_위젯줄인말_기능이름
 
-## Github branching
+## 🌞 Github branching
 
 - 개인 Branch를 이름으로 판 뒤 개발한다.
 
@@ -26,11 +26,11 @@
 
 - 모든 기능이 완벽하면서, 모든 팀원이 동의할 때 Master 브랜치로 PR을 보낸다.
 
-## Project Purpose
+## 🚀 Project Purpose
 
 - 
 
-## Technology Stack
+## 🛠 Technology Stack
 
 - Minimum SDK version 24
 
@@ -42,7 +42,7 @@
 
 - Glide : Image Process Library
 
-## Dependency
+## 🔑 Dependency
 
 ```kotlin
 //Retrofit 라이브러리 : https://github.com/square/retrofit
@@ -114,9 +114,9 @@ implementation "org.koin:koin-androidx-ext:$koin_version"
 
 
 
-### 주요기능
+## 주요기능
 
-#### 0. ConstraintLayout 사용하기
+### 0. ConstraintLayout 사용하기
 
 ```kotlin
 
@@ -124,7 +124,7 @@ implementation "org.koin:koin-androidx-ext:$koin_version"
 
 
 
-### Developer
+## 👨‍👨‍👧‍👧 Developer
 
 
 - 김예진 - [jineee](https://github.com/jineeee)
