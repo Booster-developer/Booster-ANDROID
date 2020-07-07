@@ -1,21 +1,20 @@
 package com.example.booster.ui.storeList
 
 import android.content.Intent
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a2nd_seminar.ui.ItemDecorator
-
 import com.example.booster.R
-import com.example.booster.ui.MainActivity
+import com.example.booster.ui.storeDetail.MapActivity
 import com.example.booster.ui.storeDetail.StoreDetailActivity
 import kotlinx.android.synthetic.main.fragment_store_list.*
+
 
 class StoreListFragment : Fragment() {
 
@@ -44,6 +43,11 @@ class StoreListFragment : Fragment() {
             val univListDialog = StoreListDialongFragment()
             univListDialog.show(requireActivity().supportFragmentManager,"schedule_dialog_fragment")
         }
+
+        frag_store_list_iv_map.setOnClickListener {
+            val intent = Intent(context, MapActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun initRv(){
@@ -63,4 +67,5 @@ class StoreListFragment : Fragment() {
             adapter.notifyDataSetChanged()
         })
     }
+
 }
