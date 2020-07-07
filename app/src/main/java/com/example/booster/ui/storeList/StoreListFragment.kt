@@ -50,7 +50,7 @@ class StoreListFragment : Fragment() {
 
         frag_store_list_iv_map.setOnClickListener {
             val intent = Intent(context, MapActivity::class.java)
-            intent.putExtra("school", frag_store_list_tv_univ.text)
+            intent.putExtra("univ", frag_store_list_tv_univ.text)
             startActivity(intent)
         }
     }
