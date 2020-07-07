@@ -17,8 +17,13 @@ import com.example.booster.ui.fileStorage.MarginItemDecoration
 import com.example.booster.util.BoosterUtil
 import droidninja.filepicker.FilePickerBuilder
 import droidninja.filepicker.FilePickerConst
+import droidninja.filepicker.FilePickerConst.KEY_SELECTED_DOCS
+import droidninja.filepicker.FilePickerConst.KEY_SELECTED_MEDIA
+import droidninja.filepicker.FilePickerConst.REQUEST_CODE_DOC
+import droidninja.filepicker.FilePickerConst.REQUEST_CODE_PHOTO
 import kotlinx.android.synthetic.main.activity_file_storage.*
-import java.io.File
+import kotlinx.android.synthetic.main.my_file.*
+
 
 
 class FileStorageActivity : AppCompatActivity() {
@@ -53,13 +58,13 @@ class FileStorageActivity : AppCompatActivity() {
         var photoPaths:ArrayList<Uri> = ArrayList()
         var docPaths:ArrayList<Uri> = ArrayList()
         when (requestCode) {
-            FilePickerConst.REQUEST_CODE_PHOTO -> if (resultCode === Activity.RESULT_OK && data != null) {
+            REQUEST_CODE_PHOTO -> if (resultCode === Activity.RESULT_OK && data != null) {
 
-                photoPaths.addAll(data.getParcelableArrayListExtra<Uri>(FilePickerConst.KEY_SELECTED_MEDIA))
+                photoPaths.addAll(data.getParcelableArrayListExtra<Uri>(KEY_SELECTED_MEDIA))
             }
-            FilePickerConst.REQUEST_CODE_DOC -> if (resultCode === Activity.RESULT_OK && data != null) {
+            REQUEST_CODE_DOC -> if (resultCode === Activity.RESULT_OK && data != null) {
 
-                docPaths.addAll(data.getParcelableArrayListExtra<Uri>(FilePickerConst.KEY_SELECTED_DOCS))
+                docPaths.addAll(data.getParcelableArrayListExtra<Uri>(KEY_SELECTED_DOCS))
             }
         }
         addThemToView(photoPaths, docPaths)
@@ -122,6 +127,7 @@ class FileStorageActivity : AppCompatActivity() {
         when(view) {
             FileStorage_img_close -> showDeleteDialog()
             iv_file_add -> fileAdd()
+            iv_file_delete -> showItemRemoveDialog()
         }
     }
 
@@ -132,12 +138,12 @@ class FileStorageActivity : AppCompatActivity() {
         builder.setPositiveButton("이미지") { dialogInterface: DialogInterface, i: Int ->
             FilePickerBuilder.instance
                 .setActivityTheme(R.style.LibAppTheme) //optional
-                .pickPhoto(this, FilePickerConst.REQUEST_CODE_PHOTO);
+                .pickPhoto(this, REQUEST_CODE_PHOTO);
         }
         builder.setNegativeButton("문서") { dialogInterface: DialogInterface, i: Int ->
             FilePickerBuilder.instance
                 .setActivityTheme(R.style.LibAppTheme) //optional
-                .pickFile(this, FilePickerConst.REQUEST_CODE_DOC);
+                .pickFile(this, REQUEST_CODE_DOC);
         }
         builder.show()
 
@@ -158,5 +164,24 @@ class FileStorageActivity : AppCompatActivity() {
                 }
                 .show()
         }
+    }
+
+    private fun deleteItemsAndNotifyAdapter() {
+        datas.clear()
+        rv_file_add.adapter?.notifyDataSetChanged()
+    }
+    // 파일 하나하나 삭제 시
+    private fun showItemRemoveDialog() {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
+        val dialogView = layoutInflater.inflate(R.layout.dialog_return, null) //dialog_return 바꿔야함
+
+        builder.setView(dialogView)
+            .setPositiveButton("예") { dialog: DialogInterface?, which: Int ->
+                deleteItemsAndNotifyAdapter()
+            }
+            .setNegativeButton("아니오") { dialog: DialogInterface?, which: Int ->
+
+            }
+            .show()
     }
 }

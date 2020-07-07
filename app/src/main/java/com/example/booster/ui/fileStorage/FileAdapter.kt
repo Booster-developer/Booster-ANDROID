@@ -12,7 +12,7 @@ import com.example.booster.util.BoosterUtil
 import kotlinx.android.synthetic.main.my_file.view.*
 import java.io.File
 
-class FileAdapter(var datas: ArrayList<FileData>):
+class FileAdapter(var datas: ArrayList<com.example.booster.data.datasource.model.FileData>):
     RecyclerView.Adapter<FileAdapter.ViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,

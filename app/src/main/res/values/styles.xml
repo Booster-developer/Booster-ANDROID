@@ -9,6 +9,7 @@
 
     <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog">
         <item name="buttonBarNegativeButtonStyle">@style/buttonBarButtonStyle.Negative</item>
+        <item name="buttonBarPositiveButtonStyle">@style/buttonBarButtonStyle.Positive</item>
     </style>
 
     <style name="buttonBarButtonStyle" parent="Widget.AppCompat.Button.Borderless.Colored">
