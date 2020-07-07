@@ -89,7 +89,6 @@
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:gravity="center"
-                    android:background="@drawable/bg_subway_circle"
                     setSubwayCircle="@{vm.storeDetail.subway}">
 
                     <TextView
