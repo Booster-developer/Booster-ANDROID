@@ -1,6 +1,7 @@
 package com.example.booster.data.remote
 
 import com.example.booster.data.datasource.model.StoreDetailData
+import com.example.booster.data.datasource.model.StoreFavData
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import io.reactivex.Observable
 
@@ -9,6 +10,11 @@ class RemoteDataSourceImpl : RemoteDataSource {
 
     override fun getStoreDetail(storeIdx : Int): Observable<StoreDetailData> =
         api.getStoreDetail(storeIdx)
+            .map {
+                it }
+
+    override fun postStoreFav(storeIdx: Int): Observable<StoreFavData> =
+        api.postStoreFav(storeIdx)
             .map {
                 it }
 

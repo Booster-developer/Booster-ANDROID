@@ -1,10 +1,11 @@
 package com.example.booster.data.remote.network
 
 import com.example.booster.data.datasource.model.StoreDetailData
+import com.example.booster.data.datasource.model.StoreFavData
 import io.reactivex.Observable
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface BoosterService {
 
@@ -12,4 +13,9 @@ interface BoosterService {
     fun getStoreDetail(
         @Path("store_idx") storeIdx: Int
     ): Observable<StoreDetailData>
+
+    @POST("/stores/{store_idx}/favorite")
+    fun postStoreFav(
+        @Path("store_idx") storeIdx: Int
+    ): Observable<StoreFavData>
 }
