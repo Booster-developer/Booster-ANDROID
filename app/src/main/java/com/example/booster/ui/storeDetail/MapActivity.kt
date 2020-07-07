@@ -48,7 +48,7 @@ class MapActivity : FragmentActivity(), OnMapReadyCallback {
         nMap.locationTrackingMode
         uiSettings.isScaleBarEnabled = false
 
-        if(intent.getStringExtra("school")=="숭실대학교"){
+        if(intent.getStringExtra("univ")=="숭실대학교"){
             markers.clear()
             array.clear()
             val cameraUpdate = CameraUpdate.scrollTo(LatLng(37.496575, 126.957427))
@@ -58,7 +58,7 @@ class MapActivity : FragmentActivity(), OnMapReadyCallback {
             draw(nMap)
         }
 
-        if(intent.getStringExtra("school")=="중앙대학교") {
+        if(intent.getStringExtra("univ")=="중앙대학교") {
             markers.clear()
             array.clear()
             val cameraUpdate = CameraUpdate.scrollTo(LatLng(37.504210, 126.956788))

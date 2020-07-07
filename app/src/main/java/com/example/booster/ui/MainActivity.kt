@@ -37,10 +37,5 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        act_main_btn_map.setOnClickListener {
-            val intent = Intent(this@MainActivity, MapActivity::class.java)
-            startActivity(intent)
-        }
-
     }
 }
