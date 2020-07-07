@@ -10,7 +10,7 @@
 
 ## 📈 Workflow
 
-<img src="https://user-images.githubusercontent.com/45157374/86798602-eb6dbe80-c0ab-11ea-86cb-23cc73b472c1.png" width="80%"></img>
+<img src="https://github.com/Booster-developer/Booster-SERVER/blob/dev/images/main.png" ></img>
 
 ## 🔧 Tools
 
@@ -20,11 +20,13 @@
 
 - Postman
 
+
 ## 📌 Code Convention
 
 - 변수명은 기본적으로 camelCase로 작성.
 
 - ID NAMING : 뷰이름_위젯줄인말_기능이름
+
 
 ## 🌞 Github Branching
 
@@ -34,6 +36,7 @@
 
 - 모든 기능이 완벽하면서, 모든 팀원이 동의할 때 Master 브랜치로 PR을 보낸다.
 
+
 ## 🚀 Project Purpose
 
 - 빠르게 출력하는 편리함
@@ -41,6 +44,7 @@
 - 대학생을 위한 빠르고 간편한 인쇄 서비스
 
 - 사전 인쇄 주문 서비스
+
 
 ## 🛠 Technology Stack
 
@@ -53,6 +57,7 @@
 - Gson : Json Data process Library
 
 - Glide : Image Process Library
+
 
 ## 🔑 Dependency
 
