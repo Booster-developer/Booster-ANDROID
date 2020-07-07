@@ -52,7 +52,7 @@
                 android:textSize="26sp"
                 android:fontFamily="@font/noto_sans_kr_medium"
                 android:textColor="@color/black"
-                android:text="복사왕 김제본"
+                android:text="@{vm.storeDetail.data.store_name}"
                 android:layout_marginTop="12dp"
                 android:layout_marginStart="16dp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -93,12 +93,12 @@
                     android:layout_height="16dp"
                     android:gravity="center"
                     android:background="@drawable/bg_subway_circle"
-                    setSubwayCircle="@{vm.storeDetail.subway}">
+                    setSubwayCircle="@{vm.storeDetail.data.univ_line}">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{String.valueOf(vm.storeDetail.subway)}"
+                        android:text="@{String.valueOf(vm.storeDetail.data.univ_line)}"
                         android:textSize="11sp"
                         android:textColor="@color/white"
                         app:layout_constraintTop_toTopOf="parent"
