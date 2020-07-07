@@ -7,19 +7,19 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.booster.AnimationUtil
 import com.example.booster.data.datasource.model.StoreListData
-import com.example.booster.databinding.ItemStoreSearchBinding
+import com.example.booster.databinding.ItemStoreListBinding
 
 class StoreListAdapter(private val context : Context,
                        private val clickListener : StoreListViewHolder.onClickStoreItemListener,
                        private val clickFavListener: StoreListViewHolder.onclickFavListener) : RecyclerView.Adapter<StoreListViewHolder>(){
 
     var data = mutableListOf<StoreListData>()
-    lateinit var binding : ItemStoreSearchBinding
+    lateinit var binding : ItemStoreListBinding
     var previousPostition = 0
     private val animationUtil = AnimationUtil()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoreListViewHolder {
-        binding = ItemStoreSearchBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        binding = ItemStoreListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return StoreListViewHolder(binding, clickListener, clickFavListener)
     }
 
@@ -36,7 +36,7 @@ class StoreListAdapter(private val context : Context,
     }
 }
 
-class StoreListViewHolder(val binding : ItemStoreSearchBinding,
+class StoreListViewHolder(val binding : ItemStoreListBinding,
                           val clickListener : onClickStoreItemListener,
                           val clickFavListener: onclickFavListener) : RecyclerView.ViewHolder(binding.root){
 
