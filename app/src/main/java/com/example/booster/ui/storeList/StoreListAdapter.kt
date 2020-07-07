@@ -3,6 +3,7 @@ package com.example.booster.ui.storeList
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.booster.AnimationUtil
 import com.example.booster.data.datasource.model.StoreListData
@@ -44,7 +45,7 @@ class StoreListViewHolder(val binding : ItemStoreSearchBinding,
             clickListener.onClickStoreItem(adapterPosition)
         }
         binding.itemStoreSearchIvFav.setOnClickListener {
-            clickFavListener.onClickFav(adapterPosition)
+            clickFavListener.onClickFav(adapterPosition,binding.itemStoreSearchIvFav)
         }
     }
 
@@ -53,6 +54,6 @@ class StoreListViewHolder(val binding : ItemStoreSearchBinding,
     }
 
     interface onclickFavListener{
-        fun onClickFav(position: Int)
+        fun onClickFav(position: Int,imageView: ImageView)
     }
 }
