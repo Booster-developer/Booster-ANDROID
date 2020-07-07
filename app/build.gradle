@@ -80,6 +80,9 @@ dependencies {
     // CardView Library
     implementation 'androidx.cardview:cardview:1.0.0'
 
+    //Lottie Library
+    implementation 'com.airbnb.android:lottie:3.4.1'
+
     // Koin for Kotlin
     implementation "org.koin:koin-core:$koin_version"
     // Koin extended & experimental features
