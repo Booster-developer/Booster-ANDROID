@@ -9,6 +9,9 @@
             name="vm"
             type="com.example.booster.ui.storeDetail.StoreDetailViewModel" />
 
+        <variable
+            name="subway"
+            type="Integer" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
