@@ -39,7 +39,7 @@ class StoreListFragment : Fragment() {
         setClick()
     }
 
-    fun setClick() {
+    private fun setClick() {
         frag_store_list_ll_univ.setOnClickListener {
             val univListDialog = StoreListDialongFragment()
             univListDialog.show(

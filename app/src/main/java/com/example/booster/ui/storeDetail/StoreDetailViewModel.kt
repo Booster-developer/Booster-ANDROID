@@ -16,5 +16,4 @@ class StoreDetailViewModel : ViewModel() {
         _storeDetail.value = dummy
     }
 
-
 }
