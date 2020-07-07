@@ -6,7 +6,7 @@
 >
 > Faster / Easier / Together
 >
-> 프로젝트 기간 2020.07 ~ 진행중
+> 프로젝트 기간 2020.06 ~ 진행중
 
 ## 📈 Workflow
 
