@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -56,9 +57,9 @@ class StoreListFragment : Fragment() {
                 }
             },
             object : StoreListViewHolder.onclickFavListener {
-                override fun onClickFav(position: Int) {
-                    Toast.makeText(requireContext(), "star", Toast.LENGTH_SHORT).show()
-                    item_store_search_iv_fav.setImageResource(R.drawable.store_ic_active_star)
+                override fun onClickFav(position: Int,imageView: ImageView) {
+                    Toast.makeText(requireContext(), position.toString(), Toast.LENGTH_SHORT).show()
+                    imageView.setImageResource(R.drawable.store_ic_active_star)
                 }
             })
         frag_store_list_rv.adapter = adapter
