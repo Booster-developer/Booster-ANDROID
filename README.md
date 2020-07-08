@@ -220,11 +220,11 @@ implementation "com.naver.maps:map-sdk:3.8.0"
 
 ### 1. 중복 클릭 방지
 
-#### issue
+#### 🔥 issue
 
 - 액티비티를 이동하는 버튼 클릭을 여러 번 연속으로 빠르게 할 때 똑같은 액티비티 여러 개가 계속해서 쌓인다.
 
-#### solution
+#### 📒 solution
 
 - ktx(kotlin-extension)을 활용하여 중복 클릭 방지 구현
 
@@ -258,7 +258,7 @@ fun View.onlyOneClickListener(action: (v: View) -> Unit) {
 }
 ```
 
-#### 이전 코드
+##### 이전 코드
 
 ```kotlin
 act_main_btn_store.setOnClickListener {
@@ -267,7 +267,7 @@ act_main_btn_store.setOnClickListener {
         }
 ```
 
-#### 바뀐 코드
+##### 바뀐 코드
 
 ```kotlin
 act_main_btn_store.onlyOneClickListener {
@@ -276,7 +276,7 @@ act_main_btn_store.onlyOneClickListener {
         }
 ```
 
-#### result
+#### 🗞 result
 
 - 여러번의 클릭을 막을 수 있는 결과를 얻었다.
 
