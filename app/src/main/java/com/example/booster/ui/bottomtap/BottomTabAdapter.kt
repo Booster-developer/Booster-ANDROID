@@ -3,7 +3,7 @@ package com.example.booster.ui.bottomtap
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import com.example.booster.ui.orderCondition.OrderConditionFragment
+import com.example.booster.ui.orderList.OrderListFragment
 import com.example.booster.ui.storeList.StoreListFragment
 
 class BottomTabAdapter (fm : FragmentManager, val fragmentCount : Int):
@@ -11,11 +11,11 @@ class BottomTabAdapter (fm : FragmentManager, val fragmentCount : Int):
 
     override fun getItem(position: Int): Fragment {
         when(position){
-            0 -> return OrderConditionFragment()
+            0 -> return OrderListFragment()
             1 -> return StoreListFragment()
-            2 -> return OrderConditionFragment()
+            2 -> return OrderListFragment()
             3 -> return StoreListFragment()
-            4 -> return OrderConditionFragment()
+            4 -> return OrderListFragment()
             else -> null!!
         }
     }

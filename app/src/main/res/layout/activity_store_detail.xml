@@ -9,9 +9,6 @@
             name="vm"
             type="com.example.booster.ui.storeDetail.StoreDetailViewModel" />
 
-        <variable
-            name="subway"
-            type="Integer" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +20,7 @@
             android:id="@+id/act_store_detail_iv"
             android:layout_width="match_parent"
             android:layout_height="205dp"
-            android:src="@color/main_color"
+            setStoreImg="@{vm.storeDetail.data.store_image}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -59,9 +56,10 @@
                 app:layout_constraintStart_toStartOf="parent"/>
 
             <ImageView
+                android:id="@+id/act_store_detail_iv_star"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/store_detail_ic_star_inactive"
+                setFavStar="@{vm.storeDetail.data.store_favorite}"
                 android:layout_marginEnd="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/act_store_detail_tv_store_name"
@@ -75,7 +73,7 @@
                 android:textColor="#9a9a9a"
                 android:fontFamily="@font/noto_sans_kr_regular"
                 android:layout_marginTop="8dp"
-                android:text="서울시 동작구 사당로 36"
+                android:text="@{vm.storeDetail.data.store_address}"
                 app:layout_constraintTop_toBottomOf="@id/act_store_detail_tv_store_name"
                 app:layout_constraintStart_toStartOf="@id/act_store_detail_tv_store_name"/>
 
@@ -115,7 +113,7 @@
                     android:textColor="@color/black"
                     android:fontFamily="@font/noto_sans_kr_regular"
                     android:layout_marginStart="8dp"
-                    android:text="숭실대입구역 3번 출구에서 100m" />
+                    android:text="@{vm.storeDetail.data.store_location}"/>
 
             </LinearLayout>
 
@@ -127,7 +125,7 @@
                 android:textColor="@color/black"
                 android:lineSpacingExtra="6sp"
                 android:fontFamily="@font/noto_sans_kr_medium"
-                android:text="영업 시간"
+                android:text="영업시간"
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="@id/act_store_detail_ll_dist"
                 app:layout_constraintTop_toBottomOf="@id/act_store_detail_ll_dist"/>
@@ -153,7 +151,7 @@
                 android:textSize="13sp"
                 android:textColor="#000000"
                 android:layout_marginStart="4dp"
-                android:text="08:30 ~ 20:00"
+                android:text="@{vm.storeDetail.data.store_time_weekdays}"
                 android:fontFamily="@font/noto_sans_kr_regular"
                 app:layout_constraintStart_toEndOf="@id/act_store_detail_tv_week"
                 app:layout_constraintTop_toTopOf="@id/act_store_detail_tv_week"
@@ -178,7 +176,7 @@
                 android:textSize="13sp"
                 android:textColor="#000000"
                 android:lineSpacingExtra="6sp"
-                android:text="10:00 ~ 18:00"
+                setClosedText="@{vm.storeDetail.data.store_time_saturday}"
                 android:fontFamily="@font/noto_sans_kr_regular"
                 android:layout_marginStart="4dp"
                 app:layout_constraintStart_toEndOf="@id/act_store_detail_tv_sat"
@@ -203,9 +201,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_kr_regular"
-                android:text="휴무"
+                setClosedText="@{vm.storeDetail.data.store_time_sunday}"
                 android:textSize="13sp"
-                android:textColor="#ff1200"
+                android:textColor="@color/black"
                 android:layout_marginStart="4dp"
                 app:layout_constraintStart_toEndOf="@id/act_store_detail_tv_sun"
                 app:layout_constraintTop_toTopOf="@id/act_store_detail_tv_sun"
@@ -231,7 +229,7 @@
                 android:fontFamily="@font/noto_sans_kr_regular"
                 android:textColor="#000000"
                 android:layout_marginStart="8dp"
-                android:text="02-823-3575"
+                android:text="@{vm.storeDetail.data.store_phone_number}"
                 app:layout_constraintStart_toEndOf="@id/act_store_detail_tv_call"
                 app:layout_constraintTop_toTopOf="@id/act_store_detail_tv_call"
                 app:layout_constraintBottom_toBottomOf="@id/act_store_detail_tv_call"/>
@@ -347,7 +345,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="40"
+                            android:text="@{String.valueOf(vm.storeDetail.data.price_gray_single)}"
                             android:textSize="13sp"
                             android:fontFamily="@font/noto_sans_kr_regular"
                             android:textColor="@color/black"/>
@@ -371,7 +369,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="100"
+                            android:text="@{String.valueOf(vm.storeDetail.data.price_color_single)}"
                             android:textSize="13sp"
                             android:fontFamily="@font/noto_sans_kr_regular"
                             android:textColor="@color/black"/>
@@ -412,7 +410,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="30"
+                            android:text="@{String.valueOf(vm.storeDetail.data.price_gray_double)}"
                             android:textSize="13sp"
                             android:fontFamily="@font/noto_sans_kr_regular"
                             android:textColor="@color/black"/>
@@ -436,7 +434,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="80"
+                            android:text="@{String.valueOf(vm.storeDetail.data.price_color_double)}"
                             android:textSize="13sp"
                             android:fontFamily="@font/noto_sans_kr_regular"
                             android:textColor="@color/black"/>
