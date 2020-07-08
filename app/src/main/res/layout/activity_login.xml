@@ -103,12 +103,12 @@
         app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/goto_join"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:lineHeight="16sp"
-        android:text="@string/goto_goin"
+        android:text="@string/goto_join"
         android:textColor="#2435ff"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/textView3"

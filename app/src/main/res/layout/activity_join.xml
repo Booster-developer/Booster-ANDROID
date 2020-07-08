@@ -150,7 +150,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editText6" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/univSelected"
         android:layout_width="0dp"
         android:layout_height="44dp"
         android:layout_marginTop="4dp"
@@ -161,12 +161,12 @@
         android:paddingLeft="12dp"
         android:textColor="@color/tab_gray"
         android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintEnd_toStartOf="@+id/univSelectBtn"
         app:layout_constraintStart_toStartOf="@+id/editText6"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/univSelectBtn"
         android:layout_width="58dp"
         android:layout_height="44dp"
         android:background="@drawable/join_btn_1"
@@ -174,24 +174,26 @@
         android:textColor="#304fff"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView10"
+        app:layout_constraintBottom_toBottomOf="@+id/univSelected"
         app:layout_constraintEnd_toEndOf="@+id/editText6"
-        app:layout_constraintTop_toTopOf="@+id/textView10" />
+        app:layout_constraintTop_toTopOf="@+id/univSelected" />
 
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:buttonTint="@color/main_color"
         android:text="@string/join_1"
-        app:layout_constraintStart_toStartOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintStart_toStartOf="@+id/univSelected"
+        app:layout_constraintTop_toBottomOf="@+id/univList" />
 
     <CheckBox
         android:id="@+id/checkBox2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:buttonTint="@color/main_color"
         android:text="@string/join_2"
         app:layout_constraintStart_toStartOf="@+id/checkBox"
         app:layout_constraintTop_toBottomOf="@+id/checkBox" />
@@ -220,7 +222,7 @@
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/checkBox"
-        app:layout_constraintEnd_toEndOf="@+id/button3"
+        app:layout_constraintEnd_toEndOf="@+id/univSelectBtn"
         app:layout_constraintTop_toTopOf="@+id/checkBox" />
 
     <TextView
@@ -234,4 +236,35 @@
         app:layout_constraintBottom_toBottomOf="@+id/checkBox2"
         app:layout_constraintEnd_toEndOf="@+id/textView11"
         app:layout_constraintTop_toTopOf="@+id/checkBox2" />
+
+    <LinearLayout
+        android:id="@+id/univList"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/checkBox"
+        app:layout_constraintEnd_toEndOf="@+id/univSelectBtn"
+        app:layout_constraintStart_toStartOf="@+id/univSelected"
+        app:layout_constraintTop_toBottomOf="@+id/univSelected">
+
+        <TextView
+            android:id="@+id/univ_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/univ_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/univ_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

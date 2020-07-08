@@ -2,6 +2,6 @@
     <string name="app_name">booster</string>
     <string name="join_1"><b>[필수]</b> 이용약관 및 개인정보 수집/이용에 동의</string>
     <string name="join_2"><b>[선택]</b> 마케팅 및 알림 수신에 동의</string>
-    <string name="goto_goin"><u>회원가입하기</u></string>
+    <string name="goto_join"><u>회원가입하기</u></string>
     <string name="join_see"><u>보기</u></string>
 </resources>
