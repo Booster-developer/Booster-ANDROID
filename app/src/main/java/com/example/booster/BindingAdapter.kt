@@ -2,6 +2,7 @@ package com.example.booster
 
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.util.Log
 import android.view.View
 import android.view.View.GONE
 import android.widget.ImageView
@@ -96,7 +97,7 @@ fun ImageView.setFavStar(status : Int) {
 
 @BindingAdapter("setFavStarList")
 fun ImageView.setFavStarList(status : Int) {
-    if (status==200){
+    if (status==0){
         setImageResource(R.drawable.store_ic_inactive_star)
     }else{
         setImageResource(R.drawable.store_ic_active_star)

@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a2nd_seminar.ui.ItemDecorator
 import com.example.booster.R
+import com.example.booster.databinding.FragmentStoreListBinding
 import com.example.booster.ui.storeDetail.MapActivity
 import com.example.booster.ui.storeDetail.StoreDetailActivity
 import com.example.booster.ui.storeDetail.StoreDetailViewModel
@@ -26,13 +27,17 @@ class StoreListFragment : Fragment() {
     private lateinit var viewModel: StoreListViewModel
     private lateinit var viewModel2: StoreDetailViewModel
     lateinit var adapter: StoreListAdapter
+    lateinit var binding: FragmentStoreListBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_store_list, container, false)
-        return rootView
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_store_list, container, false)
+        binding.lifecycleOwner = this@StoreListFragment
+        return binding.root
+//        val rootView = inflater.inflate(R.layout.fragment_store_list, container, false)
+//        return rootView
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -81,9 +86,20 @@ class StoreListFragment : Fragment() {
                 }
             },
             object : StoreListViewHolder.onclickFavListener {
-                override fun onClickFav(position: Int,imageView: ImageView) {
-                    Toast.makeText(requireContext(), position.toString(), Toast.LENGTH_SHORT).show()
-                    viewModel2.putStoreFav(position+1)
+                override fun onClickFav(position: Int, imageView: ImageView, fav: Int) {
+                    if (fav == 1) {
+                        imageView.setImageResource(R.drawable.store_ic_inactive_star)
+                        adapter.data[position].store_favorite = 0
+                    } else {
+                        imageView.setImageResource(R.drawable.store_ic_active_star)
+                        adapter.data[position].store_favorite = 1
+                    }
+                    viewModel2.postStoreFav(position+1)
+                    Toast.makeText(
+                        requireContext(),
+                        position.toString() + " : " + fav.toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             })
         frag_store_list_rv.adapter = adapter
