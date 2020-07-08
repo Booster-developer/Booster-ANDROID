@@ -112,7 +112,7 @@ dependencies {
     implementation "org.koin:koin-androidx-ext:$koin_version"
 
     //네이버 지도 api
-    implementation("com.naver.maps:map-sdk:3.8.0")
+    implementation "com.naver.maps:map-sdk:3.8.0"
 
     //coordinator layout
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"

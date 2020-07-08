@@ -16,6 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.ResultActivity"></activity>
+        <activity android:name=".ui.StoreFileOptionActivity" />
         <activity android:name=".ui.storeList.ScrollingActivity2"
             android:label=" "/>
         <activity android:name=".ui.storeList.ScrollingActivity"
