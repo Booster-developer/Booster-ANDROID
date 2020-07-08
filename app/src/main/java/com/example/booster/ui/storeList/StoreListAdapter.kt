@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.booster.AnimationUtil
 import com.example.booster.data.datasource.model.StoreListData
 import com.example.booster.databinding.ItemStoreListBinding
+import com.example.booster.onlyOneClickListener
 
 class StoreListAdapter(private val context : Context,
                        private val clickListener : StoreListViewHolder.onClickStoreItemListener,
@@ -41,10 +42,10 @@ class StoreListViewHolder(val binding : ItemStoreListBinding,
                           val clickFavListener: onclickFavListener) : RecyclerView.ViewHolder(binding.root){
 
     init {
-        binding.itemStoreSearchCl.setOnClickListener {
+        binding.itemStoreSearchCl.onlyOneClickListener {
             clickListener.onClickStoreItem(adapterPosition)
         }
-        binding.itemStoreSearchIvFav.setOnClickListener {
+        binding.itemStoreSearchIvFav.onlyOneClickListener {
             clickFavListener.onClickFav(adapterPosition,binding.itemStoreSearchIvFav)
         }
     }
