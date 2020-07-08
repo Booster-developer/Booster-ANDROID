@@ -290,6 +290,7 @@ act_main_btn_store.onlyOneClickListener {
 - 여러번의 클릭을 막을 수 있는 결과를 얻었다.
 
 <br>
+
 ### 3. Scroll Animation
 
 #### 🔥 issue
