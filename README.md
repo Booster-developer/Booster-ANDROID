@@ -218,7 +218,57 @@ implementation "com.naver.maps:map-sdk:3.8.0"
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
+### 1. 중복 클릭 방지
 
+- ktx(kotlin-extension)을 활용하여 중복 클릭 방지 구현
+
+```kotlin
+class OnlyOneClickListener(
+    private val clickListener: View.OnClickListener,
+    private val interval: Long = 300
+) :
+    View.OnClickListener {
+
+    private var clickable = true
+
+    override fun onClick(view: View?) {
+        if (clickable) {
+            clickable = false
+            view?.run {
+                postDelayed({
+                    clickable = true
+                }, interval)
+                clickListener.onClick(view)
+            }
+        } else {
+            Log.e(TAG, "waiting for a while")
+        }
+    }
+}
+
+fun View.onlyOneClickListener(action: (v: View) -> Unit) {
+    val listener = View.OnClickListener { action(it) }
+    setOnClickListener(OnlyOneClickListener(listener))
+}
+```
+
+#### 이전 코드
+
+```kotlin
+act_main_btn_store.setOnClickListener {
+            val intent = Intent(this@MainActivity, StoreListActivity::class.java)
+            startActivity(intent)
+        }
+```
+
+#### 바뀐 코드
+
+```kotlin
+act_main_btn_store.onlyOneClickListener {
+            val intent = Intent(this@MainActivity, StoreListActivity::class.java)
+            startActivity(intent)
+        }
+```
 ## 👨‍👨‍👧‍👧‍👧 Developer
 
 
