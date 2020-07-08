@@ -139,10 +139,11 @@ implementation "com.naver.maps:map-sdk:3.8.0"
 
 ### 0. ConstraintLayout 사용하기
 
-- 대부분의 레이아웃을 ConstraintLayout으로 구성.
+- 대부분의 레이아웃을 ConstraintLayout으로 구성
 
-- chain 과 match_parent 를 적극 활용하여 뷰 구성.
+- chain 과 match_parent 를 적극 활용하여 뷰 구성
 
+item_order_condition.xml
 ```kotlin
 <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/item_order_prodress_cl_bar"
@@ -179,8 +180,9 @@ implementation "com.naver.maps:map-sdk:3.8.0"
         </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
-- Guidline을 사용해서 개행 효과 구현.
+- Guidline을 사용해서 개행 효과 구현
 
+my_file.xml
 ```kotlin
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
