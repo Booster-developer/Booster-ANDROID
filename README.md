@@ -63,35 +63,7 @@
 ## 🔑 Dependency
 
 ```kotlin
-//Retrofit 라이브러리 : https://github.com/square/retrofit
-implementation 'com.squareup.retrofit2:retrofit:2.6.2'
-//Retrofit 라이브러리
-implementation 'com.squareup.retrofit2:retrofit-mock:2.6.2'
-// Retrofit2.
-implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
 
-//객체 시리얼라이즈를 위한 Gson 라이브러리 : https://github.com/google/gson
-implementation 'com.google.code.gson:gson:2.8.6'
-//Retrofit 에서 Gson 을 사용하기 위한 라이브러리
-implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
-
-//okHttp
-implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
-implementation 'com.squareup.okhttp3:okhttp:3.12.0'
-
-//리사이클러뷰 라이브러리
-implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha04'
-
-//동그란 이미지 커스텀 뷰 라이브러리 : https://github.com/hdodenhof/CircleImageView
-implementation 'de.hdodenhof:circleimageview:3.1.0'
-
-// Glide
-implementation 'com.github.bumptech.glide:glide:4.11.0'
-
-//rxjava
-implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-implementation 'io.reactivex.rxjava2:rxjava:2.2.7'
-implementation 'io.reactivex.rxjava2:rxkotlin:2.3.0'
 
 //생명주기를 공유하기 위한 라이브러리
 implementation "androidx.appcompat:appcompat:1.1.0"
@@ -131,6 +103,9 @@ implementation "org.koin:koin-androidx-ext:$koin_version"
 
 //Naver Map api
 implementation "com.naver.maps:map-sdk:3.8.0"
+
+//coordinator layout
+implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
 ```
 
 <br>
@@ -220,8 +195,39 @@ my_file.xml
    
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
+<br>
 
-### 1. 중복 클릭 방지
+### 1. 확장함수 사용하기 
+
+- kotlin collection에서 제공하는 확장함수 사용
+
+```kotlin
+```
+
+- 기존 클래스에 custom 함수를 확장하여 사용
+
+BindingAdapter.kt
+```kotlin
+@BindingAdapter("setCancelVisible")
+fun TextView.setCancelVisible(status : Int) {
+    if (status!=1){
+        visibility = GONE
+    }
+}
+
+@BindingAdapter("setFavStar")
+fun ImageView.setFavStar(status : Int) {
+    if (status==0){
+        setImageResource(R.drawable.store_detail_ic_star_inactive)
+    }else{
+        setImageResource(R.drawable.store_detail_ic_star_active)
+    }
+}
+```
+
+<br>
+
+### 2. 중복 클릭 방지
 
 #### 🔥 issue
 
@@ -283,7 +289,8 @@ act_main_btn_store.onlyOneClickListener {
 
 - 여러번의 클릭을 막을 수 있는 결과를 얻었다.
 
-### 2. Scroll Animation
+<br>
+### 3. Scroll Animation
 
 #### 🔥 issue
 
