@@ -18,15 +18,13 @@
 - Zeplin
 
 - Postman
-
 <br>
 
 ## 📌 Code Convention
 
 - 변수명은 기본적으로 camelCase로 작성
 
-- ID NAMING : 뷰이름_위젯줄인말_기능이름<br><br>
-
+- ID NAMING : 뷰이름_위젯줄인말_기능이름
 <br>
 
 ## 🌞 Github Branching
@@ -36,7 +34,6 @@
 - 개인 Branch에서 develop branch로 PR을 보낸다.
 
 - 모든 기능이 완벽하면서, 모든 팀원이 동의할 때 Master 브랜치로 PR을 보낸다.
-
 <br>
 
 ## 🚀 Project Purpose
@@ -222,8 +219,6 @@ implementation "com.naver.maps:map-sdk:3.8.0"
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
-<br>
-
 ### 1. 중복 클릭 방지
 
 #### 🔥 issue
@@ -285,8 +280,6 @@ act_main_btn_store.onlyOneClickListener {
 #### 🗞 result
 
 - 여러번의 클릭을 막을 수 있는 결과를 얻었다.
-
-<br>
 
 ### 2. Scroll Animation
 
