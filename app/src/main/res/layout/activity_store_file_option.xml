@@ -560,6 +560,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="44dp"
                     android:lineSpacingExtra="16sp"
                     android:text="부수변경"
                     android:textColor="@color/black"

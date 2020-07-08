@@ -21,9 +21,6 @@ class StoreFileOptionRangeFragment : DialogFragment() {
     private var printMinNum: String = "0"
     private var printMaxNum: String = "0"
 
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,17 +38,21 @@ class StoreFileOptionRangeFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //default로 전체
+        order_option_btn_whole1.isSelected = true
 
         order_dialog_btn_close_black.setOnClickListener {
             dismiss()
         }
 
         order_option_btn_whole1.setOnClickListener {
+            order_option_btn_whole2.isSelected = false
             order_option_btn_whole1.isSelected = !order_option_btn_whole1.isSelected
             printOption = "all"
         }
 
         order_option_btn_whole2.setOnClickListener {
+            order_option_btn_whole1.isSelected = false
             order_option_btn_whole2.isSelected = !order_option_btn_whole2.isSelected
             printOption= "part"
         }
