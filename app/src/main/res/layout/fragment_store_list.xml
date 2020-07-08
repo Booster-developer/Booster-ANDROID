@@ -1,84 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.storeList.StoreListFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/frag_store_list_tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="65dp"
-        android:fontFamily="@font/noto_sans_kr_bold"
-        android:text="매장"
-        android:textColor="@color/black"
-        android:textSize="26sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <ImageView
-        android:id="@+id/frag_store_list_iv_map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="2dp"
-        android:src="@drawable/store_detail_ic_map_blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    </data>
 
-    <LinearLayout
-        android:id="@+id/frag_store_list_ll_univ"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/frag_store_list_tv_title"
-        app:layout_constraintStart_toStartOf="@id/frag_store_list_tv_title">
-
-        <TextView
-            android:id="@+id/frag_store_list_tv_univ"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_sans_kr_medium"
-            android:text="숭실대학교"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@id/frag_store_list_tv_title"
-            app:layout_constraintTop_toBottomOf="@id/frag_store_list_tv_title" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/store_spinner_univ"
-            app:layout_constraintBottom_toBottomOf="@id/frag_store_list_tv_univ"
-            app:layout_constraintStart_toEndOf="@id/frag_store_list_tv_univ"
-            app:layout_constraintTop_toTopOf="@id/frag_store_list_tv_univ" />
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/noto_sans_kr_medium"
-        android:text="주변의 부스터 매장을 찾아보세요."
-        android:textColor="#7d7d7d"
-        android:textSize="13sp"
-        android:paddingBottom="3dp"
-        android:layout_marginStart="4dp"
-        app:layout_constraintStart_toEndOf="@id/frag_store_list_ll_univ"
-        app:layout_constraintTop_toTopOf="@id/frag_store_list_ll_univ"
-        app:layout_constraintBottom_toBottomOf="@id/frag_store_list_ll_univ"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/frag_store_list_rv"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="26dp"
-        app:layout_constraintTop_toBottomOf="@id/frag_store_list_ll_univ"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".ui.storeList.StoreListFragment">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/frag_store_list_appBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/frag_store_list_toolBar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                android:background="@color/white"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:toolbarId="@+id/frag_store_list_toolBar">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/frag_store_list_toolBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="97dp"
+                    app:layout_collapseMode="pin"
+                    android:background="@color/white"
+                    app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                    <ImageView
+                        android:id="@+id/frag_store_list_iv_map"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_collapseMode="parallax"
+                        android:layout_gravity="end|top"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_marginBottom="4dp"
+                        android:src="@drawable/store_detail_ic_map_blue" />
+
+                </androidx.appcompat.widget.Toolbar>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/frag_store_list_cl_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    app:layout_collapseMode="pin"
+                    android:layout_marginTop="80dp">
+
+                    <TextView
+                        android:id="@+id/frag_store_list_tv_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="9dp"
+                        android:fontFamily="@font/noto_sans_kr_bold"
+                        android:text="매장"
+                        android:textColor="@color/black"
+                        android:textSize="26sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/frag_store_list_ll_univ"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:gravity="center"
+                        app:layout_constraintStart_toStartOf="@id/frag_store_list_tv_title"
+                        app:layout_constraintTop_toBottomOf="@id/frag_store_list_tv_title">
+
+                        <TextView
+                            android:id="@+id/frag_store_list_tv_univ"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_sans_kr_medium"
+                            android:text="숭실대학교"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            app:layout_constraintStart_toStartOf="@id/frag_store_list_tv_title"
+                            app:layout_constraintTop_toBottomOf="@id/frag_store_list_tv_title" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/store_spinner_univ"
+                            app:layout_constraintBottom_toBottomOf="@id/frag_store_list_tv_univ"
+                            app:layout_constraintStart_toEndOf="@id/frag_store_list_tv_univ"
+                            app:layout_constraintTop_toTopOf="@id/frag_store_list_tv_univ" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="@font/noto_sans_kr_medium"
+                        android:paddingBottom="3dp"
+                        android:text="주변의 부스터 매장을 찾아보세요."
+                        android:textColor="#7d7d7d"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="@id/frag_store_list_ll_univ"
+                        app:layout_constraintStart_toEndOf="@id/frag_store_list_ll_univ"
+                        app:layout_constraintTop_toTopOf="@id/frag_store_list_ll_univ" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="26dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/frag_store_list_ll_univ" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/frag_store_list_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

@@ -12,25 +12,37 @@ class StoreListViewModel : ViewModel() {
 
     val dummy = arrayListOf(
         StoreListData(
-            name = "가게 1"
+            name = "가게 1",
+            store_favorite = 1
         ),
         StoreListData(
-            name = "가게 2"
+            name = "가게 2",
+            store_favorite = 0
         ),
         StoreListData(
-            name = "가게 3"
+            name = "가게 3",
+            store_favorite = 1
+
         ),
         StoreListData(
-            name = "가게 3"
+            name = "가게 3",
+            store_favorite = 1
+
         ),
         StoreListData(
-            name = "가게 3"
+            name = "가게 3",
+            store_favorite = 1
+
         ),
         StoreListData(
-            name = "가게 3"
+            name = "가게 3",
+            store_favorite = 0
+
         ),
         StoreListData(
-            name = "가게 3"
+            name = "가게 3",
+            store_favorite = 1
+
         )
     )
 

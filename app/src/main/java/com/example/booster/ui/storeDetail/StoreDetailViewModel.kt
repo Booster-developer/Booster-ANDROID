@@ -20,7 +20,9 @@ class StoreDetailViewModel : ViewModel() {
     private var _storeDetail = MutableLiveData<StoreDetailData>() //변경 가능한 mutableLiveData 변수
     val storeDetail : LiveData<StoreDetailData> get() = _storeDetail //LiveData 변수인 newsList는 변경이 안되므로 변경 가능한 _newsList를 가져옴
 
-    var _favStatus = MutableLiveData<StoreFavData>()
+    val favStatus = MutableLiveData<StoreFavData>()
+    val networkFail = MutableLiveData<Unit>()
+
 
     fun getStoreDetail(storeIdx : Int){
         disposables.add(storeDetailRepository.getStoreDetail(storeIdx)
@@ -53,15 +55,17 @@ class StoreDetailViewModel : ViewModel() {
             // 구독할 때 수행할 작업을 구현
             .doOnSubscribe {}
             // 스트림이 종료될 때 수행할 작업을 구현
-            .doOnTerminate {}
+            .doOnTerminate {
+
+            }
             // 옵서버블을 구독
             .subscribe({
                 // API를 통해 액세스 토큰을 정상적으로 받았을 때 처리할 작업을 구현
                 // 작업 중 오류가 발생하면 이 블록은 호출되지 x
 
                 // onResponse
-                Log.e("postUserData 응답 성공 : ", it.message)
-                _favStatus.postValue(it)
+                Log.e("postUserData 응답 성공 : ", it.toString())
+                favStatus.postValue(it)
             }){
                 // 에러 블록
                 // 네트워크 오류나 데이터 처리 오류 등
@@ -69,6 +73,7 @@ class StoreDetailViewModel : ViewModel() {
 
                 // onFailure
                 Log.e("통신 실패 error : ", it.message!!)
+                networkFail.value = Unit
             })
     }
 }
