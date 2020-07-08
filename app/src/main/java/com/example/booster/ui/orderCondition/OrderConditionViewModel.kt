@@ -22,6 +22,30 @@ class OrderConditionViewModel : ViewModel() {
         OrderConditionData(
             name = "가게 3",
             status = 3
+        ),
+        OrderConditionData(
+            name = "가게 4",
+            status = 1
+        ),
+        OrderConditionData(
+            name = "가게 5",
+            status = 2
+        ),
+        OrderConditionData(
+            name = "가게 6",
+            status = 3
+        ),
+        OrderConditionData(
+            name = "가게 4",
+            status = 1
+        ),
+        OrderConditionData(
+            name = "가게 5",
+            status = 2
+        ),
+        OrderConditionData(
+            name = "가게 6",
+            status = 3
         )
     )
 

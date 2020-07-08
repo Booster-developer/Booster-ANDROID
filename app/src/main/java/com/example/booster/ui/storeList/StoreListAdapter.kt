@@ -40,6 +40,7 @@ class StoreListAdapter(private val context : Context,
             animationUtil.fade_out(holder.itemView)
         }
         previousPostition = position
+
     }
 }
 

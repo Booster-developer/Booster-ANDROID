@@ -37,7 +37,7 @@ class StoreDetailActivity : AppCompatActivity() {
         })
 
         act_store_detail_iv_star.setOnClickListener {
-            viewModel.postStoreFav(4)
+            viewModel.putStoreFav(4)
         }
     }
 

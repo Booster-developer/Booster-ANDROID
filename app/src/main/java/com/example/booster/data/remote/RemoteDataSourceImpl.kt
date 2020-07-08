@@ -13,8 +13,8 @@ class RemoteDataSourceImpl : RemoteDataSource {
             .map {
                 it }
 
-    override fun postStoreFav(storeIdx: Int): Observable<StoreFavData> =
-        api.postStoreFav(storeIdx)
+    override fun putStoreFav(storeIdx: Int): Observable<StoreFavData> =
+        api.putStoreFav(storeIdx)
             .map {
                 it }
 
