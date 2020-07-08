@@ -6,7 +6,6 @@ import android.os.Bundle
 import com.example.booster.R
 import com.example.booster.ui.bottomtap.BottomTabActivity
 import com.example.booster.ui.orderCondition.OrderConditionActivity
-import com.example.booster.ui.storeDetail.MapActivity
 import com.example.booster.ui.storeList.StoreListActivity
 import com.example.booster.ui.storeDetail.StoreDetailActivity
 import kotlinx.android.synthetic.main.activity_main.*
