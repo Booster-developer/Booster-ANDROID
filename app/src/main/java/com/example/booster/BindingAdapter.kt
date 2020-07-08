@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
 
 @BindingAdapter("changeCircleF")
 fun ImageView.changeCircleF(status : Int) {
@@ -91,4 +92,18 @@ fun ImageView.setFavStar(status : Int) {
     }else{
         setImageResource(R.drawable.store_detail_ic_star_active)
     }
+}
+
+@BindingAdapter("setFavStarList")
+fun ImageView.setFavStarList(status : Int) {
+    if (status==200){
+        setImageResource(R.drawable.store_ic_inactive_star)
+    }else{
+        setImageResource(R.drawable.store_ic_active_star)
+    }
+}
+
+@BindingAdapter("setStoreImg")
+fun setStoreImg(view: ImageView, url : String?) {
+    Glide.with(view.context).load(url).into(view)
 }

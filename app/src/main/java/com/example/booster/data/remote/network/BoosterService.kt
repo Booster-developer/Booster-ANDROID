@@ -5,6 +5,7 @@ import com.example.booster.data.datasource.model.StoreFavData
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface BoosterService {
@@ -14,7 +15,7 @@ interface BoosterService {
         @Path("store_idx") storeIdx: Int
     ): Observable<StoreDetailData>
 
-    @POST("/stores/{store_idx}/favorite")
+    @PUT("/stores/{store_idx}/favorite")
     fun postStoreFav(
         @Path("store_idx") storeIdx: Int
     ): Observable<StoreFavData>
