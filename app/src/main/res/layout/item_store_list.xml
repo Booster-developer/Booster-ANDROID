@@ -46,7 +46,6 @@
                     android:id="@+id/item_store_search_iv_fav"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    setFavStarList="@{vm._favStatus.status}"
                     android:src="@drawable/store_ic_inactive_star"
                     android:layout_marginTop="6dp"
                     android:layout_marginEnd="4dp"

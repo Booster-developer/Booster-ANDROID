@@ -6,5 +6,5 @@ import com.example.booster.data.remote.RemoteDataSourceImpl
 class StoreFavRepository{
     val remoteDataSource : RemoteDataSource = RemoteDataSourceImpl()
 
-    fun postStoreFav(storeIdx: Int) = remoteDataSource.postStoreFav(storeIdx)
+    fun putStoreFav(storeIdx: Int) = remoteDataSource.putStoreFav(storeIdx)
 }

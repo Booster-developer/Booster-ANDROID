@@ -2,26 +2,22 @@ package com.example.booster.ui.storeList
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a2nd_seminar.ui.ItemDecorator
 import com.example.booster.R
-import com.example.booster.databinding.ItemStoreListBinding
 import com.example.booster.ui.storeDetail.MapActivity
 import com.example.booster.ui.storeDetail.StoreDetailActivity
 import com.example.booster.ui.storeDetail.StoreDetailViewModel
 import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
 import kotlinx.android.synthetic.main.fragment_store_list.*
-import kotlinx.android.synthetic.main.item_store_list.*
 import kotlin.math.abs
 
 
@@ -30,7 +26,6 @@ class StoreListFragment : Fragment() {
     private lateinit var viewModel: StoreListViewModel
     private lateinit var viewModel2: StoreDetailViewModel
     lateinit var adapter: StoreListAdapter
-    lateinit var binding : ItemStoreListBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,12 +39,8 @@ class StoreListFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(StoreListViewModel::class.java)
         viewModel2 = ViewModelProvider(this).get(StoreDetailViewModel::class.java)
+
         initRv()
-        binding = DataBindingUtil.setContentView(requireActivity(), R.layout.fragment_store_list)
-        binding.lifecycleOwner = activity
-        binding.vm = (this).viewModel2
-
-
         setClick()
         setAppBar()
     }
@@ -92,7 +83,7 @@ class StoreListFragment : Fragment() {
             object : StoreListViewHolder.onclickFavListener {
                 override fun onClickFav(position: Int,imageView: ImageView) {
                     Toast.makeText(requireContext(), position.toString(), Toast.LENGTH_SHORT).show()
-                    viewModel2.postStoreFav(position+1)
+                    viewModel2.putStoreFav(position+1)
                 }
             })
         frag_store_list_rv.adapter = adapter

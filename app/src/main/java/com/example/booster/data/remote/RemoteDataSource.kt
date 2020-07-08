@@ -7,5 +7,5 @@ import io.reactivex.Observable
 
 interface RemoteDataSource {
     fun getStoreDetail(storeIdx : Int) : Observable<StoreDetailData>
-    fun postStoreFav(storeIdx: Int) : Observable<StoreFavData>
+    fun putStoreFav(storeIdx: Int) : Observable<StoreFavData>
 }

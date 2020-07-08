@@ -2,7 +2,6 @@ package com.example.booster.ui.storeDetail
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -38,7 +37,7 @@ class StoreDetailActivity : AppCompatActivity() {
         })
 
         act_store_detail_iv_star.setOnClickListener {
-            viewModel.postStoreFav(4)
+            viewModel.putStoreFav(4)
         }
     }
 

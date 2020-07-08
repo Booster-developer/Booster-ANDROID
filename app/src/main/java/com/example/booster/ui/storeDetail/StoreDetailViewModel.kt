@@ -47,8 +47,8 @@ class StoreDetailViewModel : ViewModel() {
             })
     }
 
-    fun postStoreFav(storeIdx : Int){
-        disposables.add(storeFavRepository.postStoreFav(storeIdx)
+    fun putStoreFav(storeIdx : Int){
+        disposables.add(storeFavRepository.putStoreFav(storeIdx)
             .observeOn(AndroidSchedulers.mainThread())
             // 구독할 때 수행할 작업을 구현
             .doOnSubscribe {}
@@ -60,7 +60,7 @@ class StoreDetailViewModel : ViewModel() {
                 // 작업 중 오류가 발생하면 이 블록은 호출되지 x
 
                 // onResponse
-                Log.e("postUserData 응답 성공 : ", it.toString())
+                Log.e("putStoreFav 응답 성공 : ", it.toString())
                 _favStatus.postValue(it)
             }){
                 // 에러 블록

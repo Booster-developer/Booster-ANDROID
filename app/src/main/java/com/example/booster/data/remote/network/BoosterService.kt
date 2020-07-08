@@ -16,7 +16,7 @@ interface BoosterService {
     ): Observable<StoreDetailData>
 
     @PUT("/stores/{store_idx}/favorite")
-    fun postStoreFav(
+    fun putStoreFav(
         @Path("store_idx") storeIdx: Int
     ): Observable<StoreFavData>
 }
