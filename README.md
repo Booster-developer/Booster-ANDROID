@@ -10,6 +10,8 @@
 
 <img src="https://github.com/Booster-developer/Booster-SERVER/blob/dev/images/main.png" ></img>
 
+
+
 ## 🔧 Tools
 
 - Android Studio
@@ -19,11 +21,13 @@
 - Postman
 
 
+
 ## 📌 Code Convention
 
 - 변수명은 기본적으로 camelCase로 작성.
 
 - ID NAMING : 뷰이름_위젯줄인말_기능이름
+
 
 
 ## 🌞 Github Branching
@@ -35,6 +39,7 @@
 - 모든 기능이 완벽하면서, 모든 팀원이 동의할 때 Master 브랜치로 PR을 보낸다.
 
 
+
 ## 🚀 Project Purpose
 
 - 빠르게 출력하는 편리함
@@ -42,6 +47,7 @@
 - 대학생을 위한 빠르고 간편한 인쇄 서비스
 
 - 사전 인쇄 주문 서비스
+
 
 
 ## 🛠 Technology Stack
@@ -55,6 +61,7 @@
 - Gson : Json Data process Library
 
 - Glide : Image Process Library
+
 
 
 ## 🔑 Dependency
@@ -216,6 +223,8 @@ implementation "com.naver.maps:map-sdk:3.8.0"
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
+
+
 ### 1. 중복 클릭 방지
 
 #### 🔥 issue
@@ -277,6 +286,122 @@ act_main_btn_store.onlyOneClickListener {
 #### 🗞 result
 
 - 여러번의 클릭을 막을 수 있는 결과를 얻었다.
+
+
+
+### 2. Scroll Animation
+
+#### 🔥 issue
+
+- 뷰 스크롤시 타이틀 레이아웃이 상단에 고정된채로 RecyclerView가 스크롤 되야한다.
+
+#### 📒 solution
+
+- CollapsingToolbarLayout를 사용하여 타이틀 상단 고정
+- addOnOffsetChangedListener 안에서 뷰의 alpha 값을 조절하여 toolbar fade out 효과 구현
+
+frag_store_list.xml
+
+```kotlin
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".ui.storeList.StoreListFragment">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/frag_store_list_appBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/frag_store_list_toolBar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:fitsSystemWindows="true"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:toolbarId="@+id/frag_store_list_toolBar">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/frag_store_list_toolBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="97dp"
+                    android:background="@color/white"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                    <ImageView
+                        android:id="@+id/frag_store_list_iv_map"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|top"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_marginBottom="4dp"
+                        android:src="@drawable/store_detail_ic_map_blue"
+                        app:layout_collapseMode="parallax" />
+
+                </androidx.appcompat.widget.Toolbar>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/frag_store_list_cl_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="80dp"
+                    android:background="@android:color/transparent"
+                    app:layout_collapseMode="pin">
+
+                    <TextView
+                        android:id="@+id/frag_store_list_tv_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="9dp"
+                        android:fontFamily="@font/noto_sans_kr_bold"
+                        android:text="매장"
+                        android:textColor="@color/black"
+                        android:textSize="26sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    ...
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/frag_store_list_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+```
+
+StoreListFragment.kt
+
+```kotlin
+frag_store_list_appBar.addOnOffsetChangedListener(OnOffsetChangedListener { frag_store_list_appBar, verticalOffset ->
+            if (frag_store_list_appBar.totalScrollRange == 0 || verticalOffset == 0) {
+                frag_store_list_iv_map.alpha = 1f
+                return@OnOffsetChangedListener
+            }
+            val ratio = verticalOffset.toFloat() / frag_store_list_appBar.totalScrollRange.toFloat()
+            frag_store_list_iv_map.alpha = 1f- abs(ratio)
+    })
+```
+
+#### 🗞 result
+
+
 
 ## 👨‍👨‍👧‍👧‍👧 Developer
 
