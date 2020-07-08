@@ -52,6 +52,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        pdf_test.setOnClickListener {
+            val intent = Intent(this, PdfTestActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     var permissionlistener: PermissionListener = object : PermissionListener {

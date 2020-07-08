@@ -3,10 +3,13 @@ package com.example.booster.ui
 import android.app.Activity
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,7 +26,7 @@ import droidninja.filepicker.FilePickerConst.REQUEST_CODE_DOC
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_PHOTO
 import kotlinx.android.synthetic.main.activity_file_storage.*
 import kotlinx.android.synthetic.main.my_file.*
-
+import java.io.File
 
 
 class FileStorageActivity : AppCompatActivity() {
@@ -38,7 +41,7 @@ class FileStorageActivity : AppCompatActivity() {
 
         rv_file_add.apply {
             layoutManager = LinearLayoutManager(this@FileStorageActivity)
-            adapter = FileAdapter(datas)
+            adapter = FileAdapter(datas, {item, position -> itemDelete(item, position)}, {item, position -> itemOptionChange(item, position)})
         }
         rv_file_add.addItemDecoration(
             MarginItemDecoration(
@@ -46,6 +49,36 @@ class FileStorageActivity : AppCompatActivity() {
             resources.getDimensionPixelSize(R.dimen.paddingItemDecorationDefault)
         )
         )
+            tv_order.visibility = View.GONE
+            tv_cost.visibility = View.GONE
+            tv_cost_amount.visibility = View.GONE
+
+    }
+
+    private fun itemOptionChange(item: FileData, position:Int) {
+        datas[position].option_view = "두장 모아 찍기";
+
+        rv_file_add.adapter?.notifyItemChanged(position)
+    }
+
+    private fun itemDelete(item: FileData, position:Int) {
+        val builder = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
+        val dialogView = layoutInflater.inflate(R.layout.dialog_item_delete, null)
+        builder.setMessage(item.name + "를 삭제하시겠습니까?")
+        builder.setView(dialogView)
+            .setPositiveButton("예") { dialog: DialogInterface?, which: Int ->
+                datas.remove(item)
+                rv_file_add.adapter?.notifyItemRemoved(position)
+                if (datas.size == 0) {
+                    tv_order.visibility = View.GONE
+                    tv_cost.visibility = View.GONE
+                    tv_cost_amount.visibility = View.GONE
+                }
+            }
+            .setNegativeButton("아니오") { dialog: DialogInterface?, which: Int ->
+
+            }
+            .show()
 
     }
 
@@ -92,6 +125,16 @@ class FileStorageActivity : AppCompatActivity() {
             }
         }
 
+        if (datas.size >= 1) {
+            tv_order.visibility = View.VISIBLE
+            tv_cost.visibility = View.VISIBLE
+            tv_cost_amount.visibility = View.VISIBLE
+        } else {
+            tv_order.visibility = View.GONE
+            tv_cost.visibility = View.GONE
+            tv_cost_amount.visibility = View.GONE
+        }
+
         rv_file_add.adapter?.notifyDataSetChanged()
 
 
@@ -127,7 +170,6 @@ class FileStorageActivity : AppCompatActivity() {
         when(view) {
             FileStorage_img_close -> showDeleteDialog()
             iv_file_add -> fileAdd()
-            iv_file_delete -> showItemRemoveDialog()
         }
     }
 
@@ -155,6 +197,7 @@ class FileStorageActivity : AppCompatActivity() {
             val builder = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
             val dialogView = layoutInflater.inflate(R.layout.dialog_return, null)
 
+
             builder.setView(dialogView)
                 .setPositiveButton("예") { dialog: DialogInterface?, which: Int ->
 
@@ -166,22 +209,4 @@ class FileStorageActivity : AppCompatActivity() {
         }
     }
 
-    private fun deleteItemsAndNotifyAdapter() {
-        datas.clear()
-        rv_file_add.adapter?.notifyDataSetChanged()
-    }
-    // 파일 하나하나 삭제 시
-    private fun showItemRemoveDialog() {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
-        val dialogView = layoutInflater.inflate(R.layout.dialog_return, null) //dialog_return 바꿔야함
-
-        builder.setView(dialogView)
-            .setPositiveButton("예") { dialog: DialogInterface?, which: Int ->
-                deleteItemsAndNotifyAdapter()
-            }
-            .setNegativeButton("아니오") { dialog: DialogInterface?, which: Int ->
-
-            }
-            .show()
-    }
 }

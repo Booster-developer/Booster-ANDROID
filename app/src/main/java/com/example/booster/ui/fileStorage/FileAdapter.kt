@@ -12,7 +12,11 @@ import com.example.booster.util.BoosterUtil
 import kotlinx.android.synthetic.main.my_file.view.*
 import java.io.File
 
-class FileAdapter(var datas: ArrayList<com.example.booster.data.datasource.model.FileData>):
+class FileAdapter(
+    var datas: ArrayList<com.example.booster.data.datasource.model.FileData>,
+    val itemDelete: (com.example.booster.data.datasource.model.FileData, Int) -> Unit,
+    val itemOptionChange: (com.example.booster.data.datasource.model.FileData, Int) -> Unit
+) :
     RecyclerView.Adapter<FileAdapter.ViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -41,6 +45,16 @@ class FileAdapter(var datas: ArrayList<com.example.booster.data.datasource.model
             }
 
             itemView.tv_file_name.text = file.name
+
+            itemView.tv_option_view.text = file.option_view
+
+            itemView.iv_file_delete.setOnClickListener{
+                itemDelete(file, bindingAdapterPosition)
+            }
+
+            itemView.tv_option_change.setOnClickListener {
+                itemOptionChange(file, bindingAdapterPosition)
+            }
 
 
         }

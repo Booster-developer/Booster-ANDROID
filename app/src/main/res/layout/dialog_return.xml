@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_width="318dp"
+    android:layout_height="235dp"
     android:background="@drawable/bg_dialog_return">
 
     <TextView
@@ -16,7 +15,7 @@
         android:layout_marginRight="16dp"
         android:text="리스트가 모두 초기화됩니다.\n계속 하시겠습니까?"
         android:textAlignment="center"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textColor="#131313"
         android:fontFamily="@font/noto_sans_kr_regular"
         android:gravity="center_horizontal" />
@@ -49,4 +48,4 @@
 
     </RelativeLayout>
 -->
-</LinearLayout>
+</RelativeLayout>
