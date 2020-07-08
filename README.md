@@ -11,6 +11,15 @@
 <img src="https://github.com/Booster-developer/Booster-SERVER/blob/dev/images/main.png" ></img>
 <br><br>
 
+## 🚀 Project Purpose
+
+- 빠르게 출력하는 편리함
+
+- 대학생을 위한 빠르고 간편한 인쇄 서비스
+
+- 사전 인쇄 주문 서비스
+<br>
+
 ## 🔧 Tools
 
 - Android Studio
@@ -29,21 +38,11 @@
 
 ## 🌞 Github Branching
 
-- 개인 Branch를 이름으로 판 뒤 개발한다.
+- 개인 Branch를 이름으로 만든 뒤 개발한다.
 
 - 개인 Branch에서 develop branch로 PR을 보낸다.
 
 - 모든 기능이 완벽하면서, 모든 팀원이 동의할 때 Master 브랜치로 PR을 보낸다.
-<br>
-
-## 🚀 Project Purpose
-
-- 빠르게 출력하는 편리함
-
-- 대학생을 위한 빠르고 간편한 인쇄 서비스
-
-- 사전 인쇄 주문 서비스
-
 <br>
 
 ## 🛠 Technology Stack
@@ -287,7 +286,7 @@ act_main_btn_store.onlyOneClickListener {
 
 #### 🗞 result
 
-- 여러번의 클릭을 막을 수 있는 결과를 얻었다.
+- 연달아 터치시 불필요한 clickEvent가 일어나지 않도록 막을 수 있다.
 
 <br>
 
