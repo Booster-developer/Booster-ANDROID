@@ -37,5 +37,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        act_store_file_option_btn_option.setOnClickListener {
+            val intent = Intent(this@MainActivity, StoreFileOptionActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

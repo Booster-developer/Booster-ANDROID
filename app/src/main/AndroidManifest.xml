@@ -14,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.storeDetail.MapActivity"></activity>
+        <activity android:name=".ui.ResultActivity"></activity>
+        <activity android:name=".ui.StoreFileOptionActivity" />
+        <activity android:name=".ui.storeDetail.MapActivity" />
         <activity android:name=".ui.PdfTestActivity" />
         <activity android:name=".ui.bottomtap.BottomTabActivity" />
         <activity android:name=".ui.storeDetail.StoreDetailActivity" />

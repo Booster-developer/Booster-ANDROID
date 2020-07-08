@@ -12,4 +12,4 @@ interface BoosterService {
     fun getStoreDetail(
         @Path("store_idx") storeIdx: Int
     ): Observable<StoreDetailData>
-}
+} 
