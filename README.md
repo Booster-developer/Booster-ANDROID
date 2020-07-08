@@ -9,8 +9,7 @@
 > 프로젝트 기간 2020.06 ~ 진행중
 
 <img src="https://github.com/Booster-developer/Booster-SERVER/blob/dev/images/main.png" ></img>
-
-
+<br><br>
 
 ## 🔧 Tools
 
@@ -20,15 +19,15 @@
 
 - Postman
 
-
+<br>
 
 ## 📌 Code Convention
 
-- 변수명은 기본적으로 camelCase로 작성.
+- 변수명은 기본적으로 camelCase로 작성
 
-- ID NAMING : 뷰이름_위젯줄인말_기능이름
+- ID NAMING : 뷰이름_위젯줄인말_기능이름<br><br>
 
-
+<br>
 
 ## 🌞 Github Branching
 
@@ -38,7 +37,7 @@
 
 - 모든 기능이 완벽하면서, 모든 팀원이 동의할 때 Master 브랜치로 PR을 보낸다.
 
-
+<br>
 
 ## 🚀 Project Purpose
 
@@ -48,7 +47,7 @@
 
 - 사전 인쇄 주문 서비스
 
-
+<br>
 
 ## 🛠 Technology Stack
 
@@ -62,7 +61,7 @@
 
 - Glide : Image Process Library
 
-
+<br>
 
 ## 🔑 Dependency
 
@@ -137,7 +136,7 @@ implementation "org.koin:koin-androidx-ext:$koin_version"
 implementation "com.naver.maps:map-sdk:3.8.0"
 ```
 
-
+<br>
 
 ## 🖕 주요기능
 
@@ -223,7 +222,7 @@ implementation "com.naver.maps:map-sdk:3.8.0"
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
-
+<br>
 
 ### 1. 중복 클릭 방지
 
@@ -287,7 +286,7 @@ act_main_btn_store.onlyOneClickListener {
 
 - 여러번의 클릭을 막을 수 있는 결과를 얻었다.
 
-
+<br>
 
 ### 2. Scroll Animation
 
@@ -401,7 +400,7 @@ frag_store_list_appBar.addOnOffsetChangedListener(OnOffsetChangedListener { frag
 
 #### 🗞 result
 
-
+<br>
 
 ## 👨‍👨‍👧‍👧‍👧 Developer
 
