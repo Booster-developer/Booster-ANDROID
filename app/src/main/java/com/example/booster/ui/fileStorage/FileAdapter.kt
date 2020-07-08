@@ -15,7 +15,8 @@ import java.io.File
 class FileAdapter(
     var datas: ArrayList<com.example.booster.data.datasource.model.FileData>,
     val itemDelete: (com.example.booster.data.datasource.model.FileData, Int) -> Unit,
-    val itemOptionChange: (com.example.booster.data.datasource.model.FileData, Int) -> Unit
+    val itemOptionChange: (com.example.booster.data.datasource.model.FileData, Int) -> Unit,
+    val itemOptionView: (com.example.booster.data.datasource.model.FileData, Int) -> Unit
 ) :
     RecyclerView.Adapter<FileAdapter.ViewHolder>() {
     override fun onCreateViewHolder(
@@ -46,7 +47,7 @@ class FileAdapter(
 
             itemView.tv_file_name.text = file.name
 
-            itemView.tv_option_view.text = file.option_view
+            //itemView.tv_option_view.text = file.option_view //사용하면 옵션보기 텍스트가 안뜸
 
             itemView.iv_file_delete.setOnClickListener{
                 itemDelete(file, bindingAdapterPosition)
@@ -54,6 +55,10 @@ class FileAdapter(
 
             itemView.tv_option_change.setOnClickListener {
                 itemOptionChange(file, bindingAdapterPosition)
+            }
+
+            itemView.tv_option_view.setOnClickListener {
+                itemOptionView(file, bindingAdapterPosition)
             }
 
 

@@ -1,6 +1,7 @@
 package com.example.booster.ui
 
 import android.app.Activity
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
@@ -8,7 +9,10 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Layout
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -25,6 +29,7 @@ import droidninja.filepicker.FilePickerConst.KEY_SELECTED_MEDIA
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_DOC
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_PHOTO
 import kotlinx.android.synthetic.main.activity_file_storage.*
+import kotlinx.android.synthetic.main.dialog_item_view.*
 import kotlinx.android.synthetic.main.my_file.*
 import java.io.File
 
@@ -41,7 +46,8 @@ class FileStorageActivity : AppCompatActivity() {
 
         rv_file_add.apply {
             layoutManager = LinearLayoutManager(this@FileStorageActivity)
-            adapter = FileAdapter(datas, {item, position -> itemDelete(item, position)}, {item, position -> itemOptionChange(item, position)})
+            adapter = FileAdapter(datas, {item, position -> itemDelete(item, position)}, {item, position -> itemOptionChange(item, position)},
+                {item, position -> itemOptionView(item, position)})
         }
         rv_file_add.addItemDecoration(
             MarginItemDecoration(
@@ -56,15 +62,29 @@ class FileStorageActivity : AppCompatActivity() {
     }
 
     private fun itemOptionChange(item: FileData, position:Int) {
-        datas[position].option_view = "두장 모아 찍기";
+        //옵션 설정 코드 추가
+    }
 
-        rv_file_add.adapter?.notifyItemChanged(position)
+    private fun itemOptionView(item: FileData, position:Int) {
+        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val view = inflater.inflate(R.layout.dialog_item_view, null)
+        val alertDialog = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
+            .create()
+        val dialogclose = view.findViewById<ImageView>(R.id.dial_item_view_close)
+        dialogclose.setOnClickListener {
+            alertDialog.dismiss()
+        }
+        alertDialog.setView(view)
+        alertDialog.show()
+        //alertDialog.window?.setLayout(700, 800)
+
     }
 
     private fun itemDelete(item: FileData, position:Int) {
         val builder = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
         val dialogView = layoutInflater.inflate(R.layout.dialog_item_delete, null)
-        builder.setMessage(item.name + "를 삭제하시겠습니까?")
+        val textView: TextView = dialogView.findViewById(R.id.dial_item_delete_tv_message)
+        textView.text = item.name + "를 삭제하시겠습니까?"
         builder.setView(dialogView)
             .setPositiveButton("예") { dialog: DialogInterface?, which: Int ->
                 datas.remove(item)
@@ -193,7 +213,6 @@ class FileStorageActivity : AppCompatActivity() {
 
 
     private fun showDeleteDialog() {
-        FileStorage_img_close.setOnClickListener {
             val builder = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
             val dialogView = layoutInflater.inflate(R.layout.dialog_return, null)
 
@@ -206,7 +225,6 @@ class FileStorageActivity : AppCompatActivity() {
 
                 }
                 .show()
-        }
     }
 
 }
