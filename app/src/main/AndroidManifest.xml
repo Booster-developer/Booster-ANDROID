@@ -24,7 +24,7 @@
         <activity android:name=".ui.PdfTestActivity" />
         <activity android:name=".ui.bottomtap.BottomTabActivity" />
         <activity android:name=".ui.storeDetail.StoreDetailActivity" />
-        <activity android:name=".ui.orderCondition.OrderConditionActivity" />
+        <activity android:name=".ui.orderList.OrderListActivity" />
         <activity android:name=".ui.storeList.StoreListActivity" />
         <activity android:name=".ui.MainActivity">
             <intent-filter>

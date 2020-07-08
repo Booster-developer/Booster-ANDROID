@@ -6,7 +6,7 @@ import android.os.Bundle
 import com.example.booster.R
 import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.bottomtap.BottomTabActivity
-import com.example.booster.ui.orderCondition.OrderConditionActivity
+import com.example.booster.ui.orderList.OrderListActivity
 import com.example.booster.ui.storeList.StoreListActivity
 import com.example.booster.ui.storeDetail.StoreDetailActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         act_main_btn_order_condition.onlyOneClickListener {
-            val intent = Intent(this@MainActivity, OrderConditionActivity::class.java)
+            val intent = Intent(this@MainActivity, OrderListActivity::class.java)
             startActivity(intent)
         }
 

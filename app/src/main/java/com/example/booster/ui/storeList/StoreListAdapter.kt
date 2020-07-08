@@ -10,6 +10,7 @@ import com.example.booster.AnimationUtil
 import com.example.booster.data.datasource.model.StoreListData
 import com.example.booster.databinding.ItemStoreListBinding
 import com.example.booster.onlyOneClickListener
+import com.example.booster.ui.bottomtap.BottomTabActivity
 import com.example.booster.ui.storeDetail.StoreDetailViewModel
 
 class StoreListAdapter(private val context : Context,
@@ -23,8 +24,8 @@ class StoreListAdapter(private val context : Context,
     private val animationUtil = AnimationUtil()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoreListViewHolder {
-        viewModel2 = ViewModelProvider(context as StoreListActivity).get(StoreDetailViewModel::class.java)
-
+//        viewModel2 = ViewModelProvider(context as StoreListActivity).get(StoreDetailViewModel::class.java)
+        viewModel2 = ViewModelProvider(context as BottomTabActivity).get(StoreDetailViewModel::class.java)
         binding = ItemStoreListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return StoreListViewHolder(binding, clickListener, clickFavListener)

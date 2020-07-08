@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -47,7 +48,7 @@ class StoreListFragment : Fragment() {
 
         initRv()
         setClick()
-        setAppBar()
+//        setAppBar()
     }
 
     private fun setAppBar(){
@@ -94,7 +95,7 @@ class StoreListFragment : Fragment() {
                         imageView.setImageResource(R.drawable.store_ic_active_star)
                         adapter.data[position].store_favorite = 1
                     }
-                    viewModel2.postStoreFav(position+1)
+                    viewModel2.putStoreFav(position+1)
                     Toast.makeText(
                         requireContext(),
                         position.toString() + " : " + fav.toString(),

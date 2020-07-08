@@ -30,9 +30,9 @@ class StoreDetailActivity : AppCompatActivity() {
         viewModel.favStatus.observe(this, Observer {
             Log.e("result -> ", it.message)
             if(it.status==200){
-                act_store_detail_iv_star.setBackgroundResource(R.drawable.store_detail_ic_star_inactive)
+                act_store_detail_iv_star.setImageResource(R.drawable.store_detail_ic_star_inactive)
             } else if(it.status==201){
-                act_store_detail_iv_star.setBackgroundResource(R.drawable.store_detail_ic_star_active)
+                act_store_detail_iv_star.setImageResource(R.drawable.store_detail_ic_star_active)
             }
         })
 
