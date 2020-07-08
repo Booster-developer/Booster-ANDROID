@@ -8,8 +8,6 @@
 >
 > 프로젝트 기간 2020.06 ~ 진행중
 
-## 📈 Workflow
-
 <img src="https://github.com/Booster-developer/Booster-SERVER/blob/dev/images/main.png" ></img>
 
 ## 🔧 Tools
