@@ -2,7 +2,6 @@ package com.example.booster.ui.storeDetail
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -28,7 +27,7 @@ class StoreDetailActivity : AppCompatActivity() {
         idx = intent.getIntExtra("position", 0)
         viewModel.getStoreDetail(idx)
 
-        viewModel._favStatus.observe(this, Observer {
+        viewModel.favStatus.observe(this, Observer {
             Log.e("result -> ", it.message)
             if(it.status==200){
                 act_store_detail_iv_star.setBackgroundResource(R.drawable.store_detail_ic_star_inactive)
