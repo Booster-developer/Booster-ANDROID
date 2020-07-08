@@ -1,5 +1,6 @@
 package com.example.booster.data.remote.network
 
+import com.example.booster.data.datasource.model.OrderListData
 import com.example.booster.data.datasource.model.StoreDetailData
 import com.example.booster.data.datasource.model.StoreFavData
 import io.reactivex.Observable
@@ -19,4 +20,8 @@ interface BoosterService {
     fun putStoreFav(
         @Path("store_idx") storeIdx: Int
     ): Observable<StoreFavData>
+
+    @GET("/progress/list")
+    fun getOrderList(
+    ): Observable<OrderListData>
 }

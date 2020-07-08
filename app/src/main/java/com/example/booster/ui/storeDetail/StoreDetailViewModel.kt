@@ -65,7 +65,7 @@ class StoreDetailViewModel : ViewModel() {
 
                 // onResponse
                 Log.e("putStoreFav 응답 성공 : ", it.toString())
-                _favStatus.postValue(it)
+                favStatus.postValue(it)
             }){
                 // 에러 블록
                 // 네트워크 오류나 데이터 처리 오류 등
