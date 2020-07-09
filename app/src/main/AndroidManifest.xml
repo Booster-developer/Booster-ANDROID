@@ -23,7 +23,8 @@
         <activity android:name=".ui.orderCondition.OrderConditionActivity" />
         <activity android:name=".ui.storeList.StoreListActivity" />
         <activity android:name=".ui.MainActivity">
-        <activity android:name=".JoinActivity"></activity>
+
+        </activity>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,9 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.PdfTestActivity">
-
-        </activity>
+        <activity android:name=".JoinActivity" />
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
