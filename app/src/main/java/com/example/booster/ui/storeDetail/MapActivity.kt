@@ -9,6 +9,7 @@ import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.Marker
+
 import com.naver.maps.map.overlay.OverlayImage
 import kotlinx.android.synthetic.main.activity_map.*
 

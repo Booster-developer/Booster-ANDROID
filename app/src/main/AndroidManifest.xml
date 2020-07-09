@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+
+        android:requestLegacyExternalStorage="true"
         android:name=".BoosterApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,13 +19,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.payment.PaymentActivity"></activity>
-        <activity
-            android:name=".ui.storeList.ScrollingActivity2"
-            android:label=" " />
-        <activity
-            android:name=".ui.storeList.ScrollingActivity"
-            android:label=" " />
-        <activity android:name=".ui.storeDetail.MapActivity" />
+        <activity android:name=".ui.fileStorage.FileStorageActivity"></activity>
+        <activity android:name=".ui.storeDetail.MapActivity"></activity>
+        <activity android:name=".ui.ResultActivity"></activity>
+        <activity android:name=".ui.StoreFileOptionActivity" />
         <activity android:name=".ui.PdfTestActivity" />
         <activity android:name=".ui.bottomtap.BottomTabActivity" />
         <activity android:name=".ui.storeDetail.StoreDetailActivity" />
@@ -36,6 +35,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.selectStore.SelectStoreActivity" />
+
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"

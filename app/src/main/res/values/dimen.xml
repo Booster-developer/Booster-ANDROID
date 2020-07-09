@@ -2,4 +2,5 @@
 <resources>
     <dimen name="dialog_width">300dp</dimen>
     <dimen name="header_height">56dp</dimen>
+    <dimen name="paddingItemDecorationDefault">10dp</dimen>
 </resources>
