@@ -8,9 +8,15 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.booster.R
+<<<<<<< HEAD
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.ui.bottomtap.BottomTabActivity
 import com.example.booster.ui.orderCondition.OrderConditionActivity
+=======
+import com.example.booster.onlyOneClickListener
+import com.example.booster.ui.bottomtap.BottomTabActivity
+import com.example.booster.ui.orderList.OrderListActivity
+>>>>>>> af8138073323541cfb36275db1e66800c3488cdc
 import com.example.booster.ui.storeList.StoreListActivity
 import com.example.booster.ui.storeDetail.StoreDetailActivity
 import com.example.booster.ui.selectStore.SelectStoreActivity
@@ -49,6 +55,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+<<<<<<< HEAD
         getUniversities()
 
         TedPermission.with(this)
@@ -60,25 +67,28 @@ class MainActivity : AppCompatActivity() {
         act_main_btn_store.setOnClickListener {
             //applicationContext.resources.getString(R.string.hello_blank_fragment)
 
+=======
+        act_main_btn_store.onlyOneClickListener {
+>>>>>>> af8138073323541cfb36275db1e66800c3488cdc
             val intent = Intent(this@MainActivity, StoreListActivity::class.java)
             startActivity(intent)
         }
-
         act_main_btn_store_detail.setOnClickListener {
             val intent = Intent(this@MainActivity, StoreDetailActivity::class.java)
             startActivity(intent)
         }
 
-        act_main_btn_order_condition.setOnClickListener {
-            val intent = Intent(this@MainActivity, OrderConditionActivity::class.java)
+        act_main_btn_order_condition.onlyOneClickListener {
+            val intent = Intent(this@MainActivity, OrderListActivity::class.java)
             startActivity(intent)
         }
 
-        act_main_btn_tap.setOnClickListener {
+        act_main_btn_tap.onlyOneClickListener {
             val intent = Intent(this@MainActivity, BottomTabActivity::class.java)
             startActivity(intent)
         }
 
+<<<<<<< HEAD
         btn_storage.setOnClickListener {
             //val intent = Intent(this, FileStorageActivity::class.java)
             val intent = Intent(this, SelectStoreActivity::class.java)
@@ -104,5 +114,11 @@ class MainActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT
             ).show()
         }
+=======
+        act_store_file_option_btn_option.setOnClickListener {
+            val intent = Intent(this@MainActivity, StoreFileOptionActivity::class.java)
+            startActivity(intent)
+        }
+>>>>>>> af8138073323541cfb36275db1e66800c3488cdc
     }
 }

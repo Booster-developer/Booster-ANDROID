@@ -70,8 +70,6 @@ class MapActivity : FragmentActivity(), OnMapReadyCallback {
         }
     }
 
-
-
     fun loadDatas1(){   //얀 숭실대
         markers.apply {
             add(
