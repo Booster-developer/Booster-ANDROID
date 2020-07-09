@@ -7,6 +7,6 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface RequestJoinInterface{
-    @POST("/user/signup")
+    @POST("/users/signup")
     fun requestJoin(@Body body: RequestJoin): Call<ResponseJoin>
 }

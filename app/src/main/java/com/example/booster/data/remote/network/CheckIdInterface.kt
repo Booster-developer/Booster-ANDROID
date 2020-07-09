@@ -8,6 +8,6 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface CheckIdInterface{
-    @POST("/user/idcheck")
+    @POST("/users/idcheck")
     fun requestCheckId(@Body body: RequestCheckId): Call<ResponseJoin>
 }
