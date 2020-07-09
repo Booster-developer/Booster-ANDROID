@@ -1,15 +1,12 @@
-package com.example.booster.ui
+package com.example.booster.ui.fileStorage
 
 import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
@@ -19,19 +16,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.booster.R
 import com.example.booster.data.datasource.model.FileData
-import com.example.booster.ui.fileStorage.FileAdapter
-import com.example.booster.ui.fileStorage.MarginItemDecoration
 import com.example.booster.util.BoosterUtil
 import droidninja.filepicker.FilePickerBuilder
-import droidninja.filepicker.FilePickerConst
 import droidninja.filepicker.FilePickerConst.KEY_SELECTED_DOCS
 import droidninja.filepicker.FilePickerConst.KEY_SELECTED_MEDIA
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_DOC
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_PHOTO
 import kotlinx.android.synthetic.main.activity_file_storage.*
-import kotlinx.android.synthetic.main.dialog_item_view.*
-import kotlinx.android.synthetic.main.my_file.*
-import java.io.File
 
 
 class FileStorageActivity : AppCompatActivity() {
@@ -75,9 +66,8 @@ class FileStorageActivity : AppCompatActivity() {
             alertDialog.dismiss()
         }
         alertDialog.setView(view)
+        alertDialog.setCanceledOnTouchOutside(false)
         alertDialog.show()
-        //alertDialog.window?.setLayout(700, 800)
-
     }
 
     private fun itemDelete(item: FileData, position:Int) {
@@ -200,6 +190,8 @@ class FileStorageActivity : AppCompatActivity() {
         builder.setPositiveButton("이미지") { dialogInterface: DialogInterface, i: Int ->
             FilePickerBuilder.instance
                 .setActivityTheme(R.style.LibAppTheme) //optional
+                .setActivityTitle("asdasdasdsad")
+
                 .pickPhoto(this, REQUEST_CODE_PHOTO);
         }
         builder.setNegativeButton("문서") { dialogInterface: DialogInterface, i: Int ->
@@ -219,7 +211,8 @@ class FileStorageActivity : AppCompatActivity() {
 
             builder.setView(dialogView)
                 .setPositiveButton("예") { dialog: DialogInterface?, which: Int ->
-
+                    setResult(RESULT_OK)
+                    finish()
                 }
                 .setNegativeButton("아니오") { dialog: DialogInterface?, which: Int ->
 

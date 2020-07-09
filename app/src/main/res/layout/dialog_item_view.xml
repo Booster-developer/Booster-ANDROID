@@ -7,8 +7,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="264dp"
-        android:background="@drawable/bg_ffffff_round"
+        android:layout_height="wrap_content"
+        android:theme="@style/MyAlertDialogStyle"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -98,13 +98,13 @@
             android:id="@+id/dial_item_view_tv_orientation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="용지방향"
-            android:textSize="14sp"
-            android:textColor="#467fff"
+            android:layout_marginTop="13dp"
             android:fontFamily="@font/noto_sans_kr_medium"
-            app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_color"
+            android:text="용지방향"
+            android:textColor="#467fff"
+            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@id/dial_item_view_guideline1"
-            android:layout_marginTop="8dp"/>
+            app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_color" />
 
         <TextView
             android:id="@+id/dial_item_view_tv_orientation2"
@@ -116,7 +116,7 @@
             android:textColor="#000000"
             app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_color2"
             app:layout_constraintStart_toEndOf="@id/dial_item_view_guideline2"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="13dp"/>
 
         <TextView
             android:id="@+id/dial_item_view_tv_sided"
@@ -128,19 +128,19 @@
             android:fontFamily="@font/noto_sans_kr_medium"
             app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_orientation"
             app:layout_constraintStart_toEndOf="@id/dial_item_view_guideline1"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="13dp"/>
 
         <TextView
             android:id="@+id/dial_item_view_tv_sided2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="단면"
-            android:textSize="14sp"
+            android:layout_marginTop="13dp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:textColor="#000000"
-            app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_orientation2"
+            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@id/dial_item_view_guideline2"
-            android:layout_marginTop="8dp"/>
+            app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_orientation2"
+            tools:text="단면" />
 
         <TextView
             android:id="@+id/dial_item_view_tv_multiple"
@@ -152,19 +152,19 @@
             android:fontFamily="@font/noto_sans_kr_medium"
             app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_sided"
             app:layout_constraintStart_toEndOf="@id/dial_item_view_guideline1"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="13dp"/>
 
         <TextView
             android:id="@+id/dial_item_view_tv_multiple2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="4개"
-            android:textSize="14sp"
+            android:layout_marginTop="13dp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:textColor="#000000"
-            app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_sided2"
+            android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@id/dial_item_view_guideline2"
-            android:layout_marginTop="8dp"/>
+            app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_sided2"
+            tools:text="4개" />
 
         <TextView
             android:id="@+id/dial_item_view_tv_partial"
@@ -176,7 +176,7 @@
             android:fontFamily="@font/noto_sans_kr_medium"
             app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_multiple"
             app:layout_constraintStart_toEndOf="@id/dial_item_view_guideline1"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="13dp"/>
 
         <TextView
             android:id="@+id/dial_item_view_tv_partial2"
@@ -188,19 +188,21 @@
             android:textColor="#000000"
             app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_multiple2"
             app:layout_constraintStart_toEndOf="@id/dial_item_view_guideline2"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="13dp"/>
 
         <TextView
             android:id="@+id/dial_item_view_tv_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="부수"
-            android:textSize="14sp"
-            android:textColor="#467fff"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="32dp"
             android:fontFamily="@font/noto_sans_kr_medium"
-            app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_partial"
+            android:text="부수"
+            android:textColor="#467fff"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/dial_item_view_guideline1"
-            android:layout_marginTop="8dp"/>
+            app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_partial" />
 
         <TextView
             android:id="@+id/dial_item_view_tv_number2"
@@ -212,7 +214,7 @@
             android:textColor="#000000"
             app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_partial2"
             app:layout_constraintStart_toEndOf="@id/dial_item_view_guideline2"
-            android:layout_marginTop="8dp"/>
+            android:layout_marginTop="13dp"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

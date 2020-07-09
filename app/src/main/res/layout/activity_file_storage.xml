@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.FileStorageActivity"
+    tools:context=".ui.fileStorage.FileStorageActivity"
     android:background="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
