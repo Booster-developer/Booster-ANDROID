@@ -38,6 +38,20 @@
         android:layout_marginTop="10dp"/>
 
     <Button
+        android:id="@+id/btn_storage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="대기하기"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/pdf_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pdf 미리보기"
+        android:layout_marginTop="10dp"/>
+
+    <Button
         android:id="@+id/act_store_file_option_btn_option"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

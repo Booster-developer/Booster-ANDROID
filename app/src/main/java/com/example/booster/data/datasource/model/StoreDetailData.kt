@@ -7,6 +7,14 @@ data class StoreDetailData(
     val data: StoreDetail
 )
 
+/** added **/
+data class ApiWrapper<T> (
+    val status: Int,
+    val success: String,
+    val message: String,
+    val data: T?
+)
+
 data class StoreDetail(
     val store_image: String,
     val store_name: String,
