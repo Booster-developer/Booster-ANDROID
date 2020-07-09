@@ -16,6 +16,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.booster.R
 import com.example.booster.data.datasource.model.FileData
+import com.example.booster.ui.StoreFileOptionActivity
 import com.example.booster.util.BoosterUtil
 import droidninja.filepicker.FilePickerBuilder
 import droidninja.filepicker.FilePickerConst.KEY_SELECTED_DOCS
@@ -23,6 +24,7 @@ import droidninja.filepicker.FilePickerConst.KEY_SELECTED_MEDIA
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_DOC
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_PHOTO
 import kotlinx.android.synthetic.main.activity_file_storage.*
+import kotlinx.android.synthetic.main.dialog_item_view.*
 
 
 class FileStorageActivity : AppCompatActivity() {
@@ -35,25 +37,26 @@ class FileStorageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_file_storage)
 
-        rv_file_add.apply {
+        fileStorage_rv_file_add.apply {
             layoutManager = LinearLayoutManager(this@FileStorageActivity)
             adapter = FileAdapter(datas, {item, position -> itemDelete(item, position)}, {item, position -> itemOptionChange(item, position)},
                 {item, position -> itemOptionView(item, position)})
         }
-        rv_file_add.addItemDecoration(
+        fileStorage_rv_file_add.addItemDecoration(
             MarginItemDecoration(
             resources.getDimensionPixelSize(R.dimen.paddingItemDecorationDefault),
             resources.getDimensionPixelSize(R.dimen.paddingItemDecorationDefault)
         )
         )
-            tv_order.visibility = View.GONE
-            tv_cost.visibility = View.GONE
-            tv_cost_amount.visibility = View.GONE
+            fileStorage_tv_order.visibility = View.GONE
+            fileStorage_tv_cost.visibility = View.GONE
+            fileStorage_tv_cost_amount.visibility = View.GONE
 
     }
 
     private fun itemOptionChange(item: FileData, position:Int) {
-        //옵션 설정 코드 추가
+        val intent = Intent(this@FileStorageActivity, StoreFileOptionActivity::class.java)
+        startActivity(intent)
     }
 
     private fun itemOptionView(item: FileData, position:Int) {
@@ -78,11 +81,11 @@ class FileStorageActivity : AppCompatActivity() {
         builder.setView(dialogView)
             .setPositiveButton("예") { dialog: DialogInterface?, which: Int ->
                 datas.remove(item)
-                rv_file_add.adapter?.notifyItemRemoved(position)
+                fileStorage_rv_file_add.adapter?.notifyItemRemoved(position)
                 if (datas.size == 0) {
-                    tv_order.visibility = View.GONE
-                    tv_cost.visibility = View.GONE
-                    tv_cost_amount.visibility = View.GONE
+                    fileStorage_tv_order.visibility = View.GONE
+                    fileStorage_tv_cost.visibility = View.GONE
+                    fileStorage_tv_cost_amount.visibility = View.GONE
                 }
             }
             .setNegativeButton("아니오") { dialog: DialogInterface?, which: Int ->
@@ -111,6 +114,7 @@ class FileStorageActivity : AppCompatActivity() {
             }
         }
         addThemToView(photoPaths, docPaths)
+
     }
 
     private fun addThemToView(
@@ -136,16 +140,16 @@ class FileStorageActivity : AppCompatActivity() {
         }
 
         if (datas.size >= 1) {
-            tv_order.visibility = View.VISIBLE
-            tv_cost.visibility = View.VISIBLE
-            tv_cost_amount.visibility = View.VISIBLE
+            fileStorage_tv_order.visibility = View.VISIBLE
+            fileStorage_tv_cost.visibility = View.VISIBLE
+            fileStorage_tv_cost_amount.visibility = View.VISIBLE
         } else {
-            tv_order.visibility = View.GONE
-            tv_cost.visibility = View.GONE
-            tv_cost_amount.visibility = View.GONE
+            fileStorage_tv_order.visibility = View.GONE
+            fileStorage_tv_cost.visibility = View.GONE
+            fileStorage_tv_cost_amount.visibility = View.GONE
         }
 
-        rv_file_add.adapter?.notifyDataSetChanged()
+        fileStorage_rv_file_add.adapter?.notifyDataSetChanged()
 
 
 //        if (recyclerview != null) {
@@ -178,25 +182,26 @@ class FileStorageActivity : AppCompatActivity() {
 
     fun onClick(view: View) {
         when(view) {
-            FileStorage_img_close -> showDeleteDialog()
-            iv_file_add -> fileAdd()
+            fileStorage_img_close -> showDeleteDialog()
+            fileStorage_iv_file_add -> fileAdd()
         }
     }
 
 
     private fun fileAdd() {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this, R.style.MyAlertDialogStyle2)
         builder.setTitle("추가할 파일의 종류를 선택해주세요")
         builder.setPositiveButton("이미지") { dialogInterface: DialogInterface, i: Int ->
             FilePickerBuilder.instance
                 .setActivityTheme(R.style.LibAppTheme) //optional
-                .setActivityTitle("asdasdasdsad")
+                .setActivityTitle("이미지 선택")
 
                 .pickPhoto(this, REQUEST_CODE_PHOTO);
         }
         builder.setNegativeButton("문서") { dialogInterface: DialogInterface, i: Int ->
             FilePickerBuilder.instance
                 .setActivityTheme(R.style.LibAppTheme) //optional
+                .setActivityTitle("문서 선택")
                 .pickFile(this, REQUEST_CODE_DOC);
         }
         builder.show()

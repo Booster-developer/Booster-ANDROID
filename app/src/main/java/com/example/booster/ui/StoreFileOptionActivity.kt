@@ -1,5 +1,6 @@
 package com.example.booster.ui
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.booster.R
+import com.example.booster.ui.fileStorage.FileStorageActivity
 import kotlinx.android.synthetic.main.activity_store_file_option.*
 
 class StoreFileOptionActivity : AppCompatActivity(), FragmentToActivity{

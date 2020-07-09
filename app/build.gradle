@@ -126,7 +126,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
     //네이버 지도 api
-<<<<<<< HEAD
+
     implementation("com.naver.maps:map-sdk:3.8.0")
 
 
@@ -134,10 +134,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-alpha01"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0-beta01"
 
-=======
+
     implementation "com.naver.maps:map-sdk:3.8.0"
 
     //coordinator layout
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
->>>>>>> af8138073323541cfb36275db1e66800c3488cdc
+
 }

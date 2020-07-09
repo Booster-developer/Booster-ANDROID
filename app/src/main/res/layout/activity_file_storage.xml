@@ -13,7 +13,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/FileStorage_img_close"
+            android:id="@+id/fileStorage_img_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/close_24px"
@@ -25,40 +25,40 @@
             android:layout_marginTop="40dp"/>
 
         <TextView
-            android:id="@+id/FileStorage_tv_heading"
+            android:id="@+id/fileStorage_tv_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="대기리스트"
             android:textSize="18sp"
             android:textColor="#131313"
             android:fontFamily="@font/noto_sans_kr_medium"
-            app:layout_constraintBottom_toBottomOf="@id/FileStorage_img_close"
-            app:layout_constraintStart_toEndOf="@id/FileStorage_img_close"
+            app:layout_constraintBottom_toBottomOf="@id/fileStorage_img_close"
+            app:layout_constraintStart_toEndOf="@id/fileStorage_img_close"
             android:layout_marginLeft="32dp"/>
 
         <View
-            android:id="@+id/divider1"
+            android:id="@+id/fileStorage_divider1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#d5d5d5"
-            app:layout_constraintTop_toBottomOf="@id/FileStorage_tv_heading"
+            app:layout_constraintTop_toBottomOf="@id/fileStorage_tv_heading"
             android:layout_marginTop="16dp"/>
 
         <TextView
-            android:id="@+id/tv_selected_store"
+            android:id="@+id/fileStorage_tv_selected_store"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="내가 선택한 매장"
             android:textSize="12sp"
             android:textColor="#304fff"
             android:fontFamily="@font/noto_sans_kr_regular"
-            app:layout_constraintTop_toBottomOf="@id/divider1"
+            app:layout_constraintTop_toBottomOf="@id/fileStorage_divider1"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="15dp"/>
 
         <TextView
-            android:id="@+id/tv_store_name"
+            android:id="@+id/fileStorage_tv_store_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="복사왕 김제본"
@@ -66,28 +66,28 @@
             android:textColor="#131313"
             android:fontFamily="@font/noto_sans_kr_medium"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_selected_store"
+            app:layout_constraintTop_toBottomOf="@id/fileStorage_tv_selected_store"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"/>
 
         <TextView
-            android:id="@+id/tv_store_address"
+            android:id="@+id/fileStorage_tv_store_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="서울시 동작구 사당로 36"
             android:textSize="12sp"
             android:textColor="#7d7d7d"
             android:fontFamily="@font/noto_sans_kr_regular"
-            app:layout_constraintTop_toBottomOf="@id/tv_store_name"
+            app:layout_constraintTop_toBottomOf="@id/fileStorage_tv_store_name"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="16dp"/>
 
         <View
-            android:id="@+id/divider2"
+            android:id="@+id/fileStorage_divider2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#d5d5d5"
-            app:layout_constraintTop_toBottomOf="@id/tv_store_address"
+            app:layout_constraintTop_toBottomOf="@id/fileStorage_tv_store_address"
             android:layout_marginTop="16dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -118,7 +118,7 @@
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_file_add"
+                android:id="@+id/fileStorage_rv_file_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="visible"
@@ -131,7 +131,7 @@
 
             <!-- shape ripple 넣기 , rectangle shape 백그라운드-->
             <ImageView
-                android:id="@+id/iv_file_add"
+                android:id="@+id/fileStorage_iv_file_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/list_btn_add_file"
@@ -155,7 +155,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_cost"
+                    android:id="@+id/fileStorage_tv_cost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="결제금액"
@@ -171,7 +171,7 @@
                     android:layout_weight="1"/>
 
                 <TextView
-                    android:id="@+id/tv_cost_amount"
+                    android:id="@+id/fileStorage_tv_cost_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text = "7,290원"
@@ -185,7 +185,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_order"
+                android:id="@+id/fileStorage_tv_order"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_btn_gradation"

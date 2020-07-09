@@ -86,7 +86,7 @@
             android:id="@+id/dial_item_view_tv_color2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="흑백"
+            android:text="흑백"
             android:textSize="14sp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:textColor="#000000"
@@ -110,7 +110,7 @@
             android:id="@+id/dial_item_view_tv_orientation2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="자동"
+            android:text="자동"
             android:textSize="14sp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:textColor="#000000"
@@ -140,7 +140,7 @@
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@id/dial_item_view_guideline2"
             app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_orientation2"
-            tools:text="단면" />
+            android:text="단면" />
 
         <TextView
             android:id="@+id/dial_item_view_tv_multiple"
@@ -164,7 +164,7 @@
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@id/dial_item_view_guideline2"
             app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_sided2"
-            tools:text="4개" />
+            android:text="1개" />
 
         <TextView
             android:id="@+id/dial_item_view_tv_partial"
@@ -208,7 +208,7 @@
             android:id="@+id/dial_item_view_tv_number2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="1부"
+            android:text="1부"
             android:textSize="14sp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:textColor="#000000"
