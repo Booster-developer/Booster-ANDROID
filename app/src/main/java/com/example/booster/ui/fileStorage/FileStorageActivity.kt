@@ -1,7 +1,6 @@
 package com.example.booster.ui.fileStorage
 
 import android.app.Activity
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
@@ -9,7 +8,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -19,6 +17,8 @@ import com.example.booster.R
 import com.example.booster.data.datasource.model.File
 import com.example.booster.data.datasource.model.FileData
 import com.example.booster.data.datasource.model.FileResponse
+import com.example.booster.data.datasource.model.PopupOptionData
+import com.example.booster.data.datasource.model.PopupOptionInfo
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.ui.StoreFileOptionActivity
 import com.example.booster.util.BoosterUtil
@@ -37,8 +37,12 @@ import retrofit2.Response
 class FileStorageActivity : AppCompatActivity() {
 
     private val CUSTOM_REQUEST_CODE: Int = 532
+    var fileColor = ""
+    var fileDir = ""
 
     var datas:ArrayList<File> = ArrayList()
+
+    val requestToServer = BoosterServiceImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,6 +73,8 @@ class FileStorageActivity : AppCompatActivity() {
 
             //{item, position -> itemOptionView(item, position)}
         }
+
+
         fileStorage_rv_file_add.addItemDecoration(
             MarginItemDecoration(
             resources.getDimensionPixelSize(R.dimen.paddingItemDecorationDefault),
@@ -79,6 +85,19 @@ class FileStorageActivity : AppCompatActivity() {
             fileStorage_tv_cost.visibility = View.GONE
             fileStorage_tv_cost_amount.visibility = View.GONE
 
+        //item option fragment로 띄우기
+        val args = Bundle()
+        val fc = fileColor
+        val fd = fileDir
+        args.putString("fileColor", fc)
+        args.putString("fileDir", fd)
+        val itemOptionDialog = ItemOptionFragment()
+
+        itemOptionDialog.show(
+            supportFragmentManager, "item option fragment"
+        )
+        itemOptionDialog.arguments = args
+        Log.e("args", args.toString())
     }
 
     private fun itemOptionChange(item: File, position:Int) {
@@ -102,6 +121,35 @@ class FileStorageActivity : AppCompatActivity() {
     }
 
     private fun itemDelete(item: File, position:Int) {
+
+        requestToServer.service.getPopupOption(
+            2
+        ).enqueue(object :Callback<PopupOptionData>{
+            override fun onFailure(call: Call<PopupOptionData>, t: Throwable) {
+                //통신 실패
+                Log.e("error", t.toString())
+            }
+
+            override fun onResponse(
+                call: Call<PopupOptionData>,
+                response: Response<PopupOptionData>
+            ) {
+                //통신 성공
+                if (response.isSuccessful){
+                    Log.e("통신 성공", response.body().toString())
+                    if(response.body()!!.status==200){
+                        val data = response.body()!!.data
+                        fileColor = data.file_color
+                        fileDir = data.file_direction
+
+                        Log.e("file info -> ", fileColor+ " "+fileDir)
+                    }
+                }
+            }
+
+        })
+
+    }
         val builder = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
         val dialogView = layoutInflater.inflate(R.layout.dialog_item_delete, null)
         val textView: TextView = dialogView.findViewById(R.id.dial_item_delete_tv_message)
