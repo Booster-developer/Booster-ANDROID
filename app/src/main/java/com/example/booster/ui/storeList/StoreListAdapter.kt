@@ -1,17 +1,25 @@
 package com.example.booster.ui.storeList
 
 import android.content.Context
+import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.booster.AnimationUtil
+import com.example.booster.R
 import com.example.booster.data.datasource.model.StoreListData
 import com.example.booster.databinding.ItemStoreListBinding
+import com.example.booster.onlyOneClickListener
+import com.example.booster.ui.bottomtap.BottomTabActivity
+import com.example.booster.ui.storeDetail.StoreDetailViewModel
+import kotlinx.android.synthetic.main.item_store_list.*
 
 class StoreListAdapter(private val context : Context,
                        private val clickListener : StoreListViewHolder.onClickStoreItemListener,
                        private val clickFavListener: StoreListViewHolder.onclickFavListener) : RecyclerView.Adapter<StoreListViewHolder>(){
+    private lateinit var viewModel2: StoreDetailViewModel
 
     var data = mutableListOf<StoreListData>()
     lateinit var binding : ItemStoreListBinding
@@ -19,6 +27,8 @@ class StoreListAdapter(private val context : Context,
     private val animationUtil = AnimationUtil()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoreListViewHolder {
+//        viewModel2 = ViewModelProvider(context as StoreListActivity).get(StoreDetailViewModel::class.java)
+        viewModel2 = ViewModelProvider(context as BottomTabActivity).get(StoreDetailViewModel::class.java)
         binding = ItemStoreListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return StoreListViewHolder(binding, clickListener, clickFavListener)
     }
@@ -33,6 +43,7 @@ class StoreListAdapter(private val context : Context,
             animationUtil.fade_out(holder.itemView)
         }
         previousPostition = position
+
     }
 }
 
@@ -41,11 +52,11 @@ class StoreListViewHolder(val binding : ItemStoreListBinding,
                           val clickFavListener: onclickFavListener) : RecyclerView.ViewHolder(binding.root){
 
     init {
-        binding.itemStoreSearchCl.setOnClickListener {
+        binding.itemStoreSearchCl.onlyOneClickListener {
             clickListener.onClickStoreItem(adapterPosition)
         }
-        binding.itemStoreSearchIvFav.setOnClickListener {
-            clickFavListener.onClickFav(adapterPosition,binding.itemStoreSearchIvFav)
+        binding.itemStoreSearchIvFav.onlyOneClickListener {
+            clickFavListener.onClickFav(adapterPosition,binding.itemStoreSearchIvFav,binding.storeRes!!.store_favorite)
         }
     }
 
@@ -54,6 +65,6 @@ class StoreListViewHolder(val binding : ItemStoreListBinding,
     }
 
     interface onclickFavListener{
-        fun onClickFav(position: Int,imageView: ImageView)
+        fun onClickFav(position: Int,imageView: ImageView,fav:Int)
     }
 }

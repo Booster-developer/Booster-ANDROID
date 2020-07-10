@@ -9,10 +9,6 @@
             name="vm"
             type="com.example.booster.ui.storeDetail.StoreDetailViewModel" />
 
-        <variable
-            name="storeDetailRes"
-            type="com.example.booster.data.datasource.model.StoreDetailData" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,7 +20,7 @@
             android:id="@+id/act_store_detail_iv"
             android:layout_width="match_parent"
             android:layout_height="205dp"
-            android:src="@color/main_color"
+            setStoreImg="@{vm.storeDetail.data.store_image}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -53,7 +49,7 @@
                 android:textSize="26sp"
                 android:fontFamily="@font/noto_sans_kr_medium"
                 android:textColor="@color/black"
-                android:text="@{storeDetailRes.data.store_name}"
+                android:text="@{vm.storeDetail.data.store_name}"
                 android:layout_marginTop="12dp"
                 android:layout_marginStart="16dp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -63,8 +59,7 @@
                 android:id="@+id/act_store_detail_iv_star"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/store_detail_ic_star_inactive"
-                setFavStar="@{storeDetailRes.data.store_favorite}"
+                setFavStar="@{vm.storeDetail.data.store_favorite}"
                 android:layout_marginEnd="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/act_store_detail_tv_store_name"
@@ -78,7 +73,7 @@
                 android:textColor="#9a9a9a"
                 android:fontFamily="@font/noto_sans_kr_regular"
                 android:layout_marginTop="8dp"
-                android:text="@{storeDetailRes.data.store_address}"
+                android:text="@{vm.storeDetail.data.store_address}"
                 app:layout_constraintTop_toBottomOf="@id/act_store_detail_tv_store_name"
                 app:layout_constraintStart_toStartOf="@id/act_store_detail_tv_store_name"/>
 
@@ -96,12 +91,12 @@
                     android:layout_height="16dp"
                     android:gravity="center"
                     android:background="@drawable/bg_subway_circle"
-                    setSubwayCircle="@{storeDetailRes.data.univ_line}">
+                    setSubwayCircle="@{vm.storeDetail.data.univ_line}">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{String.valueOf(storeDetailRes.data.univ_line)}"
+                        android:text="@{String.valueOf(vm.storeDetail.data.univ_line)}"
                         android:textSize="11sp"
                         android:textColor="@color/white"
                         app:layout_constraintTop_toTopOf="parent"
@@ -118,7 +113,7 @@
                     android:textColor="@color/black"
                     android:fontFamily="@font/noto_sans_kr_regular"
                     android:layout_marginStart="8dp"
-                    android:text="@{storeDetailRes.data.store_location}"/>
+                    android:text="@{vm.storeDetail.data.store_location}"/>
 
             </LinearLayout>
 
@@ -156,7 +151,7 @@
                 android:textSize="13sp"
                 android:textColor="#000000"
                 android:layout_marginStart="4dp"
-                android:text="@{storeDetailRes.data.store_time_weekdays}"
+                android:text="@{vm.storeDetail.data.store_time_weekdays}"
                 android:fontFamily="@font/noto_sans_kr_regular"
                 app:layout_constraintStart_toEndOf="@id/act_store_detail_tv_week"
                 app:layout_constraintTop_toTopOf="@id/act_store_detail_tv_week"
@@ -181,7 +176,7 @@
                 android:textSize="13sp"
                 android:textColor="#000000"
                 android:lineSpacingExtra="6sp"
-                setClosedText="@{storeDetailRes.data.store_time_saturday}"
+                setClosedText="@{vm.storeDetail.data.store_time_saturday}"
                 android:fontFamily="@font/noto_sans_kr_regular"
                 android:layout_marginStart="4dp"
                 app:layout_constraintStart_toEndOf="@id/act_store_detail_tv_sat"
@@ -206,7 +201,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_kr_regular"
-                setClosedText="@{storeDetailRes.data.store_time_sunday}"
+                setClosedText="@{vm.storeDetail.data.store_time_sunday}"
                 android:textSize="13sp"
                 android:textColor="@color/black"
                 android:layout_marginStart="4dp"
@@ -234,7 +229,7 @@
                 android:fontFamily="@font/noto_sans_kr_regular"
                 android:textColor="#000000"
                 android:layout_marginStart="8dp"
-                android:text="@{storeDetailRes.data.store_phone_number}"
+                android:text="@{vm.storeDetail.data.store_phone_number}"
                 app:layout_constraintStart_toEndOf="@id/act_store_detail_tv_call"
                 app:layout_constraintTop_toTopOf="@id/act_store_detail_tv_call"
                 app:layout_constraintBottom_toBottomOf="@id/act_store_detail_tv_call"/>
@@ -350,7 +345,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{String.valueOf(storeDetailRes.data.price_gray_single)}"
+                            android:text="@{String.valueOf(vm.storeDetail.data.price_gray_single)}"
                             android:textSize="13sp"
                             android:fontFamily="@font/noto_sans_kr_regular"
                             android:textColor="@color/black"/>
@@ -374,7 +369,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{String.valueOf(storeDetailRes.data.price_color_single)}"
+                            android:text="@{String.valueOf(vm.storeDetail.data.price_color_single)}"
                             android:textSize="13sp"
                             android:fontFamily="@font/noto_sans_kr_regular"
                             android:textColor="@color/black"/>
@@ -415,7 +410,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{String.valueOf(storeDetailRes.data.price_gray_double)}"
+                            android:text="@{String.valueOf(vm.storeDetail.data.price_gray_double)}"
                             android:textSize="13sp"
                             android:fontFamily="@font/noto_sans_kr_regular"
                             android:textColor="@color/black"/>
@@ -439,7 +434,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{String.valueOf(storeDetailRes.data.price_color_double)}"
+                            android:text="@{String.valueOf(vm.storeDetail.data.price_color_double)}"
                             android:textSize="13sp"
                             android:fontFamily="@font/noto_sans_kr_regular"
                             android:textColor="@color/black"/>
