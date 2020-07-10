@@ -43,6 +43,7 @@ interface BoosterService {
 
     @GET("/orders/{file_idx}/options")
     fun getPopupOption(
+        @Path("file_idx") fileIdx: Int
     ): Call<PopupOptionData>
 
 }
