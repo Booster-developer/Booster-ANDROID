@@ -1,21 +1,22 @@
 package com.example.booster.ui.fileStorage
 
 import android.app.Activity
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.booster.R
 import com.example.booster.data.datasource.model.FileData
+import com.example.booster.data.datasource.model.PopupOptionData
+import com.example.booster.data.datasource.model.PopupOptionInfo
+import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.ui.StoreFileOptionActivity
 import com.example.booster.util.BoosterUtil
 import droidninja.filepicker.FilePickerBuilder
@@ -24,14 +25,20 @@ import droidninja.filepicker.FilePickerConst.KEY_SELECTED_MEDIA
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_DOC
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_PHOTO
 import kotlinx.android.synthetic.main.activity_file_storage.*
-import kotlinx.android.synthetic.main.dialog_item_view.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class FileStorageActivity : AppCompatActivity() {
 
     private val CUSTOM_REQUEST_CODE: Int = 532
+    var fileColor = ""
+    var fileDir = ""
 
     var datas:ArrayList<FileData> = ArrayList()
+
+    val requestToServer = BoosterServiceImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +49,8 @@ class FileStorageActivity : AppCompatActivity() {
             adapter = FileAdapter(datas, {item, position -> itemDelete(item, position)}, {item, position -> itemOptionChange(item, position)},
                 {item, position -> itemOptionView(item, position)})
         }
+
+
         fileStorage_rv_file_add.addItemDecoration(
             MarginItemDecoration(
             resources.getDimensionPixelSize(R.dimen.paddingItemDecorationDefault),
@@ -52,6 +61,19 @@ class FileStorageActivity : AppCompatActivity() {
             fileStorage_tv_cost.visibility = View.GONE
             fileStorage_tv_cost_amount.visibility = View.GONE
 
+        //item option fragment로 띄우기
+        val args = Bundle()
+        val fc = fileColor
+        val fd = fileDir
+        args.putString("fileColor", fc)
+        args.putString("fileDir", fd)
+        val itemOptionDialog = ItemOptionFragment()
+
+        itemOptionDialog.show(
+            supportFragmentManager, "item option fragment"
+        )
+        itemOptionDialog.arguments = args
+        Log.e("args", args.toString())
     }
 
     private fun itemOptionChange(item: FileData, position:Int) {
@@ -60,18 +82,47 @@ class FileStorageActivity : AppCompatActivity() {
     }
 
     private fun itemOptionView(item: FileData, position:Int) {
-        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view = inflater.inflate(R.layout.dialog_item_view, null)
-        val alertDialog = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
-            .create()
-        val dialogclose = view.findViewById<ImageView>(R.id.dial_item_view_close)
-        dialogclose.setOnClickListener {
-            alertDialog.dismiss()
-        }
-        alertDialog.setView(view)
-        alertDialog.setCanceledOnTouchOutside(false)
-        alertDialog.show()
+//        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+//        val view = inflater.inflate(R.layout.dialog_item_view, null)
+//        val alertDialog = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
+//            .create()
+//        val dialogclose = view.findViewById<ImageView>(R.id.dial_item_view_close)
+//        dialogclose.setOnClickListener {
+//            alertDialog.dismiss()
+//        }
+//        alertDialog.setView(view)
+//        alertDialog.setCanceledOnTouchOutside(false)
+//        alertDialog.show()
+
+        requestToServer.service.getPopupOption(
+            2
+        ).enqueue(object :Callback<PopupOptionData>{
+            override fun onFailure(call: Call<PopupOptionData>, t: Throwable) {
+                //통신 실패
+                Log.e("error", t.toString())
+            }
+
+            override fun onResponse(
+                call: Call<PopupOptionData>,
+                response: Response<PopupOptionData>
+            ) {
+                //통신 성공
+                if (response.isSuccessful){
+                    Log.e("통신 성공", response.body().toString())
+                    if(response.body()!!.status==200){
+                        val data = response.body()!!.data
+                        fileColor = data.file_color
+                        fileDir = data.file_direction
+
+                        Log.e("file info -> ", fileColor+ " "+fileDir)
+                    }
+                }
+            }
+
+        })
+
     }
+
 
     private fun itemDelete(item: FileData, position:Int) {
         val builder = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)

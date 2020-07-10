@@ -40,7 +40,7 @@ interface BoosterService {
     @GET("/progress/list")
     fun getOrderList(
     ): Observable<OrderListData>
-
+    
     @POST("/users/idcheck")
     fun requestCheckId(
         @Body body: RequestCheckId
@@ -51,5 +51,10 @@ interface BoosterService {
 
     @POST("/users/signin")
     fun requestLogin(@Body body: RequestLogin): Call<ResponseLogin>
+
+    @GET("/orders/{file_idx}/options")
+    fun getPopupOption(
+        @Path("file_idx") fileIdx: Int
+    ): Call<PopupOptionData>
 }
 
