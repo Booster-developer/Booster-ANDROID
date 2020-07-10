@@ -202,9 +202,6 @@ my_file.xml
 
 - kotlin collection에서 제공하는 확장함수 사용
 
-```kotlin
-```
-
 - 기존 클래스에 custom 함수를 확장하여 사용
 
 BindingAdapter.kt
