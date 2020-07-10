@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="25dp"
-                    android:fontFamily="@font/noto_sans_kr_bold"
+                    android:fontFamily="@font/noto_sans_kr_medium"
                     android:text="결제하기"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
@@ -113,6 +113,7 @@
                             android:layout_height="wrap_content"
                             android:lineSpacingExtra="17sp"
                             android:text="주문번호"
+                            android:fontFamily="@font/noto_sans_kr_regular"
                             android:textColor="#7d7d7d"
                             android:textSize="13sp" />
 
@@ -122,13 +123,14 @@
                             android:layout_marginStart="8dp"
                             android:lineSpacingExtra="17sp"
                             android:text="no."
+                            android:fontFamily="@font/noto_sans_kr_regular"
                             android:textColor="#7d7d7d"
                             android:textSize="13sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:lineSpacingExtra="17sp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
                             android:text="@{String.valueOf(vm.paymentInfo.data.store_idx)}"
                             android:textColor="#7d7d7d"
                             android:textSize="13sp" />
@@ -263,6 +265,7 @@
                             android:layout_marginBottom="16dp"
                             android:lineSpacingExtra="12sp"
                             android:text="현재 내 엔진 "
+                            android:fontFamily="@font/noto_sans_kr_medium"
                             android:textColor="@color/black"
                             android:textSize="18sp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -276,6 +279,7 @@
                             android:text="@{String.valueOf(vm.paymentInfo.data.order_price)}"
                             android:textColor="@color/black"
                             android:textSize="18sp"
+                            android:fontFamily="@font/noto_sans_kr_medium"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -305,6 +309,7 @@
                             android:text="총 결제 금액"
                             android:textColor="#467fff"
                             android:textSize="18sp"
+                            android:fontFamily="@font/noto_sans_kr_medium"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -316,6 +321,7 @@
                             android:text="@{String.valueOf(vm.paymentInfo.data.user_point)}"
                             android:textColor="#467fff"
                             android:textSize="18sp"
+                            android:fontFamily="@font/noto_sans_kr_medium"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -347,6 +353,7 @@
                             android:text="결제 후 엔진"
                             android:textColor="@color/black"
                             android:textSize="18sp"
+                            android:fontFamily="@font/noto_sans_kr_medium"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -358,6 +365,7 @@
                             android:text="@{String.valueOf(vm.paymentInfo.data.user_remain_point)}"
                             android:textColor="@color/black"
                             android:textSize="18sp"
+                            android:fontFamily="@font/noto_sans_kr_medium"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent" />
