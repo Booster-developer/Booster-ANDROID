@@ -11,10 +11,10 @@ class BoosterUtil(var context: Context) {
         if(uri==null){
             return ""
         }
-        val cursor: Cursor? = context.getContentResolver().query(uri, null, null, null, null);
-        cursor?.moveToNext();
-        var path = cursor?.getString (cursor?.getColumnIndex("_data"));
-        cursor?.close();
+        val cursor: Cursor? = context.getContentResolver().query(uri, null, null, null, null)
+        cursor?.moveToNext()
+        var path = cursor?.getString (cursor?.getColumnIndex("_data"))
+        cursor?.close()
 
         return path
     }
@@ -23,10 +23,10 @@ class BoosterUtil(var context: Context) {
         if(uri==null){
             return ""
         }
-        val cursor: Cursor? = context.getContentResolver().query(uri, null, null, null, null);
-        cursor?.moveToNext();
-        var path = cursor?.getString (cursor?.getColumnIndex("_data"));
-        cursor?.close();
+        val cursor: Cursor? = context.getContentResolver().query(uri, null, null, null, null)
+        cursor?.moveToNext()
+        var path = cursor?.getString (cursor?.getColumnIndex("_data"))
+        cursor?.close()
         val filePath = path?.split("/")
 
         return filePath?.get(filePath.size-1)

@@ -8,7 +8,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-
         android:requestLegacyExternalStorage="true"
         android:name=".BoosterApplication"
         android:allowBackup="true"
@@ -18,20 +17,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
+        <activity android:name=".ui.payment.PaymentActivity"></activity>
         <activity android:name=".ui.fileStorage.FileStorageActivity"></activity>
-
         <activity android:name=".ui.storeDetail.MapActivity"></activity>
-
-
         <activity android:name=".ui.ResultActivity"></activity>
         <activity android:name=".ui.StoreFileOptionActivity" />
-        <activity android:name=".ui.storeList.ScrollingActivity2"
-            android:label=" "/>
-        <activity android:name=".ui.storeList.ScrollingActivity"
-            android:label=" "/>
-
         <activity android:name=".ui.PdfTestActivity" />
         <activity android:name=".ui.bottomtap.BottomTabActivity" />
         <activity android:name=".ui.storeDetail.StoreDetailActivity" />
