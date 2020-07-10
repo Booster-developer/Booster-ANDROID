@@ -12,7 +12,6 @@ import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
 
-
 interface BoosterService {
 
     @GET("/stores/{store_idx}/detail")
@@ -51,6 +50,11 @@ interface BoosterService {
 
     @POST("/users/signin")
     fun requestLogin(@Body body: RequestLogin): Call<ResponseLogin>
+
+    @GET("/orders/{order_idx}/list")
+    fun getFileList(
+        @Path("order_idx") orderIdx: Int
+    ): Call<FileResponse>
 
     @GET("/orders/{file_idx}/options")
     fun getPopupOption(

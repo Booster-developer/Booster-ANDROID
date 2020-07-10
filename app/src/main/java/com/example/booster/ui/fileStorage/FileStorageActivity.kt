@@ -13,9 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.booster.R
-import com.example.booster.data.datasource.model.FileData
-import com.example.booster.data.datasource.model.PopupOptionData
-import com.example.booster.data.datasource.model.PopupOptionInfo
+import com.example.booster.data.datasource.model.*
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.ui.StoreFileOptionActivity
 import com.example.booster.util.BoosterUtil
@@ -36,13 +34,28 @@ class FileStorageActivity : AppCompatActivity() {
     var fileColor = ""
     var fileDir = ""
 
-    var datas:ArrayList<FileData> = ArrayList()
+    var datas:ArrayList<File> = ArrayList()
 
     val requestToServer = BoosterServiceImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_file_storage)
+
+        BoosterServiceImpl.service.getFileList(1).enqueue(object : Callback<FileResponse> {
+            override fun onFailure(call: Call<FileResponse>, t: Throwable) {
+                Log.e("error : ",t.message)
+            }
+
+            override fun onResponse(call: Call<FileResponse>, response: Response<FileResponse>) {
+                val fileResponse = response.body()
+                Log.e("data",fileResponse.toString())
+                datas.add(fileResponse!!.data.file_info[0])
+                datas.add(fileResponse.data.file_info[1])
+                fileStorage_rv_file_add.adapter?.notifyDataSetChanged()
+
+            }
+        })
 
         fileStorage_rv_file_add.apply {
             layoutManager = LinearLayoutManager(this@FileStorageActivity)
@@ -77,12 +90,12 @@ class FileStorageActivity : AppCompatActivity() {
         Log.e("args", args.toString())
     }
 
-    private fun itemOptionChange(item: FileData, position:Int) {
+    private fun itemOptionChange(item: File, position:Int) {
         val intent = Intent(this@FileStorageActivity, StoreFileOptionActivity::class.java)
         startActivity(intent)
     }
 
-    private fun itemOptionView(item: FileData, position:Int) {
+    private fun itemOptionView(item: File, position:Int) {
 //        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 //        val view = inflater.inflate(R.layout.dialog_item_view, null)
 //        val alertDialog = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
@@ -121,11 +134,11 @@ class FileStorageActivity : AppCompatActivity() {
     }
 
 
-    private fun itemDelete(item: FileData, position:Int) {
+    private fun itemDelete(item: File, position:Int) {
         val builder = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
         val dialogView = layoutInflater.inflate(R.layout.dialog_item_delete, null)
         val textView: TextView = dialogView.findViewById(R.id.dial_item_delete_tv_message)
-        textView.text = item.name + "를 삭제하시겠습니까?"
+        textView.text = item.file_name + "를 삭제하시겠습니까?"
         builder.setView(dialogView)
             .setPositiveButton("예") { dialog: DialogInterface?, which: Int ->
                 datas.remove(item)
@@ -170,19 +183,24 @@ class FileStorageActivity : AppCompatActivity() {
         docPaths: ArrayList<Uri>?
     ) {
         val filePaths: ArrayList<Uri> = ArrayList()
+        //        Log.e("imagePaths", imagePaths?.get(0)!!.toString())
+        Log.e("docPaths", docPaths?.get(0)!!.toString())
+//        MultipartBody.Part.createFormData("file",imagePaths)
         if (imagePaths != null) {
             for (imguri in imagePaths) {
-                val file: FileData = FileData(imguri)
-                file.name = BoosterUtil(this).getFileName(imguri)
-                file.type = "img"
+                val file = File(55,"sss","png","asdsd")
+//                file.nam = BoosterUtil(this).getFileName(imguri)
+//                file.type = "img"
                 datas.add(file)
             }
         }
         if (docPaths != null) {
             for (docuri in docPaths) {
-                val file:FileData = FileData(docuri)
-                file.name = BoosterUtil(this).getFileName(docuri)
-                file.type = BoosterUtil(this).getFileType(docuri)
+//                val file:FileData = FileData(docuri)
+                val file = File(55,"sss","png","asdsd")
+
+//                file.name = BoosterUtil(this).getFileName(docuri)
+//                file.type = BoosterUtil(this).getFileType(docuri)
                 datas.add(file)
             }
         }
