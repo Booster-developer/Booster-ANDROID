@@ -8,16 +8,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.booster.AnimationUtil
 import com.example.booster.R
-import com.example.booster.data.datasource.model.FileData
+import com.example.booster.data.datasource.model.File
 import com.example.booster.util.BoosterUtil
 import kotlinx.android.synthetic.main.my_file.view.*
-import java.io.File
 
 class FileAdapter(
-    var datas: ArrayList<com.example.booster.data.datasource.model.FileData>,
-    val itemDelete: (com.example.booster.data.datasource.model.FileData, Int) -> Unit,
-    val itemOptionChange: (com.example.booster.data.datasource.model.FileData, Int) -> Unit,
-    val itemOptionView: (com.example.booster.data.datasource.model.FileData, Int) -> Unit
+    var datas: ArrayList<File>,
+    val itemDelete: (File, Int) -> Unit,
+    val itemOptionChange: (File, Int) -> Unit,
+    val itemOptionView: (File, Int) -> Unit
 ) :
     RecyclerView.Adapter<FileAdapter.ViewHolder>() {
     override fun onCreateViewHolder(
@@ -38,18 +37,18 @@ class FileAdapter(
 
     inner class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        fun bind(file: com.example.booster.data.datasource.model.FileData) {
+        fun bind(file: File) {
             //Log.e("uri", file.uri.path.toString())
 
-            Log.e("file", file.name + " " + file.type)
-            if(file.type=="img"){
-                Glide.with(itemView.context).load(file.uri).into(itemView.iv_file)
+            Log.e("file", file.file_name + " " + file.file_extension)
+            if (file.file_extension == "img") {
+                Glide.with(itemView.context).load(file.file_path).into(itemView.iv_file)
             } else {
-                val fileImage = BoosterUtil(itemView.context).getFileImage(file.type)
+                val fileImage = BoosterUtil(itemView.context).getFileImage(file.file_extension)
                 Glide.with(itemView.context).load(fileImage).into(itemView.iv_file)
             }
 
-            itemView.tv_file_name.text = file.name
+            itemView.tv_file_name.text = file.file_name
 
             //itemView.tv_option_view.text = file.option_view //사용하면 옵션보기 텍스트가 안뜸
 
