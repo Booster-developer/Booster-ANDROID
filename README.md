@@ -34,6 +34,8 @@
 - 변수명은 기본적으로 camelCase로 작성
 
 - ID NAMING : 뷰이름_위젯줄인말_기능이름
+
+- 커밋하기 전에 reformat code를 실행시켜서 코드를 정리해준다.
 <br>
 
 ## 🌞 Github Branching
