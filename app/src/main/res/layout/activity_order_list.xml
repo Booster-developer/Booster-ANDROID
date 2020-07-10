@@ -7,7 +7,7 @@
     tools:context=".ui.orderList.OrderListActivity">
 
     <FrameLayout
-        android:id="@+id/act_order_condition"
+        android:id="@+id/act_order_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

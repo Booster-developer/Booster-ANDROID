@@ -1,17 +1,20 @@
 package com.example.booster.ui.storeList
 
 import android.content.Context
+import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.booster.AnimationUtil
+import com.example.booster.R
 import com.example.booster.data.datasource.model.StoreListData
 import com.example.booster.databinding.ItemStoreListBinding
 import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.bottomtap.BottomTabActivity
 import com.example.booster.ui.storeDetail.StoreDetailViewModel
+import kotlinx.android.synthetic.main.item_store_list.*
 
 class StoreListAdapter(private val context : Context,
                        private val clickListener : StoreListViewHolder.onClickStoreItemListener,
@@ -27,7 +30,6 @@ class StoreListAdapter(private val context : Context,
 //        viewModel2 = ViewModelProvider(context as StoreListActivity).get(StoreDetailViewModel::class.java)
         viewModel2 = ViewModelProvider(context as BottomTabActivity).get(StoreDetailViewModel::class.java)
         binding = ItemStoreListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-
         return StoreListViewHolder(binding, clickListener, clickFavListener)
     }
 

@@ -7,7 +7,6 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-
     <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog">
         <item name="buttonBarNegativeButtonStyle">@style/buttonBarButtonStyle.Negative</item>
         <item name="buttonBarPositiveButtonStyle">@style/buttonBarButtonStyle.Positive</item>
@@ -65,6 +64,5 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
 
 </resources>

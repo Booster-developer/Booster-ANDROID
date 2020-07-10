@@ -7,10 +7,11 @@
     tools:context=".ui.StoreFileOptionActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/topbar"
+        android:id="@+id/act_store_file_option_appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
+        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -21,8 +22,8 @@
             android:layout_marginVertical="10dp"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/btn_back"
+            <ImageView
+                android:id="@+id/act_store_file_option_btn_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -45,11 +46,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="80dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottombar"
-        app:layout_constraintTop_toBottomOf="@+id/topbar"
+        app:layout_constraintBottom_toTopOf="@+id/act_store_file_option_bottombar"
+        app:layout_constraintTop_toBottomOf="@+id/act_store_file_option_appbar"
+        app:layout_constraintVertical_bias="1.0"
         tools:layout_editor_absoluteX="16dp">
 
 
@@ -66,15 +65,17 @@
                     android:id="@+id/option1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:lineSpacingExtra="16sp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="70dp"
                     android:text="흑백/컬러"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toStartOf="@id/linearLayout2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="NotSibling" />
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -83,9 +84,16 @@
                     app:layout_constraintTop_toBottomOf="@+id/option1">
 
                     <LinearLayout
+                        android:id="@+id/linearLayout2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toStartOf="@id/linearLayout4"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+
+                        >
 
                         <ImageView
                             android:id="@+id/order_option_btn_mono"
@@ -105,10 +113,14 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linearLayout4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="21dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toEndOf="@+id/linearLayout2"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
                             android:id="@+id/order_option_btn_color"
@@ -126,7 +138,29 @@
                             android:textSize="12sp" />
                     </LinearLayout>
 
-                </LinearLayout>
+                    <ImageButton
+                        android:id="@+id/imageButton"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:background="#00000000"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toEndOf="@+id/linearLayout4"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageButton
+                        android:id="@+id/imageButton2"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:background="#00000000"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toEndOf="@+id/imageButton"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -139,15 +173,16 @@
                     android:id="@+id/option2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:lineSpacingExtra="16sp"
+                    android:layout_marginStart="30dp"
                     android:text="용지 방향"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout6"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:orientation="horizontal"
@@ -155,9 +190,15 @@
                     app:layout_constraintTop_toBottomOf="@+id/option2">
 
                     <LinearLayout
+                        android:id="@+id/linearLayout6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/linearLayout7"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
                             android:id="@+id/order_option_btn_auto"
@@ -177,10 +218,14 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linearLayout7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="21dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toStartOf="@id/linearLayout8"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toEndOf="@+id/linearLayout6"
+                        app:layout_constraintTop_toTopOf="@+id/linearLayout8">
 
                         <ImageView
                             android:id="@+id/order_option_btn_height"
@@ -200,10 +245,14 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linearLayout8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="21dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toStartOf="@id/imageButton3"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toEndOf="@+id/linearLayout7"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
                             android:id="@+id/order_option_btn_width"
@@ -222,7 +271,17 @@
                             android:textSize="12sp" />
                     </LinearLayout>
 
-                </LinearLayout>
+                    <ImageButton
+                        android:id="@+id/imageButton3"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:background="#00000000"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toEndOf="@+id/linearLayout8"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -234,15 +293,15 @@
                     android:id="@+id/option3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:lineSpacingExtra="16sp"
+                    android:layout_marginStart="30dp"
                     android:text="양면/단면"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:orientation="horizontal"
@@ -250,9 +309,15 @@
                     app:layout_constraintTop_toBottomOf="@+id/option3">
 
                     <LinearLayout
+                        android:id="@+id/linearSingle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toStartOf="@id/linearBothHorizontal"
+                        app:layout_constraintHorizontal_weight="1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
                             android:id="@+id/order_option_btn_single"
@@ -272,10 +337,14 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linearBothHorizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="21dp"
-                        android:orientation="vertical">
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toStartOf="@id/linearBothVertical"
+                        app:layout_constraintStart_toEndOf="@+id/linearSingle"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
                             android:id="@+id/order_option_btn_doublehei1"
@@ -292,13 +361,18 @@
                             android:text="양면-가로넘김"
                             android:textColor="#7d7d7d"
                             android:textSize="12sp" />
+
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linearBothVertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="21dp"
-                        android:orientation="vertical">
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toStartOf="@+id/imageButton4"
+                        app:layout_constraintStart_toEndOf="@+id/linearBothHorizontal"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
                             android:id="@+id/order_option_btn_doublehei2"
@@ -317,7 +391,18 @@
                             android:textSize="12sp" />
                     </LinearLayout>
 
-                </LinearLayout>
+                    <ImageButton
+                        android:id="@+id/imageButton4"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:layout_weight="1"
+                        android:background="#00000000"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/linearBothVertical"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -333,22 +418,28 @@
                     android:text="모아찍기"
                     android:textColor="@color/black"
                     android:textSize="14sp"
+                    android:layout_marginStart="30dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/option4-1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/option4">
 
                     <LinearLayout
+                        android:id="@+id/linearcut1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/linearcut2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
                             android:id="@+id/order_option_btn_cut_1"
@@ -367,10 +458,16 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linearcut2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="21dp"
-                        android:orientation="vertical">
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/linearcut3"
+                        app:layout_constraintStart_toEndOf="@id/linearcut1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0">
 
                         <ImageView
                             android:id="@+id/order_option_btn_cut_2"
@@ -389,10 +486,15 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linearcut3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="21dp"
-                        android:orientation="vertical">
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/linearcut4"
+                        app:layout_constraintStart_toEndOf="@id/linearcut2"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
                             android:id="@+id/order_option_btn_cut_3"
@@ -412,10 +514,15 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linearcut4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="21dp"
-                        android:orientation="vertical">
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/linearcut3"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
                             android:id="@+id/order_option_btn_cut_4"
@@ -434,125 +541,142 @@
                             android:textSize="12sp" />
                     </LinearLayout>
 
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="16dp">
+
 
                 <LinearLayout
+                    android:layout_weight="1"
+                    android:id="@+id/linearcut6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="parent">
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/linearcut8"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <LinearLayout
+                    <ImageView
+                        android:id="@+id/order_option_btn_cut_6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        app:srcCompat="@drawable/sel_order_option_btn_cut_6" />
 
-                        <ImageView
-                            android:id="@+id/order_option_btn_cut_6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/sel_order_option_btn_cut_6" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="4dp"
-                            android:text="6개"
-                            android:textColor="#7d7d7d"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="21dp"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/order_option_btn_cut_8"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/sel_order_option_btn_cut_8" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="4dp"
-                            android:text="8개"
-                            android:textColor="#7d7d7d"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="21dp"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/order_option_btn_cut_9"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@drawable/sel_order_option_btn_cut_9" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="4dp"
-                            android:text="9개"
-                            android:textColor="#7d7d7d"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="21dp"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/order_option_btn_cut_16"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:srcCompat="@drawable/sel_order_option_btn_cut_16" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="4dp"
-                            android:text="16개"
-                            android:textColor="#7d7d7d"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="4dp"
+                        android:text="6개"
+                        android:textColor="#7d7d7d"
+                        android:textSize="12sp" />
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:id="@+id/linearcut8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/linearcut9"
+                    app:layout_constraintStart_toEndOf="@id/linearcut6"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/order_option_btn_cut_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/sel_order_option_btn_cut_8" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="4dp"
+                        android:text="8개"
+                        android:textColor="#7d7d7d"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:id="@+id/linearcut9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/linearcut16"
+                    app:layout_constraintStart_toEndOf="@id/linearcut8"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/order_option_btn_cut_9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/sel_order_option_btn_cut_9" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="4dp"
+                        android:text="9개"
+                        android:textColor="#7d7d7d"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:id="@+id/linearcut16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/linearcut9"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0">
+
+                    <ImageView
+                        android:id="@+id/order_option_btn_cut_16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/sel_order_option_btn_cut_16" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="4dp"
+                        android:text="16개"
+                        android:textColor="#7d7d7d"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="80dp">
 
                 <TextView
                     android:id="@+id/option5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:lineSpacingExtra="16sp"
                     android:text="범위변경"
                     android:textColor="@color/black"
                     android:textSize="14sp"
+                    android:layout_marginStart="30dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -568,8 +692,9 @@
                     app:layout_constraintStart_toEndOf="@+id/option5"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout7"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:orientation="horizontal"
@@ -577,9 +702,15 @@
                     app:layout_constraintTop_toBottomOf="@+id/option5">
 
                     <LinearLayout
+                        android:id="@+id/linearrange"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/linearnum"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
                             android:id="@+id/order_option_btn_range"
@@ -588,6 +719,7 @@
                             app:srcCompat="@drawable/order_option_btn_range" />
 
                         <TextView
+                            android:id="@+id/act_store_file_option_txt_range"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -598,10 +730,15 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linearnum"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="21dp"
-                        android:orientation="vertical">
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/imageButton5"
+                        app:layout_constraintStart_toEndOf="@id/linearrange"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
                             android:id="@+id/order_option_btn_num"
@@ -610,6 +747,7 @@
                             app:srcCompat="@drawable/order_option_btn_num" />
 
                         <TextView
+                            android:id="@+id/act_store_file_option_txt_num"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -619,7 +757,29 @@
                             android:textSize="12sp" />
                     </LinearLayout>
 
-                </LinearLayout>
+                    <ImageButton
+                        android:id="@+id/imageButton5"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:layout_weight="1"
+                        android:background="#00000000"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/imageButton6"
+                        app:layout_constraintStart_toEndOf="@id/linearnum"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageButton
+                        android:id="@+id/imageButton6"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:layout_weight="1"
+                        android:background="#00000000"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/imageButton5"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -627,13 +787,20 @@
     </ScrollView>
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/bottombar"
+        android:id="@+id/act_store_file_option_bottombar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
+        android:elevation="5dp"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d5d5d5"
+            />
 
         <Button
             android:id="@+id/act_store_file_option_btn_option"
