@@ -1,15 +1,12 @@
 package com.example.booster.data.remote.network
 
 
-import com.example.booster.data.datasource.model.ApiWrapper
-import com.example.booster.data.datasource.model.StoreDetailData
-import com.example.booster.data.datasource.model.University
+import com.example.booster.data.datasource.model.*
 import io.reactivex.Observable
+import retrofit2.Call
 import retrofit2.http.*
 import java.io.File
 
-import com.example.booster.data.datasource.model.OrderListData
-import com.example.booster.data.datasource.model.StoreFavData
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
@@ -43,5 +40,10 @@ interface BoosterService {
     @GET("/progress/list")
     fun getOrderList(
     ): Observable<OrderListData>
+
+    @GET("/orders/{file_idx}/options")
+    fun getPopupOption(
+    ): Call<PopupOptionData>
+
 }
 
