@@ -17,7 +17,7 @@ class StoreFileOptionRangeFragment : DialogFragment() {
 
     private var mCallback: FragmentToActivity? = null
 
-    private var printOption: String = "0"
+    private var printOption: String = "전체"
     private var printMinNum: String = "0"
     private var printMaxNum: String = "0"
 
@@ -81,7 +81,8 @@ class StoreFileOptionRangeFragment : DialogFragment() {
                 }
             }
             else{
-                Toast.makeText(context, "범위를 선택해주세요.", Toast.LENGTH_LONG).show()
+                sendData("전체", 0, 0)
+                dismiss()
             }
         }
 

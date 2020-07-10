@@ -2,6 +2,7 @@ package com.example.booster.ui
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -167,6 +168,8 @@ class StoreFileOptionActivity : AppCompatActivity(), FragmentToActivity{
             )
         }
 
+
+
         act_store_file_option_btn_option.setOnClickListener {
             Log.d("aa", "${color} ${direction} ${side} ${combine} ${range} ${num}")
             val intent = Intent(this@StoreFileOptionActivity, ResultActivity::class.java)
@@ -189,10 +192,18 @@ class StoreFileOptionActivity : AppCompatActivity(), FragmentToActivity{
         range = r
         rangeMin = min.toString()
         rangeMax = max.toString()
+        if(range == "전체"){
+            act_store_file_option_txt_range.setText(range)
+        }else{
+            act_store_file_option_txt_range.setText("${rangeMin} ~ ${rangeMax}p")
+        }
+        act_store_file_option_txt_range.setTextColor(Color.BLACK)
     }
 
     override fun communicateNum(s:String) {
         num = s
+        act_store_file_option_txt_num.setText("${num}부")
+        act_store_file_option_txt_num.setTextColor(Color.BLACK)
     }
 
     fun colorReset(){
