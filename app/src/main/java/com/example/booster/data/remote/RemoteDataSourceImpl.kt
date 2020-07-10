@@ -1,9 +1,6 @@
 package com.example.booster.data.remote
 
-import com.example.booster.data.datasource.model.OrderListData
-import com.example.booster.data.datasource.model.PopupOptionData
-import com.example.booster.data.datasource.model.StoreDetailData
-import com.example.booster.data.datasource.model.StoreFavData
+import com.example.booster.data.datasource.model.*
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import io.reactivex.Observable
 import retrofit2.Call
@@ -25,4 +22,8 @@ class RemoteDataSourceImpl : RemoteDataSource {
         api.getOrderList().map {
             it }
 
+    override fun getPaymentInfo(orderIdx: Int): Observable<PaymentData> =
+        api.getPaymentInfo(orderIdx).map{
+            it
+        }
 }

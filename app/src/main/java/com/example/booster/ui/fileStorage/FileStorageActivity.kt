@@ -6,7 +6,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -14,11 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.booster.R
-import com.example.booster.data.datasource.model.File
-import com.example.booster.data.datasource.model.FileData
-import com.example.booster.data.datasource.model.FileResponse
-import com.example.booster.data.datasource.model.PopupOptionData
-import com.example.booster.data.datasource.model.PopupOptionInfo
+import com.example.booster.data.datasource.model.*
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.ui.StoreFileOptionActivity
 import com.example.booster.util.BoosterUtil
@@ -28,7 +23,6 @@ import droidninja.filepicker.FilePickerConst.KEY_SELECTED_MEDIA
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_DOC
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_PHOTO
 import kotlinx.android.synthetic.main.activity_file_storage.*
-import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -62,16 +56,12 @@ class FileStorageActivity : AppCompatActivity() {
 
             }
         })
+
         fileStorage_rv_file_add.apply {
             layoutManager = LinearLayoutManager(this@FileStorageActivity)
-            adapter = FileAdapter(datas, {item, position -> itemDelete(item, position)}, {item, position -> itemOptionChange(item, position)},
-               itemOptionView = {file, i ->
-                   run {
-                       Log.e("ee", file.toString())
-                   }
-               })
-
-            //{item, position -> itemOptionView(item, position)}
+            adapter = FileAdapter(datas,
+                { item, position -> itemDelete(item, position)}, {item, position -> itemOptionChange(item, position)},
+                {item, position -> itemOptionView(item, position)})
         }
 
 
@@ -106,25 +96,19 @@ class FileStorageActivity : AppCompatActivity() {
     }
 
     private fun itemOptionView(item: File, position:Int) {
-        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view = inflater.inflate(R.layout.dialog_item_view, null)
-        val alertDialog = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
-            .create()
-        val dialogclose = view.findViewById<ImageView>(R.id.dial_item_view_close)
-        dialogclose.setOnClickListener {
+//        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+//        val view = inflater.inflate(R.layout.dialog_item_view, null)
+//        val alertDialog = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
+//            .create()
+//        val dialogclose = view.findViewById<ImageView>(R.id.dial_item_view_close)
+//        dialogclose.setOnClickListener {
+//            alertDialog.dismiss()
+//        }
+//        alertDialog.setView(view)
+//        alertDialog.setCanceledOnTouchOutside(false)
+//        alertDialog.show()
 
-            alertDialog.dismiss()
-        }
-        alertDialog.setView(view)
-        alertDialog.setCanceledOnTouchOutside(false)
-        alertDialog.show()
-    }
-
-    private fun itemDelete(item: File, position:Int) {
-
-        requestToServer.service.getPopupOption(
-            2
-        ).enqueue(object :Callback<PopupOptionData>{
+        requestToServer.service.getPopupOption(2).enqueue(object :Callback<PopupOptionData>{
             override fun onFailure(call: Call<PopupOptionData>, t: Throwable) {
                 //통신 실패
                 Log.e("error", t.toString())
@@ -146,10 +130,11 @@ class FileStorageActivity : AppCompatActivity() {
                     }
                 }
             }
-
         })
-
     }
+
+
+    private fun itemDelete(item: File, position:Int) {
         val builder = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
         val dialogView = layoutInflater.inflate(R.layout.dialog_item_delete, null)
         val textView: TextView = dialogView.findViewById(R.id.dial_item_delete_tv_message)
@@ -198,8 +183,7 @@ class FileStorageActivity : AppCompatActivity() {
         docPaths: ArrayList<Uri>?
     ) {
         val filePaths: ArrayList<Uri> = ArrayList()
-
-//        Log.e("imagePaths", imagePaths?.get(0)!!.toString())
+        //        Log.e("imagePaths", imagePaths?.get(0)!!.toString())
         Log.e("docPaths", docPaths?.get(0)!!.toString())
 //        MultipartBody.Part.createFormData("file",imagePaths)
         if (imagePaths != null) {
