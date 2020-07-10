@@ -60,5 +60,10 @@ interface BoosterService {
     fun getPopupOption(
         @Path("file_idx") fileIdx: Int
     ): Call<PopupOptionData>
+
+    @GET("/orders/{order_idx}/payment")
+    fun getPaymentInfo(
+        @Path("order_idx") orderIdx: Int
+    ): Observable<PaymentData>
 }
 
