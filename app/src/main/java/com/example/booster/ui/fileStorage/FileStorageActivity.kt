@@ -25,6 +25,7 @@ import droidninja.filepicker.FilePickerConst.REQUEST_CODE_DOC
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_PHOTO
 import kotlinx.android.synthetic.main.activity_file_storage.*
 import kotlinx.android.synthetic.main.dialog_item_view.*
+import kotlinx.android.synthetic.main.my_file.*
 
 
 class FileStorageActivity : AppCompatActivity() {
@@ -42,6 +43,8 @@ class FileStorageActivity : AppCompatActivity() {
             adapter = FileAdapter(datas, {item, position -> itemDelete(item, position)}, {item, position -> itemOptionChange(item, position)},
                 {item, position -> itemOptionView(item, position)})
         }
+
+
         fileStorage_rv_file_add.addItemDecoration(
             MarginItemDecoration(
             resources.getDimensionPixelSize(R.dimen.paddingItemDecorationDefault),
@@ -60,18 +63,26 @@ class FileStorageActivity : AppCompatActivity() {
     }
 
     private fun itemOptionView(item: FileData, position:Int) {
-        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view = inflater.inflate(R.layout.dialog_item_view, null)
-        val alertDialog = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
-            .create()
-        val dialogclose = view.findViewById<ImageView>(R.id.dial_item_view_close)
-        dialogclose.setOnClickListener {
-            alertDialog.dismiss()
-        }
-        alertDialog.setView(view)
-        alertDialog.setCanceledOnTouchOutside(false)
-        alertDialog.show()
+//        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+//        val view = inflater.inflate(R.layout.dialog_item_view, null)
+//        val alertDialog = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
+//            .create()
+//        val dialogclose = view.findViewById<ImageView>(R.id.dial_item_view_close)
+//        dialogclose.setOnClickListener {
+//            alertDialog.dismiss()
+//        }
+//        alertDialog.setView(view)
+//        alertDialog.setCanceledOnTouchOutside(false)
+//        alertDialog.show()
+
+        //item option fragment로 띄우기
+        val itemOptionDialog = ItemOptionFragment()
+        itemOptionDialog.show(
+            supportFragmentManager, "item option fragment"
+        )
+
     }
+
 
     private fun itemDelete(item: FileData, position:Int) {
         val builder = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
