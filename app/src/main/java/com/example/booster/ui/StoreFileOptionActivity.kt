@@ -49,6 +49,10 @@ class StoreFileOptionActivity : AppCompatActivity(), FragmentToActivity{
         range = "전체"
         num = "1"
 
+        act_store_file_option_btn_back.setOnClickListener {
+            finish()
+        }
+
         order_option_btn_mono.setOnClickListener {
             colorReset()
             order_option_btn_mono.isSelected = !order_option_btn_mono.isSelected
