@@ -8,7 +8,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/const1"
-            android:layout_width="300dp"
+            android:layout_width="@dimen/dialog_width"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_ffffff_round"
             android:layout_marginHorizontal="57dp"
@@ -132,8 +132,8 @@
                     android:layout_height="24dp"
                     android:layout_marginStart="43dp"
                     android:layout_marginTop="12dp"
-                    android:background="#F5F5F5"
-                    android:ems="10"
+                    android:background="@drawable/edittext_inactive_start"
+                    android:gravity="center_horizontal"
                     android:hint="0"
                     android:inputType="textPersonName"
                     app:layout_constraintStart_toStartOf="parent"
@@ -154,8 +154,8 @@
                     android:layout_width="64dp"
                     android:layout_height="24dp"
                     android:layout_marginEnd="43dp"
-                    android:background="#F5F5F5"
-                    android:ems="10"
+                    android:background="@drawable/edittext_inactive_start"
+                    android:gravity="center_horizontal"
                     android:hint="10"
                     android:inputType="textPersonName"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -164,12 +164,14 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
-                android:id="@+id/dial_frag_file_option"
+                android:id="@+id/dial_store_file_option_range"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/bg_ffffff_round"
                 android:text="완료"
+                android:textSize="16sp"
+                android:textColor="#467fff"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/const4" />

@@ -1,6 +1,7 @@
 package com.example.booster.ui.bottomtap
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -66,6 +67,7 @@ class BottomTabActivity : AppCompatActivity() {
         bottom_tab_layout!!.addOnTabSelectedListener(object : OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 bottom_vp!!.currentItem = tab.position
+                Log.e("position",tab.position.toString())
             }
             override fun onTabUnselected(tab: TabLayout.Tab) {
 
