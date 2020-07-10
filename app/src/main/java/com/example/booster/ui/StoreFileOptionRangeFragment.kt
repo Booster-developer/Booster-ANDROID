@@ -57,7 +57,7 @@ class StoreFileOptionRangeFragment : DialogFragment() {
             printOption= "part"
         }
 
-        dial_frag_file_option.setOnClickListener {
+        dial_store_file_option_range.setOnClickListener {
             //완료버튼
             printMinNum = edt_printMinNum.text.toString()
             printMaxNum = edt_printMaxNum.text.toString()

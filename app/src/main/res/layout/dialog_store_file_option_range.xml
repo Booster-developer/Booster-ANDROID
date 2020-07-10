@@ -8,7 +8,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/const1"
-            android:layout_width="300dp"
+            android:layout_width="@dimen/dialog_width"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_ffffff_round"
             android:layout_marginHorizontal="57dp"
@@ -164,7 +164,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
-                android:id="@+id/dial_frag_file_option"
+                android:id="@+id/dial_store_file_option_range"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
