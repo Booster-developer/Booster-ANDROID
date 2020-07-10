@@ -110,3 +110,4 @@ fun ImageView.setFavStarList(status : Int) {
 fun setStoreImg(view: ImageView, url : String?) {
     Glide.with(view.context).load(url).into(view)
 }
+

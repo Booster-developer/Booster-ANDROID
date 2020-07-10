@@ -11,7 +11,7 @@ class OrderListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_order_list)
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.act_order_condition, OrderListFragment())
+            .replace(R.id.act_order_list, OrderListFragment())
             .commit()
     }
 }
