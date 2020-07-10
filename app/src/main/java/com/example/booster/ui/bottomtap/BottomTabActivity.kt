@@ -1,13 +1,13 @@
 package com.example.booster.ui.bottomtap
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.viewpager.widget.ViewPager
 import com.example.booster.R
+import com.example.booster.ui.MainActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import kotlinx.android.synthetic.main.activity_bottom_tab.*
@@ -66,8 +66,15 @@ class BottomTabActivity : AppCompatActivity() {
 
         bottom_tab_layout!!.addOnTabSelectedListener(object : OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-                bottom_vp!!.currentItem = tab.position
-                Log.e("position",tab.position.toString())
+                if (tab.position == 2) {
+                    val intent = Intent(this@BottomTabActivity, MainActivity::class.java)
+                    val t = bottom_tab_layout.getTabAt(bottom_vp!!.currentItem)
+                    t!!.select()
+                    startActivity(intent)
+                } else {
+                    bottom_vp!!.currentItem = tab.position
+
+                }
             }
             override fun onTabUnselected(tab: TabLayout.Tab) {
 
