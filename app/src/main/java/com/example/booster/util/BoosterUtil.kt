@@ -28,7 +28,13 @@ class BoosterUtil(var context: Context) {
         var path = cursor?.getString (cursor?.getColumnIndex("_data"));
         cursor?.close();
         val filePath = path?.split("/")
-
+        /*var originalfilename = filePath?.get(filePath.size-1)
+        var filename : String = ""
+        if (originalfilename?.length!! > 30)
+        {
+            filename = originalfilename.substring(0,30) + "..."
+        }
+        return filename*/
         return filePath?.get(filePath.size-1)
     }
 

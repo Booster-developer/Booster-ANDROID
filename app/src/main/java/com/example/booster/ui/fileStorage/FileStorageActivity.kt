@@ -1,6 +1,7 @@
 package com.example.booster.ui.fileStorage
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -64,6 +65,8 @@ class FileStorageActivity : AppCompatActivity() {
         val view = inflater.inflate(R.layout.dialog_item_view, null)
         val alertDialog = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
             .create()
+
+
         val dialogclose = view.findViewById<ImageView>(R.id.dial_item_view_close)
         dialogclose.setOnClickListener {
             alertDialog.dismiss()

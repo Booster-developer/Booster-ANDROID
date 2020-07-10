@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.booster.AnimationUtil
 import com.example.booster.R
 import com.example.booster.data.datasource.model.FileData
 import com.example.booster.util.BoosterUtil
@@ -26,6 +27,9 @@ class FileAdapter(
         val item = LayoutInflater.from(parent.context).inflate(R.layout.my_file, parent, false)
         return ViewHolder(item)
     }
+
+    var previousPostition = 0
+    private val animationUtil = AnimationUtil()
 
 
     override fun getItemCount(): Int {
@@ -62,11 +66,17 @@ class FileAdapter(
             }
 
 
+
+
         }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(datas[position])
+        if(position > previousPostition ){
+            animationUtil.fade_out(holder.itemView)
+        }
+        previousPostition = position
     }
 
 
