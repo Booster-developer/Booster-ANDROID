@@ -1,6 +1,7 @@
 package com.example.booster.ui.fileStorage
 
 import android.app.Activity
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
@@ -8,6 +9,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -21,14 +23,12 @@ import com.example.booster.data.datasource.model.PopupOptionData
 import com.example.booster.data.datasource.model.PopupOptionInfo
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.ui.StoreFileOptionActivity
-import com.example.booster.util.BoosterUtil
 import droidninja.filepicker.FilePickerBuilder
 import droidninja.filepicker.FilePickerConst.KEY_SELECTED_DOCS
 import droidninja.filepicker.FilePickerConst.KEY_SELECTED_MEDIA
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_DOC
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_PHOTO
 import kotlinx.android.synthetic.main.activity_file_storage.*
-import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -120,7 +120,7 @@ class FileStorageActivity : AppCompatActivity() {
         alertDialog.show()
     }
 
-    private fun itemDelete(item: File, position:Int) {
+    /*
 
         requestToServer.service.getPopupOption(
             2
@@ -148,8 +148,10 @@ class FileStorageActivity : AppCompatActivity() {
             }
 
         })
+    */
 
-    }
+    private fun itemDelete(item: File, position:Int) {
+
         val builder = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
         val dialogView = layoutInflater.inflate(R.layout.dialog_item_delete, null)
         val textView: TextView = dialogView.findViewById(R.id.dial_item_delete_tv_message)
@@ -170,6 +172,9 @@ class FileStorageActivity : AppCompatActivity() {
             .show()
 
     }
+
+
+
 
     override fun onActivityResult(
         requestCode: Int,

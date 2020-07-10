@@ -2,6 +2,7 @@ package com.example.booster.data.remote.network
 
 
 import com.example.booster.data.datasource.model.*
+import com.google.gson.JsonObject
 import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.http.*
@@ -49,6 +50,12 @@ interface BoosterService {
     fun getPopupOption(
         @Path("file_idx") fileIdx: Int
     ): Call<PopupOptionData>
+
+    @POST("/orders/{file_idx}/options")
+    fun changeOption(
+        @Path("file_idx") fileIdx: Int,
+        @Body() body: JsonObject
+    ): Call<ResponseJoin>
 
 }
 
