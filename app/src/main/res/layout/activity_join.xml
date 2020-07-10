@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="20dp"
         android:text="회원가입"
         android:textColor="@color/black"
         android:textSize="26sp"
@@ -24,7 +24,7 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="24dp"
         android:text="이름"
         android:textColor="@color/black"
         android:textSize="14sp"
@@ -36,7 +36,7 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="24dp"
         android:text="아이디"
         android:textColor="@color/black"
         android:textSize="14sp"
@@ -79,11 +79,12 @@
         app:layout_constraintStart_toStartOf="@+id/join_name"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-    <Button
+    <TextView
         android:id="@+id/id_chk_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="84dp"
         android:layout_height="44dp"
         android:background="@drawable/join_btn_1"
+        android:gravity="center"
         android:text="중복확인"
         android:textColor="#304fff"
         android:textSize="14sp"
@@ -96,7 +97,7 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:text="비밀번호"
         android:textColor="@color/black"
         android:textSize="14sp"
@@ -140,7 +141,7 @@
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="24dp"
         android:text="대학교"
         android:textColor="@color/black"
         android:textSize="14sp"
@@ -165,11 +166,12 @@
         app:layout_constraintStart_toStartOf="@+id/join_pw_chk"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-    <Button
+    <TextView
         android:id="@+id/univSelectBtn"
         android:layout_width="58dp"
         android:layout_height="44dp"
         android:background="@drawable/join_btn_1"
+        android:gravity="center"
         android:text="선택"
         android:textColor="#304fff"
         android:textSize="14sp"
@@ -182,7 +184,7 @@
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:buttonTint="@color/main_color"
         android:text="@string/join_1"
         app:layout_constraintStart_toStartOf="@+id/univSelected"
@@ -202,15 +204,15 @@
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="15dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/join_btn_2"
         android:text="가입하기"
         android:textColor="#7d7d7d"
         android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView11"
@@ -299,6 +301,7 @@
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/join_id"
         app:layout_constraintTop_toBottomOf="@+id/join_id" />
+
     <TextView
         android:id="@+id/id_chk_success"
         android:layout_width="wrap_content"
@@ -310,4 +313,15 @@
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/join_id"
         app:layout_constraintTop_toBottomOf="@+id/join_id" />
+
+    <TextView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/join_btn"
+        app:srcCompat="@drawable/bg_ffffff_round" />
 </androidx.constraintlayout.widget.ConstraintLayout>

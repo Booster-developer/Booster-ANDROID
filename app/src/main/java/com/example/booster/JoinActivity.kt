@@ -52,6 +52,47 @@ class JoinActivity : AppCompatActivity() {
             univList.visibility = View.GONE
         }
 
+        // textview focused
+        join_name.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                join_name.isSelected = true
+            } else {
+                join_name.isSelected = false
+            }
+        }
+        // textview focused
+        join_id.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                join_id.isSelected = true
+            } else {
+                join_id.isSelected = false
+            }
+        }
+        // textview focused
+        join_pw.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                join_pw.isSelected = true
+            } else {
+                join_pw.isSelected = false
+            }
+        }
+        // textview focused
+        join_pw_chk.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                join_pw_chk.isSelected = true
+            } else {
+                join_pw_chk.isSelected = false
+            }
+        }
+        // 회원가입 focused
+        join_btn.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                join_btn.setBackgroundResource(R.drawable.bg_btn_gradation)
+            } else {
+                join_btn.setBackgroundResource(R.drawable.join_btn_2)
+            }
+        }
+
         id_chk_btn.setOnClickListener {
             // 아이디 중복 체크
             checkIdToServer.service.requestCheckId(
@@ -67,7 +108,6 @@ class JoinActivity : AppCompatActivity() {
                     call: Call<ResponseJoin>,
                     response: Response<ResponseJoin>
                 ) {
-                    Log.e("responseaaaaaaaaaa", response.body().toString())
                     if (response.body()!!.success) {
                         id_chk_fail.visibility = View.INVISIBLE
                         id_chk_success.visibility = View.VISIBLE
@@ -87,10 +127,14 @@ class JoinActivity : AppCompatActivity() {
                 pwChk = "success"
             }
 
+            if (!checkBox.isChecked) {
+                Toast.makeText(this, "필수 항목을 체크해주세요", Toast.LENGTH_SHORT).show()
+            }
+
             // 회원가입 request
-            if(join_id.text.isNullOrBlank() || join_pw.text.isNullOrBlank() ||join_name.text.isNullOrBlank()||univSelected.text.isNullOrBlank()){
+            if (join_id.text.isNullOrBlank() || join_pw.text.isNullOrBlank() || join_name.text.isNullOrBlank() || univSelected.text.isNullOrBlank() || checkBox.isChecked) {
                 Toast.makeText(this, "모든 항목을 입력해주세요", Toast.LENGTH_SHORT).show()
-            }else if (idChk == "success" && pwChk == "success") {
+            } else if (idChk == "success" && pwChk == "success") {
                 requestJoinToServer.service.requestJoin(
                     RequestJoin(
                         user_id = join_id.text.toString(),
