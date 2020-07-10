@@ -62,7 +62,7 @@ class StoreFileOptionNumFragment : DialogFragment() {
             edt_printNum.setText(printOption.toString())
         }
 
-        dial_frag_file_option.setOnClickListener {
+        dial_store_file_option_num.setOnClickListener {
             sendData("${printOption}")
             dismiss()
         }
