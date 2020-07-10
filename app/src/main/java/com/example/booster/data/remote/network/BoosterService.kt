@@ -40,7 +40,7 @@ interface BoosterService {
     @GET("/progress/list")
     fun getOrderList(
     ): Observable<OrderListData>
-    
+
     @POST("/users/idcheck")
     fun requestCheckId(
         @Body body: RequestCheckId

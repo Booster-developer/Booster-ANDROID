@@ -46,7 +46,8 @@ class FileStorageActivity : AppCompatActivity() {
 
         fileStorage_rv_file_add.apply {
             layoutManager = LinearLayoutManager(this@FileStorageActivity)
-            adapter = FileAdapter(datas, {item, position -> itemDelete(item, position)}, {item, position -> itemOptionChange(item, position)},
+            adapter = FileAdapter(datas,
+                { item, position -> itemDelete(item, position)}, {item, position -> itemOptionChange(item, position)},
                 {item, position -> itemOptionView(item, position)})
         }
 
@@ -94,9 +95,7 @@ class FileStorageActivity : AppCompatActivity() {
 //        alertDialog.setCanceledOnTouchOutside(false)
 //        alertDialog.show()
 
-        requestToServer.service.getPopupOption(
-            2
-        ).enqueue(object :Callback<PopupOptionData>{
+        requestToServer.service.getPopupOption(2).enqueue(object :Callback<PopupOptionData>{
             override fun onFailure(call: Call<PopupOptionData>, t: Throwable) {
                 //통신 실패
                 Log.e("error", t.toString())
@@ -118,9 +117,7 @@ class FileStorageActivity : AppCompatActivity() {
                     }
                 }
             }
-
         })
-
     }
 
 
