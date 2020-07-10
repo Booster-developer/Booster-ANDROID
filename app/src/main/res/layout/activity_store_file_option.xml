@@ -719,6 +719,7 @@
                             app:srcCompat="@drawable/order_option_btn_range" />
 
                         <TextView
+                            android:id="@+id/act_store_file_option_txt_range"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -746,6 +747,7 @@
                             app:srcCompat="@drawable/order_option_btn_num" />
 
                         <TextView
+                            android:id="@+id/act_store_file_option_txt_num"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
