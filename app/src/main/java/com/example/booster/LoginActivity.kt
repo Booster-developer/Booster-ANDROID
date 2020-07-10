@@ -10,15 +10,13 @@ import android.util.Log
 import android.widget.Toast
 import com.example.booster.data.datasource.model.RequestLogin
 import com.example.booster.data.datasource.model.ResponseLogin
-import com.example.booster.data.remote.network.RequestLoginToServer
+import com.example.booster.data.remote.network.BoosterServiceImpl
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
-
-    val requestLoginToServer = RequestLoginToServer
 
     private lateinit var isLoggedIn: MySharedPreferences
 
@@ -34,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
             if (login_id.text.isNullOrBlank() || login_pw.text.isNullOrBlank()) {
                 Toast.makeText(this, "아이디와 비밀번호를 입력하세요", Toast.LENGTH_SHORT).show()
             } else {
-                requestLoginToServer.service.requestLogin(
+                BoosterServiceImpl.service.requestLogin(
                     RequestLogin(
                         user_id = login_id.text.toString(),
                         user_pw = login_pw.text.toString()
@@ -61,6 +59,8 @@ class LoginActivity : AppCompatActivity() {
                                 isLoggedIn.isLoggedIn = "isLoggedIn"
 //                                finish()
                             }
+                        }else{
+                            Log.e("onReponse else", response.toString())
                         }
                     }
 
