@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.booster.LoginActivity
+import com.example.booster.LottieActivity
 import com.example.booster.R
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.ui.bottomtap.BottomTabActivity
@@ -105,6 +106,11 @@ class MainActivity : AppCompatActivity() {
 
         act_main_btn_login.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
+        act_main_btn_lottie.setOnClickListener {
+            val intent = Intent(this, LottieActivity::class.java)
             startActivity(intent)
         }
     }
