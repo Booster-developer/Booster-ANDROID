@@ -1,10 +1,8 @@
+package com.example.booster.ui.fileStorage
+
 import com.example.booster.ui.fileStorage.FileAdapter
 import com.example.booster.ui.fileStorage.ItemOptionFragment
 import com.example.booster.ui.fileStorage.MarginItemDecoration
-
-<<<<<<< HEAD
-package com.example.booster.ui.fileStorage
-
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
@@ -38,7 +36,7 @@ class FileStorageActivity : AppCompatActivity() {
 
     private val CUSTOM_REQUEST_CODE: Int = 532
 
-    var datas:ArrayList<FileData> = ArrayList()
+    var datas:ArrayList<File> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
