@@ -2,7 +2,7 @@ package com.example.booster.data.datasource.model
 
 data class PaymentData (
     val status: Int,
-    val success: String,
+    val success: Boolean,
     val message: String,
     val data: PaymentInfo
 )
@@ -10,7 +10,7 @@ data class PaymentData (
 data class PaymentInfo(
     val store_name: String,
     val store_idx: Int,
-    val fileOption: PaymentFileList,
+    val fileOption: ArrayList<PaymentFileList>,
     val order_price: Int,
     val user_point: Int,
     val user_remain_point: Int

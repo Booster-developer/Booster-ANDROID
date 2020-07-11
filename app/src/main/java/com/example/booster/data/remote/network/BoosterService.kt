@@ -40,6 +40,17 @@ interface BoosterService {
     fun getOrderList(
     ): Observable<OrderListData>
 
+    @POST("/users/idcheck")
+    fun requestCheckId(
+        @Body body: RequestCheckId
+    ): Call<ResponseJoin>
+
+    @POST("/users/signup")
+    fun requestJoin(@Body body: RequestJoin): Call<ResponseJoin>
+
+    @POST("/users/signin")
+    fun requestLogin(@Body body: RequestLogin): Call<ResponseLogin>
+
     @GET("/orders/{order_idx}/list")
     fun getFileList(
         @Path("order_idx") orderIdx: Int
@@ -50,5 +61,9 @@ interface BoosterService {
         @Path("file_idx") fileIdx: Int
     ): Call<PopupOptionData>
 
+    @GET("/orders/{order_idx}/payment")
+    fun getPaymentInfo(
+        @Path("order_idx") orderIdx: Int
+    ): Observable<PaymentData>
 }
 
