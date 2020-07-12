@@ -24,7 +24,7 @@ class StoreDetailActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.vm = (this@StoreDetailActivity).viewModel
 
-        idx = intent.getIntExtra("position", 0)
+        idx = intent.getIntExtra("storeIdx", 0)
         viewModel.getStoreDetail(idx)
 
         viewModel.favStatus.observe(this, Observer {
@@ -37,7 +37,7 @@ class StoreDetailActivity : AppCompatActivity() {
         })
 
         act_store_detail_iv_star.setOnClickListener {
-            viewModel.putStoreFav(4)
+            viewModel.putStoreFav(idx)
         }
     }
 

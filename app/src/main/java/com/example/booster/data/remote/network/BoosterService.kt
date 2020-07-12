@@ -81,5 +81,10 @@ interface BoosterService {
     fun putPickUp(
         @Path("order_idx") orderIdx: Int
     ): Observable<DefaultData>
+
+    @GET("/stores/{univ_idx}/list")
+    fun getStoreList(
+        @Path("univ_idx") univIdx: Int
+    ): Observable<StoreListData>
 }
 

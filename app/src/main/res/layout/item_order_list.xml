@@ -10,6 +10,10 @@
             name="orderListRes"
             type="com.example.booster.data.datasource.model.OrderList" />
 
+        <variable
+            name="pickUpRes"
+            type="com.example.booster.data.datasource.model.DefaultData" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
