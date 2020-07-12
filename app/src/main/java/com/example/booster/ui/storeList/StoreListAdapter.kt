@@ -7,8 +7,9 @@ import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.booster.AnimationUtil
-import com.example.booster.data.datasource.model.Store
+import com.example.booster.data.datasource.model.StoreList
 import com.example.booster.data.datasource.model.StoreListData
+import com.example.booster.data.datasource.model.StoreListInfo
 import com.example.booster.databinding.ItemStoreListBinding
 import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.bottomtap.BottomTabActivity
@@ -19,7 +20,7 @@ class StoreListAdapter(private val context : Context,
                        private val clickFavListener: StoreListViewHolder.onClickFavListener) : RecyclerView.Adapter<StoreListViewHolder>(){
     private lateinit var viewModel2: StoreDetailViewModel
 
-    var data = mutableListOf<Store>()
+    var data = mutableListOf<StoreListInfo>()
     lateinit var binding : ItemStoreListBinding
     var previousPosition = 0
     private val animationUtil = AnimationUtil()

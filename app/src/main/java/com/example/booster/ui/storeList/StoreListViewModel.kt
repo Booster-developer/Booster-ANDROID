@@ -4,8 +4,9 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.booster.data.datasource.model.Store
+import com.example.booster.data.datasource.model.StoreList
 import com.example.booster.data.datasource.model.StoreListData
+import com.example.booster.data.datasource.model.StoreListInfo
 import com.example.booster.data.repository.StoreListRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -15,8 +16,8 @@ class StoreListViewModel : ViewModel() {
     private val disposables = CompositeDisposable()
     private val storeListRepository = StoreListRepository()
 
-    private var _storeList = MutableLiveData<ArrayList<Store>>() //변경 가능한 mutableLiveData 변수
-    val storeList : LiveData<ArrayList<Store>> get() = _storeList //LiveData 변수인 newsList는 변경이 안되므로 변경 가능한 _newsList를 가져옴
+    private var _storeList = MutableLiveData<ArrayList<StoreListInfo>>() //변경 가능한 mutableLiveData 변수
+    val storeList : LiveData<ArrayList<StoreListInfo>> get() = _storeList //LiveData 변수인 newsList는 변경이 안되므로 변경 가능한 _newsList를 가져옴
 
     fun getOrderList(univIdx: Int){
         disposables.add(storeListRepository.getStoreList(univIdx)

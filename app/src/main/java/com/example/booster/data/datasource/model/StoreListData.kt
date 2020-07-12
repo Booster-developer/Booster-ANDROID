@@ -4,10 +4,10 @@ data class StoreListData(
     val status: Int,
     val success: Boolean,
     val message: String,
-    val data : ArrayList<Store>
+    val data : ArrayList<StoreListInfo>
 )
 
-data class Store(
+data class StoreListInfo(
     val store_idx: Int,
     val store_name: String,
     val store_image: String,
