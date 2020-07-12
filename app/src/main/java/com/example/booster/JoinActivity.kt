@@ -18,11 +18,12 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class JoinActivity : AppCompatActivity() {
+    var idChk = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         var nameChk = false
-        var idChk = false
+        idChk = false
         var pwChk = false
         var univIdx = 0
         var checkChk = false
@@ -108,33 +109,35 @@ class JoinActivity : AppCompatActivity() {
         }
 
         // 아이디 중복 확인
-        val checkIdJsonData = JSONObject()
-        checkIdJsonData.put("user_id", join_id.text.toString())
-
-        val body = JsonParser.parseString(checkIdJsonData.toString()) as JsonObject
+//        val checkIdJsonData = JSONObject()
+//        checkIdJsonData.put("user_id", join_id.text.toString())
+//
+//        val body = JsonParser.parseString(checkIdJsonData.toString()) as JsonObject
         id_chk_btn.setOnClickListener {
-            BoosterServiceImpl.service.requestCheckId(body)
-                .enqueue(object : Callback<JoinData> {
-                    override fun onFailure(call: Call<JoinData>, t: Throwable) {
-                        Log.e("errrrrrrrrrr", t.toString())
-                    }
+            checkId()
 
-                    override fun onResponse(
-                        call: Call<JoinData>,
-                        response: Response<JoinData>
-                    ) {
-                        Log.e("aaaaaaaaaaaa", join_id.text.toString())
-                        Log.e("llllllllll", response.body().toString())
-                        if (response.body()!!.success) {
-                            id_chk_fail.visibility = View.INVISIBLE
-                            id_chk_success.visibility = View.VISIBLE
-                            idChk = true
-                        } else {
-                            id_chk_success.visibility = View.INVISIBLE
-                            id_chk_fail.visibility = View.VISIBLE
-                        }
-                    }
-                })
+//            BoosterServiceImpl.service.requestCheckId(body)
+//                .enqueue(object : Callback<JoinData> {
+//                    override fun onFailure(call: Call<JoinData>, t: Throwable) {
+//                        Log.e("errrrrrrrrrr", t.toString())
+//                    }
+//
+//                    override fun onResponse(
+//                        call: Call<JoinData>,
+//                        response: Response<JoinData>
+//                    ) {
+//                        Log.e("aaaaaaaaaaaa", join_id.text.toString())
+//                        Log.e("llllllllll", response.body().toString())
+//                        if (response.body()!!.success) {
+//                            id_chk_fail.visibility = View.INVISIBLE
+//                            id_chk_success.visibility = View.VISIBLE
+//                            idChk = true
+//                        } else {
+//                            id_chk_success.visibility = View.INVISIBLE
+//                            id_chk_fail.visibility = View.VISIBLE
+//                        }
+//                    }
+//                })
         }
 
         // 회원가입 버튼 활성화
@@ -190,5 +193,35 @@ class JoinActivity : AppCompatActivity() {
                     })
             }
         }
+    }
+
+    fun checkId() {
+        // 아이디 중복 확인
+        val checkIdJsonData = JSONObject()
+        checkIdJsonData.put("user_id", join_id.text.toString())
+        val body = JsonParser.parseString(checkIdJsonData.toString()) as JsonObject
+
+        BoosterServiceImpl.service.requestCheckId(body).enqueue(object : Callback<JoinData> {
+                override fun onFailure(call: Call<JoinData>, t: Throwable) {
+                    Log.e("errrrrrrrrrr", t.toString())
+                }
+
+                override fun onResponse(
+                    call: Call<JoinData>,
+                    response: Response<JoinData>
+                ) {
+                    Log.e("aaaaaaaaaaaa", join_id.text.toString())
+                    Log.e("llllllllll", response.body().toString())
+                    if (response.body()!!.success) {
+                        id_chk_fail.visibility = View.INVISIBLE
+                        id_chk_success.visibility = View.VISIBLE
+                        idChk = true
+                    } else {
+                        id_chk_success.visibility = View.INVISIBLE
+                        id_chk_fail.visibility = View.VISIBLE
+                    }
+                }
+            })
+
     }
 }
