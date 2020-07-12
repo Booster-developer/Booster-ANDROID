@@ -70,5 +70,10 @@ interface BoosterService {
     fun getPaymentInfo(
         @Path("order_idx") orderIdx: Int
     ): Observable<PaymentData>
+
+    @PUT("/progress/{order_idx}/pickup")
+    fun putPickUp(
+        @Path("order_idx") orderIdx: Int
+    ): Observable<DefaultData>
 }
 
