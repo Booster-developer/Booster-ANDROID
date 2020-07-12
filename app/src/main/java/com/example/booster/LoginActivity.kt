@@ -30,46 +30,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         // 로그인 request
-        val loginJsonData = JSONObject()
-        loginJsonData.put("user_id", login_id)
-        loginJsonData.put("user_pw", login_pw)
-
-        val body = JsonParser.parseString(loginJsonData.toString()) as JsonObject
-
         login_btn.setOnClickListener {
-            if (login_id.text.isNullOrBlank() || login_pw.text.isNullOrBlank()) {
-                Toast.makeText(this, "아이디와 비밀번호를 입력하세요", Toast.LENGTH_SHORT).show()
-            } else {
-                BoosterServiceImpl.service.requestLogin(body)
-                    .enqueue(object : Callback<LoginData> {
-                        override fun onFailure(call: Call<LoginData>, t: Throwable) {
-                            Log.e("error", t.toString())
-                            Toast.makeText(this@LoginActivity, "로그인 실패", Toast.LENGTH_SHORT).show()
-                        }
-
-                        override fun onResponse(
-                            call: Call<LoginData>,
-                            response: Response<LoginData>
-                        ) {
-                            if (response.isSuccessful) {
-                                val message = response.body()!!.message
-                                Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT)
-                                    .show()
-                                if (response.body()!!.success) {
-//                                val intent =
-//                                    Intent(this@LoginActivity, BoosterApplication::class.java)
-//                                startActivity(intent)
-//
-                                    isLoggedIn.isLoggedIn = "isLoggedIn"
-//                                finish()
-                                }
-                            } else {
-                                Log.e("onReponse else", response.toString())
-                            }
-                        }
-
-                    })
-            }
+            login()
         }
 
         goto_join.setOnClickListener {
@@ -89,6 +51,47 @@ class LoginActivity : AppCompatActivity() {
                     login_pw.setText(savedPw)
                 }
             }
+        }
+    }
+
+    fun login() {
+        val loginJsonData = JSONObject()
+        loginJsonData.put("user_id", login_id.text.toString())
+        loginJsonData.put("user_pw", login_pw.text.toString())
+
+        val body = JsonParser.parseString(loginJsonData.toString()) as JsonObject
+        if (login_id.text.isNullOrBlank() || login_pw.text.isNullOrBlank()) {
+            Toast.makeText(this, "아이디와 비밀번호를 입력하세요", Toast.LENGTH_SHORT).show()
+        } else {
+            BoosterServiceImpl.service.requestLogin(body)
+                .enqueue(object : Callback<LoginData> {
+                    override fun onFailure(call: Call<LoginData>, t: Throwable) {
+                        Log.e("error", t.toString())
+                        Toast.makeText(this@LoginActivity, "로그인 실패", Toast.LENGTH_SHORT).show()
+                    }
+
+                    override fun onResponse(
+                        call: Call<LoginData>,
+                        response: Response<LoginData>
+                    ) {
+                        if (response.isSuccessful) {
+                            val message = response.body()!!.message
+                            Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT)
+                                .show()
+                            if (response.body()!!.success) {
+//                                val intent =
+//                                    Intent(this@LoginActivity, BoosterApplication::class.java)
+//                                startActivity(intent)
+//
+                                isLoggedIn.isLoggedIn = "isLoggedIn"
+//                                finish()
+                            }
+                        } else {
+                            Log.e("onReponse else", response.toString())
+                        }
+                    }
+
+                })
         }
     }
 
