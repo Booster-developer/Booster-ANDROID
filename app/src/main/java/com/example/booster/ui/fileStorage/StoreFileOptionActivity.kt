@@ -1,11 +1,12 @@
 package com.example.booster.ui.fileStorage
 
+import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.booster.R
-import com.example.booster.data.datasource.model.ResponseJoin
+import com.example.booster.data.datasource.model.DefaultData
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
@@ -183,7 +184,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
         }
 
         act_store_file_option_btn_option.setOnClickListener {
-
+            val intent = intent
             Log.e("aa", "${color} ${direction} ${side} ${combine} ${range} ${num}")
 
             val jsonData = JSONObject()
@@ -200,18 +201,32 @@ class StoreFileOptionActivity : AppCompatActivity(),
 
             requestToServer.service.changeOption(
                 1, body
-            ).enqueue(object : Callback<ResponseJoin>{
-                override fun onFailure(call: Call<ResponseJoin>, t: Throwable) {
+            ).enqueue(object : Callback<DefaultData>{
+                override fun onFailure(call: Call<DefaultData>, t: Throwable) {
                     //통신 실패
                     Log.e("onResponse", "통신 실패")
                 }
 
                 override fun onResponse(
-                    call: Call<ResponseJoin>,
-                    response: Response<ResponseJoin>
+                    call: Call<DefaultData>,
+                    response: Response<DefaultData>
                 ) {
                     //통신 성공
                     Log.e("onResponse", response.toString())
+                    //인텐트 넘겨주기
+                    intent.putExtra("color", color)
+                    intent.putExtra("direction", direction)
+                    intent.putExtra("side", side)
+                    intent.putExtra("combine", combine)
+                    if(range=="전체"){
+                        intent.putExtra("range", range)
+                    }else{
+                        intent.putExtra("rangeMin", rangeMin)
+                        intent.putExtra("rangeMax", rangeMax)
+                    }
+                    intent.putExtra("num", num)
+                    setResult(Activity.RESULT_OK, intent)
+                    finish()
                 }
             })
 

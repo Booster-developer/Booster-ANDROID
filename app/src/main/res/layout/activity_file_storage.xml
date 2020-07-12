@@ -194,6 +194,7 @@
                 android:lineSpacingExtra="-10sp"
                 android:gravity="center_horizontal"
                 android:text="주문하기"
+                android:onClick="onClick"
                 android:fontFamily="@font/noto_sans_kr_medium"
                 android:paddingTop="11dp"
                 android:paddingBottom="11dp"

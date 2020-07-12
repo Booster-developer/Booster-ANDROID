@@ -8,11 +8,12 @@ data class PopupOptionData(
 )
 
 data class PopupOptionInfo(
-    val file_color: String,
-    val file_direction: String,
-    val file_sided_type: String,
-    val file_collect: Int,
-    val file_range_start: Int,
-    val file_range_end: Int,
-    val file_copy_number: Int
+    var file_color: String,
+    var file_direction: String,
+    var file_sided_type: String,
+    var file_collect: Int,
+    var file_copy_number: Int,
+    var file_range: String? =null,
+    var file_range_max: Int?=null,
+    var file_range_min: Int?=null
 )

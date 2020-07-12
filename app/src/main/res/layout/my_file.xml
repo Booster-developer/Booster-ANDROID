@@ -16,7 +16,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintGuide_begin="300dp"/>
+        app:layout_constraintGuide_begin="370dp"/>
 
     <ImageView
         android:id="@+id/iv_file"
@@ -37,6 +37,7 @@
         android:layout_height="wrap_content"
         android:text="파일이름파일이름파일이름.pdf"
         android:textSize="16sp"
+        android:ellipsize="end"
         android:fontFamily="@font/noto_sans_kr_medium"
         app:layout_constraintStart_toEndOf="@id/iv_file"
         app:layout_constraintTop_toTopOf="@id/iv_file_delete"

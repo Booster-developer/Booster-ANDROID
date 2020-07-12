@@ -15,7 +15,7 @@
 
     <style name="MyAlertDialogStyle2" parent="Theme.AppCompat.Light.Dialog">
         <item name="buttonBarNegativeButtonStyle">@style/buttonBarButtonStyle.Negative_blue</item>
-        <item name="buttonBarPositiveButtonStyle">@style/buttonBarButtonStyle.Positive</item>
+        <item name="buttonBarPositiveButtonStyle">@style/buttonBarButtonStyle.Negative_blue</item>
         <item name="android:windowBackground">@drawable/bg_ffffff_round</item>
     </style>
 
@@ -31,7 +31,7 @@
     </style>
 
     <style name="buttonBarButtonStyle.Positive">
-        <item name="android:textColor">@color/main_color</item>
+        <item name="android:textColor">@color/red</item>
     </style>
 
     <style name="LibAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
