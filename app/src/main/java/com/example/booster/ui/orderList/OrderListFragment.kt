@@ -1,5 +1,6 @@
 package com.example.booster.ui.orderList
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a2nd_seminar.ui.ItemDecorator
 import com.example.booster.R
 import com.example.booster.databinding.FragmentOrderListBinding
+import com.example.booster.ui.orderDetail.OrderDetailActivity
 import kotlinx.android.synthetic.main.fragment_order_list.*
 
 class OrderListFragment : Fragment() {
@@ -50,7 +52,16 @@ class OrderListFragment : Fragment() {
                     viewModel.putPickUp(orderIdx)
                     Handler().postDelayed({ viewModel.getOrderList() }, 500)
                 }
-            })
+
+            },
+        object : OrderListViewHolder.onClickDetailListener{
+            override fun onClickDetail(position: Int) {
+                val intent = Intent(context, OrderDetailActivity::class.java)
+                intent.putExtra("idx", viewModel.orderList.value!!.get(position)!!.order_idx.toString())
+                startActivity(intent)
+            }
+
+        })
 
         frag_order_condition_rv.adapter = adapter
         frag_order_condition_rv.layoutManager = LinearLayoutManager(requireContext())

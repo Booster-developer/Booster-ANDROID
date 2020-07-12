@@ -10,9 +10,11 @@ import com.example.booster.data.datasource.model.OrderList
 import com.example.booster.databinding.ItemOrderListBinding
 import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.storeList.StoreListViewHolder
+import kotlinx.android.synthetic.main.item_order_list.view.*
 
 class OrderListAdapter (private val context : Context,
-                        private val clickPickUp : OrderListViewHolder.onClickPickUpListener) : RecyclerView.Adapter<OrderListViewHolder>(){
+                        private val clickPickUp : OrderListViewHolder.onClickPickUpListener,
+                        private val clickDetail: OrderListViewHolder.onClickDetailListener) : RecyclerView.Adapter<OrderListViewHolder>(){
 
     var data = mutableListOf<OrderList>()
     var previousPosition = 0
@@ -20,7 +22,7 @@ class OrderListAdapter (private val context : Context,
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderListViewHolder {
         val binding = ItemOrderListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return OrderListViewHolder(binding, clickPickUp)
+        return OrderListViewHolder(binding, clickPickUp, clickDetail)
     }
 
     override fun getItemCount(): Int {
@@ -43,16 +45,24 @@ class OrderListAdapter (private val context : Context,
 }
 
 class OrderListViewHolder(val binding : ItemOrderListBinding,
-                          val clickPickUp: onClickPickUpListener) : RecyclerView.ViewHolder(binding.root){
+                          val clickPickUp: onClickPickUpListener,
+                          val clickDetail: onClickDetailListener) : RecyclerView.ViewHolder(binding.root){
     init {
         binding.itemOrderListTvDonePick.onlyOneClickListener {
             clickPickUp.onClickPickUp(adapterPosition,
                 binding.itemOrderListTvDonePick,
             binding.orderListRes!!.order_idx)
         }
+        itemView.item_order_list_detail.onlyOneClickListener{
+            clickDetail.onClickDetail(adapterPosition)
+        }
     }
 
     interface onClickPickUpListener{
         fun onClickPickUp(position: Int, textView: TextView, orderIdx: Int)
+    }
+
+    interface onClickDetailListener{
+        fun onClickDetail(position: Int)
     }
 }
