@@ -31,4 +31,9 @@ class RemoteDataSourceImpl : RemoteDataSource {
         api.putPickUp(orderIdx).map{
             it
         }
+
+    override fun getStoreList(univIdx: Int): Observable<StoreListData> =
+        api.getStoreList(univIdx).map{
+            it
+        }
 }

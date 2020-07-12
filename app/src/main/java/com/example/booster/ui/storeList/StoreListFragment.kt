@@ -22,7 +22,6 @@ import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
 import kotlinx.android.synthetic.main.fragment_store_list.*
 import kotlin.math.abs
 
-
 class StoreListFragment : Fragment() {
 
     private lateinit var viewModel: StoreListViewModel
@@ -48,6 +47,7 @@ class StoreListFragment : Fragment() {
 
         initRv()
         setClick()
+        viewModel.getOrderList(1)
 //        setAppBar()
     }
 
@@ -81,27 +81,24 @@ class StoreListFragment : Fragment() {
     private fun initRv() {
         adapter = StoreListAdapter(requireContext(),
             object : StoreListViewHolder.onClickStoreItemListener {
-                override fun onClickStoreItem(position: Int) {
+                override fun onClickStoreItem(position: Int, storeIdx: Int) {
                     val intent = Intent(requireContext(), StoreDetailActivity::class.java)
-                    intent.putExtra("position", position+1)
+                    intent.putExtra("storeIdx", storeIdx)
                     startActivity(intent)
                 }
             },
-            object : StoreListViewHolder.onclickFavListener {
-                override fun onClickFav(position: Int, imageView: ImageView, fav: Int) {
+            object : StoreListViewHolder.onClickFavListener {
+                override fun onClickFav(position: Int, imageView: ImageView, fav: Int, storeIdx: Int) {
                     if (fav == 1) {
                         imageView.setImageResource(R.drawable.store_ic_inactive_star)
-                        adapter.data[position].store_favorite = 0
+//                        adapter.data[position].store_favorite = 0
                     } else {
                         imageView.setImageResource(R.drawable.store_ic_active_star)
-                        adapter.data[position].store_favorite = 1
+//                        adapter.data[position].store_favorite = 1
                     }
-                    viewModel2.putStoreFav(position+1)
-                    Toast.makeText(
-                        requireContext(),
-                        position.toString() + " : " + fav.toString(),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    viewModel2.putStoreFav(storeIdx)
+                    Toast.makeText(requireContext(),
+                        storeIdx.toString() + " : " + fav.toString(), Toast.LENGTH_SHORT).show()
                 }
             })
         frag_store_list_rv.adapter = adapter
@@ -122,5 +119,4 @@ class StoreListFragment : Fragment() {
 //            }
 //        })
     }
-
 }
