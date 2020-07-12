@@ -86,5 +86,10 @@ interface BoosterService {
     fun getOrderDetail(
         @Path("order_idx") orderIdx: Int
     ): Call<OrderDetailData>
+
+  @GET("/stores/{univ_idx}/list")
+    fun getStoreList(
+        @Path("univ_idx") univIdx: Int
+    ): Observable<StoreListData>
 }
 

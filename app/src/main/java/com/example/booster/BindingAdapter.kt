@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.util.Log
 import android.view.View
 import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -89,10 +90,10 @@ fun TextView.setClosedText(close : String?) {
 @BindingAdapter("setFavStar")
 fun ImageView.setFavStar(status : Int) {
     if (status==0){
-        setImageResource(android.R.color.transparent)
+//        setImageResource(android.R.color.transparent)
         setImageResource(R.drawable.store_detail_ic_star_inactive)
     }else if (status==1){
-        setImageResource(android.R.color.transparent)
+//        setImageResource(android.R.color.transparent)
         setImageResource(R.drawable.store_detail_ic_star_active)
     }
 }
@@ -109,5 +110,20 @@ fun ImageView.setFavStarList(status : Int) {
 @BindingAdapter("setStoreImg")
 fun setStoreImg(view: ImageView, url : String?) {
     Glide.with(view.context).load(url).into(view)
+}
+
+@BindingAdapter("setStoreBlackImg")
+fun setStoreBlackImg(view: ImageView, open : Int?) {
+    if(open==0) {
+        view.visibility = VISIBLE
+        view.alpha = 0.55f
+    }
+}
+
+@BindingAdapter("setStoreCloseTxt")
+fun setStoreCloseTxt(view: TextView, open : Int?) {
+    if(open==0) {
+        view.visibility = VISIBLE
+    }
 }
 
