@@ -2,6 +2,7 @@ package com.example.booster.data.remote.network
 
 
 import com.example.booster.data.datasource.model.*
+import com.google.gson.JsonObject
 import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.http.*
@@ -42,14 +43,18 @@ interface BoosterService {
 
     @POST("/users/idcheck")
     fun requestCheckId(
-        @Body body: RequestCheckId
-    ): Call<ResponseJoin>
+        @Body body: JsonObject
+    ): Call<JoinData>
 
     @POST("/users/signup")
-    fun requestJoin(@Body body: RequestJoin): Call<ResponseJoin>
+    fun requestJoin(
+        @Body body: JsonObject
+    ): Call<JoinData>
 
     @POST("/users/signin")
-    fun requestLogin(@Body body: RequestLogin): Call<ResponseLogin>
+    fun requestLogin(
+        @Body body: JsonObject
+    ): Call<LoginData>
 
     @GET("/orders/{order_idx}/list")
     fun getFileList(
