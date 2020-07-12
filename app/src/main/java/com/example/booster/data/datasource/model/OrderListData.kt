@@ -2,7 +2,7 @@ package com.example.booster.data.datasource.model
 
 data class OrderListData (
     val status: Int,
-    val success: String,
+    val success: Boolean,
     val message: String,
     val data: Order
 )

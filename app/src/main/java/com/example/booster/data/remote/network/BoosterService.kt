@@ -2,6 +2,7 @@ package com.example.booster.data.remote.network
 
 
 import com.example.booster.data.datasource.model.*
+import com.google.gson.JsonObject
 import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.http.*
@@ -40,6 +41,21 @@ interface BoosterService {
     fun getOrderList(
     ): Observable<OrderListData>
 
+    @POST("/users/idcheck")
+    fun requestCheckId(
+        @Body body: JsonObject
+    ): Call<JoinData>
+
+    @POST("/users/signup")
+    fun requestJoin(
+        @Body body: JsonObject
+    ): Call<JoinData>
+
+    @POST("/users/signin")
+    fun requestLogin(
+        @Body body: JsonObject
+    ): Call<LoginData>
+
     @GET("/orders/{order_idx}/list")
     fun getFileList(
         @Path("order_idx") orderIdx: Int
@@ -50,5 +66,20 @@ interface BoosterService {
         @Path("file_idx") fileIdx: Int
     ): Call<PopupOptionData>
 
+    @POST("/orders/{file_idx}/options")
+    fun changeOption(
+        @Path("file_idx") fileIdx: Int,
+        @Body() body: JsonObject
+    ): Call<ResponseJoin>
+
+    @GET("/orders/{order_idx}/payment")
+    fun getPaymentInfo(
+        @Path("order_idx") orderIdx: Int
+    ): Observable<PaymentData>
+
+    @PUT("/progress/{order_idx}/pickup")
+    fun putPickUp(
+        @Path("order_idx") orderIdx: Int
+    ): Observable<DefaultData>
 }
 

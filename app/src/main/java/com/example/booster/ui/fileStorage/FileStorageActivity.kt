@@ -6,7 +6,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -15,20 +14,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.booster.R
 import com.example.booster.data.datasource.model.File
-import com.example.booster.data.datasource.model.FileData
 import com.example.booster.data.datasource.model.FileResponse
 import com.example.booster.data.datasource.model.PopupOptionData
-import com.example.booster.data.datasource.model.PopupOptionInfo
 import com.example.booster.data.remote.network.BoosterServiceImpl
-import com.example.booster.ui.StoreFileOptionActivity
-import com.example.booster.util.BoosterUtil
 import droidninja.filepicker.FilePickerBuilder
 import droidninja.filepicker.FilePickerConst.KEY_SELECTED_DOCS
 import droidninja.filepicker.FilePickerConst.KEY_SELECTED_MEDIA
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_DOC
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_PHOTO
 import kotlinx.android.synthetic.main.activity_file_storage.*
-import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -85,6 +79,27 @@ class FileStorageActivity : AppCompatActivity() {
             fileStorage_tv_cost.visibility = View.GONE
             fileStorage_tv_cost_amount.visibility = View.GONE
 
+    }
+
+    private fun itemOptionChange(item: File, position:Int) {
+        val intent = Intent(this@FileStorageActivity, StoreFileOptionActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun itemOptionView(item: File, position:Int) {
+//        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+//        val view = inflater.inflate(R.layout.dialog_item_view, null)
+//        val alertDialog = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
+//            .create()
+//        val dialogclose = view.findViewById<ImageView>(R.id.dial_item_view_close)
+//        dialogclose.setOnClickListener {
+//
+//            alertDialog.dismiss()
+//        }
+//        alertDialog.setView(view)
+//        alertDialog.setCanceledOnTouchOutside(false)
+//        alertDialog.show()
+
         //item option fragment로 띄우기
         val args = Bundle()
         val fc = fileColor
@@ -98,29 +113,6 @@ class FileStorageActivity : AppCompatActivity() {
         )
         itemOptionDialog.arguments = args
         Log.e("args", args.toString())
-    }
-
-    private fun itemOptionChange(item: File, position:Int) {
-        val intent = Intent(this@FileStorageActivity, StoreFileOptionActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun itemOptionView(item: File, position:Int) {
-        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view = inflater.inflate(R.layout.dialog_item_view, null)
-        val alertDialog = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
-            .create()
-        val dialogclose = view.findViewById<ImageView>(R.id.dial_item_view_close)
-        dialogclose.setOnClickListener {
-
-            alertDialog.dismiss()
-        }
-        alertDialog.setView(view)
-        alertDialog.setCanceledOnTouchOutside(false)
-        alertDialog.show()
-    }
-
-    private fun itemDelete(item: File, position:Int) {
 
         requestToServer.service.getPopupOption(
             2
@@ -148,8 +140,10 @@ class FileStorageActivity : AppCompatActivity() {
             }
 
         })
-
     }
+
+    private fun itemDelete(item: File, position:Int) {
+
         val builder = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
         val dialogView = layoutInflater.inflate(R.layout.dialog_item_delete, null)
         val textView: TextView = dialogView.findViewById(R.id.dial_item_delete_tv_message)
@@ -168,8 +162,8 @@ class FileStorageActivity : AppCompatActivity() {
 
             }
             .show()
-
     }
+
 
     override fun onActivityResult(
         requestCode: Int,
