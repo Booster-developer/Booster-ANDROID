@@ -41,15 +41,21 @@ interface BoosterService {
     fun getOrderList(
     ): Observable<OrderListData>
 
+    @POST("/users/idcheck")
+    fun requestCheckId(
+        @Body body: RequestCheckId
+    ): Call<ResponseJoin>
+
+    @POST("/users/signup")
+    fun requestJoin(@Body body: RequestJoin): Call<ResponseJoin>
+
+    @POST("/users/signin")
+    fun requestLogin(@Body body: RequestLogin): Call<ResponseLogin>
+
     @GET("/orders/{order_idx}/list")
     fun getFileList(
         @Path("order_idx") orderIdx: Int
     ): Call<FileResponse>
-
-    @GET("/orders/{file_idx}/options")
-    fun getPopupOption(
-        @Path("file_idx") fileIdx: Int
-    ): Call<PopupOptionData>
 
     @POST("/orders/{file_idx}/options")
     fun changeOption(

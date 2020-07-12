@@ -10,8 +10,7 @@ import android.widget.Toast
 import com.example.booster.data.datasource.model.RequestCheckId
 import com.example.booster.data.datasource.model.RequestJoin
 import com.example.booster.data.datasource.model.ResponseJoin
-import com.example.booster.data.remote.network.CheckIdToServer
-import com.example.booster.data.remote.network.RequestJoinToServer
+import com.example.booster.data.remote.network.BoosterServiceImpl
 import kotlinx.android.synthetic.main.activity_join.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,9 +22,6 @@ class JoinActivity : AppCompatActivity() {
     lateinit var idChk: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
-        val requestJoinToServer = RequestJoinToServer
-        val checkIdToServer = CheckIdToServer
 
         var univIdx = -1
 
@@ -94,12 +90,10 @@ class JoinActivity : AppCompatActivity() {
         }
 
         id_chk_btn.setOnClickListener {
+//            val callIdCheck: Call<ResponseJoin> = BoosterServiceImpl.service.requestCheckId(body)
             // 아이디 중복 체크
-            checkIdToServer.service.requestCheckId(
-                RequestCheckId(
-                    user_id = join_id.text.toString()
-                )
-            ).enqueue(object : Callback<ResponseJoin> {
+            BoosterServiceImpl.service.requestCheckId(RequestCheckId(user_id = join_id.text.toString()))
+                .enqueue(object : Callback<ResponseJoin> {
                 override fun onFailure(call: Call<ResponseJoin>, t: Throwable) {
                     Log.e("error", t.toString())
                 }
@@ -108,11 +102,14 @@ class JoinActivity : AppCompatActivity() {
                     call: Call<ResponseJoin>,
                     response: Response<ResponseJoin>
                 ) {
-                    if (response.body()!!.success) {
+                    if (response.isSuccessful) {
+                        Log.e("if -> ", response.body().toString())
                         id_chk_fail.visibility = View.INVISIBLE
                         id_chk_success.visibility = View.VISIBLE
                         idChk = "success"
                     } else {
+                        Log.e("else -> ", response.toString())
+                        id_chk_success.visibility = View.INVISIBLE
                         id_chk_fail.visibility = View.VISIBLE
                     }
                 }
@@ -135,7 +132,7 @@ class JoinActivity : AppCompatActivity() {
             if (join_id.text.isNullOrBlank() || join_pw.text.isNullOrBlank() || join_name.text.isNullOrBlank() || univSelected.text.isNullOrBlank() || checkBox.isChecked) {
                 Toast.makeText(this, "모든 항목을 입력해주세요", Toast.LENGTH_SHORT).show()
             } else if (idChk == "success" && pwChk == "success") {
-                requestJoinToServer.service.requestJoin(
+                BoosterServiceImpl.service.requestJoin(
                     RequestJoin(
                         user_id = join_id.text.toString(),
                         user_name = join_name.text.toString(),

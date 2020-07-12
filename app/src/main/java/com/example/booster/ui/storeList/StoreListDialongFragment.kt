@@ -11,7 +11,7 @@ import androidx.fragment.app.DialogFragment
 import com.example.booster.R
 import kotlinx.android.synthetic.main.dialog_fragment_store_list.*
 
-class StoreListDialongFragment : DialogFragment(){
+class  StoreListDialongFragment : DialogFragment(){
 
     override fun onCreateView(
         inflater: LayoutInflater,

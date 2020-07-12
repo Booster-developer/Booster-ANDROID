@@ -7,7 +7,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -16,11 +15,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.booster.R
-import com.example.booster.data.datasource.model.File
-import com.example.booster.data.datasource.model.FileData
-import com.example.booster.data.datasource.model.FileResponse
-import com.example.booster.data.datasource.model.PopupOptionData
-import com.example.booster.data.datasource.model.PopupOptionInfo
+import com.example.booster.data.datasource.model.*
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.ui.StoreFileOptionActivity
 import droidninja.filepicker.FilePickerBuilder
@@ -106,25 +101,19 @@ class FileStorageActivity : AppCompatActivity() {
     }
 
     private fun itemOptionView(item: File, position:Int) {
-        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view = inflater.inflate(R.layout.dialog_item_view, null)
-        val alertDialog = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
-            .create()
-        val dialogclose = view.findViewById<ImageView>(R.id.dial_item_view_close)
-        dialogclose.setOnClickListener {
+//        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+//        val view = inflater.inflate(R.layout.dialog_item_view, null)
+//        val alertDialog = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
+//            .create()
+//        val dialogclose = view.findViewById<ImageView>(R.id.dial_item_view_close)
+//        dialogclose.setOnClickListener {
+//            alertDialog.dismiss()
+//        }
+//        alertDialog.setView(view)
+//        alertDialog.setCanceledOnTouchOutside(false)
+//        alertDialog.show()
 
-            alertDialog.dismiss()
-        }
-        alertDialog.setView(view)
-        alertDialog.setCanceledOnTouchOutside(false)
-        alertDialog.show()
-    }
-
-    /*
-
-        requestToServer.service.getPopupOption(
-            2
-        ).enqueue(object :Callback<PopupOptionData>{
+        requestToServer.service.getPopupOption(2).enqueue(object :Callback<PopupOptionData>{
             override fun onFailure(call: Call<PopupOptionData>, t: Throwable) {
                 //통신 실패
                 Log.e("error", t.toString())
@@ -148,10 +137,10 @@ class FileStorageActivity : AppCompatActivity() {
             }
 
         })
-    */
+    }
+
 
     private fun itemDelete(item: File, position:Int) {
-
         val builder = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
         val dialogView = layoutInflater.inflate(R.layout.dialog_item_delete, null)
         val textView: TextView = dialogView.findViewById(R.id.dial_item_delete_tv_message)
@@ -172,9 +161,6 @@ class FileStorageActivity : AppCompatActivity() {
             .show()
 
     }
-
-
-
 
     override fun onActivityResult(
         requestCode: Int,
