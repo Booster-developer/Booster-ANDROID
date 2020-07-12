@@ -102,6 +102,7 @@ class StoreListFragment : Fragment() {
                         position.toString() + " : " + fav.toString(),
                         Toast.LENGTH_SHORT
                     ).show()
+                    viewModel.reload()
                 }
             })
         frag_store_list_rv.adapter = adapter

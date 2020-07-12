@@ -70,7 +70,7 @@ interface BoosterService {
     fun changeOption(
         @Path("file_idx") fileIdx: Int,
         @Body() body: JsonObject
-    ): Call<ResponseJoin>
+    ): Call<DefaultData>
 
     @GET("/orders/{order_idx}/payment")
     fun getPaymentInfo(

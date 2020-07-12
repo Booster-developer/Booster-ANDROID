@@ -46,6 +46,10 @@ class StoreListViewModel : ViewModel() {
         )
     )
 
+    fun reload(){
+        _storeList.postValue(dummy)
+    }
+
     init {
         _storeList.postValue(dummy)
     }
