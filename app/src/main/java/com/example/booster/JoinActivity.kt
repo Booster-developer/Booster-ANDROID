@@ -101,18 +101,20 @@ class JoinActivity : AppCompatActivity() {
                 )
             ).enqueue(object : Callback<ResponseJoin> {
                 override fun onFailure(call: Call<ResponseJoin>, t: Throwable) {
-                    Log.e("error", t.toString())
+                    Log.e("bbbbbbbb", "FAILURE 갔다")
                 }
 
                 override fun onResponse(
                     call: Call<ResponseJoin>,
                     response: Response<ResponseJoin>
                 ) {
-                    if (response.body()!!.success) {
+                    Log.e("errrrrrrrrrr", response.message().toString())
+                    if (response.isSuccessful) {
                         id_chk_fail.visibility = View.INVISIBLE
                         id_chk_success.visibility = View.VISIBLE
                         idChk = "success"
                     } else {
+                        Log.e("elseelse", response.body().toString())
                         id_chk_fail.visibility = View.VISIBLE
                     }
                 }
