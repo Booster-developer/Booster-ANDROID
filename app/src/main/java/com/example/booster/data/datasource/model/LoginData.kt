@@ -1,6 +1,6 @@
 package com.example.booster.data.datasource.model
 
-data class ResponseLogin(
+data class LoginData(
     val status: Int,
     val success: Boolean,
     val message: String,
