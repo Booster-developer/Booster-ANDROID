@@ -57,11 +57,21 @@ interface BoosterService {
         @Path("order_idx") orderIdx: Int
     ): Call<FileResponse>
 
+    @GET("/orders/{file_idx}/options")
+    fun getPopupOption(
+        @Path("file_idx") fileIdx: Int
+    ): Call<PopupOptionData>
+
     @POST("/orders/{file_idx}/options")
     fun changeOption(
         @Path("file_idx") fileIdx: Int,
         @Body() body: JsonObject
     ): Call<ResponseJoin>
+
+    @GET("/orders/{order_idx}/payment")
+    fun getPaymentInfo(
+        @Path("order_idx") orderIdx: Int
+    ): Observable<PaymentData>
 
 }
 

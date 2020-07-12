@@ -1,17 +1,12 @@
-package com.example.booster.ui
+package com.example.booster.ui.fileStorage
 
-import android.app.Activity
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.booster.R
 import com.example.booster.data.datasource.model.ResponseJoin
 import com.example.booster.data.remote.network.BoosterServiceImpl
-import com.example.booster.ui.fileStorage.FileStorageActivity
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_store_file_option.*
@@ -20,7 +15,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class StoreFileOptionActivity : AppCompatActivity(), FragmentToActivity{
+class StoreFileOptionActivity : AppCompatActivity(),
+    FragmentToActivity {
 
     var color = ""
     var direction = ""
@@ -47,6 +43,8 @@ class StoreFileOptionActivity : AppCompatActivity(), FragmentToActivity{
         side = "단면"
         combine = "1"
         range = "전체"
+        rangeMin="0"
+        rangeMax="0"
         num = "1"
 
         act_store_file_option_btn_back.setOnClickListener {
@@ -167,7 +165,8 @@ class StoreFileOptionActivity : AppCompatActivity(), FragmentToActivity{
         }
 
         order_option_btn_range.setOnClickListener {
-            val fileRangeDialog = StoreFileOptionRangeFragment()
+            val fileRangeDialog =
+                StoreFileOptionRangeFragment()
             fileRangeDialog.show(
                 supportFragmentManager,
                 "file option ragne fragment"
@@ -176,29 +175,16 @@ class StoreFileOptionActivity : AppCompatActivity(), FragmentToActivity{
         }
 
         order_option_btn_num.setOnClickListener {
-            val fileNumDialog = StoreFileOptionNumFragment()
+            val fileNumDialog =
+                StoreFileOptionNumFragment()
             fileNumDialog.show(
                 supportFragmentManager, "file option nmm fragment"
             )
         }
 
-
-
         act_store_file_option_btn_option.setOnClickListener {
+
             Log.e("aa", "${color} ${direction} ${side} ${combine} ${range} ${num}")
-//            val intent = Intent(this@StoreFileOptionActivity, ResultActivity::class.java)
-//            intent.putExtra("color", color)
-//            intent.putExtra("direction", direction)
-//            intent.putExtra("side", side)
-//            intent.putExtra("combine", combine)
-//            if(range=="전체"){
-//                intent.putExtra("range", range)
-//            }else{
-//                intent.putExtra("rangeMin", rangeMin)
-//                intent.putExtra("rangeMax", rangeMax)
-//            }
-//            intent.putExtra("num", num)
-////            startActivity(intent)
 
             val jsonData = JSONObject()
             jsonData.put("file_color", color)
@@ -217,6 +203,7 @@ class StoreFileOptionActivity : AppCompatActivity(), FragmentToActivity{
             ).enqueue(object : Callback<ResponseJoin>{
                 override fun onFailure(call: Call<ResponseJoin>, t: Throwable) {
                     //통신 실패
+                    Log.e("onResponse", "통신 실패")
                 }
 
                 override fun onResponse(

@@ -1,23 +1,22 @@
 package com.example.booster.ui.fileStorage
 
 import android.app.Activity
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.booster.R
-import com.example.booster.data.datasource.model.*
+import com.example.booster.data.datasource.model.File
+import com.example.booster.data.datasource.model.FileResponse
+import com.example.booster.data.datasource.model.PopupOptionData
 import com.example.booster.data.remote.network.BoosterServiceImpl
-import com.example.booster.ui.StoreFileOptionActivity
 import droidninja.filepicker.FilePickerBuilder
 import droidninja.filepicker.FilePickerConst.KEY_SELECTED_DOCS
 import droidninja.filepicker.FilePickerConst.KEY_SELECTED_MEDIA
@@ -80,19 +79,6 @@ class FileStorageActivity : AppCompatActivity() {
             fileStorage_tv_cost.visibility = View.GONE
             fileStorage_tv_cost_amount.visibility = View.GONE
 
-        //item option fragment로 띄우기
-        val args = Bundle()
-        val fc = fileColor
-        val fd = fileDir
-        args.putString("fileColor", fc)
-        args.putString("fileDir", fd)
-        val itemOptionDialog = ItemOptionFragment()
-
-        itemOptionDialog.show(
-            supportFragmentManager, "item option fragment"
-        )
-        itemOptionDialog.arguments = args
-        Log.e("args", args.toString())
     }
 
     private fun itemOptionChange(item: File, position:Int) {
@@ -107,13 +93,30 @@ class FileStorageActivity : AppCompatActivity() {
 //            .create()
 //        val dialogclose = view.findViewById<ImageView>(R.id.dial_item_view_close)
 //        dialogclose.setOnClickListener {
+//
 //            alertDialog.dismiss()
 //        }
 //        alertDialog.setView(view)
 //        alertDialog.setCanceledOnTouchOutside(false)
 //        alertDialog.show()
 
-        requestToServer.service.getPopupOption(2).enqueue(object :Callback<PopupOptionData>{
+        //item option fragment로 띄우기
+        val args = Bundle()
+        val fc = fileColor
+        val fd = fileDir
+        args.putString("fileColor", fc)
+        args.putString("fileDir", fd)
+        val itemOptionDialog = ItemOptionFragment()
+
+        itemOptionDialog.show(
+            supportFragmentManager, "item option fragment"
+        )
+        itemOptionDialog.arguments = args
+        Log.e("args", args.toString())
+
+        requestToServer.service.getPopupOption(
+            2
+        ).enqueue(object :Callback<PopupOptionData>{
             override fun onFailure(call: Call<PopupOptionData>, t: Throwable) {
                 //통신 실패
                 Log.e("error", t.toString())
@@ -139,8 +142,8 @@ class FileStorageActivity : AppCompatActivity() {
         })
     }
 
-
     private fun itemDelete(item: File, position:Int) {
+
         val builder = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
         val dialogView = layoutInflater.inflate(R.layout.dialog_item_delete, null)
         val textView: TextView = dialogView.findViewById(R.id.dial_item_delete_tv_message)
@@ -159,8 +162,8 @@ class FileStorageActivity : AppCompatActivity() {
 
             }
             .show()
-
     }
+
 
     override fun onActivityResult(
         requestCode: Int,
