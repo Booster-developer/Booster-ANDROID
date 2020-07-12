@@ -7,6 +7,10 @@ import retrofit2.Call
 import retrofit2.http.*
 import java.io.File
 
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface BoosterService {
 
@@ -40,5 +44,11 @@ interface BoosterService {
     fun getFileList(
         @Path("order_idx") orderIdx: Int
     ): Call<FileResponse>
+
+    @GET("/orders/{file_idx}/options")
+    fun getPopupOption(
+        @Path("file_idx") fileIdx: Int
+    ): Call<PopupOptionData>
+
 }
 

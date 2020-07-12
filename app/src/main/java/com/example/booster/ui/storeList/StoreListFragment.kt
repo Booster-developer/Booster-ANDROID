@@ -70,6 +70,7 @@ class StoreListFragment : Fragment() {
                 "schedule_dialog_fragment"
             )
         }
+
         frag_store_list_iv_map.setOnClickListener {
             val intent = Intent(context, MapActivity::class.java)
             intent.putExtra("univ", frag_store_list_tv_univ.text)
