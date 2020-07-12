@@ -1,21 +1,20 @@
 package com.example.booster.ui.fileStorage
 
 import android.app.Activity
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.booster.R
-import com.example.booster.data.datasource.model.FileData
+import com.example.booster.data.datasource.model.*
+import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.ui.StoreFileOptionActivity
 import com.example.booster.util.BoosterUtil
 import droidninja.filepicker.FilePickerBuilder
@@ -24,23 +23,44 @@ import droidninja.filepicker.FilePickerConst.KEY_SELECTED_MEDIA
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_DOC
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_PHOTO
 import kotlinx.android.synthetic.main.activity_file_storage.*
-import kotlinx.android.synthetic.main.dialog_item_view.*
-import kotlinx.android.synthetic.main.my_file.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class FileStorageActivity : AppCompatActivity() {
 
     private val CUSTOM_REQUEST_CODE: Int = 532
+    var fileColor = ""
+    var fileDir = ""
 
-    var datas:ArrayList<FileData> = ArrayList()
+    var datas:ArrayList<File> = ArrayList()
+
+    val requestToServer = BoosterServiceImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_file_storage)
 
+        BoosterServiceImpl.service.getFileList(1).enqueue(object : Callback<FileResponse> {
+            override fun onFailure(call: Call<FileResponse>, t: Throwable) {
+                Log.e("error : ",t.message)
+            }
+
+            override fun onResponse(call: Call<FileResponse>, response: Response<FileResponse>) {
+                val fileResponse = response.body()
+                Log.e("data",fileResponse.toString())
+                datas.add(fileResponse!!.data.file_info[0])
+                datas.add(fileResponse.data.file_info[1])
+                fileStorage_rv_file_add.adapter?.notifyDataSetChanged()
+
+            }
+        })
+
         fileStorage_rv_file_add.apply {
             layoutManager = LinearLayoutManager(this@FileStorageActivity)
-            adapter = FileAdapter(datas, {item, position -> itemDelete(item, position)}, {item, position -> itemOptionChange(item, position)},
+            adapter = FileAdapter(datas,
+                { item, position -> itemDelete(item, position)}, {item, position -> itemOptionChange(item, position)},
                 {item, position -> itemOptionView(item, position)})
         }
 
@@ -55,14 +75,27 @@ class FileStorageActivity : AppCompatActivity() {
             fileStorage_tv_cost.visibility = View.GONE
             fileStorage_tv_cost_amount.visibility = View.GONE
 
+        //item option fragment로 띄우기
+        val args = Bundle()
+        val fc = fileColor
+        val fd = fileDir
+        args.putString("fileColor", fc)
+        args.putString("fileDir", fd)
+        val itemOptionDialog = ItemOptionFragment()
+
+        itemOptionDialog.show(
+            supportFragmentManager, "item option fragment"
+        )
+        itemOptionDialog.arguments = args
+        Log.e("args", args.toString())
     }
 
-    private fun itemOptionChange(item: FileData, position:Int) {
+    private fun itemOptionChange(item: File, position:Int) {
         val intent = Intent(this@FileStorageActivity, StoreFileOptionActivity::class.java)
         startActivity(intent)
     }
 
-    private fun itemOptionView(item: FileData, position:Int) {
+    private fun itemOptionView(item: File, position:Int) {
 //        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 //        val view = inflater.inflate(R.layout.dialog_item_view, null)
 //        val alertDialog = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
@@ -75,20 +108,37 @@ class FileStorageActivity : AppCompatActivity() {
 //        alertDialog.setCanceledOnTouchOutside(false)
 //        alertDialog.show()
 
-        //item option fragment로 띄우기
-        val itemOptionDialog = ItemOptionFragment()
-        itemOptionDialog.show(
-            supportFragmentManager, "item option fragment"
-        )
+        requestToServer.service.getPopupOption(2).enqueue(object :Callback<PopupOptionData>{
+            override fun onFailure(call: Call<PopupOptionData>, t: Throwable) {
+                //통신 실패
+                Log.e("error", t.toString())
+            }
 
+            override fun onResponse(
+                call: Call<PopupOptionData>,
+                response: Response<PopupOptionData>
+            ) {
+                //통신 성공
+                if (response.isSuccessful){
+                    Log.e("통신 성공", response.body().toString())
+                    if(response.body()!!.status==200){
+                        val data = response.body()!!.data
+                        fileColor = data.file_color
+                        fileDir = data.file_direction
+
+                        Log.e("file info -> ", fileColor+ " "+fileDir)
+                    }
+                }
+            }
+        })
     }
 
 
-    private fun itemDelete(item: FileData, position:Int) {
+    private fun itemDelete(item: File, position:Int) {
         val builder = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
         val dialogView = layoutInflater.inflate(R.layout.dialog_item_delete, null)
         val textView: TextView = dialogView.findViewById(R.id.dial_item_delete_tv_message)
-        textView.text = item.name + "를 삭제하시겠습니까?"
+        textView.text = item.file_name + "를 삭제하시겠습니까?"
         builder.setView(dialogView)
             .setPositiveButton("예") { dialog: DialogInterface?, which: Int ->
                 datas.remove(item)
@@ -133,19 +183,24 @@ class FileStorageActivity : AppCompatActivity() {
         docPaths: ArrayList<Uri>?
     ) {
         val filePaths: ArrayList<Uri> = ArrayList()
+        //        Log.e("imagePaths", imagePaths?.get(0)!!.toString())
+        Log.e("docPaths", docPaths?.get(0)!!.toString())
+//        MultipartBody.Part.createFormData("file",imagePaths)
         if (imagePaths != null) {
             for (imguri in imagePaths) {
-                val file: FileData = FileData(imguri)
-                file.name = BoosterUtil(this).getFileName(imguri)
-                file.type = "img"
+                val file = File(55,"sss","png","asdsd")
+//                file.nam = BoosterUtil(this).getFileName(imguri)
+//                file.type = "img"
                 datas.add(file)
             }
         }
         if (docPaths != null) {
             for (docuri in docPaths) {
-                val file:FileData = FileData(docuri)
-                file.name = BoosterUtil(this).getFileName(docuri)
-                file.type = BoosterUtil(this).getFileType(docuri)
+//                val file:FileData = FileData(docuri)
+                val file = File(55,"sss","png","asdsd")
+
+//                file.name = BoosterUtil(this).getFileName(docuri)
+//                file.type = BoosterUtil(this).getFileType(docuri)
                 datas.add(file)
             }
         }

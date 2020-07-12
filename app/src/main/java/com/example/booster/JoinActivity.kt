@@ -7,27 +7,25 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.example.booster.data.datasource.model.RequestCheckId
-import com.example.booster.data.datasource.model.RequestJoin
-import com.example.booster.data.datasource.model.ResponseJoin
-import com.example.booster.data.remote.network.CheckIdToServer
-import com.example.booster.data.remote.network.RequestJoinToServer
+import com.example.booster.data.datasource.model.JoinData
+import com.example.booster.data.remote.network.BoosterServiceImpl
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_join.*
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class JoinActivity : AppCompatActivity() {
 
-    private lateinit var pwChk: String
-    lateinit var idChk: String
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        val requestJoinToServer = RequestJoinToServer
-        val checkIdToServer = CheckIdToServer
-
-        var univIdx = -1
+        var nameChk = false
+        var idChk = false
+        var pwChk = false
+        var univIdx = 0
+        var checkChk = false
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_join)
@@ -52,15 +50,16 @@ class JoinActivity : AppCompatActivity() {
             univList.visibility = View.GONE
         }
 
-        // textview focused
+        // 이름입력 focused
         join_name.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 join_name.isSelected = true
+                nameChk = true
             } else {
                 join_name.isSelected = false
             }
         }
-        // textview focused
+        // 아이디입력 focused
         join_id.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 join_id.isSelected = true
@@ -68,7 +67,7 @@ class JoinActivity : AppCompatActivity() {
                 join_id.isSelected = false
             }
         }
-        // textview focused
+        // 비밀번호입력 focused
         join_pw.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 join_pw.isSelected = true
@@ -76,99 +75,119 @@ class JoinActivity : AppCompatActivity() {
                 join_pw.isSelected = false
             }
         }
-        // textview focused
+        // 비밀번호확인입력 focused
         join_pw_chk.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 join_pw_chk.isSelected = true
             } else {
                 join_pw_chk.isSelected = false
+
+                // 비밀번호 체크
+                if (join_pw.text.toString() != join_pw_chk.text.toString()) {
+                    join_pw_chk_txt.visibility = View.VISIBLE
+                } else {
+                    join_pw_chk_txt.visibility = View.INVISIBLE
+                    pwChk = true
+                }
             }
         }
-        // 회원가입 focused
-        join_btn.setOnFocusChangeListener { v, hasFocus ->
-            if (hasFocus) {
-                join_btn.setBackgroundResource(R.drawable.bg_btn_gradation)
+
+        // 필수항목 체크
+        checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                checkChk = true
             } else {
-                join_btn.setBackgroundResource(R.drawable.join_btn_2)
+                checkChk = false
             }
         }
 
-        id_chk_btn.setOnClickListener {
-            // 아이디 중복 체크
-            checkIdToServer.service.requestCheckId(
-                RequestCheckId(
-                    user_id = join_id.text.toString()
-                )
-            ).enqueue(object : Callback<ResponseJoin> {
-                override fun onFailure(call: Call<ResponseJoin>, t: Throwable) {
-                    Log.e("bbbbbbbb", "FAILURE 갔다")
-                }
+        if (nameChk && idChk && pwChk && univIdx == 0 && checkChk) {
+            join_btn.setBackgroundResource(R.drawable.bg_btn_gradation)
+        } else {
+            join_btn.setBackgroundResource(R.drawable.join_btn_2)
+        }
 
-                override fun onResponse(
-                    call: Call<ResponseJoin>,
-                    response: Response<ResponseJoin>
-                ) {
-                    Log.e("errrrrrrrrrr", response.message().toString())
-                    if (response.isSuccessful) {
-                        id_chk_fail.visibility = View.INVISIBLE
-                        id_chk_success.visibility = View.VISIBLE
-                        idChk = "success"
-                    } else {
-                        Log.e("elseelse", response.body().toString())
-                        id_chk_fail.visibility = View.VISIBLE
+        // 아이디 중복 확인
+        val checkIdJsonData = JSONObject()
+        checkIdJsonData.put("user_id", join_id.text.toString())
+
+        val body = JsonParser.parseString(checkIdJsonData.toString()) as JsonObject
+        id_chk_btn.setOnClickListener {
+            BoosterServiceImpl.service.requestCheckId(body)
+                .enqueue(object : Callback<JoinData> {
+                    override fun onFailure(call: Call<JoinData>, t: Throwable) {
+                        Log.e("errrrrrrrrrr", t.toString())
                     }
-                }
-            })
+
+                    override fun onResponse(
+                        call: Call<JoinData>,
+                        response: Response<JoinData>
+                    ) {
+                        Log.e("aaaaaaaaaaaa", join_id.text.toString())
+                        Log.e("llllllllll", response.body().toString())
+                        if (response.body()!!.success) {
+                            id_chk_fail.visibility = View.INVISIBLE
+                            id_chk_success.visibility = View.VISIBLE
+                            idChk = true
+                        } else {
+                            id_chk_success.visibility = View.INVISIBLE
+                            id_chk_fail.visibility = View.VISIBLE
+                        }
+                    }
+                })
+        }
+
+        // 회원가입 버튼 활성화
+        if (nameChk && idChk && pwChk && univIdx == 0 && checkChk) {
+            join_btn.isClickable = false
+            join_btn.setBackgroundResource(R.drawable.bg_btn_gradation)
+        } else {
+            join_btn.setBackgroundResource(R.drawable.join_btn_2)
         }
 
         join_btn.setOnClickListener {
-            // 비밀번호 확인
-            if (join_pw.text.toString() != join_pw_chk.text.toString()) {
-                join_pw_chk_txt.visibility = View.VISIBLE
-            } else {
-                pwChk = "success"
-            }
 
             if (!checkBox.isChecked) {
                 Toast.makeText(this, "필수 항목을 체크해주세요", Toast.LENGTH_SHORT).show()
             }
 
             // 회원가입 request
-            if (join_id.text.isNullOrBlank() || join_pw.text.isNullOrBlank() || join_name.text.isNullOrBlank() || univSelected.text.isNullOrBlank() || checkBox.isChecked) {
-                Toast.makeText(this, "모든 항목을 입력해주세요", Toast.LENGTH_SHORT).show()
-            } else if (idChk == "success" && pwChk == "success") {
-                requestJoinToServer.service.requestJoin(
-                    RequestJoin(
-                        user_id = join_id.text.toString(),
-                        user_name = join_name.text.toString(),
-                        user_pw = join_pw.text.toString(),
-                        user_university = univIdx
-                    )
-                ).enqueue(object : Callback<ResponseJoin> {
-                    override fun onFailure(call: Call<ResponseJoin>, t: Throwable) {
-                        Toast.makeText(this@JoinActivity, "회원가입 실패", Toast.LENGTH_SHORT).show()
-                    }
+            val joinJsonData = JSONObject()
+            joinJsonData.put("user_id", join_id)
+            joinJsonData.put("user_name", join_name)
+            joinJsonData.put("user_pw", join_pw)
+            joinJsonData.put("user_university", univIdx)
 
-                    // 아이디와 비밀번호 로그인 화면으로 전달
-                    override fun onResponse(
-                        call: Call<ResponseJoin>,
-                        response: Response<ResponseJoin>
-                    ) {
-                        if (response.isSuccessful) {
-                            val message = response.body()!!.message
-                            Toast.makeText(this@JoinActivity, message, Toast.LENGTH_SHORT)
-                                .show()
-                            if (response.body()!!.success) {
-                                val intent = Intent()
-                                intent.putExtra("id", join_id.text.toString())
-                                intent.putExtra("password", join_pw.text.toString())
-                                setResult(Activity.RESULT_OK, intent)
-                                finish()
+            val body = JsonParser.parseString(joinJsonData.toString()) as JsonObject
+
+            if (!(nameChk && idChk && pwChk && univIdx == 0 && checkChk)) {
+                Toast.makeText(this, "모든 항목을 확인해주세요", Toast.LENGTH_SHORT).show()
+            } else {
+                BoosterServiceImpl.service.requestJoin(body)
+                    .enqueue(object : Callback<JoinData> {
+                        override fun onFailure(call: Call<JoinData>, t: Throwable) {
+                            Toast.makeText(this@JoinActivity, "회원가입 실패", Toast.LENGTH_SHORT).show()
+                        }
+
+                        // 아이디와 비밀번호 로그인 화면으로 전달
+                        override fun onResponse(
+                            call: Call<JoinData>,
+                            response: Response<JoinData>
+                        ) {
+                            if (response.isSuccessful) {
+                                val message = response.body()!!.message
+                                Toast.makeText(this@JoinActivity, message, Toast.LENGTH_SHORT)
+                                    .show()
+                                if (response.body()!!.success) {
+                                    val intent = Intent()
+                                    intent.putExtra("id", join_id.text.toString())
+                                    intent.putExtra("password", join_pw.text.toString())
+                                    setResult(Activity.RESULT_OK, intent)
+                                    finish()
+                                }
                             }
                         }
-                    }
-
-                })
+                    })
             }
         }
     }
