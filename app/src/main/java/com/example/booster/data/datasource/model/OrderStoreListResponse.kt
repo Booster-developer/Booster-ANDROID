@@ -4,13 +4,13 @@ data class OrderStoreListResponse(
     val status:Int,
     val success:Boolean,
     val message:String,
-    val data:StoreList
+    val data: StoreList
 )
 
 data class StoreList(
-    val recent_order_store:Store?,
-    val favorite_store:ArrayList<Store>?,
-    val store_all:ArrayList<Store>
+    val recent_order_store: StoreList?,
+    val favorite_store:ArrayList<StoreList>?,
+    val store_all:ArrayList<StoreList>
 )
 
 data class Store(
