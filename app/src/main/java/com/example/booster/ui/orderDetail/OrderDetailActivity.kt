@@ -26,7 +26,9 @@ class OrderDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_detail)
 
-        requestToServer.service.getOrderDetail(1).enqueue(object : Callback<OrderDetailData>{
+        val idx = intent.getStringExtra("idx")
+
+        requestToServer.service.getOrderDetail(idx.toInt()).enqueue(object : Callback<OrderDetailData>{
             override fun onFailure(call: Call<OrderDetailData>, t: Throwable) {
                 //통신 실패
                 Log.e("log", "통신 실패")

@@ -74,7 +74,7 @@
         android:id="@+id/act_order_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="주문 상세 보기" />
+        android:text="주문 상세 보기-주문현황 통해서 들어가기(여기는 터짐)" />
 
   <Button
         android:id="@+id/act_main_btn_lottie"
