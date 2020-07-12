@@ -11,7 +11,7 @@ class LottieActivity : AppCompatActivity() {
         setContentView(R.layout.activity_lottie)
 
         lottie.run {
-            setAnimation("splash_galaxy_2.json")
+            setAnimation("splash_galaxy_0415.json")
             loop(true)
             playAnimation()
         }
