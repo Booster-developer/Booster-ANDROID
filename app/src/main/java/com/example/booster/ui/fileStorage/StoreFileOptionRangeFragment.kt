@@ -1,4 +1,4 @@
-package com.example.booster.ui
+package com.example.booster.ui.fileStorage
 
 import android.app.Dialog
 import android.content.Context
