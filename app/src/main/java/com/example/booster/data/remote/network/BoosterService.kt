@@ -70,7 +70,7 @@ interface BoosterService {
     fun changeOption(
         @Path("file_idx") fileIdx: Int,
         @Body() body: JsonObject
-    ): Call<ResponseJoin>
+    ): Call<DefaultData>
 
     @GET("/orders/{order_idx}/payment")
     fun getPaymentInfo(
@@ -81,5 +81,10 @@ interface BoosterService {
     fun putPickUp(
         @Path("order_idx") orderIdx: Int
     ): Observable<DefaultData>
+
+    @GET("/progress/{order_idx}/list")
+    fun getOrderDetail(
+        @Path("order_idx") orderIdx: Int
+    ): Call<OrderDetailData>
 }
 

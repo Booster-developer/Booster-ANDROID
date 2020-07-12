@@ -17,12 +17,15 @@ import com.example.booster.data.datasource.model.File
 import com.example.booster.data.datasource.model.FileResponse
 import com.example.booster.data.datasource.model.PopupOptionData
 import com.example.booster.data.remote.network.BoosterServiceImpl
+import com.example.booster.ui.fileStorage.StoreFileOptionActivity
+import com.example.booster.util.BoosterUtil
 import droidninja.filepicker.FilePickerBuilder
 import droidninja.filepicker.FilePickerConst.KEY_SELECTED_DOCS
 import droidninja.filepicker.FilePickerConst.KEY_SELECTED_MEDIA
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_DOC
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_PHOTO
 import kotlinx.android.synthetic.main.activity_file_storage.*
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

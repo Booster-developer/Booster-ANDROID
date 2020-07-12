@@ -8,19 +8,20 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:requestLegacyExternalStorage="true"
         android:name=".BoosterApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.payment.PaymentActivity"></activity>
-        <activity android:name=".ui.fileStorage.FileStorageActivity"></activity>
-        <activity android:name=".ui.storeDetail.MapActivity"></activity>
-        <activity android:name=".ui.ResultActivity"></activity>
+        <activity android:name=".ui.orderDetail.OrderDetailActivity"></activity>
+        <activity android:name=".ui.payment.PaymentActivity" />
+        <activity android:name=".ui.fileStorage.FileStorageActivity" />
+        <activity android:name=".ui.storeDetail.MapActivity" />
+        <activity android:name=".ui.ResultActivity" />
         <activity android:name=".ui.fileStorage.StoreFileOptionActivity" />
         <activity android:name=".ui.PdfTestActivity" />
         <activity android:name=".ui.bottomtap.BottomTabActivity" />
@@ -34,10 +35,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"/>
+        <activity android:name=".LoginActivity" />
         <activity android:name=".JoinActivity" />
         <activity android:name=".ui.selectStore.SelectStoreActivity" />
-
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
