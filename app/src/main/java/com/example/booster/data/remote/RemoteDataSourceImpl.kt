@@ -26,4 +26,9 @@ class RemoteDataSourceImpl : RemoteDataSource {
         api.getPaymentInfo(orderIdx).map{
             it
         }
+
+    override fun putPickUp(orderIdx: Int): Observable<DefaultData> =
+        api.putPickUp(orderIdx).map{
+            it
+        }
 }

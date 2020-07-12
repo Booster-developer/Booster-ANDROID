@@ -7,4 +7,5 @@ class OrderListRepository {
     val remoteDataSource : RemoteDataSource = RemoteDataSourceImpl()
 
     fun getOrderList() = remoteDataSource.getOrderList()
+    fun putPickUp(orderIdx: Int) = remoteDataSource.putPickUp(orderIdx)
 }
