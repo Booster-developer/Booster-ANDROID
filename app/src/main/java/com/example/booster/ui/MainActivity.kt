@@ -47,6 +47,20 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    var permissionlistener: PermissionListener = object : PermissionListener {
+        override fun onPermissionGranted() {
+            Toast.makeText(this@MainActivity, "Permission Granted", Toast.LENGTH_SHORT).show()
+        }
+
+        override fun onPermissionDenied(deniedPermissions: List<String>) {
+            Toast.makeText(
+                this@MainActivity,
+                "Permission Denied\n$deniedPermissions",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -113,9 +127,9 @@ class MainActivity : AppCompatActivity() {
 
         act_order_detail.setOnClickListener {
             val intent = Intent(this, OrderDetailActivity::class.java)
-          startActivity(intent)
+            startActivity(intent)
         }
-    }
+
 
         act_main_btn_lottie.setOnClickListener {
             val intent = Intent(this, LottieActivity::class.java)
@@ -123,18 +137,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    var permissionlistener: PermissionListener = object : PermissionListener {
-        override fun onPermissionGranted() {
-            Toast.makeText(this@MainActivity, "Permission Granted", Toast.LENGTH_SHORT).show()
-        }
-
-        override fun onPermissionDenied(deniedPermissions: List<String>) {
-            Toast.makeText(
-                this@MainActivity,
-                "Permission Denied\n$deniedPermissions",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-    }
 }
+
+
 
