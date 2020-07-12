@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="380dp"
+    android:layout_height="92dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg_ffffff_round"
+    android:elevation="5dp"
+    android:layout_gravity="center_horizontal">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/my_file_guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintGuide_begin="300dp"/>
+
+    <ImageView
+        android:id="@+id/iv_order_detail"
+        android:layout_width="48dp"
+        android:layout_height="64dp"
+        tools:src="@drawable/order_wait_img_1"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_order_detail_file_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="12dp"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:text="파일이름파일이름파일이름.pdf"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/my_file_guideline1"
+        app:layout_constraintStart_toEndOf="@id/iv_order_detail"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:lineSpacingExtra="18sp"
+        android:text="결제금액"
+        android:textColor="#7d7d7d"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_order_detail_file_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_order_detail_file_name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:lineSpacingExtra="18sp"
+        android:textColor="#7d7d7d"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView16"
+        app:layout_constraintStart_toEndOf="@+id/textView16"
+        app:layout_constraintTop_toTopOf="@+id/textView16"
+        tools:text="1700" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/dial_item_order_detail"
+            android:layout_width="68dp"
+            android:layout_height="44dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="20sp"
+                android:text="옵션보기"
+                android:textColor="#467fff"
+                android:textSize="10sp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

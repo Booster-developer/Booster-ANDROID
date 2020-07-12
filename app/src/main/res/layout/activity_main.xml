@@ -71,13 +71,16 @@
         android:layout_marginTop="10dp"/>
 
     <Button
+        android:id="@+id/act_order_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="주문 상세 보기" />
+
+  <Button
         android:id="@+id/act_main_btn_lottie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="로티" />
-
-
-
 
 </LinearLayout>
