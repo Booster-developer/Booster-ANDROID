@@ -4,6 +4,7 @@ import android.app.Application
 import com.earlyBuddy.earlybuddy_android.di.remoteDataAppModule
 import com.earlyBuddy.earlybuddy_android.di.repositoryAppModule
 import com.earlyBuddy.earlybuddy_android.di.viewModelAppModule
+import com.example.booster.util.UserManager
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -22,6 +23,7 @@ class BoosterApplication : Application() {
         super.onCreate()
         instance = this
         globalApplication = this
+        UserManager.init(this)
 
         startKoin {
             androidContext(this@BoosterApplication)

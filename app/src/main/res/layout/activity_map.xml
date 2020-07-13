@@ -9,11 +9,11 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/header_height"
         android:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <LinearLayout
@@ -26,20 +26,20 @@
                 android:id="@+id/btn_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#FFFFFF"
                 android:layout_marginLeft="10dp"
+                android:backgroundTint="#FFFFFF"
                 android:src="@drawable/nav_btn_back_black" />
 
             <TextView
                 android:id="@+id/act_map_txt_univ"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="숭실대학교"
+                android:layout_gravity="center_vertical"
                 android:layout_marginLeft="25dp"
                 android:fontFamily="@font/noto_sans_kr_bold"
+                android:text="숭실대학교"
                 android:textColor="@color/black"
-                android:layout_gravity="center_vertical"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
         </LinearLayout>
 
 
