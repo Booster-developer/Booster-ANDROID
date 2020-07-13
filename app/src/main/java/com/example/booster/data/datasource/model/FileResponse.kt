@@ -1,12 +1,7 @@
 package com.example.booster.data.datasource.model
 
-data class FileResponse(
-    val status: Int,
-    val success: Boolean,
-    val message: String,
-    val data: Wait
+import android.net.Uri
 
-)
 
 data class Wait(
     val store_name: String,
@@ -17,7 +12,10 @@ data class Wait(
 
 data class File(
     val file_idx: Int,
-    val file_name: String,
-    val file_extension: String,
-    val file_path: String
+    val file_name: String?,
+    val file_extension: String?,
+    val file_path: String?,
+    val file_uri: Uri? = null,
+    var popupOptionInfo: PopupOptionInfo? = null
 )
+
