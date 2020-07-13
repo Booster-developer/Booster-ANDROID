@@ -99,7 +99,7 @@
                 app:layout_constraintTop_toTopOf="@+id/textView17" />
 
             <TextView
-                android:id="@+id/textView19"
+                android:id="@+id/goto_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_kr_medium"
@@ -112,7 +112,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout11"
+            android:id="@+id/goto_myengine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
@@ -211,8 +211,9 @@
 
             <Switch
                 android:id="@+id/switch1"
-                android:layout_width="20dp"
+                android:layout_width="30dp"
                 android:layout_height="10dp"
+                android:trackTint="@color/blue"
                 app:layout_constraintBottom_toBottomOf="@+id/textView24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView24" />
