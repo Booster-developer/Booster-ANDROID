@@ -11,10 +11,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 object BoosterServiceImpl {
     private const val BASE_URL = "http://52.79.218.88:3000/"
 
-    //    private val okHttpClient: OkHttpClient =
-//        OkHttpClient.Builder().addInterceptor(CookiesInterceptor())
-//            .addNetworkInterceptor(CookiesInterceptor()).build()
-    private val okHttpClient: OkHttpClient
+    private val okHttpClient: OkHttpClient =
+        OkHttpClient.Builder().addInterceptor(CookiesInterceptor())
+            .addNetworkInterceptor(CookiesInterceptor()).build()
+
+    private val okHttpClientFileUpload: OkHttpClient
         get() {
             val interceptor = HttpLoggingInterceptor()
             if (BuildConfig.DEBUG) {
@@ -35,5 +36,15 @@ object BoosterServiceImpl {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
+    private val retrofitFileUpload: Retrofit =
+        Retrofit.Builder().baseUrl(BASE_URL).client(
+            okHttpClientFileUpload
+        )
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
     val service: BoosterService = retrofit.create(BoosterService::class.java)
+
+    val serviceFileUpload: BoosterService = retrofitFileUpload.create(BoosterService::class.java)
 }
