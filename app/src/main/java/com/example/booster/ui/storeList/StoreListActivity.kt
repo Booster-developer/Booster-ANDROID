@@ -15,4 +15,5 @@ class StoreListActivity : AppCompatActivity() {
             .commit()
 
     }
+
 }

@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.booster.data.datasource.model.MarkerData
 import com.example.booster.data.datasource.model.StoreDetailData
 import com.example.booster.data.datasource.model.StoreFavData
 import com.example.booster.data.repository.StoreDetailRepository
@@ -22,7 +23,6 @@ class StoreDetailViewModel : ViewModel() {
 
     val favStatus = MutableLiveData<StoreFavData>()
     val networkFail = MutableLiveData<Unit>()
-
 
     fun getStoreDetail(storeIdx : Int){
         disposables.add(storeDetailRepository.getStoreDetail(storeIdx)
