@@ -11,7 +11,7 @@ class BottomTabAdapter (fm : FragmentManager, val fragmentCount : Int):
 
     override fun getItem(position: Int): Fragment {
         when(position){
-            0 -> return OrderListFragment()
+            0 -> return StoreListFragment()
             1 -> return StoreListFragment()
             2 -> return OrderListFragment()
             3 -> return StoreListFragment()

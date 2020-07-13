@@ -31,7 +31,7 @@
     </style>
 
     <style name="buttonBarButtonStyle.Positive">
-        <item name="android:textColor">@color/red</item>
+        <item name="android:textColor">@color/main_color</item>
     </style>
 
     <style name="LibAppTheme" parent="Theme.AppCompat.Light.NoActionBar">

@@ -30,6 +30,7 @@ class FileStorageViewModel : ViewModel() {
     val popupOptionLiveData: LiveData<PopupOptionInfo>
         get() = _popupOptionMutableLiveData
 
+
     //private lateinit var arrList: ArrayList<File>
 
 //    private val _statusLiveData: MutableLiveData<Int> = MutableLiveData()
@@ -91,9 +92,15 @@ class FileStorageViewModel : ViewModel() {
             MediaType.parse("multipart/form-data"),
             uri
         )*/
-        val requestBody = RequestBody.create(
+        var requestBody = RequestBody.create(
             MediaType.parse("image/jpeg"), imageFile
         )
+        when(file?.file_extension){
+            "png" -> requestBody = RequestBody.create(
+                MediaType.parse("image/png"), imageFile
+            )
+        }
+
         val multipartBody =
             MultipartBody.Part.createFormData("file", file?.file_name, requestBody)
 
@@ -112,15 +119,15 @@ class FileStorageViewModel : ViewModel() {
         }
     }
 
-    fun setOptions(
-        popupOptionInfo: PopupOptionInfo
-    ) {
-        val file = _fileMutableLiveData.value?.get(0)
-        file?.popupOptionInfo = popupOptionInfo
-
-        //_fileMutableLiveData.value =
-
-    }
+//    fun setOptions(
+//        popupOptionInfo: PopupOptionInfo
+//    ) {
+//        val file = _fileMutableLiveData.value?.get(0)
+//        file?.popupOptionInfo = popupOptionInfo
+//
+//        //_fileMutableLiveData.value =
+//
+//    }
 
 
 }

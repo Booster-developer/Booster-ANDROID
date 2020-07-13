@@ -28,9 +28,7 @@ class OrderListViewModel : ViewModel() {
             // 구독할 때 수행할 작업을 구현
             .doOnSubscribe {}
             // 스트림이 종료될 때 수행할 작업을 구현
-            .doOnTerminate {
-
-            }
+            .doOnTerminate {}
             // 옵서버블을 구독
             .subscribe({
                 // API를 통해 액세스 토큰을 정상적으로 받았을 때 처리할 작업을 구현
@@ -55,9 +53,7 @@ class OrderListViewModel : ViewModel() {
             // 구독할 때 수행할 작업을 구현
             .doOnSubscribe {}
             // 스트림이 종료될 때 수행할 작업을 구현
-            .doOnTerminate {
-
-            }
+            .doOnTerminate {}
             // 옵서버블을 구독
             .subscribe({
                 // API를 통해 액세스 토큰을 정상적으로 받았을 때 처리할 작업을 구현

@@ -26,13 +26,9 @@ import droidninja.filepicker.FilePickerConst
 import droidninja.filepicker.FilePickerConst.KEY_SELECTED_DOCS
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_DOC
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_PHOTO
-import droidninja.filepicker.models.FileType
-import droidninja.filepicker.utils.FileUtils.getFileType
 import kotlinx.android.synthetic.main.activity_file_storage.*
 import kotlinx.android.synthetic.main.dialog_item_view.view.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+
 
 private const val FINISH_SETTING_OPTION = 1000
 
@@ -242,7 +238,8 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                             data.getParcelableArrayListExtra<Uri>(FilePickerConst.KEY_SELECTED_MEDIA)
                         uri?.let {
                             photoPaths.addAll(it)
-                            showOptionActivity()
+
+                            //showOptionActivity()
                         }
                     }
                 }
@@ -253,12 +250,13 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                             data.getParcelableArrayListExtra<Uri>(KEY_SELECTED_DOCS)
                         uri?.let {
                             docPaths.addAll(it)
-                            showOptionActivity()
+
+                            //showOptionActivity()
                         }
                     }
                 }
                 FINISH_SETTING_OPTION -> {
-                    addThemToView()
+
 //                    data?.let {
 //                        val color = it.getStringExtra("color")
 //                        val direction = it.getStringExtra("direction")
@@ -297,6 +295,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                 }
             }
         }
+        addThemToView()
     }
 
     private fun showOptionActivity() {
@@ -318,7 +317,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                 fileStorageViewModel.addItem(file)
             }
         }
-        if (::docPaths.isInitialized) {
+        else if (::docPaths.isInitialized) {
             for (docUri in docPaths) {
                 val filePath = BoosterUtil().getPathFromUri(docUri)
                 val fileName = BoosterUtil().getFileName(docUri)
