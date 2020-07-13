@@ -1,27 +1,33 @@
-package com.example.booster.ui
+package com.example.booster.ui.fileStorage
 
-import android.app.Activity
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.booster.R
-import com.example.booster.ui.fileStorage.FileStorageActivity
+import com.example.booster.data.datasource.model.DefaultData
+import com.example.booster.data.remote.network.BoosterServiceImpl
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_store_file_option.*
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class StoreFileOptionActivity : AppCompatActivity(), FragmentToActivity{
+class StoreFileOptionActivity : AppCompatActivity(),
+    FragmentToActivity {
 
-    private lateinit var color: String
-    private lateinit var direction: String
-    private lateinit var side: String
-    private lateinit var combine: String
-    private lateinit var range: String
-    private lateinit var rangeMin: String
-    private lateinit var rangeMax: String
-    private lateinit var num: String
+    var color = ""
+    var direction = ""
+    var side = ""
+    var combine = ""
+    var range = ""
+    var rangeMin = ""
+    var rangeMax = ""
+    var num = ""
+
+    val requestToServer = BoosterServiceImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +43,13 @@ class StoreFileOptionActivity : AppCompatActivity(), FragmentToActivity{
         side = "단면"
         combine = "1"
         range = "전체"
+        rangeMin="0"
+        rangeMax="0"
         num = "1"
+
+        act_store_file_option_btn_back.setOnClickListener {
+            finish()
+        }
 
         order_option_btn_mono.setOnClickListener {
             colorReset()
@@ -153,7 +165,8 @@ class StoreFileOptionActivity : AppCompatActivity(), FragmentToActivity{
         }
 
         order_option_btn_range.setOnClickListener {
-            val fileRangeDialog = StoreFileOptionRangeFragment()
+            val fileRangeDialog =
+                StoreFileOptionRangeFragment()
             fileRangeDialog.show(
                 supportFragmentManager,
                 "file option ragne fragment"
@@ -162,29 +175,46 @@ class StoreFileOptionActivity : AppCompatActivity(), FragmentToActivity{
         }
 
         order_option_btn_num.setOnClickListener {
-            val fileNumDialog = StoreFileOptionNumFragment()
+            val fileNumDialog =
+                StoreFileOptionNumFragment()
             fileNumDialog.show(
                 supportFragmentManager, "file option nmm fragment"
             )
         }
 
-
-
         act_store_file_option_btn_option.setOnClickListener {
-            Log.d("aa", "${color} ${direction} ${side} ${combine} ${range} ${num}")
-            val intent = Intent(this@StoreFileOptionActivity, ResultActivity::class.java)
-            intent.putExtra("color", color)
-            intent.putExtra("direction", direction)
-            intent.putExtra("side", side)
-            intent.putExtra("combine", combine)
-            if(range=="전체"){
-                intent.putExtra("range", range)
-            }else{
-                intent.putExtra("rangeMin", rangeMin)
-                intent.putExtra("rangeMax", rangeMax)
-            }
-            intent.putExtra("num", num)
-            startActivity(intent)
+
+            Log.e("aa", "${color} ${direction} ${side} ${combine} ${range} ${num}")
+
+            val jsonData = JSONObject()
+            jsonData.put("file_color", color)
+            jsonData.put("file_direction", direction)
+            jsonData.put("file_sided_type", side)
+            jsonData.put("file_collect", combine)
+            jsonData.put("file_range_start", rangeMin)
+            jsonData.put("file_range_end", rangeMax)
+            jsonData.put("file_copy_number", num)
+
+            val body = JsonParser.parseString(jsonData.toString()) as JsonObject
+            Log.e("body", body.toString())
+
+            requestToServer.service.changeOption(
+                1, body
+            ).enqueue(object : Callback<DefaultData>{
+                override fun onFailure(call: Call<DefaultData>, t: Throwable) {
+                    //통신 실패
+                    Log.e("onResponse", "통신 실패")
+                }
+
+                override fun onResponse(
+                    call: Call<DefaultData>,
+                    response: Response<DefaultData>
+                ) {
+                    //통신 성공
+                    Log.e("onResponse", response.toString())
+                }
+            })
+
         }
     }
 
@@ -193,16 +223,16 @@ class StoreFileOptionActivity : AppCompatActivity(), FragmentToActivity{
         rangeMin = min.toString()
         rangeMax = max.toString()
         if(range == "전체"){
-            act_store_file_option_txt_range.setText(range)
+            act_store_file_option_txt_range.text = range
         }else{
-            act_store_file_option_txt_range.setText("${rangeMin} ~ ${rangeMax}p")
+            act_store_file_option_txt_range.text = "${rangeMin} ~ ${rangeMax}p"
         }
         act_store_file_option_txt_range.setTextColor(Color.BLACK)
     }
 
     override fun communicateNum(s:String) {
         num = s
-        act_store_file_option_txt_num.setText("${num}부")
+        act_store_file_option_txt_num.text = "${num}부"
         act_store_file_option_txt_num.setTextColor(Color.BLACK)
     }
 

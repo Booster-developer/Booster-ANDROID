@@ -8,10 +8,13 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.booster.LoginActivity
+import com.example.booster.LottieActivity
 import com.example.booster.R
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.ui.bottomtap.BottomTabActivity
 import com.example.booster.onlyOneClickListener
+import com.example.booster.ui.fileStorage.StoreFileOptionActivity
+import com.example.booster.ui.orderDetail.OrderDetailActivity
 import com.example.booster.ui.orderList.OrderListActivity
 import com.example.booster.ui.payment.PaymentActivity
 import com.example.booster.ui.storeList.StoreListActivity
@@ -42,6 +45,20 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    var permissionlistener: PermissionListener = object : PermissionListener {
+        override fun onPermissionGranted() {
+            Toast.makeText(this@MainActivity, "Permission Granted", Toast.LENGTH_SHORT).show()
+        }
+
+        override fun onPermissionDenied(deniedPermissions: List<String>) {
+            Toast.makeText(
+                this@MainActivity,
+                "Permission Denied\n$deniedPermissions",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -107,20 +124,20 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
-    }
 
-    var permissionlistener: PermissionListener = object : PermissionListener {
-        override fun onPermissionGranted() {
-            Toast.makeText(this@MainActivity, "Permission Granted", Toast.LENGTH_SHORT).show()
+        act_order_detail.setOnClickListener {
+            val intent = Intent(this, OrderDetailActivity::class.java)
+            startActivity(intent)
         }
 
-        override fun onPermissionDenied(deniedPermissions: List<String>) {
-            Toast.makeText(
-                this@MainActivity,
-                "Permission Denied\n$deniedPermissions",
-                Toast.LENGTH_SHORT
-            ).show()
+
+        act_main_btn_lottie.setOnClickListener {
+            val intent = Intent(this, LottieActivity::class.java)
+            startActivity(intent)
         }
     }
+
 }
+
+
 

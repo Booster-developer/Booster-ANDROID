@@ -1,52 +1,46 @@
 package com.example.booster.ui.storeList
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.booster.data.datasource.model.StoreList
 import com.example.booster.data.datasource.model.StoreListData
+import com.example.booster.data.datasource.model.StoreListInfo
+import com.example.booster.data.repository.StoreListRepository
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 
 class StoreListViewModel : ViewModel() {
 
-    private var _storeList = MutableLiveData<ArrayList<StoreListData>>() //변경 가능한 mutableLiveData 변수
-    val storeList : LiveData<ArrayList<StoreListData>> get() = _storeList //LiveData 변수인 newsList는 변경이 안되므로 변경 가능한 _newsList를 가져옴
+    private val disposables = CompositeDisposable()
+    private val storeListRepository = StoreListRepository()
 
-    val dummy = arrayListOf(
-        StoreListData(
-            name = "가게 1",
-            store_favorite = 1
-        ),
-        StoreListData(
-            name = "가게 2",
-            store_favorite = 0
-        ),
-        StoreListData(
-            name = "가게 3",
-            store_favorite = 1
+    private var _storeList = MutableLiveData<ArrayList<StoreListInfo>>() //변경 가능한 mutableLiveData 변수
+    val storeList : LiveData<ArrayList<StoreListInfo>> get() = _storeList //LiveData 변수인 newsList는 변경이 안되므로 변경 가능한 _newsList를 가져옴
 
-        ),
-        StoreListData(
-            name = "가게 3",
-            store_favorite = 1
+    fun getOrderList(univIdx: Int){
+        disposables.add(storeListRepository.getStoreList(univIdx)
+            .observeOn(AndroidSchedulers.mainThread())
+            // 구독할 때 수행할 작업을 구현
+            .doOnSubscribe {}
+            // 스트림이 종료될 때 수행할 작업을 구현
+            .doOnTerminate {}
+            // 옵서버블을 구독
+            .subscribe({
+                // API를 통해 액세스 토큰을 정상적으로 받았을 때 처리할 작업을 구현
+                // 작업 중 오류가 발생하면 이 블록은 호출되지 x
 
-        ),
-        StoreListData(
-            name = "가게 3",
-            store_favorite = 1
+                // onResponse
+                Log.e("putStoreFav 응답 성공 : ", it.toString())
+                _storeList.postValue(it.data)
+            }){
+                // 에러 블록
+                // 네트워크 오류나 데이터 처리 오류 등
+                // 작업이 정상적으로 완료되지 않았을 때 호출
 
-        ),
-        StoreListData(
-            name = "가게 3",
-            store_favorite = 0
-
-        ),
-        StoreListData(
-            name = "가게 3",
-            store_favorite = 1
-
-        )
-    )
-
-    init {
-        _storeList.postValue(dummy)
+                // onFailure
+                Log.e("통신 실패 error : ", it.message!!)
+            })
     }
 }

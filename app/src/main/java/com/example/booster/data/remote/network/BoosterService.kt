@@ -66,6 +66,12 @@ interface BoosterService {
         @Path("file_idx") fileIdx: Int
     ): Call<PopupOptionData>
 
+    @POST("/orders/{file_idx}/options")
+    fun changeOption(
+        @Path("file_idx") fileIdx: Int,
+        @Body() body: JsonObject
+    ): Call<DefaultData>
+
     @GET("/orders/{order_idx}/payment")
     fun getPaymentInfo(
         @Path("order_idx") orderIdx: Int
@@ -75,5 +81,15 @@ interface BoosterService {
     fun putPickUp(
         @Path("order_idx") orderIdx: Int
     ): Observable<DefaultData>
+
+    @GET("/progress/{order_idx}/list")
+    fun getOrderDetail(
+        @Path("order_idx") orderIdx: Int
+    ): Call<OrderDetailData>
+
+  @GET("/stores/{univ_idx}/list")
+    fun getStoreList(
+        @Path("univ_idx") univIdx: Int
+    ): Observable<StoreListData>
 }
 
