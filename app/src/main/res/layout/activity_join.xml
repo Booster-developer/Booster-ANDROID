@@ -188,7 +188,7 @@
         android:buttonTint="@color/main_color"
         android:text="@string/join_1"
         app:layout_constraintStart_toStartOf="@+id/univSelected"
-        app:layout_constraintTop_toBottomOf="@+id/univList" />
+        app:layout_constraintTop_toBottomOf="@+id/univSelected" />
 
     <CheckBox
         android:id="@+id/checkBox2"
@@ -243,6 +243,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
+        android:background="@color/white"
         android:orientation="vertical"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/checkBox"

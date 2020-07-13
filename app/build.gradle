@@ -27,6 +27,12 @@ android {
     dataBinding {
         enabled = true
     }
+
+    //data serialize
+    androidExtensions {
+        experimental = true
+    }
+
 }
 
 dependencies {

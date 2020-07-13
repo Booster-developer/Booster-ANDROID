@@ -2,6 +2,7 @@ package com.example.booster.ui.storeList
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,18 +15,21 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a2nd_seminar.ui.ItemDecorator
 import com.example.booster.R
+import com.example.booster.data.datasource.model.MarkerData
 import com.example.booster.databinding.FragmentStoreListBinding
 import com.example.booster.ui.storeDetail.MapActivity
 import com.example.booster.ui.storeDetail.StoreDetailActivity
 import com.example.booster.ui.storeDetail.StoreDetailViewModel
 import kotlinx.android.synthetic.main.fragment_store_list.*
 
-class StoreListFragment : Fragment() {
+class StoreListFragment : Fragment(), UnivInfoToFrag {
 
     private lateinit var viewModel: StoreListViewModel
     private lateinit var viewModel2: StoreDetailViewModel
     lateinit var adapter: StoreListAdapter
     lateinit var binding: FragmentStoreListBinding
+    var markers = arrayListOf<MarkerData>()
+    var univData = "숭실대"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,7 +66,7 @@ class StoreListFragment : Fragment() {
 
     private fun setClick() {
         frag_store_list_ll_univ.setOnClickListener {
-            val univListDialog = StoreListDialongFragment()
+            val univListDialog = StoreListDialogFragment()
             univListDialog.show(
                 requireActivity().supportFragmentManager,
                 "schedule_dialog_fragment"
@@ -71,7 +75,10 @@ class StoreListFragment : Fragment() {
 
         frag_store_list_iv_map.setOnClickListener {
             val intent = Intent(context, MapActivity::class.java)
-            intent.putExtra("univ", frag_store_list_tv_univ.text)
+
+            Log.e("univ22", univData)
+
+            intent.putParcelableArrayListExtra("marker", markers)
             startActivity(intent)
         }
     }
@@ -103,10 +110,26 @@ class StoreListFragment : Fragment() {
         frag_store_list_rv.layoutManager = LinearLayoutManager(requireContext())
         frag_store_list_rv.addItemDecoration(ItemDecorator(24))
 
+        markers.clear()
+
         viewModel.storeList.observe(viewLifecycleOwner, Observer {
             adapter.data = it
+            for(i in 0 .. it.size-1){
+                markers.add(
+                    MarkerData(
+                        latitude = it[i].store_x_location,
+                        longitude = it[i].store_y_location,
+                        name = it[i].store_name
+                    )
+                )
+            }
+
             adapter.notifyDataSetChanged()
         })
+
+
+
+
 
 //        viewModel2._favStatus.observe(viewLifecycleOwner, Observer {
 //            Log.e("result -> ", it.message)
@@ -117,4 +140,20 @@ class StoreListFragment : Fragment() {
 //            }
 //        })
     }
+
+    override fun communicateUniv(univ: String) {
+        Log.e("실행", univ)
+        if(univ == "숭실대"){
+            frag_store_list_tv_univ.text = "숭실대학교"
+        }
+        else if(univ == "중앙대"){
+            frag_store_list_tv_univ.text = "중앙대학교"
+        }
+        else{
+            frag_store_list_tv_univ.text = "서울대학교"
+        }
+        univData = univ
+        Log.e("univReceiveData", univData)
+    }
+
 }
