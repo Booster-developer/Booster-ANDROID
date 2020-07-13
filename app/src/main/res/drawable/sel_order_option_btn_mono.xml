@@ -3,10 +3,14 @@
 
 
     <item
-        android:state_selected="true"
-        android:drawable="@drawable/icon_mono_select"/>
+        android:state_pressed="true"
+        android:drawable="@drawable/btn_mono_pressed"/>
 
-    <item android:drawable="@drawable/order_option_btn_mono"/>
+    <item
+        android:state_selected="true"
+        android:drawable="@drawable/btn_mono_selected"/>
+
+    <item android:drawable="@drawable/btn_mono_unselected"/>
 
 
 </selector>

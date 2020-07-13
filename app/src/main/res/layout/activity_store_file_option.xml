@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.fileStorage.StoreFileOptionActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -26,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FFFFFF"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="12dp"
                 android:src="@drawable/nav_btn_back_black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="25dp"
-                android:fontFamily="@font/noto_sans_kr_bold"
+                android:fontFamily="@font/noto_sans_kr_medium"
                 android:text="옵션선택"
                 android:gravity="center_vertical"
                 android:textColor="@color/black"
@@ -51,11 +52,12 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/act_store_file_option_bottombar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/act_store_file_option_appbar"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="16dp">
+        app:layout_constraintVertical_bias="1.0">
 
 
         <LinearLayout
@@ -73,7 +75,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
-                    android:layout_marginTop="70dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/noto_sans_kr_medium"
                     android:text="흑백/컬러"
                     android:textColor="@color/black"
                     android:textSize="14sp"
@@ -113,6 +116,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="4dp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
                             android:text="흑백"
                             android:textColor="#7d7d7d"
                             android:textSize="12sp" />
@@ -140,6 +144,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="4dp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
                             android:text="컬러"
                             android:textColor="#7d7d7d"
                             android:textSize="12sp" />
@@ -180,6 +185,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
+                    android:fontFamily="@font/noto_sans_kr_medium"
                     android:text="용지 방향"
                     android:textColor="@color/black"
                     android:textSize="14sp"
@@ -218,6 +224,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="4dp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
                             android:text="자동"
                             android:textColor="#7d7d7d"
                             android:textSize="12sp" />
@@ -245,6 +252,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="4dp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
                             android:text="세로"
                             android:textColor="#7d7d7d"
                             android:textSize="12sp" />
@@ -272,6 +280,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="4dp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
                             android:text="가로"
                             android:textColor="#7d7d7d"
                             android:textSize="12sp" />
@@ -300,6 +309,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
+                    android:fontFamily="@font/noto_sans_kr_medium"
                     android:text="양면/단면"
                     android:textColor="@color/black"
                     android:textSize="14sp"
@@ -337,6 +347,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="4dp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
                             android:text="단면"
                             android:textColor="#7d7d7d"
                             android:textSize="12sp" />
@@ -357,13 +368,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            app:srcCompat="@drawable/sel_order_option_btn_doublehei" />
+                            app:srcCompat="@drawable/sel_order_option_btn_doublehei1" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="4dp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
                             android:text="양면-가로넘김"
                             android:textColor="#7d7d7d"
                             android:textSize="12sp" />
@@ -385,13 +397,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            app:srcCompat="@drawable/sel_order_option_btn_doublehei" />
+                            app:srcCompat="@drawable/sel_order_option_btn_doublehei2" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="4dp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
                             android:text="양면-세로넘김"
                             android:textColor="#7d7d7d"
                             android:textSize="12sp" />
@@ -420,11 +433,12 @@
                     android:id="@+id/option4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:fontFamily="@font/noto_sans_kr_medium"
                     android:lineSpacingExtra="16sp"
                     android:text="모아찍기"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    android:layout_marginStart="30dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -458,6 +472,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="4dp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
                             android:text="1개"
                             android:textColor="#7d7d7d"
                             android:textSize="12sp" />
@@ -486,6 +501,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="4dp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
                             android:text="2개"
                             android:textColor="#7d7d7d"
                             android:textSize="12sp" />
@@ -514,6 +530,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="4dp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
                             android:text="3개"
                             android:textColor="#7d7d7d"
                             android:textSize="12sp" />
@@ -542,6 +559,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="4dp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
                             android:text="4개"
                             android:textColor="#7d7d7d"
                             android:textSize="12sp" />
@@ -557,10 +575,10 @@
 
 
                 <LinearLayout
-                    android:layout_weight="1"
                     android:id="@+id/linearcut6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/linearcut8"
@@ -578,16 +596,17 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="4dp"
+                        android:fontFamily="@font/noto_sans_kr_regular"
                         android:text="6개"
                         android:textColor="#7d7d7d"
                         android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_weight="1"
                     android:id="@+id/linearcut8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/linearcut9"
@@ -605,16 +624,17 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="4dp"
+                        android:fontFamily="@font/noto_sans_kr_regular"
                         android:text="8개"
                         android:textColor="#7d7d7d"
                         android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_weight="1"
                     android:id="@+id/linearcut9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/linearcut16"
@@ -633,16 +653,17 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="4dp"
+                        android:fontFamily="@font/noto_sans_kr_regular"
                         android:text="9개"
                         android:textColor="#7d7d7d"
                         android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_weight="1"
                     android:id="@+id/linearcut16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -662,6 +683,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="4dp"
+                        android:fontFamily="@font/noto_sans_kr_regular"
                         android:text="16개"
                         android:textColor="#7d7d7d"
                         android:textSize="12sp" />
@@ -671,121 +693,100 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="8dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="80dp">
+                android:background="#f5f5f5" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/option5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="범위변경"
+                    android:fontFamily="@font/noto_sans_kr_medium"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    android:layout_marginStart="30dp"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/linearrange"
                     app:layout_constraintTop_toTopOf="parent" />
-
 
                 <TextView
+                    android:id="@+id/textView14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="44dp"
                     android:lineSpacingExtra="16sp"
                     android:text="부수변경"
+                    android:fontFamily="@font/noto_sans_kr_medium"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    app:layout_constraintStart_toEndOf="@+id/option5"
+                    app:layout_constraintStart_toStartOf="@+id/linearnum"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout7"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:id="@+id/linearrange"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/linearnum"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/option5">
 
-                    <LinearLayout
-                        android:id="@+id/linearrange"
+                    <ImageView
+                        android:id="@+id/order_option_btn_range"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/linearnum"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:srcCompat="@drawable/btn_whole_pressed" />
 
-                        <ImageView
-                            android:id="@+id/order_option_btn_range"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/order_option_btn_range" />
-
-                        <TextView
-                            android:id="@+id/act_store_file_option_txt_range"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="4dp"
-                            android:text="전체"
-                            android:textColor="#7d7d7d"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/linearnum"
+                    <TextView
+                        android:id="@+id/act_store_file_option_txt_range"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/imageButton5"
-                        app:layout_constraintStart_toEndOf="@id/linearrange"
-                        app:layout_constraintTop_toTopOf="parent">
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="4dp"
+                        android:text="전체"
+                        android:textColor="#7d7d7d"
+                        android:textSize="12sp" />
+                </LinearLayout>
 
-                        <ImageView
-                            android:id="@+id/order_option_btn_num"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/order_option_btn_num" />
+                <LinearLayout
+                    android:id="@+id/linearnum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/linearrange"
+                    app:layout_constraintTop_toBottomOf="@+id/textView14">
 
-                        <TextView
-                            android:id="@+id/act_store_file_option_txt_num"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_marginTop="4dp"
-                            android:text="1부"
-                            android:textColor="#7d7d7d"
-                            android:textSize="12sp" />
-                    </LinearLayout>
+                    <ImageView
+                        android:id="@+id/order_option_btn_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/btn_busu_pressed" />
 
-                    <ImageButton
-                        android:id="@+id/imageButton5"
-                        android:layout_width="66dp"
-                        android:layout_height="66dp"
-                        android:layout_weight="1"
-                        android:background="#00000000"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/imageButton6"
-                        app:layout_constraintStart_toEndOf="@id/linearnum"
-                        app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/act_store_file_option_txt_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="4dp"
+                        android:text="1부"
+                        android:textColor="#7d7d7d"
+                        android:textSize="12sp" />
+                </LinearLayout>
 
-                    <ImageButton
-                        android:id="@+id/imageButton6"
-                        android:layout_width="66dp"
-                        android:layout_height="66dp"
-                        android:layout_weight="1"
-                        android:background="#00000000"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/imageButton5"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
