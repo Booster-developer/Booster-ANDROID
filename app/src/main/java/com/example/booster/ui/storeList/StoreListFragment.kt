@@ -18,9 +18,7 @@ import com.example.booster.databinding.FragmentStoreListBinding
 import com.example.booster.ui.storeDetail.MapActivity
 import com.example.booster.ui.storeDetail.StoreDetailActivity
 import com.example.booster.ui.storeDetail.StoreDetailViewModel
-import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
 import kotlinx.android.synthetic.main.fragment_store_list.*
-import kotlin.math.abs
 
 class StoreListFragment : Fragment() {
 
