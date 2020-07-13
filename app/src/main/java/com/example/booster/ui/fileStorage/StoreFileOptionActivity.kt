@@ -170,7 +170,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
                 StoreFileOptionRangeFragment()
             fileRangeDialog.show(
                 supportFragmentManager,
-                "file option ragne fragment"
+                "file option range fragment"
             )
 
         }
@@ -213,18 +213,19 @@ class StoreFileOptionActivity : AppCompatActivity(),
                 ) {
                     //통신 성공
                     Log.e("onResponse", response.toString())
+                    Log.e("color", color)
                     //인텐트 넘겨주기
-                    intent.putExtra("color", color)
-                    intent.putExtra("direction", direction)
-                    intent.putExtra("side", side)
-                    intent.putExtra("combine", combine)
-                    if(range=="전체"){
-                        intent.putExtra("range", range)
-                    }else{
-                        intent.putExtra("rangeMin", rangeMin)
-                        intent.putExtra("rangeMax", rangeMax)
-                    }
-                    intent.putExtra("num", num)
+//                    intent.putExtra("color", color)
+//                    intent.putExtra("direction", direction)
+//                    intent.putExtra("side", side)
+//                    intent.putExtra("combine", combine)
+//                    if(range=="전체"){
+//                        intent.putExtra("range", range)
+//                    }else{
+//                        intent.putExtra("rangeMin", rangeMin)
+//                        intent.putExtra("rangeMax", rangeMax)
+//                    }
+//                    intent.putExtra("num", num)
                     setResult(Activity.RESULT_OK, intent)
                     finish()
                 }

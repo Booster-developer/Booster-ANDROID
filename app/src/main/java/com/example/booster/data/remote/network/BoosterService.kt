@@ -63,9 +63,10 @@ interface BoosterService {
     ): ApiWrapper<Wait>
 
     @GET("/orders/{file_idx}/options")
-    fun getPopupOption(
+    suspend fun getPopupOption(
+        @Header("token") token: String,
         @Path("file_idx") fileIdx: Int
-    ): Call<PopupOptionData>
+    ): ApiWrapper<PopupOptionInfo>
 
     @POST("/orders/{file_idx}/options")
     fun changeOption(
@@ -86,8 +87,8 @@ interface BoosterService {
     @Multipart
     @POST("/orders/{order_idx}/file")
     suspend fun postUploadFile(
-        @Path("order_idx") idx: Int,
+        @Header("token") token: String,
+        @Path("order_idx") orderIdx: Int,
         @Part file: MultipartBody.Part?
     ): ApiWrapper<com.example.booster.data.datasource.model.File>
 }
-

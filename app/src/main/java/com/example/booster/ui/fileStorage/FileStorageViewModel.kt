@@ -1,5 +1,6 @@
 package com.example.booster.ui.fileStorage
 
+import android.net.Uri
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
@@ -17,12 +18,17 @@ import kotlinx.coroutines.launch
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import java.net.URI
 
 
 class FileStorageViewModel : ViewModel() {
     private val _fileMutableLiveData: MutableLiveData<ArrayList<File>> = MutableLiveData()
     val fileLiveData: LiveData<ArrayList<File>>
         get() = _fileMutableLiveData
+
+    private val _popupOptionMutableLiveData:MutableLiveData<PopupOptionInfo> = MutableLiveData()
+    val popupOptionLiveData: LiveData<PopupOptionInfo>
+        get() = _popupOptionMutableLiveData
 
     //private lateinit var arrList: ArrayList<File>
 
@@ -51,6 +57,17 @@ class FileStorageViewModel : ViewModel() {
 //        })
     }
 
+    fun getPopupOption(){
+        viewModelScope.launch(IO) {
+            val response = BoosterServiceImpl.service.getPopupOption("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8", 2)
+            if (response.status == 200) {
+                val data = response.data
+                _popupOptionMutableLiveData.postValue(data)
+            }
+        }
+    }
+
+
     fun deleteItem(item: File) {
         val list = _fileMutableLiveData.value
         list?.remove(item)
@@ -65,21 +82,24 @@ class FileStorageViewModel : ViewModel() {
 
     fun order() {
         val idx = 6
-        val file = _fileMutableLiveData.value?.get(0)
-        val filePath = BoosterUtil().getPathFromUri(file?.file_uri)
+        //val file = _fileMutableLiveData.value?.get(0)
+        val file = _fileMutableLiveData.value?.get((_fileMutableLiveData.value?.size!!-1))
+        val imageFile = java.io.File(file?.file_path)
+
+        Log.e("asdf", "check : " + file?.file_path + " " + file?.file_name)
 /*        val requestFile: RequestBody = RequestBody.create(
             MediaType.parse("multipart/form-data"),
             uri
         )*/
-
         val requestBody = RequestBody.create(
-            MediaType.parse("image/*"), java.io.File(filePath)
+            MediaType.parse("image/jpeg"), imageFile
         )
         val multipartBody =
-            MultipartBody.Part.createFormData("file", file!!.file_name, requestBody)
+            MultipartBody.Part.createFormData("file", file?.file_name, requestBody)
 
         viewModelScope.launch(IO) {
             val response = BoosterServiceImpl.service.postUploadFile(
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8",
                 idx,
                 multipartBody
             )
@@ -87,13 +107,14 @@ class FileStorageViewModel : ViewModel() {
                 val data = response.data
                 Log.e("check", "fileIdx : ${data?.file_idx}")
             }
-            // _statusLiveData.postValue(response.status)
+
+            //  _statusLiveData.postValue(response.status)
         }
     }
 
     fun setOptions(
         popupOptionInfo: PopupOptionInfo
-    ){
+    ) {
         val file = _fileMutableLiveData.value?.get(0)
         file?.popupOptionInfo = popupOptionInfo
 

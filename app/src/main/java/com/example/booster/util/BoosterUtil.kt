@@ -3,6 +3,7 @@ package com.example.booster.util
 import android.content.Context
 import android.database.Cursor
 import android.net.Uri
+import android.util.Log
 import com.example.booster.BoosterApplication.Companion.globalApplication
 import com.example.booster.R
 
@@ -18,6 +19,8 @@ class BoosterUtil(var context: Context = globalApplication) {
         var path = cursor?.getString(cursor?.getColumnIndex("_data"))
         cursor?.close()
 
+        Log.e("pathcheck", path)
+
         return path
     }
 
@@ -30,19 +33,18 @@ class BoosterUtil(var context: Context = globalApplication) {
         var path = cursor?.getString(cursor?.getColumnIndex("_data"))
         cursor?.close()
         val filePath = path?.split("/")
-        /*var originalfilename = filePath?.get(filePath.size-1)
-        var filename : String = ""
-        if (originalfilename?.length!! > 30)
-        {
-            filename = originalfilename.substring(0,30) + "..."
-        }
-        return filename*/
+
         return filePath?.get(filePath.size - 1)
     }
 
-    fun getFileType(uri: Uri?): String? {
-        val typeList = getPathFromUri(uri)?.split(".")
-        return typeList?.get(typeList.size - 1)
+    fun getFileType(filePath: String): String? {
+//        val typeList = getPathFromUri(uri)?.split(".")
+//        return typeList?.get(typeList.size - 1)
+        return if(filePath.contains(".")){
+            filePath.substring(filePath.lastIndexOf("."))
+        }else{
+            "n/a"
+        }
     }
 
     fun getFileImage(type: String?): Int {

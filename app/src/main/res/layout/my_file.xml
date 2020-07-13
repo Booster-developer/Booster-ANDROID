@@ -37,6 +37,7 @@
         android:layout_height="wrap_content"
         android:text="파일이름파일이름파일이름.pdf"
         android:textSize="16sp"
+        android:singleLine="true"
         android:ellipsize="end"
         android:fontFamily="@font/noto_sans_kr_medium"
         app:layout_constraintStart_toEndOf="@id/iv_file"

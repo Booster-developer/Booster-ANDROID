@@ -1,11 +1,5 @@
 package com.example.booster.data.datasource.model
 
-data class PopupOptionData(
-    val status: Int,
-    val success: String,
-    val message: String,
-    val data: PopupOptionInfo
-)
 
 data class PopupOptionInfo(
     var file_color: String,
