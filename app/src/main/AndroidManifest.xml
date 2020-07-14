@@ -20,6 +20,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.home.AlertActivity"></activity>
         <activity android:name=".ui.storeDetail.StoreDetailMapActivity" />
+
+        <activity android:name=".ui.PdfViewerActivity"></activity>
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.orderDetail.OrderDetailActivity" />
         <activity android:name=".ui.payment.PaymentActivity" />
