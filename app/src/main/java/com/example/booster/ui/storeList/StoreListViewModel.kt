@@ -19,7 +19,7 @@ class StoreListViewModel : ViewModel() {
     private var _storeList = MutableLiveData<ArrayList<StoreListInfo>>() //변경 가능한 mutableLiveData 변수
     val storeList : LiveData<ArrayList<StoreListInfo>> get() = _storeList //LiveData 변수인 newsList는 변경이 안되므로 변경 가능한 _newsList를 가져옴
 
-    fun getOrderList(univIdx: Int){
+    fun getStoreList(univIdx: Int){
         disposables.add(storeListRepository.getStoreList(univIdx)
             .observeOn(AndroidSchedulers.mainThread())
             // 구독할 때 수행할 작업을 구현
@@ -32,7 +32,7 @@ class StoreListViewModel : ViewModel() {
                 // 작업 중 오류가 발생하면 이 블록은 호출되지 x
 
                 // onResponse
-                Log.e("putStoreFav 응답 성공 : ", it.toString())
+                Log.e("get 응답 성공 : ", it.toString())
                 _storeList.postValue(it.data)
             }){
                 // 에러 블록
