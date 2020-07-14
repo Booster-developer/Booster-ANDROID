@@ -49,7 +49,7 @@ class FileStorageViewModel : ViewModel() {
         _fileMutableLiveData.value = ArrayList()
     }
 
-    fun getFileList() {
+    fun getWaitList() {
         viewModelScope.launch(IO) {
             val response = BoosterServiceImpl.serviceFileUpload.getFileList(
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8",

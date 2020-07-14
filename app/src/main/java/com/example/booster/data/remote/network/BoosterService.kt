@@ -108,4 +108,5 @@ interface BoosterService {
     @GET("/mypage/notice")
     fun getAlertList(
         ): Call<AlertData>
+
 }
