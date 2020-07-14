@@ -19,7 +19,7 @@ interface FileRecyclerViewOnClickListener{
 }
 
 class FileAdapter(
-    var fileRecyclerViewOnClickListener: FileRecyclerViewOnClickListener?
+    var fileRecyclerViewOnClickListener: FileStorageActivity
 //    val itemDelete: (File, Int) -> Unit,
 //    val itemOptionChange: (File, Int) -> Unit,
 //    val itemOptionView: (File, Int) -> Unit
