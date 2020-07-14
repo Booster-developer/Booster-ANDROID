@@ -65,6 +65,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         }
         fileStorageViewModel = ViewModelProvider(this).get(FileStorageViewModel::class.java)
         subscribeObservers()
+        fileStorageViewModel.getFileList()
     }
 
     private fun subscribeObservers() {
@@ -85,6 +86,11 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         fileStorageViewModel.popupOptionLiveData.observe(this, Observer {
             it?.let {
                 showOptionDialog(it)
+            }
+        })
+        fileStorageViewModel.waitlistLiveData.observe(this, Observer {
+            it?.let {
+                setWaitList(it)
             }
         })
 
@@ -120,12 +126,17 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         alertDialog.show()
     }
 
+    private fun setWaitList(wait: Wait) {
+        fileStorage_tv_store_name.text = "${wait.store_name}"
+        fileStorage_tv_store_address.text = "${wait.store_address}"
+        fileStorage_tv_cost_amount.text = "${wait.order_price}"
+    }
+
 
     override fun itemOptionChange(item: File, position: Int) {
         val intent = Intent(this@FileStorageActivity, StoreFileOptionActivity::class.java)
         //intent.putExtra("color",item.popupOptionInfo.file_color)
         //intent.put("item", item.popupOptionInfo)  custom object class를 intent로 넘기는 방법 (parcelable)
-
 
         startActivity(intent)
     }
@@ -134,21 +145,6 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         fileStorageViewModel.getPopupOption()
 
 
-//        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-//        val view = inflater.inflate(R.layout.dialog_item_view, null)
-//
-//        // TODO : Need to set item
-//        view.dial_item_view_tv_color2.text="${item.popupOptionInfo?.file_color} "
-//
-//        val alertDialog = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
-//            .create()
-//        val dialogclose = view.findViewById<ImageView>(R.id.dial_item_view_close)
-//        dialogclose.setOnClickListener {
-//            alertDialog.dismiss()
-//        }
-//        alertDialog.setView(view)
-//        alertDialog.setCanceledOnTouchOutside(false)
-//        alertDialog.show()
 //        val args = Bundle()
 //        val fc = fileColor
 //        val fd = fileDir
