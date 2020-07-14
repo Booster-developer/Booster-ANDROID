@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".JoinActivity">
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:text="프로필 수정"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:text="이름"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:text="아이디"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/edit_name"
+        app:layout_constraintTop_toBottomOf="@+id/edit_name" />
+
+    <EditText
+        android:id="@+id/edit_name"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/join_input"
+        android:ems="10"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:hint="이름을 입력해주세요"
+        android:inputType="textPersonName"
+        android:paddingLeft="12dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/tab_grey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <EditText
+        android:id="@+id/edit_id"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/join_input"
+        android:ems="10"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:inputType="textPersonName"
+        android:paddingLeft="12dp"
+        android:textColor="@color/tab_grey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/edit_name"
+        app:layout_constraintStart_toStartOf="@+id/edit_name"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:text="비밀번호"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/edit_id"
+        app:layout_constraintTop_toBottomOf="@+id/edit_id" />
+
+    <EditText
+        android:id="@+id/edit_pw"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="29dp"
+        android:background="@drawable/join_input"
+        android:ems="10"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:hint="비밀번호를 입력해주세요"
+        android:inputType="textPassword"
+        android:paddingLeft="12dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/tab_grey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/edit_id"
+        app:layout_constraintStart_toStartOf="@+id/edit_id"
+        app:layout_constraintTop_toBottomOf="@+id/edit_pw_now" />
+
+    <EditText
+        android:id="@+id/edit_pw_chk"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/join_input"
+        android:ems="10"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:hint="비밀번호를 확인해주세요"
+        android:inputType="textPassword"
+        android:paddingLeft="12dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/tab_grey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/edit_pw"
+        app:layout_constraintStart_toStartOf="@+id/edit_pw"
+        app:layout_constraintTop_toBottomOf="@+id/edit_pw" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:text="대학교"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/edit_pw_chk"
+        app:layout_constraintTop_toBottomOf="@+id/edit_pw_chk" />
+
+    <TextView
+        android:id="@+id/univSelected"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/join_input"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:gravity="center_vertical"
+        android:hint="대학교를 선택해주세요"
+        android:paddingLeft="12dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/tab_grey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/univSelectBtn"
+        app:layout_constraintStart_toStartOf="@+id/edit_pw_chk"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/univSelectBtn"
+        android:layout_width="58dp"
+        android:layout_height="44dp"
+        android:background="@drawable/join_btn_1"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:gravity="center"
+        android:text="선택"
+        android:textColor="#304fff"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/univSelected"
+        app:layout_constraintEnd_toEndOf="@+id/edit_pw_chk"
+        app:layout_constraintTop_toTopOf="@+id/univSelected" />
+
+    <Button
+        android:id="@+id/edit_btn"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/join_btn_2"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:text="수정완료"
+        android:textColor="#7d7d7d"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/univList"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/univSelectBtn"
+        app:layout_constraintStart_toStartOf="@+id/univSelected"
+        app:layout_constraintTop_toBottomOf="@+id/univSelected">
+
+        <TextView
+            android:id="@+id/univ_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="12dp"
+            android:text="숭실대학교"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/univ_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="12dp"
+            android:text="중앙대학교"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/univ_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="12dp"
+            android:text="서울대학교"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/edit_pw_chk_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="비밀번호가 일치하지 않습니다."
+        android:textColor="#f1290a"
+        android:textSize="12sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/edit_pw_now"
+        app:layout_constraintTop_toBottomOf="@+id/edit_pw_now" />
+
+    <TextView
+        android:id="@+id/edit_pw_chk_txt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="비밀번호가 일치하지 않습니다."
+        android:textColor="#f1290a"
+        android:textSize="12sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/edit_pw_chk"
+        app:layout_constraintTop_toBottomOf="@+id/edit_pw_chk" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:src="@drawable/nav_btn_back_black"
+        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView5" />
+
+    <EditText
+        android:id="@+id/edit_pw_now"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/join_input"
+        android:ems="10"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:hint="현재 비밀번호를 입력해주세요"
+        android:inputType="textPassword"
+        android:paddingLeft="12dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/tab_grey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/edit_id"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+</androidx.constraintlayout.widget.ConstraintLayout>
