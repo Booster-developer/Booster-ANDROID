@@ -20,6 +20,10 @@ class SelectStoreViewModel : ViewModel() {
         _storeListMutableLiveData.value = list
     }
 
+    fun getOrder() {
+
+    }
+
     fun getStoreList() {
         viewModelScope.launch(IO) {
             val response = BoosterServiceImpl.serviceFileUpload.getStoreListByJeongRok(

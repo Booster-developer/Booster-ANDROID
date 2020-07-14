@@ -7,6 +7,7 @@ import android.net.Uri
 import android.util.Log
 import com.example.booster.BoosterApplication.Companion.globalApplication
 import com.example.booster.R
+import java.io.File
 
 class BoosterUtil(var context: Context = globalApplication) {
     fun getPathFromUri(uri: Uri?): String? {
@@ -64,7 +65,4 @@ class BoosterUtil(var context: Context = globalApplication) {
         }
     }
 
-    fun getBitmap(bitmap: Bitmap) {
-        val docimg = bitmap
-    }
 }

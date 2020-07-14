@@ -4,12 +4,16 @@ import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.pdf.PdfRenderer
 import android.net.Uri
 import android.os.Bundle
+import android.os.ParcelFileDescriptor
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -20,21 +24,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.booster.R
 import com.example.booster.data.datasource.model.*
 import com.example.booster.data.remote.network.BoosterServiceImpl
+import com.example.booster.ui.PdfViewerActivity
 import com.example.booster.util.BoosterUtil
-import com.example.booster.util.PDFThumbnailUtils
 import droidninja.filepicker.FilePickerBuilder
 import droidninja.filepicker.FilePickerConst
 import droidninja.filepicker.FilePickerConst.KEY_SELECTED_DOCS
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_DOC
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_PHOTO
 import kotlinx.android.synthetic.main.activity_file_storage.*
+import kotlinx.android.synthetic.main.activity_pdf_text.*
 import kotlinx.android.synthetic.main.dialog_item_view.view.*
-import kotlinx.android.synthetic.main.my_file.*
 import org.koin.experimental.builder.getArguments
+import java.io.IOException
 
 
 private const val FINISH_SETTING_OPTION = 1000
-
+private const val FINISH_PDF_VIEW = 1001
 
 class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener {
     private lateinit var fileStorageViewModel: FileStorageViewModel
@@ -42,6 +47,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 
     private lateinit var docPaths: ArrayList<Uri>
     private lateinit var photoPaths: ArrayList<Uri>
+
 
 
     var fileColor = ""
@@ -72,11 +78,11 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         subscribeObservers()
 
 
-        //fileStorageViewModel.getFileList() 대기리스트 데이터 GET하기
+        //fileStorageViewModel.getWaitList()
 
 
 
-        //get intent values 매장선택리스트에서 store name, store address 보냄
+        //get intent values
         intent?.let{
             val storeName = it.getStringExtra("storeName")
             val address = it.getStringExtra("storeAddress")
@@ -259,7 +265,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                             data.getParcelableArrayListExtra<Uri>(FilePickerConst.KEY_SELECTED_MEDIA)
                         uri?.let {
                             photoPaths.addAll(it)
-
+                            addThemToView(true)
                             //showOptionActivity()
                         }
                     }
@@ -271,7 +277,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                             data.getParcelableArrayListExtra<Uri>(KEY_SELECTED_DOCS)
                         uri?.let {
                             docPaths.addAll(it)
-
+                            addThemToView(false)
 
                             //showOptionActivity()
                         }
@@ -315,9 +321,10 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 //                        fileStorageViewModel.setOptions(popupOptionInfo)
 //                    }
                 }
+
             }
         }
-        addThemToView()
+
     }
 
     private fun showOptionActivity() {
@@ -325,9 +332,9 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         startActivityForResult(intent, FINISH_SETTING_OPTION)
     }
 
-    private fun addThemToView() {
+    private fun addThemToView(flag: Boolean) {
         val filePaths: ArrayList<Uri> = ArrayList()
-        if (::photoPaths.isInitialized) {
+        if (flag) {
             for (imgUri in photoPaths) {
                 val filePath = BoosterUtil().getPathFromUri(imgUri)
                 val fileName = BoosterUtil().getFileName(imgUri)
@@ -337,9 +344,10 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 //                file.name = BoosterUtil(this).getFileName(imguri)
 //                file.type = "img"
                 fileStorageViewModel.addItem(file)
+                fileStorageViewModel.order()
             }
         }
-        else if (::docPaths.isInitialized) {
+        else if (!flag) {
             for (docUri in docPaths) {
                 val filePath = BoosterUtil().getPathFromUri(docUri)
                 val fileName = BoosterUtil().getFileName(docUri)
@@ -348,6 +356,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 //                file.name = BoosterUtil(this).getFileName(docuri)
 //                file.type = BoosterUtil(this).getFileType(docuri)
                 fileStorageViewModel.addItem(file)
+                fileStorageViewModel.order()
             }
         }
         fileStorage_rv_file_add.adapter?.notifyDataSetChanged()
@@ -359,7 +368,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         when (view) {
             fileStorage_img_close -> showDeleteDialog()
             fileStorage_iv_file_add -> fileAdd()
-            fileStorage_tv_order -> fileStorageViewModel.order()
+            //fileStorage_tv_order -> fileStorageViewModel.order()
         }
     }
 
@@ -369,7 +378,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         builder.setTitle("추가할 파일의 종류를 선택해주세요")
         builder.setPositiveButton("이미지") { dialogInterface: DialogInterface, i: Int ->
             FilePickerBuilder.instance
-                .setMaxCount(1) //파일 1개만 선택 가능
+                .setMaxCount(1)
                 .setActivityTheme(R.style.LibAppTheme) //optional
                 .setActivityTitle("이미지 선택")
                 .pickPhoto(this, REQUEST_CODE_PHOTO);
@@ -402,4 +411,17 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
             .show()
     }
 
+
+
+    override fun pdfviewer(item: File, position: Int) {
+        val intent = Intent(this@FileStorageActivity, PdfViewerActivity::class.java)
+        val file = item.file_path!!
+        if (item.file_extension == ".pdf") {
+            intent.putExtra("pdffile", file)
+            Log.e("path check", "path: " + item.file_path + "java.io.File()=" + file)
+        } else if (item.file_extension == ".png" || item.file_extension == ".jpeg" || item.file_extension == ".jpg") {
+            intent.putExtra("imgfile", file)
+        }
+        startActivityForResult(intent, FINISH_PDF_VIEW)
+    }
 }

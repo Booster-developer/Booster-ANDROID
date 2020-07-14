@@ -1,6 +1,7 @@
 package com.example.booster.ui.home
 
 import android.animation.Animator
+import android.content.Intent
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.os.Handler
@@ -22,6 +23,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
@@ -29,6 +31,12 @@ class HomeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
         // TODO: Use the ViewModel
+
+
+        frag_home_btn_alert.setOnClickListener {
+            val intent = Intent(activity, AlertActivity::class.java)
+            startActivity(intent)
+        }
 
         Handler().postDelayed({
 
