@@ -376,12 +376,14 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         builder.setTitle("추가할 파일의 종류를 선택해주세요")
         builder.setPositiveButton("이미지") { dialogInterface: DialogInterface, i: Int ->
             FilePickerBuilder.instance
+                .setMaxCount(1)
                 .setActivityTheme(R.style.LibAppTheme) //optional
                 .setActivityTitle("이미지 선택")
                 .pickPhoto(this, REQUEST_CODE_PHOTO);
         }
         builder.setNegativeButton("문서") { dialogInterface: DialogInterface, i: Int ->
             FilePickerBuilder.instance
+                .setMaxCount(1)
                 .setActivityTheme(R.style.LibAppTheme) //optional
                 .setActivityTitle("문서 선택")
                 .pickFile(this, REQUEST_CODE_DOC);
