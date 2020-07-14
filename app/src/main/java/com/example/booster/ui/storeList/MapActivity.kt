@@ -1,10 +1,13 @@
-package com.example.booster.ui.storeDetail
+package com.example.booster.ui.storeList
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.annotation.UiThread
 import androidx.fragment.app.FragmentActivity
 import com.example.booster.R
 import com.example.booster.data.datasource.model.MarkerData
+import com.example.booster.ui.storeDetail.StoreDetailActivity
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.InfoWindow
@@ -83,11 +86,11 @@ class MapActivity : FragmentActivity(), OnMapReadyCallback {
         for(i in 0 until markers.size){
             repeat(1000) {
                 array.plusAssign(Marker().apply {
-                    position = LatLng(markers[i].latitude, markers[i].longitude)
-                    icon = OverlayImage.fromResource(R.drawable.store_map_ic_marker_1)
+                    position = LatLng(markers[i].latitude!!.toDouble(), markers[i].longitude!!.toDouble())
+                    icon = OverlayImage.fromResource(R.drawable.store_map_ic_marker)
                     tag = markers[i].name
-                    width = 50
-                    height = 80
+                    width = Marker.SIZE_AUTO
+                    height = Marker.SIZE_AUTO
                 })
             }
         }
@@ -96,16 +99,29 @@ class MapActivity : FragmentActivity(), OnMapReadyCallback {
             marker.map = nMap
             marker.setOnClickListener {
                 for ( i in 0 until array.size){
-                    array[i].width = 60
-                    array[i].height = 80
+                    array[i].icon = OverlayImage.fromResource(R.drawable.store_map_ic_marker)
                 }
-                marker.width = 100
-                marker.height = 150
+                marker.icon = OverlayImage.fromResource(R.drawable.store_map_ic_marker_click)
                 val cameraUpdate = CameraUpdate.scrollTo(marker.position)
                 nMap.moveCamera(cameraUpdate)
                 infoWindow.open(marker)
+                infoWindow.setOnClickListener {
+                    val intent = Intent(this, StoreDetailActivity::class.java)
+                    for(i in 0 .. array.size){
+                        if(markers[i].name == marker.tag){
+                            val idx = markers[i].idx
+                            intent.putExtra("storeIdx", idx)
+                            break
+                        }
+                    }
+                    startActivity(intent)
+                    false
+
+                }
+
                 false
             }
+
 
         }
     }

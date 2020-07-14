@@ -29,5 +29,7 @@ data class StoreDetail(
     val price_gray_double: Int,
     val price_gray_single: Int,
     val univ_line: Int,
-    val store_favorite: Int
+    val store_favorite: Int,
+    val store_x_location: Double,
+    val store_y_location: Double
 )
