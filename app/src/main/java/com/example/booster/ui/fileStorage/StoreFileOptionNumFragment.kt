@@ -15,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.booster.R
+import com.example.booster.onlyOneClickListener
 import kotlinx.android.synthetic.main.dialog_store_file_option_num.*
 
 class StoreFileOptionNumFragment : DialogFragment() {
@@ -40,11 +41,11 @@ class StoreFileOptionNumFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        order_dialog_btn_close_black.setOnClickListener {
+        order_dialog_btn_close_black.onlyOneClickListener {
             dismiss()
         }
 
-        order_option_btn_minus.setOnClickListener {
+        order_option_btn_minus.onlyOneClickListener {
 
             printOption = edt_printNum.text.toString().toInt() - 1
             if(printOption<1){
@@ -56,12 +57,12 @@ class StoreFileOptionNumFragment : DialogFragment() {
             }
         }
 
-        order_option_btn_plus.setOnClickListener {
+        order_option_btn_plus.onlyOneClickListener {
             printOption = edt_printNum.text.toString().toInt() + 1
             edt_printNum.setText(printOption.toString())
         }
 
-        dial_store_file_option_num.setOnClickListener {
+        dial_store_file_option_num.onlyOneClickListener {
             sendData("${printOption}")
             dismiss()
         }

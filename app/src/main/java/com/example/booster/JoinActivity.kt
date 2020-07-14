@@ -32,21 +32,21 @@ class JoinActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_join)
 
-        univSelectBtn.setOnClickListener {
+        univSelectBtn.onlyOneClickListener {
             univList.visibility = View.VISIBLE
         }
 
-        univ_1.setOnClickListener {
+        univ_1.onlyOneClickListener {
             univSelected.text = "숭실대학교"
             univIdx = 1
             univList.visibility = View.GONE
         }
-        univ_2.setOnClickListener {
+        univ_2.onlyOneClickListener {
             univSelected.text = "중앙대학교"
             univIdx = 2
             univList.visibility = View.GONE
         }
-        univ_3.setOnClickListener {
+        univ_3.onlyOneClickListener {
             univSelected.text = "서울대학교"
             univIdx = 3
             univList.visibility = View.GONE
@@ -105,12 +105,12 @@ class JoinActivity : AppCompatActivity() {
         }
 
         // 아이디 중복 확인
-        id_chk_btn.setOnClickListener {
+        id_chk_btn.onlyOneClickListener {
             checkId()
         }
 
         // 회원가입 request
-        join_btn.setOnClickListener {
+        join_btn.onlyOneClickListener {
             join()
         }
     }

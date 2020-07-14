@@ -26,7 +26,6 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="16dp"
             android:ellipsize="end"
-            android:ems="10"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:singleLine="true"
             android:text="@{paymentInfo.file_name}"

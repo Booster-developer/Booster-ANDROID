@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.booster.R
 import com.example.booster.data.datasource.model.*
 import com.example.booster.data.remote.network.BoosterServiceImpl
+import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.PdfViewerActivity
 import com.example.booster.util.BoosterUtil
 import droidninja.filepicker.FilePickerBuilder
@@ -150,7 +151,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         val alertDialog = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
             .create()
         val dialogclose = view.findViewById<ImageView>(R.id.dial_item_view_close)
-        dialogclose.setOnClickListener {
+        dialogclose.onlyOneClickListener {
             alertDialog.dismiss()
         }
         alertDialog.setView(view)

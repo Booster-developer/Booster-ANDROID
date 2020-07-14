@@ -24,7 +24,8 @@
         <activity android:name=".ui.PdfViewerActivity"></activity>
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.orderDetail.OrderDetailActivity" />
-        <activity android:name=".ui.payment.PaymentActivity" />
+        <activity android:name=".ui.payment.PaymentActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
         <activity android:name=".ui.fileStorage.FileStorageActivity" />
         <activity android:name=".ui.storeList.MapActivity" />
         <activity android:name=".ui.ResultActivity" />

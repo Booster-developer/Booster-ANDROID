@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.example.booster.R
+import com.example.booster.onlyOneClickListener
 import kotlinx.android.synthetic.main.dialog_store_file_option_range.*
 
 class StoreFileOptionRangeFragment : DialogFragment() {
@@ -41,23 +42,23 @@ class StoreFileOptionRangeFragment : DialogFragment() {
         //default로 전체
         order_option_btn_whole1.isSelected = true
 
-        order_dialog_btn_close_black.setOnClickListener {
+        order_dialog_btn_close_black.onlyOneClickListener {
             dismiss()
         }
 
-        order_option_btn_whole1.setOnClickListener {
+        order_option_btn_whole1.onlyOneClickListener {
             order_option_btn_whole2.isSelected = false
             order_option_btn_whole1.isSelected = !order_option_btn_whole1.isSelected
             printOption = "all"
         }
 
-        order_option_btn_whole2.setOnClickListener {
+        order_option_btn_whole2.onlyOneClickListener {
             order_option_btn_whole1.isSelected = false
             order_option_btn_whole2.isSelected = !order_option_btn_whole2.isSelected
             printOption= "part"
         }
 
-        dial_store_file_option_range.setOnClickListener {
+        dial_store_file_option_range.onlyOneClickListener {
             //완료버튼
             printMinNum = edt_printMinNum.text.toString()
             printMaxNum = edt_printMaxNum.text.toString()

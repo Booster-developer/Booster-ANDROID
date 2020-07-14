@@ -5,6 +5,7 @@ import androidx.annotation.UiThread
 import androidx.appcompat.app.AppCompatActivity
 import com.example.booster.R
 import com.example.booster.data.datasource.model.MarkerData
+import com.example.booster.onlyOneClickListener
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.MapFragment
@@ -26,7 +27,7 @@ class StoreDetailMapActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_store_detail_map)
 
-        btn_back.setOnClickListener {
+        btn_back.onlyOneClickListener {
             finish()
         }
         markers = intent.getParcelableArrayListExtra<MarkerData>("marker")

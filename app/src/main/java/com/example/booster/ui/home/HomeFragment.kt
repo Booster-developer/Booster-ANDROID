@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.booster.R
+import com.example.booster.onlyOneClickListener
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
@@ -33,7 +34,7 @@ class HomeFragment : Fragment() {
         // TODO: Use the ViewModel
 
 
-        frag_home_btn_alert.setOnClickListener {
+        frag_home_btn_alert.onlyOneClickListener {
             val intent = Intent(activity, AlertActivity::class.java)
             startActivity(intent)
         }

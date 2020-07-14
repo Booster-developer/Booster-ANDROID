@@ -54,12 +54,12 @@ class MainActivity : AppCompatActivity() {
             )
             .check();
 
-        act_store_file_option_btn_option.setOnClickListener {
+        act_store_file_option_btn_option.onlyOneClickListener {
             val intent = Intent(this@MainActivity, StoreFileOptionActivity::class.java)
             startActivity(intent)
         }
 
-        act_main_btn_store_detail.setOnClickListener {
+        act_main_btn_store_detail.onlyOneClickListener {
             val intent = Intent(this@MainActivity, StoreDetailActivity::class.java)
             startActivity(intent)
         }
@@ -74,34 +74,34 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        btn_storage.setOnClickListener {
+        btn_storage.onlyOneClickListener {
             //val intent = Intent(this, FileStorageActivity::class.java)
             val intent = Intent(this, SelectStoreActivity::class.java)
             startActivity(intent)
         }
 
-        pdf_test.setOnClickListener {
+        pdf_test.onlyOneClickListener {
             val intent = Intent(this, PdfTestActivity::class.java)
             startActivity(intent)
         }
 
-        act_main_btn_pay.setOnClickListener {
+        act_main_btn_pay.onlyOneClickListener {
             val intent = Intent(this, PaymentActivity::class.java)
             startActivity(intent)
         }
 
-        act_main_btn_login.setOnClickListener {
+        act_main_btn_login.onlyOneClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 
-        act_order_detail.setOnClickListener {
+        act_order_detail.onlyOneClickListener {
             val intent = Intent(this, OrderDetailActivity::class.java)
             startActivity(intent)
         }
 
 
-        act_main_btn_lottie.setOnClickListener {
+        act_main_btn_lottie.onlyOneClickListener {
             val intent = Intent(this, LottieActivity::class.java)
             startActivity(intent)
         }

@@ -16,6 +16,7 @@ import com.example.a2nd_seminar.ui.ItemDecorator
 import com.example.booster.R
 import com.example.booster.data.datasource.model.MarkerData
 import com.example.booster.databinding.FragmentStoreListBinding
+import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.storeDetail.StoreDetailActivity
 import com.example.booster.ui.storeDetail.StoreDetailViewModel
 import com.google.android.material.appbar.AppBarLayout
@@ -82,14 +83,14 @@ class StoreListFragment : Fragment() {
     }
 
     private fun setClick() {
-        frag_store_list_ll_univ.setOnClickListener {
+        frag_store_list_ll_univ.onlyOneClickListener {
             val univListDialog = StoreListDialogFragment()
 
             univListDialog.setTargetFragment(this, DIALOG_FRAGMENT)
             univListDialog.show(requireActivity().supportFragmentManager, "dialog")
         }
 
-        frag_store_list_iv_map.setOnClickListener {
+        frag_store_list_iv_map.onlyOneClickListener {
             val intent = Intent(context, MapActivity::class.java)
             intent.putExtra("univ", frag_store_list_tv_univ.text)
             intent.putParcelableArrayListExtra("marker", markers)
