@@ -18,4 +18,14 @@
         app:lottie_autoPlay="true"
         app:lottie_fileName="1_door_open_0734.json"/>
 
+    <ImageView
+        android:id="@+id/frag_home_btn_alert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:src="@drawable/notice_ic_alarm_active"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
