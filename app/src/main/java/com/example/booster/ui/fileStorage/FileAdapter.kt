@@ -20,6 +20,7 @@ interface FileRecyclerViewOnClickListener{
     fun itemDelete(item: File, position: Int)
     fun itemOptionChange(item: File, position: Int)
     fun itemOptionView(item: File, position: Int)
+    fun pdfviewer(item: File, position: Int)
 }
 
 class FileAdapter(
@@ -75,7 +76,9 @@ class FileAdapter(
                         )
                     if (bitmap != null) {
                         itemView.iv_file.setImageBitmap(bitmap)
+                        //Log.e("context check: ", " " + itemView.context + " " + itemView.context.javaClass.name)
                     }
+
                 }
                 //val fileImage = BoosterUtil(itemView.context).getFileImage(file.file_extension)
                 //Glide.with(itemView.context).load(fileImage).into(itemView.iv_file)
@@ -100,6 +103,10 @@ class FileAdapter(
                 fileRecyclerViewOnClickListener?.itemOptionView(file, bindingAdapterPosition)
 
                 // itemOptionView(file, bindingAdapterPosition)
+            }
+
+            itemView.iv_file.setOnClickListener {
+                fileRecyclerViewOnClickListener?.pdfviewer(file, bindingAdapterPosition)
             }
 
 

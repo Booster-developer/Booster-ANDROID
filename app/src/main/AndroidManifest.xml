@@ -18,8 +18,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< HEAD
+        <activity android:name=".ui.PdfViewerActivity"></activity>
+=======
         <activity android:name=".ui.storeDetail.StoreDetailMapActivity"></activity>
         <activity android:name=".ui.home.HomeActivity" />
+>>>>>>> a2d90e4c5e9cd4e14fe847218c78e5d9252771df
         <activity android:name=".ui.orderDetail.OrderDetailActivity" />
         <activity android:name=".ui.payment.PaymentActivity" />
         <activity android:name=".ui.fileStorage.FileStorageActivity" />
