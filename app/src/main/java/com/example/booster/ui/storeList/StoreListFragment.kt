@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -17,11 +16,9 @@ import com.example.a2nd_seminar.ui.ItemDecorator
 import com.example.booster.R
 import com.example.booster.data.datasource.model.MarkerData
 import com.example.booster.databinding.FragmentStoreListBinding
-import com.example.booster.ui.storeDetail.MapActivity
 import com.example.booster.ui.storeDetail.StoreDetailActivity
 import com.example.booster.ui.storeDetail.StoreDetailViewModel
 import com.google.android.material.appbar.AppBarLayout
-import kotlinx.android.synthetic.main.activity_store_detail.*
 import kotlinx.android.synthetic.main.fragment_store_list.*
 import java.lang.Math.abs
 
@@ -94,7 +91,7 @@ class StoreListFragment : Fragment() {
 
         frag_store_list_iv_map.setOnClickListener {
             val intent = Intent(context, MapActivity::class.java)
-            intent.putExtra("univ", frag_store_list_tv_univ.text )
+            intent.putExtra("univ", frag_store_list_tv_univ.text)
             intent.putParcelableArrayListExtra("marker", markers)
             startActivity(intent)
         }
@@ -147,9 +144,10 @@ class StoreListFragment : Fragment() {
             for(i in 0 .. it.size-1){
                 markers.add(
                     MarkerData(
-                        latitude = it[i].store_x_location,
-                        longitude = it[i].store_y_location,
-                        name = it[i].store_name
+                        latitude = it[i]?.store_x_location,
+                        longitude = it[i]?.store_y_location,
+                        name = it[i].store_name,
+                        idx = it[i].store_idx
                     )
                 )
             }
