@@ -21,6 +21,7 @@ import com.example.booster.R
 import com.example.booster.data.datasource.model.*
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.util.BoosterUtil
+import com.example.booster.util.PDFThumbnailUtils
 import droidninja.filepicker.FilePickerBuilder
 import droidninja.filepicker.FilePickerConst
 import droidninja.filepicker.FilePickerConst.KEY_SELECTED_DOCS
@@ -28,9 +29,12 @@ import droidninja.filepicker.FilePickerConst.REQUEST_CODE_DOC
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_PHOTO
 import kotlinx.android.synthetic.main.activity_file_storage.*
 import kotlinx.android.synthetic.main.dialog_item_view.view.*
+import kotlinx.android.synthetic.main.my_file.*
+import org.koin.experimental.builder.getArguments
 
 
 private const val FINISH_SETTING_OPTION = 1000
+
 
 class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener {
     private lateinit var fileStorageViewModel: FileStorageViewModel
@@ -66,6 +70,23 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         }
         fileStorageViewModel = ViewModelProvider(this).get(FileStorageViewModel::class.java)
         subscribeObservers()
+
+
+        //fileStorageViewModel.getFileList() 대기리스트 데이터 GET하기
+
+
+
+        //get intent values 매장선택리스트에서 store name, store address 보냄
+        intent?.let{
+            val storeName = it.getStringExtra("storeName")
+            val address = it.getStringExtra("storeAddress")
+            storeName?.let{name->
+                fileStorage_tv_store_name.text = name
+            }
+            address?.let{address->
+                fileStorage_tv_store_address.text = address
+            }
+        }
     }
 
     private fun subscribeObservers() {
@@ -86,6 +107,16 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         fileStorageViewModel.popupOptionLiveData.observe(this, Observer {
             it?.let {
                 showOptionDialog(it)
+            }
+        })
+        fileStorageViewModel.waitlistLiveData.observe(this, Observer {
+            it?.let {
+                setWaitList(it)
+            }
+        })
+        fileStorageViewModel.responseMessageLiveData.observe(this, Observer {
+            it?.let{errormessage ->
+                Toast.makeText(this, errormessage,Toast.LENGTH_SHORT).show()
             }
         })
 
@@ -121,12 +152,17 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         alertDialog.show()
     }
 
+    private fun setWaitList(wait: Wait) {
+        fileStorage_tv_store_name.text = "${wait.store_name}"
+        fileStorage_tv_store_address.text = "${wait.store_address}"
+        fileStorage_tv_cost_amount.text = "${wait.order_price}"
+    }
+
 
     override fun itemOptionChange(item: File, position: Int) {
         val intent = Intent(this@FileStorageActivity, StoreFileOptionActivity::class.java)
         //intent.putExtra("color",item.popupOptionInfo.file_color)
         //intent.put("item", item.popupOptionInfo)  custom object class를 intent로 넘기는 방법 (parcelable)
-
 
         startActivity(intent)
     }
@@ -135,21 +171,6 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         fileStorageViewModel.getPopupOption()
 
 
-//        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-//        val view = inflater.inflate(R.layout.dialog_item_view, null)
-//
-//        // TODO : Need to set item
-//        view.dial_item_view_tv_color2.text="${item.popupOptionInfo?.file_color} "
-//
-//        val alertDialog = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
-//            .create()
-//        val dialogclose = view.findViewById<ImageView>(R.id.dial_item_view_close)
-//        dialogclose.setOnClickListener {
-//            alertDialog.dismiss()
-//        }
-//        alertDialog.setView(view)
-//        alertDialog.setCanceledOnTouchOutside(false)
-//        alertDialog.show()
 //        val args = Bundle()
 //        val fc = fileColor
 //        val fd = fileDir
@@ -251,6 +272,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                         uri?.let {
                             docPaths.addAll(it)
 
+
                             //showOptionActivity()
                         }
                     }
@@ -347,12 +369,14 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         builder.setTitle("추가할 파일의 종류를 선택해주세요")
         builder.setPositiveButton("이미지") { dialogInterface: DialogInterface, i: Int ->
             FilePickerBuilder.instance
+                .setMaxCount(1) //파일 1개만 선택 가능
                 .setActivityTheme(R.style.LibAppTheme) //optional
                 .setActivityTitle("이미지 선택")
                 .pickPhoto(this, REQUEST_CODE_PHOTO);
         }
         builder.setNegativeButton("문서") { dialogInterface: DialogInterface, i: Int ->
             FilePickerBuilder.instance
+                .setMaxCount(1)
                 .setActivityTheme(R.style.LibAppTheme) //optional
                 .setActivityTitle("문서 선택")
                 .pickFile(this, REQUEST_CODE_DOC);

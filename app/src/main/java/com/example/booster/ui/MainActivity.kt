@@ -7,12 +7,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
-import com.example.booster.LoginActivity
-import com.example.booster.LottieActivity
-import com.example.booster.R
+import com.example.booster.*
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.ui.bottomtap.BottomTabActivity
-import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.fileStorage.StoreFileOptionActivity
 import com.example.booster.ui.home.HomeActivity
 import com.example.booster.ui.orderDetail.OrderDetailActivity

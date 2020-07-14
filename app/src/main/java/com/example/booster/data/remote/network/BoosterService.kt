@@ -58,7 +58,8 @@ interface BoosterService {
     ): Call<LoginData>
 
     @GET("/orders/{order_idx}/list")
-    fun getFileList(
+    suspend fun getFileList(
+        @Header("token") token: String,
         @Path("order_idx") orderIdx: Int
     ): ApiWrapper<Wait>
 
@@ -101,4 +102,9 @@ interface BoosterService {
         @Path("order_idx") orderIdx: Int,
         @Part file: MultipartBody.Part?
     ): ApiWrapper<com.example.booster.data.datasource.model.File>
+
+    @GET("/stores/list")
+    suspend fun getStoreListByJeongRok(
+        @Header("token") token: String
+    ): ApiWrapper<StoreList>
 }

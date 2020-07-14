@@ -4,6 +4,8 @@ import android.animation.Animator
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.os.Handler
+import androidx.lifecycle.ViewModelProviders
+import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -35,7 +37,6 @@ class HomeFragment : Fragment() {
 
         }, SPLASH_TIME_OUT)
 
-//        val animationView = findViewById<LottieAnimationView>(R.id.act_splash_av)
         frag_home_lt.setAnimation("1_door_open_0734.json")
         frag_home_lt.loop(true)
         frag_home_lt.playAnimation()
