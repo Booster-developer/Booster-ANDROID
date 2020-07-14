@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/bg_ffffff_round"
-    android:elevation="5dp"
+    android:elevation="1dp"
     android:layout_gravity="center_horizontal">
 
     <androidx.constraintlayout.widget.Guideline
