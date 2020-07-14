@@ -78,7 +78,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         subscribeObservers()
 
 
-        //fileStorageViewModel.getFileList()
+        //fileStorageViewModel.getWaitList()
 
 
 
@@ -344,6 +344,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 //                file.name = BoosterUtil(this).getFileName(imguri)
 //                file.type = "img"
                 fileStorageViewModel.addItem(file)
+                fileStorageViewModel.order()
             }
         }
         else if (!flag) {
@@ -355,6 +356,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 //                file.name = BoosterUtil(this).getFileName(docuri)
 //                file.type = BoosterUtil(this).getFileType(docuri)
                 fileStorageViewModel.addItem(file)
+                fileStorageViewModel.order()
             }
         }
         fileStorage_rv_file_add.adapter?.notifyDataSetChanged()
@@ -366,7 +368,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         when (view) {
             fileStorage_img_close -> showDeleteDialog()
             fileStorage_iv_file_add -> fileAdd()
-            fileStorage_tv_order -> fileStorageViewModel.order()
+            //fileStorage_tv_order -> fileStorageViewModel.order()
         }
     }
 

@@ -1,5 +1,6 @@
 package com.example.booster.ui.selectStore
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -110,13 +111,23 @@ class StoreListAdapter(val storeListItemClickListener: StoreListItemClickListene
         return count
     }
 
+    fun dpToPx(context: Context, dp: Int): Int {
+        val scale: Float = context.getResources().getDisplayMetrics().density
+        return (dp * scale + 0.5f).toInt()
+    }
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(storeItem: Store, viewType: Int) {
+
             when (viewType) {
                 LATEST.ordinal -> {
                     itemView.act_select_store_file_tv_recent.visibility = View.VISIBLE
                     itemView.act_select_store_file_tv_recent.text = "최근 본 매장"
                     itemView.item_selectstore_file_divider.visibility = View.VISIBLE
+                    //adjust bottom margin
+                    val params = itemView.constraintLayout9.layoutParams as ViewGroup.MarginLayoutParams
+                    params.bottomMargin = dpToPx(itemView.context, 16)
+                    itemView.constraintLayout9.layoutParams = params
                 }
                 FAVORITE.ordinal -> {
                     itemView.act_select_store_file_tv_recent.visibility = View.VISIBLE
@@ -135,7 +146,17 @@ class StoreListAdapter(val storeListItemClickListener: StoreListItemClickListene
                             itemView.act_select_store_file_tv_recent.visibility = View.GONE
                             if (bindingAdapterPosition == getCount(storeItem.type!!)) {
                                 itemView.item_selectstore_file_divider.visibility = View.VISIBLE
+                                //adjust bottom margin
+                                val params = itemView.constraintLayout9.layoutParams as ViewGroup.MarginLayoutParams
+                                params.bottomMargin = dpToPx(itemView.context, 16)
+                                itemView.constraintLayout9.layoutParams = params
                             }
+                        } else if (bindingAdapterPosition == 1 && bindingAdapterPosition == getCount(storeItem.type!!)){
+                            itemView.item_selectstore_file_divider.visibility = View.VISIBLE
+                            //adjust bottom margin
+                            val params = itemView.constraintLayout9.layoutParams as ViewGroup.MarginLayoutParams
+                            params.bottomMargin = dpToPx(itemView.context, 16)
+                            itemView.constraintLayout9.layoutParams = params
                         }
                     }
                 }
@@ -148,6 +169,10 @@ class StoreListAdapter(val storeListItemClickListener: StoreListItemClickListene
                         itemView.act_select_store_file_tv_recent.visibility = View.GONE
                         if (bindingAdapterPosition == itemCount - 1) {
                             itemView.item_selectstore_file_divider.visibility = View.VISIBLE
+                            //adjust bottom margin
+                            val params = itemView.constraintLayout9.layoutParams as ViewGroup.MarginLayoutParams
+                            params.bottomMargin = dpToPx(itemView.context, 16)
+                            itemView.constraintLayout9.layoutParams = params
                         }
                     }
                 }
