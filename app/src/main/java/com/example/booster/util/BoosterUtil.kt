@@ -2,6 +2,7 @@ package com.example.booster.util
 
 import android.content.Context
 import android.database.Cursor
+import android.graphics.Bitmap
 import android.net.Uri
 import android.util.Log
 import com.example.booster.BoosterApplication.Companion.globalApplication
@@ -54,12 +55,16 @@ class BoosterUtil(var context: Context = globalApplication) {
         }
 
         return when (type.toLowerCase()) {
-            "doc" -> R.drawable.ic_file_docx
-            "docx" -> R.drawable.ic_file_docx
-            "pdf" -> R.drawable.ic_file_pdf
-            "ppt" -> R.drawable.ic_file_pptx
-            "pptx" -> R.drawable.ic_file_pptx
+            ".doc" -> R.drawable.ic_file_docx
+            ".docx" -> R.drawable.ic_file_docx
+            ".pdf" -> R.drawable.ic_file_pdf
+            ".ppt" -> R.drawable.ic_file_pptx
+            ".pptx" -> R.drawable.ic_file_pptx
             else -> R.drawable.ic_file_others
         }
+    }
+
+    fun getBitmap(bitmap: Bitmap) {
+        val docimg = bitmap
     }
 }

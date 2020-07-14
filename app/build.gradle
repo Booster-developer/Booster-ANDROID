@@ -146,4 +146,7 @@ dependencies {
     //coordinator layout
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
 
+    //pdfium
+    implementation 'com.github.barteksc:pdfium-android:1.9.0'
+
 }

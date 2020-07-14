@@ -21,6 +21,7 @@ import com.example.booster.R
 import com.example.booster.data.datasource.model.*
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.util.BoosterUtil
+import com.example.booster.util.PDFThumbnailUtils
 import droidninja.filepicker.FilePickerBuilder
 import droidninja.filepicker.FilePickerConst
 import droidninja.filepicker.FilePickerConst.KEY_SELECTED_DOCS
@@ -28,10 +29,12 @@ import droidninja.filepicker.FilePickerConst.REQUEST_CODE_DOC
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_PHOTO
 import kotlinx.android.synthetic.main.activity_file_storage.*
 import kotlinx.android.synthetic.main.dialog_item_view.view.*
+import kotlinx.android.synthetic.main.my_file.*
 import org.koin.experimental.builder.getArguments
 
 
 private const val FINISH_SETTING_OPTION = 1000
+
 
 class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener {
     private lateinit var fileStorageViewModel: FileStorageViewModel
@@ -69,11 +72,11 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         subscribeObservers()
 
 
-        //fileStorageViewModel.getFileList()
+        //fileStorageViewModel.getFileList() 대기리스트 데이터 GET하기
 
 
 
-        //get intent values
+        //get intent values 매장선택리스트에서 store name, store address 보냄
         intent?.let{
             val storeName = it.getStringExtra("storeName")
             val address = it.getStringExtra("storeAddress")
@@ -269,6 +272,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                         uri?.let {
                             docPaths.addAll(it)
 
+
                             //showOptionActivity()
                         }
                     }
@@ -365,12 +369,14 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         builder.setTitle("추가할 파일의 종류를 선택해주세요")
         builder.setPositiveButton("이미지") { dialogInterface: DialogInterface, i: Int ->
             FilePickerBuilder.instance
+                .setMaxCount(1) //파일 1개만 선택 가능
                 .setActivityTheme(R.style.LibAppTheme) //optional
                 .setActivityTitle("이미지 선택")
                 .pickPhoto(this, REQUEST_CODE_PHOTO);
         }
         builder.setNegativeButton("문서") { dialogInterface: DialogInterface, i: Int ->
             FilePickerBuilder.instance
+                .setMaxCount(1)
                 .setActivityTheme(R.style.LibAppTheme) //optional
                 .setActivityTitle("문서 선택")
                 .pickFile(this, REQUEST_CODE_DOC);
