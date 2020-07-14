@@ -7,12 +7,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
-import com.example.booster.LoginActivity
-import com.example.booster.LottieActivity
-import com.example.booster.R
+import com.example.booster.*
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.ui.bottomtap.BottomTabActivity
-import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.fileStorage.StoreFileOptionActivity
 import com.example.booster.ui.orderDetail.OrderDetailActivity
 import com.example.booster.ui.orderList.OrderListActivity
@@ -86,7 +83,7 @@ class MainActivity : AppCompatActivity() {
             //applicationContext.resources.getString(R.string.hello_blank_fragment)
         }
         act_main_btn_store.onlyOneClickListener {
-            val intent = Intent(this@MainActivity, StoreListActivity::class.java)
+            val intent = Intent(this@MainActivity, StoreDetailActivity::class.java)
             startActivity(intent)
         }
         act_main_btn_store_detail.setOnClickListener {
