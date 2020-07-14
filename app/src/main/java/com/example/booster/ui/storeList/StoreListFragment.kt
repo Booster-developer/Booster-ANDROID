@@ -94,9 +94,7 @@ class StoreListFragment : Fragment() {
 
         frag_store_list_iv_map.setOnClickListener {
             val intent = Intent(context, MapActivity::class.java)
-
-            Log.e("univ22", univData)
-
+            intent.putExtra("univ", frag_store_list_tv_univ.text )
             intent.putParcelableArrayListExtra("marker", markers)
             startActivity(intent)
         }
@@ -142,11 +140,10 @@ class StoreListFragment : Fragment() {
         frag_store_list_rv.layoutManager = LinearLayoutManager(requireContext())
         frag_store_list_rv.addItemDecoration(ItemDecorator(24))
 
-        markers.clear()
-
         viewModel.storeList.observe(viewLifecycleOwner, Observer {
             adapter.data = it
             adapter.notifyDataSetChanged()
+            markers.clear()
             for(i in 0 .. it.size-1){
                 markers.add(
                     MarkerData(

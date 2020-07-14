@@ -1,5 +1,6 @@
 package com.example.booster.ui.storeDetail
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.booster.R
-import com.example.booster.data.datasource.model.MarkerData
 import com.example.booster.databinding.ActivityStoreDetailBinding
 import kotlinx.android.synthetic.main.activity_store_detail.*
 
@@ -40,6 +40,12 @@ class StoreDetailActivity : AppCompatActivity() {
 
         act_store_detail_iv_star.setOnClickListener {
             viewModel.putStoreFav(idx)
+        }
+
+        act_store_detail_map.setOnClickListener {
+            val intent = Intent(this, MapActivity::class.java)
+            intent.putExtra("detail", "detail")
+            startActivity(intent)
         }
 
     }

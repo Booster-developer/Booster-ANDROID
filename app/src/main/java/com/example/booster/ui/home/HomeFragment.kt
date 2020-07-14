@@ -4,8 +4,6 @@ import android.animation.Animator
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.os.Handler
-import androidx.lifecycle.ViewModelProviders
-import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
