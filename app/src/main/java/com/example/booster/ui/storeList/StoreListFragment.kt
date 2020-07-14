@@ -48,19 +48,19 @@ class StoreListFragment : Fragment() {
         initRv()
         setClick()
         viewModel.getOrderList(1)
-//        setAppBar()
+        setAppBar()
     }
 
-//    private fun setAppBar(){
-//        frag_store_list_appBar.addOnOffsetChangedListener(OnOffsetChangedListener { frag_store_list_appBar, verticalOffset ->
-//            if (frag_store_list_appBar.totalScrollRange == 0 || verticalOffset == 0) {
-//                frag_store_list_iv_map.alpha = 1f
-//                return@OnOffsetChangedListener
-//            }
-//            val ratio = verticalOffset.toFloat() / frag_store_list_appBar.totalScrollRange.toFloat()
-//            frag_store_list_iv_map.alpha = 1f- abs(ratio)
-//        })
-//    }
+    private fun setAppBar(){
+        frag_store_list_appBar.addOnOffsetChangedListener(OnOffsetChangedListener { frag_store_list_appBar, verticalOffset ->
+            if (frag_store_list_appBar.totalScrollRange == 0 || verticalOffset == 0) {
+                frag_store_list_iv_map.alpha = 1f
+                return@OnOffsetChangedListener
+            }
+            val ratio = verticalOffset.toFloat() / frag_store_list_appBar.totalScrollRange.toFloat()
+            frag_store_list_iv_map.alpha = 1f- abs(ratio)
+        })
+    }
 
     private fun setClick() {
         frag_store_list_ll_univ.setOnClickListener {

@@ -8,18 +8,11 @@
     tools:context=".ui.MainActivity">
 
     <Button
-        android:id="@+id/act_main_btn_store"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="매장 리스트"
-        android:layout_marginTop="50dp"/>
-
-    <Button
         android:id="@+id/act_main_btn_store_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="매장 상세"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="5dp"/>
 
     <Button
         android:id="@+id/act_main_btn_order_condition"
