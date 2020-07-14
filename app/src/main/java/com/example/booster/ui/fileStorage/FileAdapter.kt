@@ -6,18 +6,29 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.booster.AnimationUtil
 import com.example.booster.R
 import com.example.booster.data.datasource.model.File
 import com.example.booster.util.BoosterUtil
 import kotlinx.android.synthetic.main.my_file.view.*
 
+interface FileRecyclerViewOnClickListener{
+    fun itemDelete(item: File, position: Int)
+    fun itemOptionChange(item: File, position: Int)
+    fun itemOptionView(item: File, position: Int)
+}
+
 class FileAdapter(
-    var datas: ArrayList<File>,
-    val itemDelete: (File, Int) -> Unit,
-    val itemOptionChange: (File, Int) -> Unit,
-    val itemOptionView: (File, Int) -> Unit
+    var fileRecyclerViewOnClickListener: FileRecyclerViewOnClickListener?
+//    val itemDelete: (File, Int) -> Unit,
+//    val itemOptionChange: (File, Int) -> Unit,
+//    val itemOptionView: (File, Int) -> Unit
 ) :
     RecyclerView.Adapter<FileAdapter.ViewHolder>() {
+
+    private var fileDataList: ArrayList<File>  = ArrayList()
+
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -26,9 +37,19 @@ class FileAdapter(
         return ViewHolder(item)
     }
 
+    var previousPostition = 0
+    private val animationUtil = AnimationUtil()
+
+    fun submitList(list: ArrayList<File>?) {
+        list?.let{fileList->
+            fileDataList.clear()
+            fileDataList.addAll(fileList)
+            notifyDataSetChanged()
+        }
+    }
 
     override fun getItemCount(): Int {
-        return datas.size
+        return fileDataList.size
     }
 
     inner class ViewHolder(itemView: View) :
@@ -49,23 +70,34 @@ class FileAdapter(
             //itemView.tv_option_view.text = file.option_view //사용하면 옵션보기 텍스트가 안뜸
 
             itemView.iv_file_delete.setOnClickListener{
-                itemDelete(file, bindingAdapterPosition)
+                fileRecyclerViewOnClickListener?.itemDelete(file, bindingAdapterPosition)
+                //itemDelete(file, bindingAdapterPosition)
             }
 
             itemView.tv_option_change.setOnClickListener {
-                itemOptionChange(file, bindingAdapterPosition)
+                fileRecyclerViewOnClickListener?.itemOptionChange(file, bindingAdapterPosition)
+
+                // itemOptionChange(file, bindingAdapterPosition)
             }
 
             itemView.tv_option_view.setOnClickListener {
-                itemOptionView(file, bindingAdapterPosition)
+                fileRecyclerViewOnClickListener?.itemOptionView(file, bindingAdapterPosition)
+
+                // itemOptionView(file, bindingAdapterPosition)
             }
+
+
 
 
         }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(datas[position])
+        holder.bind(fileDataList[position])
+        if(position > previousPostition ){
+            animationUtil.fade_out(holder.itemView)
+        }
+        previousPostition = position
     }
 
 

@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-
+                android:fontFamily="@font/noto_sans_kr_regular"
                 android:gravity="center_horizontal"
                 android:lineSpacingExtra="6sp"
                 android:text="홈"
@@ -67,6 +67,7 @@
                 android:layout_marginTop="2dp"
                 android:gravity="center_horizontal"
                 android:lineSpacingExtra="6sp"
+                android:fontFamily="@font/noto_sans_kr_regular"
                 android:text="매장"
                 android:textColor="@drawable/tab_color_change"
                 android:textSize="12sp"
@@ -111,6 +112,7 @@
 
             <TextView
                 android:id="@+id/tab_tv_history"
+                android:fontFamily="@font/noto_sans_kr_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -148,6 +150,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:gravity="center_horizontal"
+                android:fontFamily="@font/noto_sans_kr_regular"
                 android:lineSpacingExtra="6sp"
                 android:text="내 정보"
                 android:textColor="@drawable/tab_color_change"

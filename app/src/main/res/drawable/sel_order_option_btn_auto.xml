@@ -2,9 +2,13 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:state_selected="true"
-        android:drawable="@drawable/icon_auto_select"/>
+        android:state_pressed="true"
+        android:drawable="@drawable/btn_auto_pressed"/>
 
-    <item android:drawable="@drawable/order_option_btn_auto"/>
+    <item
+        android:state_selected="true"
+        android:drawable="@drawable/btn_auto_selected"/>
+
+    <item android:drawable="@drawable/btn_auto_unselected"/>
 
 </selector>

@@ -1,10 +1,12 @@
 package com.example.booster.ui.storeDetail
 
 import android.os.Bundle
+import android.util.Log
 import androidx.annotation.UiThread
 import androidx.fragment.app.FragmentActivity
 import com.example.booster.R
 import com.example.booster.data.datasource.model.MarkerData
+import com.google.android.material.internal.ParcelableSparseArray
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.InfoWindow
@@ -15,12 +17,12 @@ import kotlinx.android.synthetic.main.activity_map.*
 
 
 class MapActivity : FragmentActivity(), OnMapReadyCallback {
-
-    var markers = mutableListOf<MarkerData>()
-
+    var markers = ArrayList<MarkerData>()
     var array = mutableListOf<Marker>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        markers = intent.getParcelableArrayListExtra<MarkerData>("marker")
 
         setContentView(R.layout.activity_map)
 
@@ -49,74 +51,17 @@ class MapActivity : FragmentActivity(), OnMapReadyCallback {
         nMap.locationTrackingMode
         uiSettings.isScaleBarEnabled = false
 
-        if(intent.getStringExtra("univ")=="숭실대학교"){
-            markers.clear()
             array.clear()
             val cameraUpdate = CameraUpdate.scrollTo(LatLng(37.496575, 126.957427))
             nMap.moveCamera(cameraUpdate)
 
-            loadDatas1()
             draw(nMap)
-        }
 
-        if(intent.getStringExtra("univ")=="중앙대학교") {
-            markers.clear()
-            array.clear()
-            val cameraUpdate = CameraUpdate.scrollTo(LatLng(37.504210, 126.956788))
-            nMap.moveCamera(cameraUpdate)
-
-            loadDatas2()
-            draw(nMap)
-        }
-    }
-
-    fun loadDatas1(){   //얀 숭실대
-        markers.apply {
-            add(
-                MarkerData(
-                    latitude = 37.495323,
-                    longitude = 126.953295,
-                    data = "진흥 인쇄랜드"
-                )
-            )
-            add(
-                MarkerData(
-                    latitude = 37.495176,
-                    longitude = 126.961398,
-                    data = "현대문화사"
-                )
-            )
-        }
-    }
-
-    fun loadDatas2(){   //얀 중앙대
-        markers.apply {
-            add(
-                MarkerData(
-                    latitude = 37.503183,
-                    longitude = 126.953737,
-                    data = "완유 인쇄사"
-                )
-            )
-            add(
-                MarkerData(
-                    latitude = 37.503659,
-                    longitude = 126.960244,
-                    data = "동진인쇄사"
-                )
-            )
-            add(
-                MarkerData(
-                    latitude = 37.506911,
-                    longitude = 126.946038,
-                    data = "대원인쇄소"
-                )
-            )
-        }
     }
 
     fun draw(nMap: NaverMap){
         val infoWindow = InfoWindow()
+        nMap.maxZoom
         infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(this) {
             override fun getText(infoWindow: InfoWindow): CharSequence {
                 return infoWindow.marker?.tag as CharSequence? ?:""
@@ -129,7 +74,7 @@ class MapActivity : FragmentActivity(), OnMapReadyCallback {
                 array.plusAssign(Marker().apply {
                     position = LatLng(markers[i].latitude, markers[i].longitude)
                     icon = OverlayImage.fromResource(R.drawable.store_map_ic_marker_click)
-                    tag = markers[i].data
+                    tag = markers[i].name
 //                    width = 100
 //                    height = 100
                 })

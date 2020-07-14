@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.booster.R
+import com.example.booster.data.datasource.model.MarkerData
 import com.example.booster.databinding.ActivityStoreDetailBinding
 import kotlinx.android.synthetic.main.activity_store_detail.*
 
@@ -24,6 +25,7 @@ class StoreDetailActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.vm = (this@StoreDetailActivity).viewModel
 
+
         idx = intent.getIntExtra("storeIdx", 0)
         viewModel.getStoreDetail(idx)
 
@@ -39,6 +41,7 @@ class StoreDetailActivity : AppCompatActivity() {
         act_store_detail_iv_star.setOnClickListener {
             viewModel.putStoreFav(idx)
         }
+
     }
 
 }
