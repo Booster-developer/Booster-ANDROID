@@ -26,7 +26,6 @@ class StoreListAdapter(private val context : Context,
     private val animationUtil = AnimationUtil()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoreListViewHolder {
-//        viewModel2 = ViewModelProvider(context as StoreListActivity).get(StoreDetailViewModel::class.java)
         viewModel2 = ViewModelProvider(context as BottomTabActivity).get(StoreDetailViewModel::class.java)
         binding = ItemStoreListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return StoreListViewHolder(binding, clickListener, clickFavListener)

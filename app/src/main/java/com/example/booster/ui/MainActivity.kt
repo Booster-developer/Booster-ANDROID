@@ -11,6 +11,7 @@ import com.example.booster.*
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.ui.bottomtap.BottomTabActivity
 import com.example.booster.ui.fileStorage.StoreFileOptionActivity
+import com.example.booster.ui.home.HomeActivity
 import com.example.booster.ui.orderDetail.OrderDetailActivity
 import com.example.booster.ui.orderList.OrderListActivity
 import com.example.booster.ui.payment.PaymentActivity
@@ -58,13 +59,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        act_main_btn_store.setOnClickListener {
-            //applicationContext.resources.getString(R.string.hello_blank_fragment)
-        }
-        act_main_btn_store.onlyOneClickListener {
-            val intent = Intent(this@MainActivity, StoreDetailActivity::class.java)
-            startActivity(intent)
-        }
         act_main_btn_store_detail.setOnClickListener {
             val intent = Intent(this@MainActivity, StoreDetailActivity::class.java)
             startActivity(intent)

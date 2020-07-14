@@ -4,8 +4,7 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.util.Log
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
+import android.view.View.*
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -116,7 +115,9 @@ fun setStoreImg(view: ImageView, url : String?) {
 fun setStoreBlackImg(view: ImageView, open : Int?) {
     if(open==0) {
         view.visibility = VISIBLE
-        view.alpha = 0.55f
+        view.alpha = 0.7f
+    }else{
+        view.visibility = INVISIBLE
     }
 }
 
@@ -124,6 +125,8 @@ fun setStoreBlackImg(view: ImageView, open : Int?) {
 fun setStoreCloseTxt(view: TextView, open : Int?) {
     if(open==0) {
         view.visibility = VISIBLE
+    }else{
+        view.visibility = INVISIBLE
     }
 }
 
