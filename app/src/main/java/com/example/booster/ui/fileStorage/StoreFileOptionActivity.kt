@@ -19,14 +19,14 @@ import retrofit2.Response
 class StoreFileOptionActivity : AppCompatActivity(),
     FragmentToActivity {
 
-    var color = ""
-    var direction = ""
-    var side = ""
-    var combine = ""
-    var range = ""
-    var rangeMin = ""
-    var rangeMax = ""
-    var num = ""
+    var color = "흑백"
+    var direction = "자동"
+    var side = "단면"
+    var combine = "1"
+    var range = "0"
+    var rangeMin = "0"
+    var rangeMax = "0"
+    var num = "1"
 
     val requestToServer = BoosterServiceImpl
 
@@ -39,14 +39,6 @@ class StoreFileOptionActivity : AppCompatActivity(),
         order_option_btn_auto.isSelected = true
         order_option_btn_single.isSelected = true
         order_option_btn_cut_1.isSelected = true
-        color = "흑백"
-        direction = "자동"
-        side = "단면"
-        combine = "1"
-        range = "전체"
-        rangeMin="0"
-        rangeMax="0"
-        num = "1"
 
         act_store_file_option_btn_back.setOnClickListener {
             finish()
@@ -166,8 +158,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
         }
 
         order_option_btn_range.setOnClickListener {
-            val fileRangeDialog =
-                StoreFileOptionRangeFragment()
+            val fileRangeDialog = StoreFileOptionRangeFragment()
             fileRangeDialog.show(
                 supportFragmentManager,
                 "file option range fragment"
@@ -176,8 +167,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
         }
 
         order_option_btn_num.setOnClickListener {
-            val fileNumDialog =
-                StoreFileOptionNumFragment()
+            val fileNumDialog = StoreFileOptionNumFragment()
             fileNumDialog.show(
                 supportFragmentManager, "file option nmm fragment"
             )
@@ -185,7 +175,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
 
         act_store_file_option_btn_option.setOnClickListener {
             val intent = intent
-            Log.e("aa", "${color} ${direction} ${side} ${combine} ${range} ${num}")
+            Log.e("option 버튼 clickListener", "${color} ${direction} ${side} ${combine} ${range} ${num}")
 
             val jsonData = JSONObject()
             jsonData.put("file_color", color)
@@ -200,7 +190,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
             Log.e("body", body.toString())
 
             requestToServer.service.changeOption(
-                1, body
+                100, body
             ).enqueue(object : Callback<DefaultData>{
                 override fun onFailure(call: Call<DefaultData>, t: Throwable) {
                     //통신 실패
@@ -212,7 +202,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
                     response: Response<DefaultData>
                 ) {
                     //통신 성공
-                    Log.e("onResponse", response.toString())
+                    Log.e("onResponse", response.message())
                     Log.e("color", color)
                     //인텐트 넘겨주기
 //                    intent.putExtra("color", color)
