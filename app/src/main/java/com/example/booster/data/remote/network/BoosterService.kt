@@ -105,4 +105,8 @@ interface BoosterService {
         @Header("token") token: String
     ): ApiWrapper<StoreList>
 
+    @GET("/mypage/notice")
+    fun getAlertList(
+        ): Call<AlertData>
+
 }
