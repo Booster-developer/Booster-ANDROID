@@ -10,6 +10,10 @@
         <variable
             name="vm"
             type="com.example.booster.ui.storeList.StoreListViewModel" />
+
+        <variable
+            name="vm2"
+            type="com.example.booster.ui.storeDetail.StoreDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
