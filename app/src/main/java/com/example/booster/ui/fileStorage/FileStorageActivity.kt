@@ -1,5 +1,6 @@
 package com.example.booster.ui.fileStorage
 
+import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -27,6 +28,7 @@ import droidninja.filepicker.FilePickerConst.REQUEST_CODE_DOC
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_PHOTO
 import kotlinx.android.synthetic.main.activity_file_storage.*
 import kotlinx.android.synthetic.main.dialog_item_view.view.*
+import org.koin.experimental.builder.getArguments
 
 
 private const val FINISH_SETTING_OPTION = 1000
@@ -65,7 +67,23 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         }
         fileStorageViewModel = ViewModelProvider(this).get(FileStorageViewModel::class.java)
         subscribeObservers()
-        fileStorageViewModel.getFileList()
+
+
+        //fileStorageViewModel.getFileList()
+
+
+
+        //get intent values
+        intent?.let{
+            val storeName = it.getStringExtra("storeName")
+            val address = it.getStringExtra("storeAddress")
+            storeName?.let{name->
+                fileStorage_tv_store_name.text = name
+            }
+            address?.let{address->
+                fileStorage_tv_store_address.text = address
+            }
+        }
     }
 
     private fun subscribeObservers() {
@@ -91,6 +109,11 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         fileStorageViewModel.waitlistLiveData.observe(this, Observer {
             it?.let {
                 setWaitList(it)
+            }
+        })
+        fileStorageViewModel.responseMessageLiveData.observe(this, Observer {
+            it?.let{errormessage ->
+                Toast.makeText(this, errormessage,Toast.LENGTH_SHORT).show()
             }
         })
 

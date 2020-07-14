@@ -16,6 +16,7 @@ import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import okhttp3.*
 import java.net.URI
 
@@ -25,13 +26,17 @@ class FileStorageViewModel : ViewModel() {
     val fileLiveData: LiveData<ArrayList<File>>
         get() = _fileMutableLiveData
 
-    private val _popupOptionMutableLiveData:MutableLiveData<PopupOptionInfo> = MutableLiveData()
+    private val _popupOptionMutableLiveData: MutableLiveData<PopupOptionInfo> = MutableLiveData()
     val popupOptionLiveData: LiveData<PopupOptionInfo>
         get() = _popupOptionMutableLiveData
 
-    private val _waitlistMutableLiveData:MutableLiveData<Wait> = MutableLiveData()
+    private val _waitlistMutableLiveData: MutableLiveData<Wait> = MutableLiveData()
     val waitlistLiveData: LiveData<Wait>
         get() = _waitlistMutableLiveData
+
+    private val _responseMessageMutableLiveData: MutableLiveData<String> = MutableLiveData()
+    val responseMessageLiveData: LiveData<String>
+        get() = _responseMessageMutableLiveData
 
 
     //private lateinit var arrList: ArrayList<File>
@@ -46,8 +51,10 @@ class FileStorageViewModel : ViewModel() {
 
     fun getFileList() {
         viewModelScope.launch(IO) {
-            val response = BoosterServiceImpl.serviceFileUpload.getFileList("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8",
-                1)
+            val response = BoosterServiceImpl.serviceFileUpload.getFileList(
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8",
+                1
+            )
             if (response.status == 200) {
                 val data = response.data
                 _waitlistMutableLiveData.postValue(data)
@@ -71,10 +78,12 @@ class FileStorageViewModel : ViewModel() {
 //        })
     }
 
-    fun getPopupOption(){
+    fun getPopupOption() {
         viewModelScope.launch(IO) {
-            val response = BoosterServiceImpl.serviceFileUpload.getPopupOption("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8",
-                2)
+            val response = BoosterServiceImpl.serviceFileUpload.getPopupOption(
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8",
+                2
+            )
             if (response.status == 200) {
                 val data = response.data
                 _popupOptionMutableLiveData.postValue(data)
@@ -98,7 +107,7 @@ class FileStorageViewModel : ViewModel() {
     fun order() {
         val idx = 6
         //val file = _fileMutableLiveData.value?.get(0)
-        val file = _fileMutableLiveData.value?.get((_fileMutableLiveData.value?.size!!-1))
+        val file = _fileMutableLiveData.value?.get((_fileMutableLiveData.value?.size!! - 1))
         val imageFile = java.io.File(file?.file_path)
         val docFile = java.io.File(file?.file_path)
 
@@ -110,21 +119,24 @@ class FileStorageViewModel : ViewModel() {
 
         var requestBody: RequestBody? = null
 
-        when(file?.file_extension){
+        when (file?.file_extension) {
             ".png" -> requestBody = RequestBody.create(
                 MediaType.parse("image/png"), imageFile
             )
             ".pdf" -> requestBody = RequestBody.create(
                 MediaType.parse("application/pdf"), docFile
             )
-//            ".docx" -> requestBody = RequestBody.create(
-//                MediaType.parse("multipart/form-data"), docFile
-//            )
+            ".docx" -> requestBody = RequestBody.create(
+                MediaType.parse("multipart/form-data"), docFile
+            )
             ".jpeg", ".jpg" -> requestBody = RequestBody.create(
                 MediaType.parse("image/jpeg"), imageFile
             )
         }
-        Log.e("pdfcheck", "check: " + requestBody + " " + file?.file_extension + " " + file?.file_name)
+        Log.e(
+            "pdfcheck",
+            "check: " + requestBody + " " + file?.file_extension + " " + file?.file_name
+        )
         val multipartBody =
             MultipartBody.Part.createFormData("file", file?.file_name, requestBody)
 
@@ -138,6 +150,11 @@ class FileStorageViewModel : ViewModel() {
             if (response.status == 200) {
                 val data = response.data
                 Log.e("check", "fileIdx : ${data?.file_idx}")
+            } else {
+//                withContext(Main){
+//
+//                }
+                _responseMessageMutableLiveData.postValue(response.message)
             }
 
             //  _statusLiveData.postValue(response.status)
