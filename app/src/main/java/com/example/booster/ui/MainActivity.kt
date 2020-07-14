@@ -25,25 +25,6 @@ import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
-    private fun getUniversities() {
-        //PdfRenderer
-
-        //  CoroutineScope(IO).launch {
-        lifecycleScope.launch(IO) {
-            val a = BoosterServiceImpl.service.getUniversities()
-            if (a.status == 200) {
-                Log.d("TEST", a.data.toString())
-//                withContext(Main) {
-//                    val textView = TextView(this@MainActivity)
-//                    textView.text = "asdfasfd"
-//                    setContentView(textView)
-//                }
-            }
-        }
-
-
-    }
-
     var permissionlistener: PermissionListener = object : PermissionListener {
         override fun onPermissionGranted() {
             Toast.makeText(this@MainActivity, "Permission Granted", Toast.LENGTH_SHORT).show()
@@ -62,8 +43,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        getUniversities()
 
         TedPermission.with(this)
             .setPermissionListener(permissionlistener)

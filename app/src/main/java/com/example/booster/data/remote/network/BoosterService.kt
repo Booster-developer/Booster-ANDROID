@@ -22,9 +22,6 @@ interface BoosterService {
     ): Observable<StoreDetailData>
 
 
-    @GET("stores/university")
-    suspend fun getUniversities(): ApiWrapper<List<University>>
-
     @POST("address")
     suspend fun uploadFiles(
         @Header("token") token: String,
