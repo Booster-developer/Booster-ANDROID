@@ -419,9 +419,11 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         val intent = Intent(this@FileStorageActivity, PdfViewerActivity::class.java)
         val file = item.file_path!!
         if (item.file_extension == ".pdf") {
-            intent.putExtra("file", file)
+            intent.putExtra("pdffile", file)
             Log.e("path check", "path: " + item.file_path + "java.io.File()=" + file)
-            startActivityForResult(intent, FINISH_PDF_VIEW)
+        } else if (item.file_extension == ".png" || item.file_extension == ".jpeg" || item.file_extension == ".jpg") {
+            intent.putExtra("imgfile", file)
         }
+        startActivityForResult(intent, FINISH_PDF_VIEW)
     }
 }

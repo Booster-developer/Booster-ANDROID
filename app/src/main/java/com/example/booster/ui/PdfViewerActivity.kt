@@ -11,9 +11,11 @@ import android.view.Gravity
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.example.booster.R
 import kotlinx.android.synthetic.main.activity_pdf_text.*
 import kotlinx.android.synthetic.main.activity_pdf_viewer.*
+import kotlinx.android.synthetic.main.my_file.view.*
 import java.io.IOException
 
 class PdfViewerActivity : AppCompatActivity() {
@@ -23,9 +25,17 @@ class PdfViewerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_pdf_viewer)
 
         val intent = intent
-        val file: String? = intent.getStringExtra("file")
-        Log.e("intent check", "check: " + file)
-        openPDF(java.io.File(file))
+
+        val pdffile: String? = intent.getStringExtra("pdffile")
+        Log.e("intent check", "check: " + pdffile)
+        val imgfile: String? = intent.getStringExtra("imgfile")
+
+        pdffile?.let{
+            openPDF(java.io.File(pdffile))
+        }.let{
+            Glide.with(this).load(imgfile).into(pdfviewer_act_main_imageview)
+        }
+
 
         pdfviewer_act_main_close.setOnClickListener {
 
