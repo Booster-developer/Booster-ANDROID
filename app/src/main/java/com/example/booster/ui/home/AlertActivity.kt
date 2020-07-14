@@ -35,7 +35,7 @@ class AlertActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<AlertData>, response: Response<AlertData>) {
                 alertResponse = response.body()!!
-                Log.e("alertsuccess", datas.toString() + datas.size)
+                loadAlert()
             }
 
         })
@@ -43,7 +43,7 @@ class AlertActivity : AppCompatActivity() {
         alertAdapter = AlertAdapter(this,
             object : AlertViewHolder.onClickAlertListener {
                 override fun onClickAlert(position: Int) {
-                    item_alert_img.isSelected = !item_alert_img.isSelected
+                    item_alert_img.setImageResource(R.drawable.notice_ic_alarm_inactive)
                 }
             }
         )
@@ -57,9 +57,6 @@ class AlertActivity : AppCompatActivity() {
             )
         )
 
-        loadAlert()
-        alertAdapter.notifyDataSetChanged()
-
     }
 
     fun loadAlert(){
@@ -68,7 +65,6 @@ class AlertActivity : AppCompatActivity() {
         for(i in 0 .. datas.size-1){
             alertAdapter.data.add(datas[i])
         }
-
         alertAdapter.notifyDataSetChanged()
     }
 }
