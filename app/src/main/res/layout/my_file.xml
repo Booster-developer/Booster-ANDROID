@@ -71,7 +71,7 @@
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/noto_sans_kr_regular"
             android:text="옵션설정"
-            android:textColor="#7d7d7d"
+            android:textColor="#467fff"
             android:textSize="12sp" />
 
         <TextView
@@ -82,7 +82,7 @@
             android:layout_marginRight="18dp"
             android:text="옵션보기"
             android:fontFamily="@font/noto_sans_kr_regular"
-            android:textColor="#467fff"
+            android:textColor="#7d7d7d"
             android:textSize="12sp"/>
 
 
