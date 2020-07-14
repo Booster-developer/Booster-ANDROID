@@ -15,6 +15,7 @@ object BoosterServiceImpl {
         OkHttpClient.Builder().addInterceptor(CookiesInterceptor())
             .addNetworkInterceptor(CookiesInterceptor()).build()
 
+    //파일 업로드
     private val okHttpClientFileUpload: OkHttpClient
         get() {
             val interceptor = HttpLoggingInterceptor()
