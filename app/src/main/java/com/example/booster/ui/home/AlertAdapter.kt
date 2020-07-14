@@ -1,5 +1,6 @@
 package com.example.booster.ui.home
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -42,7 +43,9 @@ class AlertViewHolder(view: View,
                       val clickListener: onClickAlertListener) : RecyclerView.ViewHolder(view){
 
     fun bind(alertDataInfo: AlertDataInfo) {
-        itemView.item_alert_idx.text = alertDataInfo.notice_idx.toString()
+        itemView.item_alert_img.setImageResource(R.drawable.notice_ic_alarm_active)
+        itemView.item_alert_idx.text = "no. " + alertDataInfo.notice_idx.toString()
+        itemView.item_alert_msg.text = "복사왕 김제본에서 주문하신 인쇄가 완료되었습니다.\n픽업 완료 버튼을 눌러주세요."
         itemView.item_alert_time.text = alertDataInfo.notice_time
     }
 
