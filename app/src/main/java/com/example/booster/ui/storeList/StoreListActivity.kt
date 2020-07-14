@@ -2,6 +2,7 @@ package com.example.booster.ui.storeList
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.FragmentTransaction
 import com.example.booster.R
 
 class StoreListActivity : AppCompatActivity() {
@@ -15,5 +16,5 @@ class StoreListActivity : AppCompatActivity() {
             .commit()
 
     }
-
 }
+

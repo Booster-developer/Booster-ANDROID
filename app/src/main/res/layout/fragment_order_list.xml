@@ -35,7 +35,7 @@
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/frag_order_condition_toolBar"
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
+                    android:layout_height="@dimen/header_height"
                     android:background="@color/white"
                     app:layout_collapseMode="pin"
                     app:popupTheme="@style/AppTheme.PopupOverlay">
