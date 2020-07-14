@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.booster.AnimationUtil
 import com.example.booster.R
 import com.example.booster.data.datasource.model.OrderOption
@@ -42,7 +43,9 @@ class OrderDetailViewHolder( view: View,
     val clickListener: onClickOrderItemListener) : RecyclerView.ViewHolder(view){
 
     fun bind(orderOption: OrderOption) {
-        itemView.tv_order_detail_file_name.text = orderOption.file_name
+//        Glide.with(itemView.context).load(orderOption.file_path).into(itemView.iv_order_detail)
+        itemView.tv_order_detail_file_name.text = orderOption.file_name + "." + orderOption.file_extension
+        itemView.tv_order_detail_file_price.text = orderOption.file_price.toString() + "원"
     }
     init {
         itemView.dial_item_order_detail.onlyOneClickListener {

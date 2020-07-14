@@ -3,10 +3,14 @@
 
 
     <item
-        android:state_selected="true"
-        android:drawable="@drawable/icon_color_select"/>
+        android:state_pressed="true"
+        android:drawable="@drawable/btn_color_pressed"/>
 
-    <item android:drawable="@drawable/order_option_btn_color"/>
+    <item
+        android:state_selected="true"
+        android:drawable="@drawable/btn_color_selected"/>
+
+    <item android:drawable="@drawable/btn_color_unselected"/>
 
 
 </selector>

@@ -61,6 +61,7 @@ class MapActivity : FragmentActivity(), OnMapReadyCallback {
 
     fun draw(nMap: NaverMap){
         val infoWindow = InfoWindow()
+        nMap.maxZoom
         infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(this) {
             override fun getText(infoWindow: InfoWindow): CharSequence {
                 return infoWindow.marker?.tag as CharSequence? ?:""

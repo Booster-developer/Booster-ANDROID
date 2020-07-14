@@ -19,6 +19,8 @@ data class OrderDetailInfo(
 
 data class OrderOption(
     val file_name: String,
+    val file_extension: String,
+    val file_price: Int,
     val file_color: String,
     val file_range_start: Int,
     val file_range_end: Int,
