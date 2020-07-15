@@ -54,16 +54,6 @@ class MainActivity : AppCompatActivity() {
             )
             .check();
 
-        act_store_file_option_btn_option.setOnClickListener {
-            val intent = Intent(this@MainActivity, StoreFileOptionActivity::class.java)
-            startActivity(intent)
-        }
-
-        act_main_btn_store_detail.setOnClickListener {
-            val intent = Intent(this@MainActivity, StoreDetailActivity::class.java)
-            startActivity(intent)
-        }
-
         act_main_btn_order_condition.onlyOneClickListener {
             val intent = Intent(this@MainActivity, OrderListActivity::class.java)
             startActivity(intent)
@@ -94,12 +84,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
-
-        act_order_detail.setOnClickListener {
-            val intent = Intent(this, OrderDetailActivity::class.java)
-            startActivity(intent)
-        }
-
 
         act_main_btn_lottie.setOnClickListener {
             val intent = Intent(this, LottieActivity::class.java)

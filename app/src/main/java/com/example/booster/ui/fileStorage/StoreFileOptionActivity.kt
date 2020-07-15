@@ -217,7 +217,6 @@ class StoreFileOptionActivity : AppCompatActivity(),
 //                    }
 //                    intent.putExtra("num", num)
                     setResult(Activity.RESULT_OK, intent)
-                    finish()
                 }
             })
 
