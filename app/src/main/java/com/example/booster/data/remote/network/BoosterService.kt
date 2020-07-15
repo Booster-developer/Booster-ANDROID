@@ -72,6 +72,12 @@ interface BoosterService {
         @Body() body: JsonObject
     ): Call<DefaultData>
 
+    @POST("/orders/{file_idx}/options")
+    suspend fun editOption(
+        @Path("file_idx") fileIdx: Int,
+        @Body() body: JsonObject
+    ): ApiWrapper<String?>
+
     @GET("/orders/{order_idx}/payment")
     fun getPaymentInfo(
         @Path("order_idx") orderIdx: Int
@@ -109,4 +115,15 @@ interface BoosterService {
     fun getAlertList(
         ): Call<AlertData>
 
+    @POST("/orders/{store_idx}")
+    suspend fun getOrderIdx(
+        @Header("token") token: String,
+        @Path("store_idx") storeIdx: Int
+    ): ApiWrapper<OrderDetailInfo>
+
+    @DELETE("/orders/{file_idx}")
+    suspend fun deleteFile(
+        @Header("token") token: String,
+        @Path("file_idx") fileIdx: Int
+    ): ApiWrapper<String?>
 }

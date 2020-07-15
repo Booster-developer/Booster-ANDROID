@@ -52,6 +52,7 @@ class SelectStoreActivity: AppCompatActivity(), StoreListItemClickListener {
 
     override fun onStoreListItemClicked(store: Store, position: Int) {
         val intent = Intent(this, FileStorageActivity::class.java)
+        intent.putExtra("storeIdx", store.store_idx)
         intent.putExtra("storeName", store.store_name)
         intent.putExtra("storeAddress", store.store_address)
         startActivityForResult(intent, 1000)

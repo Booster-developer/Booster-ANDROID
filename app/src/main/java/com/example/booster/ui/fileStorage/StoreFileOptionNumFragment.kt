@@ -62,7 +62,7 @@ class StoreFileOptionNumFragment : DialogFragment() {
         }
 
         dial_store_file_option_num.setOnClickListener {
-            sendData("${printOption}")
+            sendData(printOption)
             dismiss()
         }
 
@@ -90,7 +90,7 @@ class StoreFileOptionNumFragment : DialogFragment() {
             Toast.LENGTH_SHORT).show();
     }
 
-    fun sendData(num:String)
+    fun sendData(num:Int)
     {
         mCallback!!.communicateNum(num);
 
