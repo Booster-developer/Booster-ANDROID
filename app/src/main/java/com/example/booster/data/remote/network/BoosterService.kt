@@ -4,6 +4,7 @@ package com.example.booster.data.remote.network
 import com.example.booster.data.datasource.model.*
 import com.google.gson.JsonObject
 import io.reactivex.Observable
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
 import java.io.File
@@ -59,12 +60,13 @@ interface BoosterService {
     @GET("/orders/{order_idx}/list")
     fun getFileList(
         @Path("order_idx") orderIdx: Int
-    ): Call<FileResponse>
+    ): ApiWrapper<Wait>
 
     @GET("/orders/{file_idx}/options")
-    fun getPopupOption(
+    suspend fun getPopupOption(
+        @Header("token") token: String,
         @Path("file_idx") fileIdx: Int
-    ): Call<PopupOptionData>
+    ): ApiWrapper<PopupOptionInfo>
 
     @POST("/orders/{file_idx}/options")
     fun changeOption(
@@ -91,5 +93,12 @@ interface BoosterService {
     fun getStoreList(
         @Path("univ_idx") univIdx: Int
     ): Observable<StoreListData>
-}
 
+    @Multipart
+    @POST("/orders/{order_idx}/file")
+    suspend fun postUploadFile(
+        @Header("token") token: String,
+        @Path("order_idx") orderIdx: Int,
+        @Part file: MultipartBody.Part?
+    ): ApiWrapper<com.example.booster.data.datasource.model.File>
+}

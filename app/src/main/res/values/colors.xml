@@ -7,6 +7,10 @@
     <color name="line2">#3db449</color>
     <color name="line7">#8a8623</color>
     <color name="line9">#cda43a</color>
+<<<<<<< HEAD
     <color name="blue">#467fff</color>
     <color name="grey">#7d7d7d</color>
+=======
+    <color name="red">#ff1200</color>
+>>>>>>> a631a156334682766b651bd6dc617ba8ecb50100
 </resources>
