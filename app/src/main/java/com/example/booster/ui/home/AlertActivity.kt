@@ -3,6 +3,7 @@ package com.example.booster.ui.home
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.booster.R
 import com.example.booster.data.datasource.model.AlertData
@@ -43,7 +44,9 @@ class AlertActivity : AppCompatActivity() {
         alertAdapter = AlertAdapter(this,
             object : AlertViewHolder.onClickAlertListener {
                 override fun onClickAlert(position: Int) {
-                    item_alert_img.setImageResource(R.drawable.notice_ic_alarm_inactive)
+                    if(datas[position].notice_confirm==1){
+                        read(position)
+                    }
                 }
             }
         )
@@ -65,6 +68,14 @@ class AlertActivity : AppCompatActivity() {
         for(i in 0 .. datas.size-1){
             alertAdapter.data.add(datas[i])
         }
+        Log.e("alert", datas.toString())
         alertAdapter.notifyDataSetChanged()
+
+    }
+
+    fun read(position: Int){
+        datas[position].notice_confirm = 0
+        Log.e("alertposition", position.toString())
+        alertAdapter.notifyItemChanged(position)
     }
 }

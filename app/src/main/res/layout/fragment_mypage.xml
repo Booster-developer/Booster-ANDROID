@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.myPage.MypageFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/title"
@@ -28,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/bg_ffffff_round"
             android:elevation="5dp"
             android:padding="16dp"
@@ -86,7 +87,7 @@
                 app:layout_constraintTop_toTopOf="@+id/mypage_univ" />
 
             <TextView
-                android:id="@+id/textView18"
+                android:id="@+id/mypage_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -183,7 +184,7 @@
             android:paddingBottom="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout11">
+            app:layout_constraintTop_toBottomOf="@+id/goto_myengine">
 
             <TextView
                 android:id="@+id/textView25"
@@ -211,7 +212,7 @@
 
             <Switch
                 android:id="@+id/switch1"
-                android:layout_width="30dp"
+                android:layout_width="wrap_content"
                 android:layout_height="10dp"
                 android:trackTint="@color/blue"
                 app:layout_constraintBottom_toBottomOf="@+id/textView24"
@@ -241,4 +242,4 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
