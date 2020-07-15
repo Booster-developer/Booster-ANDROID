@@ -16,7 +16,7 @@ class BottomTabAdapter (fm : FragmentManager, val fragmentCount : Int):
         when(position){
             0 -> return HomeFragment()
             1 -> return StoreListFragment()
-            2 -> return null!! //여기서 SelectStoreActivity로 가야함
+            2 -> return StoreListFragment()
             3 -> return OrderListFragment()
             4 -> return MypageFragment()
             else -> null!!

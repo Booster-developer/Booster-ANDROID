@@ -46,11 +46,6 @@ class MainActivity : AppCompatActivity() {
             )
             .check()
 
-        act_store_file_option_btn_option.onlyOneClickListener {
-            val intent = Intent(this@MainActivity, StoreFileOptionActivity::class.java)
-            startActivity(intent)
-        }
-
         act_main_btn_order_condition.onlyOneClickListener {
             val intent = Intent(this@MainActivity, OrderListActivity::class.java)
             startActivity(intent)
