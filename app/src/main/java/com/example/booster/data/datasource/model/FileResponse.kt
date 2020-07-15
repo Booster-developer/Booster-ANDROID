@@ -11,7 +11,7 @@ data class Wait(
 )
 
 data class File(
-    val file_idx: Int,
+    var file_idx: Int,
     val file_name: String?,
     val file_extension: String?,
     val file_path: String?,
