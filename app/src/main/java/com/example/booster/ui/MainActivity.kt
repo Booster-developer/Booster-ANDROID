@@ -7,13 +7,11 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
-import com.example.booster.LoginActivity
-import com.example.booster.LottieActivity
-import com.example.booster.R
+import com.example.booster.*
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.ui.bottomtap.BottomTabActivity
-import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.fileStorage.StoreFileOptionActivity
+import com.example.booster.ui.home.HomeActivity
 import com.example.booster.ui.orderDetail.OrderDetailActivity
 import com.example.booster.ui.orderList.OrderListActivity
 import com.example.booster.ui.payment.PaymentActivity
@@ -27,25 +25,6 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
-
-    private fun getUniversities() {
-        //PdfRenderer
-
-        //  CoroutineScope(IO).launch {
-        lifecycleScope.launch(IO) {
-            val a = BoosterServiceImpl.service.getUniversities()
-            if (a.status == 200) {
-                Log.d("TEST", a.data.toString())
-//                withContext(Main) {
-//                    val textView = TextView(this@MainActivity)
-//                    textView.text = "asdfasfd"
-//                    setContentView(textView)
-//                }
-            }
-        }
-
-
-    }
 
     var permissionlistener: PermissionListener = object : PermissionListener {
         override fun onPermissionGranted() {
@@ -66,8 +45,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        getUniversities()
-
         TedPermission.with(this)
             .setPermissionListener(permissionlistener)
             .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
@@ -82,13 +59,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        act_main_btn_store.setOnClickListener {
-            //applicationContext.resources.getString(R.string.hello_blank_fragment)
-        }
-        act_main_btn_store.onlyOneClickListener {
-            val intent = Intent(this@MainActivity, StoreListActivity::class.java)
-            startActivity(intent)
-        }
         act_main_btn_store_detail.setOnClickListener {
             val intent = Intent(this@MainActivity, StoreDetailActivity::class.java)
             startActivity(intent)

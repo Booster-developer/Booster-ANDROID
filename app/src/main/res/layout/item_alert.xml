@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:backgroundTint="@color/white"
+    android:background="@drawable/bg_ffffff_round">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_alert_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/bg_ffffff_round"
+        android:elevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/act_select_store_file_tv_recent">
+
+        <ImageView
+            android:id="@+id/item_alert_img"
+            android:layout_marginLeft="8dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/notice_ic_alarm_active"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+
+        <TextView
+            android:id="@+id/item_alert_idx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            app:layout_constraintStart_toEndOf="@+id/item_alert_img"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="10sp"
+            android:textColor="@color/grey"
+            android:lineSpacingExtra="5sp"
+            tools:text="no. 121"
+            />
+
+        <TextView
+            android:id="@+id/item_alert_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            app:layout_constraintStart_toStartOf="@+id/item_alert_idx"
+            app:layout_constraintTop_toBottomOf="@id/item_alert_idx"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            tools:text="복사왕 김제본에서 주문하신 인쇄가 완료되었습니다.\n픽업 완료 버튼을 눌러주세요."/>
+
+        <TextView
+            android:id="@+id/item_alert_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:lineSpacingExtra="5sp"
+            android:text="2020.05.09 16:29"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/item_alert_msg"
+            app:layout_constraintTop_toBottomOf="@+id/item_alert_msg" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

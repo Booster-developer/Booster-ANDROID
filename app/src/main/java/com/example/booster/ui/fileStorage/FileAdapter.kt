@@ -10,16 +10,21 @@ import com.example.booster.AnimationUtil
 import com.example.booster.R
 import com.example.booster.data.datasource.model.File
 import com.example.booster.util.BoosterUtil
+import com.example.booster.util.PDFThumbnailUtils
+import kotlinx.android.synthetic.main.activity_file_storage.*
 import kotlinx.android.synthetic.main.my_file.view.*
+
+private const val PAGE_NUMBER = 0
 
 interface FileRecyclerViewOnClickListener{
     fun itemDelete(item: File, position: Int)
     fun itemOptionChange(item: File, position: Int)
     fun itemOptionView(item: File, position: Int)
+    fun pdfviewer(item: File, position: Int)
 }
 
 class FileAdapter(
-    var fileRecyclerViewOnClickListener: FileRecyclerViewOnClickListener?
+    var fileRecyclerViewOnClickListener: FileStorageActivity
 //    val itemDelete: (File, Int) -> Unit,
 //    val itemOptionChange: (File, Int) -> Unit,
 //    val itemOptionView: (File, Int) -> Unit
@@ -58,11 +63,25 @@ class FileAdapter(
             //Log.e("uri", file.uri.path.toString())
 
             Log.e("file", file.file_name + " " + file.file_extension)
-            if (file.file_extension == "img") {
+            if (file.file_extension == ".png" || file.file_extension == ".jpeg" || file.file_extension == ".jpg") {
                 Glide.with(itemView.context).load(file.file_path).into(itemView.iv_file)
             } else {
-                val fileImage = BoosterUtil(itemView.context).getFileImage(file.file_extension)
-                Glide.with(itemView.context).load(fileImage).into(itemView.iv_file)
+                val uri = file.file_uri
+                if (uri != null) {
+                    val bitmap =
+                        PDFThumbnailUtils.convertPDFtoBitmap(
+                            itemView.context,
+                            uri,
+                            PAGE_NUMBER
+                        )
+                    if (bitmap != null) {
+                        itemView.iv_file.setImageBitmap(bitmap)
+                        //Log.e("context check: ", " " + itemView.context + " " + itemView.context.javaClass.name)
+                    }
+
+                }
+                //val fileImage = BoosterUtil(itemView.context).getFileImage(file.file_extension)
+                //Glide.with(itemView.context).load(fileImage).into(itemView.iv_file)
             }
 
             itemView.tv_file_name.text = file.file_name
@@ -84,6 +103,10 @@ class FileAdapter(
                 fileRecyclerViewOnClickListener?.itemOptionView(file, bindingAdapterPosition)
 
                 // itemOptionView(file, bindingAdapterPosition)
+            }
+
+            itemView.iv_file.setOnClickListener {
+                fileRecyclerViewOnClickListener?.pdfviewer(file, bindingAdapterPosition)
             }
 
 

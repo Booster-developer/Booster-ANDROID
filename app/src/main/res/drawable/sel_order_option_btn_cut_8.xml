@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:state_pressed="true"
+        android:drawable="@drawable/btn_8_pressed" />
+
     <item
         android:state_selected="true"
-        android:drawable="@drawable/icon_8_select"/>
+        android:drawable="@drawable/btn_8_selected"/>
 
-    <item android:drawable="@drawable/order_option_btn_cut_8"/>
+    <item android:drawable="@drawable/btn_8_unselected"/>
 
 </selector>
