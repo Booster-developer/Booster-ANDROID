@@ -111,7 +111,23 @@ interface BoosterService {
         @Header("token") token: String
     ): ApiWrapper<StoreList>
 
-    @GET("/mypage/notice")
+    @GET("/mypage/profile/list")
+    fun getMyProfile(
+        @Header("token") token: String
+    ): Call<ProfileData>
+
+    @PUT("/mypage/profile")
+    fun editMyProfile(
+        @Header("token") token: String,
+        @Body body: JsonObject
+    ): Call<EditProfileData>
+
+    @GET("/mypage/engine/history")
+    fun getEngineHistory(
+        @Header("token") token: String
+    ): Call<EngineHistoryData>
+
+    @GET("/mypage/notice/history")
     fun getAlertList(
         ): Call<AlertData>
 
@@ -126,4 +142,10 @@ interface BoosterService {
         @Header("token") token: String,
         @Path("file_idx") fileIdx: Int
     ): ApiWrapper<String?>
+
+    @PUT("/mypage/notice/{order_idx}")
+    fun checkNotice(
+        @Header("token") token: String
+    ): Call<NoticeData>
+
 }

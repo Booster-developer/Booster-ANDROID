@@ -8,6 +8,7 @@ data class AlertData(
 )
 
 data class AlertDataInfo(
+    var notice_confirm: Int,
     val notice_idx: Int,
     val notice_time: String
 )

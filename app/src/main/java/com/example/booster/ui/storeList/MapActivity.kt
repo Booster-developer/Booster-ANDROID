@@ -7,6 +7,7 @@ import androidx.annotation.UiThread
 import androidx.fragment.app.FragmentActivity
 import com.example.booster.R
 import com.example.booster.data.datasource.model.MarkerData
+import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.storeDetail.StoreDetailActivity
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
@@ -26,12 +27,12 @@ class MapActivity : FragmentActivity(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        markers = intent.getParcelableArrayListExtra<MarkerData>("marker")
-        university = intent.getStringExtra("univ")
+        markers = intent.getParcelableArrayListExtra<MarkerData>("marker")!!
+        university = intent.getStringExtra("univ")!!
 
         setContentView(R.layout.activity_map)
 
-        btn_back.setOnClickListener {
+        btn_back.onlyOneClickListener {
             markers.clear()
             array.clear()
             finish()

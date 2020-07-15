@@ -14,7 +14,8 @@ import kotlinx.android.synthetic.main.item_order_detail.view.*
 
 
 class OrderAdapter(private val context: Context,
-                   private val clickListener: OrderDetailViewHolder.onClickOrderItemListener) : RecyclerView.Adapter<OrderDetailViewHolder>(){
+                   private val clickListener: OrderDetailViewHolder.onClickOrderItemListener,
+                   private val clickImgListener: OrderDetailViewHolder.onClickImgListener) : RecyclerView.Adapter<OrderDetailViewHolder>(){
 
     var data = mutableListOf<OrderOption>()
     var previousPostition = 0
@@ -22,7 +23,7 @@ class OrderAdapter(private val context: Context,
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderDetailViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_order_detail, parent, false)
-        return OrderDetailViewHolder(view, clickListener)
+        return OrderDetailViewHolder(view, clickListener, clickImgListener)
     }
 
     override fun getItemCount(): Int {
@@ -40,10 +41,12 @@ class OrderAdapter(private val context: Context,
 }
 
 class OrderDetailViewHolder( view: View,
-    val clickListener: onClickOrderItemListener) : RecyclerView.ViewHolder(view){
+    val clickListener: onClickOrderItemListener,
+    val clickImgListener: onClickImgListener) : RecyclerView.ViewHolder(view){
 
     fun bind(orderOption: OrderOption) {
 //        Glide.with(itemView.context).load(orderOption.file_path).into(itemView.iv_order_detail)
+        itemView.iv_order_detail.setImageResource(R.drawable.order_wait_img_1)
         itemView.tv_order_detail_file_name.text = orderOption.file_name + "." + orderOption.file_extension
         itemView.tv_order_detail_file_price.text = orderOption.file_price.toString() + "원"
     }
@@ -51,10 +54,17 @@ class OrderDetailViewHolder( view: View,
         itemView.dial_item_order_detail.onlyOneClickListener {
             clickListener.onClickOrderItem(adapterPosition)
         }
+        itemView.iv_order_detail.onlyOneClickListener {
+            clickImgListener.onClickImg(adapterPosition)
+        }
     }
 
     interface onClickOrderItemListener{
         fun onClickOrderItem(position: Int)
+    }
+
+    interface onClickImgListener{
+        fun onClickImg(position: Int)
     }
 
 }

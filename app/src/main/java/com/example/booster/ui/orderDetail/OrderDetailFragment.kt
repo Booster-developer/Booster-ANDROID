@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 
 import com.example.booster.R
+import com.example.booster.onlyOneClickListener
 import kotlinx.android.synthetic.main.dialog_item_view.*
 
 class OrderDetailFragment : DialogFragment() {
@@ -54,7 +55,7 @@ class OrderDetailFragment : DialogFragment() {
 
         dial_item_view_tv_number2.text = copy
 
-        dial_item_view_close.setOnClickListener {
+        dial_item_view_close.onlyOneClickListener {
             dismiss()
         }
 

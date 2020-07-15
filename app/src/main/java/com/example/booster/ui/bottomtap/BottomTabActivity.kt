@@ -9,9 +9,11 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.booster.R
 import com.example.booster.ui.MainActivity
 import com.example.booster.ui.fileStorage.FragmentToActivity
+import com.example.booster.ui.selectStore.SelectStoreActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import kotlinx.android.synthetic.main.activity_bottom_tab.*
+import kotlinx.android.synthetic.main.tab_layout.*
 
 class BottomTabActivity : AppCompatActivity() {
 
@@ -21,6 +23,7 @@ class BottomTabActivity : AppCompatActivity() {
 
         setAdapter()
         setTabBar()
+        click()
     }
 
     private fun setTabBar() {
@@ -84,5 +87,13 @@ class BottomTabActivity : AppCompatActivity() {
 
             }
         })
+
+    }
+
+    fun click(){
+        tab_booster.setOnClickListener {
+            val intent = Intent(this, SelectStoreActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

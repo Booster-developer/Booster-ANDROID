@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.booster.R
 import com.example.booster.data.datasource.model.PopupOptionInfo
 import com.example.booster.data.remote.network.BoosterServiceImpl
+import com.example.booster.onlyOneClickListener
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_store_file_option.*
@@ -50,6 +51,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
         order_option_btn_auto.isSelected = true
         order_option_btn_single.isSelected = true
         order_option_btn_cut_1.isSelected = true
+
 
         storeFileOptionViewModel = ViewModelProvider(this).get(StoreFileOptionViewModel::class.java)
 
@@ -108,7 +110,13 @@ class StoreFileOptionActivity : AppCompatActivity(),
             finish()
         }
 
-        order_option_btn_mono.setOnClickListener {
+
+
+        act_store_file_option_btn_back.onlyOneClickListener {
+            finish()
+        }
+
+        order_option_btn_mono.onlyOneClickListener {
             colorReset()
             order_option_btn_mono.isSelected = !order_option_btn_mono.isSelected
             if (order_option_btn_mono.isSelected) {
@@ -116,7 +124,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
             } else colorReset()
         }
 
-        order_option_btn_color.setOnClickListener {
+        order_option_btn_color.onlyOneClickListener {
             colorReset()
             order_option_btn_color.isSelected = !order_option_btn_color.isSelected
             if (order_option_btn_color.isSelected) {
@@ -124,7 +132,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
             } else colorReset()
         }
 
-        order_option_btn_auto.setOnClickListener {
+        order_option_btn_auto.onlyOneClickListener {
             directionReset()
             order_option_btn_auto.isSelected = !order_option_btn_auto.isSelected
             if (order_option_btn_auto.isSelected) {
@@ -132,7 +140,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
             } else directionReset()
         }
 
-        order_option_btn_height.setOnClickListener {
+        order_option_btn_height.onlyOneClickListener {
             directionReset()
             order_option_btn_height.isSelected = !order_option_btn_height.isSelected
             if (order_option_btn_height.isSelected) {
@@ -140,7 +148,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
             } else directionReset()
         }
 
-        order_option_btn_width.setOnClickListener {
+        order_option_btn_width.onlyOneClickListener {
             directionReset()
             order_option_btn_width.isSelected = !order_option_btn_width.isSelected
             if (order_option_btn_width.isSelected) {
@@ -148,7 +156,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
             } else directionReset()
         }
 
-        order_option_btn_single.setOnClickListener {
+        order_option_btn_single.onlyOneClickListener {
             sideReset()
             order_option_btn_single.isSelected = !order_option_btn_single.isSelected
             if (order_option_btn_single.isSelected) {
@@ -156,7 +164,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
             } else sideReset()
         }
 
-        order_option_btn_doublehei1.setOnClickListener {
+        order_option_btn_doublehei1.onlyOneClickListener {
             sideReset()
             order_option_btn_doublehei1.isSelected = !order_option_btn_doublehei1.isSelected
             if (order_option_btn_doublehei1.isSelected) {
@@ -164,7 +172,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
             } else sideReset()
         }
 
-        order_option_btn_doublehei2.setOnClickListener {
+        order_option_btn_doublehei2.onlyOneClickListener {
             sideReset()
             order_option_btn_doublehei2.isSelected = !order_option_btn_doublehei2.isSelected
             if (order_option_btn_doublehei2.isSelected) {
@@ -173,7 +181,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
 
         }
 
-        order_option_btn_cut_1.setOnClickListener {
+        order_option_btn_cut_1.onlyOneClickListener {
             combineReset()
             order_option_btn_cut_1.isSelected = !order_option_btn_cut_1.isSelected
             if (order_option_btn_cut_1.isSelected) {
@@ -181,7 +189,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
             } else combineReset()
         }
 
-        order_option_btn_cut_2.setOnClickListener {
+        order_option_btn_cut_2.onlyOneClickListener {
             combineReset()
             order_option_btn_cut_2.isSelected = !order_option_btn_cut_2.isSelected
             if (order_option_btn_cut_2.isSelected) {
@@ -189,7 +197,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
             } else combineReset()
         }
 
-        order_option_btn_cut_3.setOnClickListener {
+        order_option_btn_cut_3.onlyOneClickListener {
             combineReset()
             order_option_btn_cut_3.isSelected = !order_option_btn_cut_3.isSelected
             if (order_option_btn_cut_3.isSelected) {
@@ -197,7 +205,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
             } else combineReset()
         }
 
-        order_option_btn_cut_4.setOnClickListener {
+        order_option_btn_cut_4.onlyOneClickListener {
             combineReset()
             order_option_btn_cut_4.isSelected = !order_option_btn_cut_4.isSelected
             if (order_option_btn_cut_4.isSelected) {
@@ -205,7 +213,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
             } else combineReset()
         }
 
-        order_option_btn_cut_6.setOnClickListener {
+        order_option_btn_cut_6.onlyOneClickListener {
             combineReset()
             order_option_btn_cut_6.isSelected = !order_option_btn_cut_6.isSelected
             if (order_option_btn_cut_6.isSelected) {
@@ -213,7 +221,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
             } else combineReset()
         }
 
-        order_option_btn_cut_8.setOnClickListener {
+        order_option_btn_cut_8.onlyOneClickListener {
             combineReset()
             order_option_btn_cut_8.isSelected = !order_option_btn_cut_8.isSelected
             if (order_option_btn_cut_8.isSelected) {
@@ -221,7 +229,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
             } else combineReset()
         }
 
-        order_option_btn_cut_9.setOnClickListener {
+        order_option_btn_cut_9.onlyOneClickListener {
             combineReset()
             order_option_btn_cut_9.isSelected = !order_option_btn_cut_9.isSelected
             if (order_option_btn_cut_9.isSelected) {
@@ -229,7 +237,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
             } else combineReset()
         }
 
-        order_option_btn_cut_16.setOnClickListener {
+        order_option_btn_cut_16.onlyOneClickListener {
             combineReset()
             order_option_btn_cut_16.isSelected = !order_option_btn_cut_16.isSelected
             if (order_option_btn_cut_16.isSelected) {
@@ -237,7 +245,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
             } else combineReset()
         }
 
-        order_option_btn_range.setOnClickListener {
+        order_option_btn_range.onlyOneClickListener {
             val fileRangeDialog = StoreFileOptionRangeFragment()
             fileRangeDialog.show(
                 supportFragmentManager,
@@ -246,12 +254,13 @@ class StoreFileOptionActivity : AppCompatActivity(),
 
         }
 
-        order_option_btn_num.setOnClickListener {
+        order_option_btn_num.onlyOneClickListener {
             val fileNumDialog = StoreFileOptionNumFragment()
             fileNumDialog.show(
                 supportFragmentManager, "file option nmm fragment"
             )
         }
+
 
     }
 
@@ -261,6 +270,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
             Log.e("options", "check: " + it.file_color + it.file_collect)
         })
     }
+
 
     private fun setOptions(popupOptionInfo: PopupOptionInfo) {
         if (popupOptionInfo.file_color == "흑백") {
@@ -359,10 +369,14 @@ class StoreFileOptionActivity : AppCompatActivity(),
         rangeMax = popupOptionInfo.file_range_end.toString()
         rangeMin = popupOptionInfo.file_range_start.toString()
         range = popupOptionInfo.file_range!!
-        Log.e("range data to be put", "check: " + popupOptionInfo.file_range_start + " " + popupOptionInfo.file_range_end + " " + popupOptionInfo.file_range)
+        Log.e(
+            "range data to be put",
+            "check: " + popupOptionInfo.file_range_start + " " + popupOptionInfo.file_range_end + " " + popupOptionInfo.file_range
+        )
         Log.e("rangedata", "check: " + rangeMax + " " + rangeMin + " " + range)
         //communicateRange(range, rangeMin.toInt(), rangeMax.toInt())
     }
+
     override fun communicateRange(r: String, min: Int, max: Int) {
         range = r
         rangeMin = min.toString()
