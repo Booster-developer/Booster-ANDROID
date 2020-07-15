@@ -28,10 +28,7 @@ class StoreFileOptionViewModel : ViewModel() {
         get() = _optionMutableLiveData
 
     fun setOptionData(fileIdx: Int, body: JsonObject) {
-
-
         //val optionData = Gson().fromJson(body.toString(), PopupOptionInfo:: class.java)
-        Log.e("body: ", body.toString())
         requestToServer.service.changeOption(
             fileIdx, body
         ).enqueue(object : Callback<DefaultData> {
@@ -63,7 +60,6 @@ class StoreFileOptionViewModel : ViewModel() {
             if (response.status == 200) {
                 val data = response.data
                 _optionMutableLiveData.postValue(data)
-                Log.e("getPopupOption", "check: " + response.data) //문제: collect 1로 초기화됨
             }
         }
     }

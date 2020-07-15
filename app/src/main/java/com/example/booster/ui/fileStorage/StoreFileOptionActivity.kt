@@ -22,17 +22,15 @@ class StoreFileOptionActivity : AppCompatActivity(),
 
     private lateinit var storeFileOptionViewModel: StoreFileOptionViewModel
     private var fileIdx: Int = -1
-
-
     var color = "흑백"
     var direction = "자동"
     var side = "단면"
     var combine = 1
     var range = "0"
-    var rangeMin = "0"
-    var rangeMax = "0"
+    var rangeMin = 0
+    var rangeMax = 0
     var num = 1
-
+    var rangeRe = ""
     //val requestToServer = BoosterServiceImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,23 +50,19 @@ class StoreFileOptionActivity : AppCompatActivity(),
         order_option_btn_single.isSelected = true
         order_option_btn_cut_1.isSelected = true
 
-
         storeFileOptionViewModel = ViewModelProvider(this).get(StoreFileOptionViewModel::class.java)
 
         subscribeObservers()
 
         storeFileOptionViewModel.getPopupOption(fileIdx)
 
-        act_store_file_option_btn_back.setOnClickListener {
-            finish()
-        }
-
-
+        //서버에 post
         act_store_file_option_btn_option.setOnClickListener {
+            //설정완료
             val intent = intent
             Log.e(
                 "option 버튼 clickListener",
-                "${color} ${direction} ${side} ${combine} ${range} ${num}"
+                "${color} ${direction} ${side} ${combine} ${range} ${rangeMin} ${rangeMax} ${num}"
             )
 
             val jsonData = JSONObject()
@@ -81,37 +75,13 @@ class StoreFileOptionActivity : AppCompatActivity(),
             jsonData.put("file_copy_number", num)
 
             val body = JsonParser.parseString(jsonData.toString()) as JsonObject
-            Log.e("body: ", body.toString())
-
             storeFileOptionViewModel.setOptionData(fileIdx, body)
 
-//            requestToServer.service.changeOption(
-//                fileIdx, body
-//            ).enqueue(object : Callback<DefaultData> {
-//                override fun onFailure(call: Call<DefaultData>, t: Throwable) {
-//                    //통신 실패
-//                    Log.e("onResponse", "통신 실패")
-//                }
-//
-//                override fun onResponse(
-//                    call: Call<DefaultData>,
-//                    response: Response<DefaultData>
-//                ) {
-//                    //통신 성공
-//                    Log.e("onResponse", response.message())
-//                    Log.e("color", color)
-//
-//
-//                    setResult(RESULT_OK)
-//                    finish()
-//                }
-//            })
             setResult(RESULT_OK)
             finish()
         }
 
-
-
+        //뒤로가기
         act_store_file_option_btn_back.onlyOneClickListener {
             finish()
         }
@@ -267,12 +237,13 @@ class StoreFileOptionActivity : AppCompatActivity(),
     private fun subscribeObservers() {
         storeFileOptionViewModel.optionLiveData.observe(this, Observer {
             setOptions(it)
-            Log.e("options", "check: " + it.file_color + it.file_collect)
         })
     }
 
 
+    //나갔다가 다시 들어왔을 때, 다시 GET으로 설정했던 파일 옵션 가져오기
     private fun setOptions(popupOptionInfo: PopupOptionInfo) {
+        Log.e("re", popupOptionInfo.toString())
         if (popupOptionInfo.file_color == "흑백") {
             color = popupOptionInfo.file_color
             order_option_btn_mono.isSelected = true
@@ -363,27 +334,29 @@ class StoreFileOptionActivity : AppCompatActivity(),
                 combine = popupOptionInfo.file_collect
                 order_option_btn_cut_16.isSelected = true
             }
+
         }
+
         num = popupOptionInfo.file_copy_number
         communicateNum(num)
-        rangeMax = popupOptionInfo.file_range_end.toString()
-        rangeMin = popupOptionInfo.file_range_start.toString()
-        range = popupOptionInfo.file_range!!
-        Log.e(
-            "range data to be put",
-            "check: " + popupOptionInfo.file_range_start + " " + popupOptionInfo.file_range_end + " " + popupOptionInfo.file_range
-        )
-        Log.e("rangedata", "check: " + rangeMax + " " + rangeMin + " " + range)
-        //communicateRange(range, rangeMin.toInt(), rangeMax.toInt())
+        rangeRe = popupOptionInfo.file_range
+        if(rangeRe == "전체 페이지"){
+            act_store_file_option_txt_range.text = rangeRe
+        }else act_store_file_option_txt_range.text = rangeRe + "p"
+
     }
 
     override fun communicateRange(r: String, min: Int, max: Int) {
         range = r
-        rangeMin = min.toString()
-        rangeMax = max.toString()
+        rangeMin = min
+        rangeMax = max
         if (range == "전체") {
             act_store_file_option_txt_range.text = range
-        } else {
+        }
+        else if (rangeMin == 0 && rangeMax == 0){
+            range = "전체"
+        }
+        else {
             act_store_file_option_txt_range.text = "${rangeMin} ~ ${rangeMax}p"
         }
         act_store_file_option_txt_range.setTextColor(Color.BLACK)
