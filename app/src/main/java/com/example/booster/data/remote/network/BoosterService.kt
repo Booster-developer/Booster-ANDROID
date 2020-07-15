@@ -54,6 +54,11 @@ interface BoosterService {
         @Body body: JsonObject
     ): Call<LoginData>
 
+    @GET("/mypage/engine/point")
+    fun getMyDengine(
+        @Header("token") token: String
+    ): Call<EngineData>
+
     @GET("/orders/{order_idx}/list")
     suspend fun getFileList(
         @Header("token") token: String,
