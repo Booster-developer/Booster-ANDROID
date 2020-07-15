@@ -205,6 +205,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
                     Log.e("onResponse", response.message())
                     Log.e("color", color)
                     setResult(Activity.RESULT_OK, intent)
+                    finish()
                 }
             })
 
