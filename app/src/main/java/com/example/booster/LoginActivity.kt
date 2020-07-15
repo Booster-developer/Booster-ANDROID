@@ -30,11 +30,11 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         // 로그인 request
-        login_btn.setOnClickListener {
+        login_btn.onlyOneClickListener {
             login()
         }
 
-        goto_join.setOnClickListener {
+        goto_join.onlyOneClickListener {
             val intent = Intent(this, JoinActivity::class.java)
             startActivityForResult(intent, 100)
         }

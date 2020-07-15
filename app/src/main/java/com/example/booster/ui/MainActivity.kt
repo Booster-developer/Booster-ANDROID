@@ -4,25 +4,17 @@ import android.Manifest
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
 import com.example.booster.*
-import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.ui.bottomtap.BottomTabActivity
 import com.example.booster.ui.fileStorage.StoreFileOptionActivity
-import com.example.booster.ui.home.HomeActivity
-import com.example.booster.ui.orderDetail.OrderDetailActivity
 import com.example.booster.ui.orderList.OrderListActivity
 import com.example.booster.ui.payment.PaymentActivity
-import com.example.booster.ui.storeList.StoreListActivity
-import com.example.booster.ui.storeDetail.StoreDetailActivity
 import com.example.booster.ui.selectStore.SelectStoreActivity
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
+import kotlinx.android.synthetic.main.activity_store_file_option.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -52,7 +44,7 @@ class MainActivity : AppCompatActivity() {
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
             )
-            .check();
+            .check()
 
         act_main_btn_order_condition.onlyOneClickListener {
             val intent = Intent(this@MainActivity, OrderListActivity::class.java)
@@ -64,23 +56,23 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        btn_storage.setOnClickListener {
+        btn_storage.onlyOneClickListener {
             //val intent = Intent(this, FileStorageActivity::class.java)
             val intent = Intent(this, SelectStoreActivity::class.java)
             startActivity(intent)
         }
 
-        pdf_test.setOnClickListener {
+        pdf_test.onlyOneClickListener {
             val intent = Intent(this, PdfTestActivity::class.java)
             startActivity(intent)
         }
 
-        act_main_btn_pay.setOnClickListener {
+        act_main_btn_pay.onlyOneClickListener {
             val intent = Intent(this, PaymentActivity::class.java)
             startActivity(intent)
         }
 
-        act_main_btn_login.setOnClickListener {
+        act_main_btn_login.onlyOneClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }

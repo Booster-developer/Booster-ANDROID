@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.booster.R
 import com.example.booster.data.datasource.model.DefaultData
 import com.example.booster.data.remote.network.BoosterServiceImpl
+import com.example.booster.onlyOneClickListener
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_store_file_option.*
@@ -40,60 +41,60 @@ class StoreFileOptionActivity : AppCompatActivity(),
         order_option_btn_single.isSelected = true
         order_option_btn_cut_1.isSelected = true
 
-        act_store_file_option_btn_back.setOnClickListener {
+        act_store_file_option_btn_back.onlyOneClickListener {
             finish()
         }
 
-        order_option_btn_mono.setOnClickListener {
+        order_option_btn_mono.onlyOneClickListener {
             colorReset()
             order_option_btn_mono.isSelected = !order_option_btn_mono.isSelected
             if(order_option_btn_mono.isSelected) {color = "흑백"}
             else colorReset()
         }
 
-        order_option_btn_color.setOnClickListener {
+        order_option_btn_color.onlyOneClickListener {
             colorReset()
             order_option_btn_color.isSelected = !order_option_btn_color.isSelected
             if(order_option_btn_color.isSelected) { color = "컬러" }
             else colorReset()
         }
 
-        order_option_btn_auto.setOnClickListener {
+        order_option_btn_auto.onlyOneClickListener {
             directionReset()
             order_option_btn_auto.isSelected = !order_option_btn_auto.isSelected
             if(order_option_btn_auto.isSelected) { direction = "자동" }
             else directionReset()
         }
 
-        order_option_btn_height.setOnClickListener {
+        order_option_btn_height.onlyOneClickListener {
             directionReset()
             order_option_btn_height.isSelected = !order_option_btn_height.isSelected
             if(order_option_btn_height.isSelected) { direction = "세로" }
             else directionReset()
         }
 
-        order_option_btn_width.setOnClickListener {
+        order_option_btn_width.onlyOneClickListener {
             directionReset()
             order_option_btn_width.isSelected = !order_option_btn_width.isSelected
             if(order_option_btn_width.isSelected) { direction = "가로" }
             else directionReset()
         }
 
-        order_option_btn_single.setOnClickListener {
+        order_option_btn_single.onlyOneClickListener {
             sideReset()
             order_option_btn_single.isSelected = !order_option_btn_single.isSelected
             if(order_option_btn_single.isSelected){ side = "단면" }
             else sideReset()
         }
 
-        order_option_btn_doublehei1.setOnClickListener {
+        order_option_btn_doublehei1.onlyOneClickListener {
             sideReset()
             order_option_btn_doublehei1.isSelected = !order_option_btn_doublehei1.isSelected
             if(order_option_btn_doublehei1.isSelected){ side = "양면 - 가로넘김" }
             else sideReset()
         }
 
-        order_option_btn_doublehei2.setOnClickListener {
+        order_option_btn_doublehei2.onlyOneClickListener {
             sideReset()
             order_option_btn_doublehei2.isSelected = !order_option_btn_doublehei2.isSelected
             if(order_option_btn_doublehei2.isSelected){ side = "양면 - 세로넘김" }
@@ -101,63 +102,63 @@ class StoreFileOptionActivity : AppCompatActivity(),
 
         }
 
-        order_option_btn_cut_1.setOnClickListener {
+        order_option_btn_cut_1.onlyOneClickListener {
             combineReset()
             order_option_btn_cut_1.isSelected = !order_option_btn_cut_1.isSelected
             if(order_option_btn_cut_1.isSelected) { combine = "1" }
             else combineReset()
         }
 
-        order_option_btn_cut_2.setOnClickListener {
+        order_option_btn_cut_2.onlyOneClickListener {
             combineReset()
             order_option_btn_cut_2.isSelected = !order_option_btn_cut_2.isSelected
             if(order_option_btn_cut_2.isSelected) {combine = "2"}
             else combineReset()
         }
 
-        order_option_btn_cut_3.setOnClickListener {
+        order_option_btn_cut_3.onlyOneClickListener {
             combineReset()
             order_option_btn_cut_3.isSelected = !order_option_btn_cut_3.isSelected
             if(order_option_btn_cut_3.isSelected) { combine = "3" }
             else combineReset()
         }
 
-        order_option_btn_cut_4.setOnClickListener {
+        order_option_btn_cut_4.onlyOneClickListener {
             combineReset()
             order_option_btn_cut_4.isSelected = !order_option_btn_cut_4.isSelected
             if(order_option_btn_cut_4.isSelected) { combine = "4" }
             else combineReset()
         }
 
-        order_option_btn_cut_6.setOnClickListener {
+        order_option_btn_cut_6.onlyOneClickListener {
             combineReset()
             order_option_btn_cut_6.isSelected = !order_option_btn_cut_6.isSelected
             if(order_option_btn_cut_6.isSelected) { combine = "6" }
             else combineReset()
         }
 
-        order_option_btn_cut_8.setOnClickListener {
+        order_option_btn_cut_8.onlyOneClickListener {
             combineReset()
             order_option_btn_cut_8.isSelected = !order_option_btn_cut_8.isSelected
             if(order_option_btn_cut_8.isSelected) { combine = "8" }
             else combineReset()
         }
 
-        order_option_btn_cut_9.setOnClickListener {
+        order_option_btn_cut_9.onlyOneClickListener {
             combineReset()
             order_option_btn_cut_9.isSelected = !order_option_btn_cut_9.isSelected
             if(order_option_btn_cut_9.isSelected) { combine = "9" }
             else combineReset()
         }
 
-        order_option_btn_cut_16.setOnClickListener {
+        order_option_btn_cut_16.onlyOneClickListener {
             combineReset()
             order_option_btn_cut_16.isSelected = !order_option_btn_cut_16.isSelected
             if(order_option_btn_cut_16.isSelected) { combine = "16" }
             else combineReset()
         }
 
-        order_option_btn_range.setOnClickListener {
+        order_option_btn_range.onlyOneClickListener {
             val fileRangeDialog = StoreFileOptionRangeFragment()
             fileRangeDialog.show(
                 supportFragmentManager,
@@ -166,14 +167,14 @@ class StoreFileOptionActivity : AppCompatActivity(),
 
         }
 
-        order_option_btn_num.setOnClickListener {
+        order_option_btn_num.onlyOneClickListener {
             val fileNumDialog = StoreFileOptionNumFragment()
             fileNumDialog.show(
                 supportFragmentManager, "file option nmm fragment"
             )
         }
 
-        act_store_file_option_btn_option.setOnClickListener {
+        act_store_file_option_btn_option.onlyOneClickListener {
             val intent = intent
             Log.e("option 버튼 clickListener", "${color} ${direction} ${side} ${combine} ${range} ${num}")
 

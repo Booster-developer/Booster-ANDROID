@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.booster.R
 import com.example.booster.data.datasource.model.MarkerData
 import com.example.booster.databinding.ActivityStoreDetailBinding
+import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.storeList.MapActivity
 import kotlinx.android.synthetic.main.activity_store_detail.*
 
@@ -44,11 +45,11 @@ class StoreDetailActivity : AppCompatActivity() {
             }
         })
 
-        act_store_detail_iv_star.setOnClickListener {
+        act_store_detail_iv_star.onlyOneClickListener {
             viewModel.putStoreFav(idx)
         }
 
-        act_store_detail_map.setOnClickListener {
+        act_store_detail_map.onlyOneClickListener {
             markers.clear()
             val intent = Intent(this, StoreDetailMapActivity::class.java)
             markers.add(
