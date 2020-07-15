@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.booster.R
 import com.example.booster.data.datasource.model.AlertData
 import com.example.booster.data.datasource.model.AlertDataInfo
+import com.example.booster.data.datasource.model.NoticeData
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.ui.fileStorage.MarginItemDecoration
 import kotlinx.android.synthetic.main.activity_alert.*
@@ -46,6 +47,24 @@ class AlertActivity : AppCompatActivity() {
                 override fun onClickAlert(position: Int) {
                     if(datas[position].notice_confirm==1){
                         read(position)
+                        requestToServer.service.checkNotice(
+                            token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MiwiaWF0IjoxNTk0MjQzNDgxLCJleHAiOjE1OTc4NDM0ODEsImlzcyI6IkJvb3N0ZXIifQ.PoBiw8rnQY5SYZLVxQDcO3wnpfyHyM1V7ae-xAVloq0",
+                            orderIdx = datas[position].notice_idx
+                        ).enqueue(object : Callback<NoticeData>{
+                            override fun onFailure(call: Call<NoticeData>, t: Throwable) {
+                                //통신 실패
+                                Log.e("alertPutError", "통신 실패")
+                            }
+
+                            override fun onResponse(
+                                call: Call<NoticeData>,
+                                response: Response<NoticeData>
+                            ) {
+                                //통신 성공
+                                Log.e("alertPutSuccess", response.body().toString())
+                            }
+
+                        })
                     }
                 }
             }
@@ -75,7 +94,7 @@ class AlertActivity : AppCompatActivity() {
 
     fun read(position: Int){
         datas[position].notice_confirm = 0
-        Log.e("alertposition", position.toString())
+        Log.e("alertname", datas[position].store_name)
         alertAdapter.notifyItemChanged(position)
     }
 }

@@ -755,7 +755,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="4dp"
                         android:text="전체"
-                        android:textColor="#7d7d7d"
+                        android:textColor="@color/black"
                         android:textSize="12sp" />
                 </LinearLayout>
 
@@ -784,7 +784,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="4dp"
                         android:text="1부"
-                        android:textColor="#7d7d7d"
+                        android:textColor="@color/black"
                         android:textSize="12sp" />
                 </LinearLayout>
 
