@@ -30,6 +30,10 @@ class SelectStoreActivity: AppCompatActivity(), StoreListItemClickListener {
 
         viewModel.getStoreList()
         subscribeObservers()
+
+        act_select_store_iv_back.setOnClickListener {
+            finish()
+        }
     }
     private fun subscribeObservers(){
         viewModel.storeListLiveData.observe(this, Observer {
