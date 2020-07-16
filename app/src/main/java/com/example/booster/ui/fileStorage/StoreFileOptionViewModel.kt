@@ -29,7 +29,6 @@ class StoreFileOptionViewModel : ViewModel() {
 
     fun setOptionData(fileIdx: Int, body: JsonObject) {
 
-
         //val optionData = Gson().fromJson(body.toString(), PopupOptionInfo:: class.java)
         Log.e("body: ", body.toString())
         requestToServer.service.changeOption(
@@ -49,7 +48,6 @@ class StoreFileOptionViewModel : ViewModel() {
                     Log.e("onResponse", response.message() + "통신 성공")
                     //Log.e("optionData: ", "check" + optionData)
                 }
-
             }
         })
     }
@@ -63,9 +61,8 @@ class StoreFileOptionViewModel : ViewModel() {
             if (response.status == 200) {
                 val data = response.data
                 _optionMutableLiveData.postValue(data)
-                Log.e("getPopupOption", "check: " + response.data) //문제: collect 1로 초기화됨
+                Log.e("getPopupOption", "check: " + response.data)
             }
         }
     }
 }
-
