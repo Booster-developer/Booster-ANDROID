@@ -141,9 +141,14 @@ class FileStorageViewModel : ViewModel() {
         var requestBody2: RequestBody? = null
 
         when (file?.file_extension) {
-            ".png" -> requestBody = RequestBody.create(
-                MediaType.parse("image/png"), imageFile
-            )
+            ".png" -> {
+                requestBody = RequestBody.create(
+                    MediaType.parse("image/png"), imageFile
+                )
+                requestBody2 = RequestBody.create(
+                    MediaType.parse("image/png"), imageFile
+                )
+            }
             ".pdf" -> {
                 requestBody = RequestBody.create(
                     MediaType.parse("application/pdf"), docFile
@@ -155,9 +160,14 @@ class FileStorageViewModel : ViewModel() {
             ".docx" -> requestBody = RequestBody.create(
                 MediaType.parse("multipart/form-data"), docFile
             )
-            ".jpeg", ".jpg" -> requestBody = RequestBody.create(
-                MediaType.parse("image/jpeg"), imageFile
-            )
+            ".jpeg", ".jpg" -> {
+                requestBody = RequestBody.create(
+                    MediaType.parse("image/jpeg"), imageFile
+                )
+                requestBody2 = RequestBody.create(
+                    MediaType.parse("image/jpeg"), imageFile
+                )
+            }
         }
         Log.e(
             "pdfcheck",
