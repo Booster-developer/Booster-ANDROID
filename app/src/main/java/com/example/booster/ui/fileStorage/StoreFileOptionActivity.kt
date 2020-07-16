@@ -22,6 +22,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
 
     private lateinit var storeFileOptionViewModel: StoreFileOptionViewModel
     private var fileIdx: Int = -1
+    private var fileType: String = ""
     var color = "흑백"
     var direction = "자동"
     var side = "단면"
@@ -39,9 +40,12 @@ class StoreFileOptionActivity : AppCompatActivity(),
 
         intent?.let {
             val idx = it.getIntExtra("fileIdx", -1)
+            val type = it.getStringExtra("fileType")
+            Log.e("fileIdx", "checkkkk" + idx)
             if (idx != -1) {
                 fileIdx = idx
             }
+            fileType = type
         }
 
         //초기 default로 설정
@@ -75,6 +79,8 @@ class StoreFileOptionActivity : AppCompatActivity(),
             jsonData.put("file_copy_number", num)
 
             val body = JsonParser.parseString(jsonData.toString()) as JsonObject
+            Log.e("fileIdx", "통신체크" + " "+ fileIdx)
+            Log.e("body", "통신체크" + " "+ body.toString())
             storeFileOptionViewModel.setOptionData(fileIdx, body)
 
             setResult(RESULT_OK)

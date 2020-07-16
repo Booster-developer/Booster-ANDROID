@@ -51,6 +51,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
     private lateinit var photoPaths: ArrayList<Uri>
 
     private var storeIdx: Int = -1
+    private var orderIdx: Int = -1
 
 
 //    var fileColor = ""
@@ -137,6 +138,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         fileStorageViewModel.orderIdxMutableLiveData.observe(this, Observer{
             if(it >= 0){
                 fileStorageViewModel.getPrice(it)
+                this.orderIdx = it
             }
         })
 
@@ -186,6 +188,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
     override fun itemOptionChange(item: File, position: Int) {
         val intent = Intent(this@FileStorageActivity, StoreFileOptionActivity::class.java)
         intent.putExtra("fileIdx", item.file_idx)
+        intent.putExtra("fileType", item.file_extension)
         //intent.putExtra("color",item.popupOptionInfo.file_color)
         //intent.put("item", item.popupOptionInfo)  custom object class를 intent로 넘기는 방법 (parcelable)
         startActivityForResult(intent, FINISH_SETTING_OPTION)
@@ -359,7 +362,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 //                file.name = BoosterUtil(this).getFileName(imguri)
 //                file.type = "img"
                 fileStorageViewModel.addItem(file)
-                fileStorageViewModel.order(storeIdx)
+                fileStorageViewModel.order(orderIdx)
             }
         } else if (!flag) {
             for (docUri in docPaths) {
@@ -370,7 +373,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 //                file.name = BoosterUtil(this).getFileName(docuri)
 //                file.type = BoosterUtil(this).getFileType(docuri)
                 fileStorageViewModel.addItem(file)
-                fileStorageViewModel.order(storeIdx)
+                fileStorageViewModel.order(orderIdx)
             }
         }
         fileStorage_rv_file_add.adapter?.notifyDataSetChanged()

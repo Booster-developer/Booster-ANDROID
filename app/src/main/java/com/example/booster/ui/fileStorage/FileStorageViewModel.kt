@@ -100,7 +100,7 @@ class FileStorageViewModel : ViewModel() {
         _fileMutableLiveData.value = list
     }
 
-    fun order(storeIdx: Int) {
+    fun order(orderIdx: Int) {
         //val file = _fileMutableLiveData.value?.get(0)
         val file = _fileMutableLiveData.value?.get((_fileMutableLiveData.value?.size!! - 1))
         val imageFile = java.io.File(file?.file_path)
@@ -139,7 +139,7 @@ class FileStorageViewModel : ViewModel() {
         viewModelScope.launch(IO) {
             val response = BoosterServiceImpl.serviceFileUpload.postUploadFile(
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8",
-                storeIdx,
+                orderIdx,
                 multipartBody
             )
             if (response.status == 200) {
@@ -162,16 +162,6 @@ class FileStorageViewModel : ViewModel() {
             //  _statusLiveData.postValue(response.status)
         }
     }
-
-//    fun setOptions(
-//        popupOptionInfo: PopupOptionInfo
-//    ) {
-//        val file = _fileMutableLiveData.value?.get(0)
-//        file?.popupOptionInfo = popupOptionInfo
-//
-//        //_fileMutableLiveData.value =
-//
-//    }
 
 
 }
