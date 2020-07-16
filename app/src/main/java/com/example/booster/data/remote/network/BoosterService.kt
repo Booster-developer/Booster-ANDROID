@@ -22,9 +22,6 @@ interface BoosterService {
     ): Observable<StoreDetailData>
 
 
-    @GET("stores/university")
-    suspend fun getUniversities(): ApiWrapper<List<University>>
-
     @POST("address")
     suspend fun uploadFiles(
         @Header("token") token: String,
@@ -107,4 +104,46 @@ interface BoosterService {
     suspend fun getStoreListByJeongRok(
         @Header("token") token: String
     ): ApiWrapper<StoreList>
+
+    @GET("/mypage/profile/list")
+    fun getMyProfile(
+        @Header("token") token: String
+    ): Call<ProfileData>
+
+    @PUT("/mypage/profile")
+    fun editMyProfile(
+        @Header("token") token: String,
+        @Body body: JsonObject
+    ): Call<EditProfileData>
+
+    @GET("/mypage/engine/history")
+    fun getEngineHistory(
+        @Header("token") token: String
+    ): Call<EngineHistoryData>
+
+    @GET("/mypage/notice/history")
+    fun getAlertList(
+        ): Call<AlertData>
+
+    @POST("/orders/{store_idx}")
+    suspend fun getOrderIdx(
+        @Header("token") token: String,
+        @Path("store_idx") storeIdx: Int
+    ): ApiWrapper<OrderDetailInfo>
+
+    @DELETE("/orders/{file_idx}")
+    suspend fun deleteFile(
+        @Header("token") token: String,
+        @Path("file_idx") fileIdx: Int
+    ): ApiWrapper<String?>
+
+    @PUT("/mypage/notice/{order_idx}")
+    fun checkNotice(
+        @Header("token") token: String,
+        @Path("order_idx") orderIdx: Int
+    ): Call<NoticeData>
+
+    @GET("/home/orders")
+    fun getHome() : Observable<HomeData>
+
 }

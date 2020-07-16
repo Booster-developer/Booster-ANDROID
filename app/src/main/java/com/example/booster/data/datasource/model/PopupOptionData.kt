@@ -6,8 +6,8 @@ data class PopupOptionInfo(
     var file_direction: String,
     var file_sided_type: String,
     var file_collect: Int,
+    var file_range_start: Int,
+    var file_range_end: Int,
     var file_copy_number: Int,
-    var file_range: String? =null,
-    var file_range_max: Int?=null,
-    var file_range_min: Int?=null
+    var file_range: String
 )

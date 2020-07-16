@@ -27,8 +27,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#FFFFFF"
-                android:layout_marginStart="12dp"
                 android:src="@drawable/nav_btn_back_black"
+                android:layout_marginLeft="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -40,12 +40,13 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="25dp"
                 android:fontFamily="@font/noto_sans_kr_medium"
-                android:text="옵션선택"
                 android:gravity="center_vertical"
+                android:text="옵션선택"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/act_store_file_option_btn_back"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -754,7 +755,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="4dp"
                         android:text="전체"
-                        android:textColor="#7d7d7d"
+                        android:textColor="@color/black"
                         android:textSize="12sp" />
                 </LinearLayout>
 
@@ -783,7 +784,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="4dp"
                         android:text="1부"
-                        android:textColor="#7d7d7d"
+                        android:textColor="@color/black"
                         android:textSize="12sp" />
                 </LinearLayout>
 

@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.booster.AnimationUtil
 import com.example.booster.R
 import com.example.booster.data.datasource.model.File
+import com.example.booster.onlyOneClickListener
 import com.example.booster.util.BoosterUtil
 import com.example.booster.util.PDFThumbnailUtils
 import kotlinx.android.synthetic.main.activity_file_storage.*
@@ -20,6 +21,7 @@ interface FileRecyclerViewOnClickListener{
     fun itemDelete(item: File, position: Int)
     fun itemOptionChange(item: File, position: Int)
     fun itemOptionView(item: File, position: Int)
+    fun pdfviewer(item: File, position: Int)
 }
 
 class FileAdapter(
@@ -75,7 +77,9 @@ class FileAdapter(
                         )
                     if (bitmap != null) {
                         itemView.iv_file.setImageBitmap(bitmap)
+                        //Log.e("context check: ", " " + itemView.context + " " + itemView.context.javaClass.name)
                     }
+
                 }
                 //val fileImage = BoosterUtil(itemView.context).getFileImage(file.file_extension)
                 //Glide.with(itemView.context).load(fileImage).into(itemView.iv_file)
@@ -85,21 +89,25 @@ class FileAdapter(
 
             //itemView.tv_option_view.text = file.option_view //사용하면 옵션보기 텍스트가 안뜸
 
-            itemView.iv_file_delete.setOnClickListener{
+            itemView.iv_file_delete.onlyOneClickListener{
                 fileRecyclerViewOnClickListener?.itemDelete(file, bindingAdapterPosition)
                 //itemDelete(file, bindingAdapterPosition)
             }
 
-            itemView.tv_option_change.setOnClickListener {
+            itemView.tv_option_change.onlyOneClickListener {
                 fileRecyclerViewOnClickListener?.itemOptionChange(file, bindingAdapterPosition)
 
                 // itemOptionChange(file, bindingAdapterPosition)
             }
 
-            itemView.tv_option_view.setOnClickListener {
+            itemView.tv_option_view.onlyOneClickListener {
                 fileRecyclerViewOnClickListener?.itemOptionView(file, bindingAdapterPosition)
 
                 // itemOptionView(file, bindingAdapterPosition)
+            }
+
+            itemView.iv_file.onlyOneClickListener {
+                fileRecyclerViewOnClickListener?.pdfviewer(file, bindingAdapterPosition)
             }
 
 

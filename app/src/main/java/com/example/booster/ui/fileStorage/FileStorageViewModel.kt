@@ -1,8 +1,6 @@
 package com.example.booster.ui.fileStorage
 
-import android.net.Uri
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,14 +9,9 @@ import com.example.booster.data.datasource.model.File
 import com.example.booster.data.datasource.model.PopupOptionInfo
 import com.example.booster.data.datasource.model.Wait
 import com.example.booster.data.remote.network.BoosterServiceImpl
-import com.example.booster.util.BoosterUtil
-import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import okhttp3.*
-import java.net.URI
 
 
 class FileStorageViewModel : ViewModel() {
@@ -38,6 +31,10 @@ class FileStorageViewModel : ViewModel() {
     val responseMessageLiveData: LiveData<String>
         get() = _responseMessageMutableLiveData
 
+    private val _orderIdxMutableLiveData: MutableLiveData<Int> = MutableLiveData()
+    val orderIdxMutableLiveData: LiveData<Int>
+        get() = _orderIdxMutableLiveData
+
 
     //private lateinit var arrList: ArrayList<File>
 
@@ -49,40 +46,39 @@ class FileStorageViewModel : ViewModel() {
         _fileMutableLiveData.value = ArrayList()
     }
 
-    fun getFileList() {
-        viewModelScope.launch(IO) {
-            val response = BoosterServiceImpl.serviceFileUpload.getFileList(
+
+    fun getOrderIdx(storeIdx: Int){
+        viewModelScope.launch(IO){
+            val response = BoosterServiceImpl.serviceFileUpload.getOrderIdx(
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8",
-                1
+                storeIdx
             )
             if (response.status == 200) {
                 val data = response.data
+                Log.e("orderIdx", "check: " + data?.order_idx)
+                _orderIdxMutableLiveData.postValue(data?.order_idx)
+            }
+        }
+    }
+    fun getPrice(orderIdx: Int){
+        viewModelScope.launch(IO) {
+            val response = BoosterServiceImpl.serviceFileUpload.getFileList(
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8",
+                orderIdx
+            )
+            if (response.status == 200) {
+                val data = response.data
+                Log.e("orderPrice", "check: " + data?.order_price)
                 _waitlistMutableLiveData.postValue(data)
             }
         }
-
-//        BoosterServiceImpl.serviceFileUpload.getFileList(1).enqueue(object :
-//            Callback<FileResponse> {
-//            override fun onFailure(call: Call<FileResponse>, t: Throwable) {
-//                Log.e("error : ", t.message)
-//            }
-//
-//            override fun onResponse(call: Call<FileResponse>, response: Response<FileResponse>) {
-//                val fileResponse = response.body()
-//                Log.e("data", fileResponse.toString())
-//                val list = ArrayList<File>()
-//                list.add(fileResponse!!.data.file_info[0])
-//                list.add(fileResponse.data.file_info[1])
-//                _fileMutableLiveData.value = list
-//            }
-//        })
     }
 
-    fun getPopupOption() {
+    fun getPopupOption(fileIdx: Int) {
         viewModelScope.launch(IO) {
             val response = BoosterServiceImpl.serviceFileUpload.getPopupOption(
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8",
-                2
+                fileIdx
             )
             if (response.status == 200) {
                 val data = response.data
@@ -94,6 +90,15 @@ class FileStorageViewModel : ViewModel() {
 
     fun deleteItem(item: File) {
         val list = _fileMutableLiveData.value
+        viewModelScope.launch(IO) {
+            val response = BoosterServiceImpl.serviceFileUpload.deleteFile(
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8",
+                item.file_idx
+            )
+            if (response.status == 200) {
+                Log.e("File Successfully deleted with file Idx: ", item.file_idx.toString())
+            }
+        }
         list?.remove(item)
         _fileMutableLiveData.value = list
     }
@@ -104,8 +109,7 @@ class FileStorageViewModel : ViewModel() {
         _fileMutableLiveData.value = list
     }
 
-    fun order() {
-        val idx = 6
+    fun order(orderIdx: Int) {
         //val file = _fileMutableLiveData.value?.get(0)
         val file = _fileMutableLiveData.value?.get((_fileMutableLiveData.value?.size!! - 1))
         val imageFile = java.io.File(file?.file_path)
@@ -144,12 +148,19 @@ class FileStorageViewModel : ViewModel() {
         viewModelScope.launch(IO) {
             val response = BoosterServiceImpl.serviceFileUpload.postUploadFile(
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8",
-                idx,
+                orderIdx,
                 multipartBody
             )
             if (response.status == 200) {
                 val data = response.data
-                Log.e("check", "fileIdx : ${data?.file_idx}")
+                val fileIdx = data?.file_idx
+                val latestFile = _fileMutableLiveData.value?.get((_fileMutableLiveData.value?.size!! - 1))
+                if(latestFile?.file_idx == -1){
+                    fileIdx?.let{
+                        latestFile.file_idx = it
+                    }
+                }
+                Log.e("check", "fileIdx : ${data?.file_idx} " + _fileMutableLiveData.value?.get((_fileMutableLiveData.value?.size!! - 1))?.file_idx)
             } else {
 //                withContext(Main){
 //
@@ -160,16 +171,6 @@ class FileStorageViewModel : ViewModel() {
             //  _statusLiveData.postValue(response.status)
         }
     }
-
-//    fun setOptions(
-//        popupOptionInfo: PopupOptionInfo
-//    ) {
-//        val file = _fileMutableLiveData.value?.get(0)
-//        file?.popupOptionInfo = popupOptionInfo
-//
-//        //_fileMutableLiveData.value =
-//
-//    }
 
 
 }

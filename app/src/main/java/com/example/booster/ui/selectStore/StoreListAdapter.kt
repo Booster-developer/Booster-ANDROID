@@ -1,5 +1,6 @@
 package com.example.booster.ui.selectStore
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.booster.R
 import com.example.booster.data.datasource.model.Store
+import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.selectStore.StoreListAdapter.ViewType.*
 import kotlinx.android.synthetic.main.item_selectstore_file.view.*
 
@@ -110,13 +112,23 @@ class StoreListAdapter(val storeListItemClickListener: StoreListItemClickListene
         return count
     }
 
+    fun dpToPx(context: Context, dp: Int): Int {
+        val scale: Float = context.getResources().getDisplayMetrics().density
+        return (dp * scale + 0.5f).toInt()
+    }
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(storeItem: Store, viewType: Int) {
+
             when (viewType) {
                 LATEST.ordinal -> {
                     itemView.act_select_store_file_tv_recent.visibility = View.VISIBLE
                     itemView.act_select_store_file_tv_recent.text = "최근 본 매장"
                     itemView.item_selectstore_file_divider.visibility = View.VISIBLE
+                    //adjust bottom margin
+                    val params = itemView.constraintLayout9.layoutParams as ViewGroup.MarginLayoutParams
+                    params.bottomMargin = dpToPx(itemView.context, 16)
+                    itemView.constraintLayout9.layoutParams = params
                 }
                 FAVORITE.ordinal -> {
                     itemView.act_select_store_file_tv_recent.visibility = View.VISIBLE
@@ -135,7 +147,17 @@ class StoreListAdapter(val storeListItemClickListener: StoreListItemClickListene
                             itemView.act_select_store_file_tv_recent.visibility = View.GONE
                             if (bindingAdapterPosition == getCount(storeItem.type!!)) {
                                 itemView.item_selectstore_file_divider.visibility = View.VISIBLE
+                                //adjust bottom margin
+                                val params = itemView.constraintLayout9.layoutParams as ViewGroup.MarginLayoutParams
+                                params.bottomMargin = dpToPx(itemView.context, 16)
+                                itemView.constraintLayout9.layoutParams = params
                             }
+                        } else if (bindingAdapterPosition == 1 && bindingAdapterPosition == getCount(storeItem.type!!)){
+                            itemView.item_selectstore_file_divider.visibility = View.VISIBLE
+                            //adjust bottom margin
+                            val params = itemView.constraintLayout9.layoutParams as ViewGroup.MarginLayoutParams
+                            params.bottomMargin = dpToPx(itemView.context, 16)
+                            itemView.constraintLayout9.layoutParams = params
                         }
                     }
                 }
@@ -148,6 +170,10 @@ class StoreListAdapter(val storeListItemClickListener: StoreListItemClickListene
                         itemView.act_select_store_file_tv_recent.visibility = View.GONE
                         if (bindingAdapterPosition == itemCount - 1) {
                             itemView.item_selectstore_file_divider.visibility = View.VISIBLE
+                            //adjust bottom margin
+                            val params = itemView.constraintLayout9.layoutParams as ViewGroup.MarginLayoutParams
+                            params.bottomMargin = dpToPx(itemView.context, 16)
+                            itemView.constraintLayout9.layoutParams = params
                         }
                     }
                 }
@@ -158,7 +184,7 @@ class StoreListAdapter(val storeListItemClickListener: StoreListItemClickListene
             Glide.with(itemView.context).load(storeItem.store_image)
                 .into(itemView.item_selectstore_file_iv_storeimg)
 
-            itemView.setOnClickListener {
+            itemView.onlyOneClickListener {
                 storeListItemClickListener.onStoreListItemClicked(storeItem, bindingAdapterPosition)
             }
         }

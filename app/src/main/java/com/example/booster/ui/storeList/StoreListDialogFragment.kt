@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.example.booster.R
+import com.example.booster.onlyOneClickListener
 import kotlinx.android.synthetic.main.dialog_fragment_store_list.*
 
 
@@ -34,7 +35,7 @@ class  StoreListDialogFragment : DialogFragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        dial_frag_store_list_cl_univ_1.setOnClickListener {
+        dial_frag_store_list_cl_univ_1.onlyOneClickListener {
 //            sendData("숭실대")
 
             val bundle = Bundle()
@@ -44,7 +45,7 @@ class  StoreListDialogFragment : DialogFragment(){
             targetFragment!!.onActivityResult(targetRequestCode, 1, intent)
             dismiss()
         }
-        dial_frag_store_list_cl_univ_2.setOnClickListener {
+        dial_frag_store_list_cl_univ_2.onlyOneClickListener {
 
 //            sendData("중앙대")
 
@@ -56,7 +57,7 @@ class  StoreListDialogFragment : DialogFragment(){
             dismiss()
 
         }
-        dial_frag_store_list_cl_univ_3.setOnClickListener {
+        dial_frag_store_list_cl_univ_3.onlyOneClickListener {
 //            sendData("서울대")
 
             val bundle = Bundle()
@@ -67,7 +68,7 @@ class  StoreListDialogFragment : DialogFragment(){
             dismiss()
         }
 
-        dial_frag_store_list_tv_close.setOnClickListener {
+        dial_frag_store_list_tv_close.onlyOneClickListener {
             dialog!!.dismiss()
         }
     }
