@@ -75,10 +75,11 @@ class StoreDetailActivity() : AppCompatActivity() {
             )
             val orderIdx = viewModel.orderIdxMutableLiveData
             Log.e("orderIdx", orderIdx.toString())
-//            val intent = Intent(this, FileStorageActivity::class.java)
-//            intent.putExtra("orderIdx", orderIdx)
-//            startActivity(intent)
+            val intent = Intent(this, FileStorageActivity::class.java)
+            intent.putExtra("storeIdx", idx)
+            intent.putExtra("storeName", viewModel.storeDetail.value?.data?.store_name)
+            intent.putExtra("storeAddress", viewModel.storeDetail.value?.data?.store_address)
+            startActivity(intent)
         }
-
     }
 }

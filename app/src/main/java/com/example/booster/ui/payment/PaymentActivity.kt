@@ -33,7 +33,7 @@ class PaymentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment)
 
-        orderIdx = intent.getIntExtra("order_idx", 0)
+        orderIdx = intent.getIntExtra("order_idx", orderIdx)
         Log.e("orderIdxpay", orderIdx.toString())
 
         viewModel = ViewModelProvider(this).get(PaymentViewModel::class.java)
@@ -53,9 +53,15 @@ class PaymentActivity : AppCompatActivity() {
         act_payment_rv.layoutManager = LinearLayoutManager(this)
         act_payment_rv.addItemDecoration(ItemDecorator(15))
 
+
         viewModel.paymentInfo.observe(this, Observer {
             adapter.data = it.data.fileOption
-            Log.e("patment", adapter.data.toString())
+            Log.e("patment1", it.data.toString())
+            act_payment_tv_name.text =it.data.store_name
+            act_payment_tv_order_idx.text = orderIdx.toString()
+
+
+            Log.e("patment2", it.data.fileOption.toString())
             adapter.notifyDataSetChanged()
         })
     }
@@ -74,14 +80,17 @@ class PaymentActivity : AppCompatActivity() {
         act_payment_et_req.setOnFocusChangeListener { view, b ->
             if(b){
                 view.setBackgroundResource(R.drawable.border_304fff_1dp)
-                act_payment_btn_pay.setOnClickListener {
-                    val intent = Intent(this, BottomTabActivity::class.java)
-                    intent.putExtra("orderIdx", orderIdx)
-                    startActivity(intent)
-                }
             }else{
                 view.setBackgroundResource(R.drawable.border_bbbbbb_1dp)
             }
+        }
+
+
+        //결제완료하고 주문현황 넘어가기
+        act_payment_btn_pay.setOnClickListener {
+            val intent = Intent(this, BottomTabActivity::class.java)
+            intent.putExtra("orderIdx", orderIdx)
+            startActivity(intent)
         }
     }
 }
