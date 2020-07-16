@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +22,9 @@ class StoreFileOptionRangeFragment : DialogFragment() {
     private var printOption: String = "전체"
     var printMinNum = 0
     var printMaxNum = 0
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,10 +43,19 @@ class StoreFileOptionRangeFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        val args = arguments
+        val fileType = args?.getString("fileType")
         //default로 전체
         order_option_btn_whole1.isSelected = true
         edt_printMinNum.isEnabled = false  // 전체범위 선택됐을 경우 범위 선택 불가 default
         edt_printMaxNum.isEnabled = false
+
+        Log.e("what is argssss", "check: " + args)
+        Log.e("what is this filetype", "check: " + fileType)
+        if (fileType != ".pdf") {
+            order_option_btn_whole2.isEnabled = false
+        }
 
         order_dialog_btn_close_black.onlyOneClickListener {
             printOption = "all"

@@ -90,6 +90,15 @@ class FileStorageViewModel : ViewModel() {
 
     fun deleteItem(item: File) {
         val list = _fileMutableLiveData.value
+        viewModelScope.launch(IO) {
+            val response = BoosterServiceImpl.serviceFileUpload.deleteFile(
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8",
+                item.file_idx
+            )
+            if (response.status == 200) {
+                Log.e("File Successfully deleted with file Idx: ", item.file_idx.toString())
+            }
+        }
         list?.remove(item)
         _fileMutableLiveData.value = list
     }
