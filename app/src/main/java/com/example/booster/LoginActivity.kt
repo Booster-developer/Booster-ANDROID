@@ -10,6 +10,8 @@ import android.util.Log
 import android.widget.Toast
 import com.example.booster.data.datasource.model.LoginData
 import com.example.booster.data.remote.network.BoosterServiceImpl
+import com.example.booster.ui.bottomtap.BottomTabActivity
+import com.example.booster.ui.home.HomeActivity
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_login.*
@@ -79,12 +81,13 @@ class LoginActivity : AppCompatActivity() {
                             Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT)
                                 .show()
                             if (response.body()!!.success) {
-//                                val intent =
-//                                    Intent(this@LoginActivity, BoosterApplication::class.java)
-//                                startActivity(intent)
-//
+                                val intent = Intent(this@LoginActivity, BottomTabActivity::class.java)
+                                intent.putExtra("univ", response.body()!!.data.university_idx)
+                                intent.putExtra("token", response.body()!!.data.accessToken)
+                                startActivity(intent)
+
                                 isLoggedIn.isLoggedIn = "isLoggedIn"
-//                                finish()
+                                finish()
                             }
                         } else {
                             Log.e("onReponse else", response.toString())
