@@ -22,7 +22,6 @@ class SelectStoreViewModel : ViewModel() {
     }
 
     fun getOrder() {
-        _storeListMutableLiveData
     }
 
     fun getStoreList() {

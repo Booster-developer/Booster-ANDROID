@@ -357,10 +357,10 @@ class StoreFileOptionActivity : AppCompatActivity(),
         rangeMin = min
         rangeMax = max
         if (range == "전체") {
-            act_store_file_option_txt_range.text = range
+            act_store_file_option_txt_range.text = range + " 페이지"
         }
         else if (rangeMin == 0 && rangeMax == 0){
-            range = "전체"
+            range = "전체 페이지"
         }
         else {
             act_store_file_option_txt_range.text = "${rangeMin} ~ ${rangeMax}p"

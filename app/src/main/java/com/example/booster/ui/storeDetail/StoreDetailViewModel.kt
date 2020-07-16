@@ -4,12 +4,17 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.booster.data.datasource.model.OrderIdx
 import com.example.booster.data.datasource.model.StoreDetailData
 import com.example.booster.data.datasource.model.StoreFavData
+import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.data.repository.StoreDetailRepository
 import com.example.booster.data.repository.StoreFavRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class StoreDetailViewModel : ViewModel() {
 
@@ -17,11 +22,16 @@ class StoreDetailViewModel : ViewModel() {
     private val storeFavRepository = StoreFavRepository()
     private val disposables = CompositeDisposable()
 
+    private val _orderIdxMutableLiveData: MutableLiveData<Int> = MutableLiveData()
+    val orderIdxMutableLiveData: LiveData<Int>
+        get() = _orderIdxMutableLiveData
+
     private var _storeDetail = MutableLiveData<StoreDetailData>() //변경 가능한 mutableLiveData 변수
     val storeDetail : LiveData<StoreDetailData> get() = _storeDetail //LiveData 변수인 newsList는 변경이 안되므로 변경 가능한 _newsList를 가져옴
 
     val favStatus = MutableLiveData<StoreFavData>()
     val networkFail = MutableLiveData<Unit>()
+    var orderIdx = MutableLiveData<OrderIdx>()
 
     fun getStoreDetail(storeIdx : Int){
         disposables.add(storeDetailRepository.getStoreDetail(storeIdx)
@@ -38,7 +48,6 @@ class StoreDetailViewModel : ViewModel() {
                 // onResponse
                 Log.e("postUserData 응답 성공 : ", it.message)
                 _storeDetail.postValue(it)
-
             }){
                 // 에러 블록
                 // 네트워크 오류나 데이터 처리 오류 등
@@ -75,5 +84,19 @@ class StoreDetailViewModel : ViewModel() {
                 Log.e("통신 실패 error : ", it.message!!)
                 networkFail.value = Unit
             })
+    }
+
+    fun getOrderIdx(storeIdx: Int) {
+        viewModelScope.launch(Dispatchers.IO){
+            val response = BoosterServiceImpl.serviceFileUpload.getOrderIdx(
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8",
+                storeIdx
+            )
+            if (response.status == 200) {
+                val data = response.data
+                _orderIdxMutableLiveData.postValue(data?.order_idx)
+                Log.e("orderidxviewmodel1", data!!.order_idx.toString())
+            }
+        }
     }
 }

@@ -148,5 +148,4 @@ interface BoosterService {
         @Header("token") token: String,
         @Path("order_idx") orderIdx: Int
     ): Call<NoticeData>
-
 }
