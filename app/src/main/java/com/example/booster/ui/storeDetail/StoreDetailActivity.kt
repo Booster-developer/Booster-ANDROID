@@ -11,10 +11,10 @@ import com.example.booster.R
 import com.example.booster.data.datasource.model.MarkerData
 import com.example.booster.databinding.ActivityStoreDetailBinding
 import com.example.booster.onlyOneClickListener
-import com.example.booster.ui.storeList.MapActivity
+import com.example.booster.ui.fileStorage.FileStorageActivity
 import kotlinx.android.synthetic.main.activity_store_detail.*
 
-class StoreDetailActivity : AppCompatActivity() {
+class StoreDetailActivity() : AppCompatActivity() {
 
     var markers = arrayListOf<MarkerData>()
 
@@ -23,8 +23,10 @@ class StoreDetailActivity : AppCompatActivity() {
     var idx : Int = 0
     var store = ""
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_store_detail)
         viewModel = ViewModelProvider(this@StoreDetailActivity).get(StoreDetailViewModel::class.java)
@@ -64,6 +66,19 @@ class StoreDetailActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-    }
+        act_store_detail_btn_order.onlyOneClickListener {
+            viewModel.getOrderIdx(idx)
+            viewModel.orderIdx.observe(
+                this, Observer {
+                    Log.e("it", it.toString())
+                }
+            )
+            val orderIdx = viewModel.orderIdxMutableLiveData
+            Log.e("orderIdx", orderIdx.toString())
+//            val intent = Intent(this, FileStorageActivity::class.java)
+//            intent.putExtra("orderIdx", orderIdx)
+//            startActivity(intent)
+        }
 
+    }
 }

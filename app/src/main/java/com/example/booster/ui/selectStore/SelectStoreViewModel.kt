@@ -22,7 +22,6 @@ class SelectStoreViewModel : ViewModel() {
     }
 
     fun getOrder() {
-
     }
 
     fun getStoreList() {

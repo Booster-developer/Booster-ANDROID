@@ -28,6 +28,10 @@ class BottomTabActivity : AppCompatActivity() {
         setTabBar()
         click()
         if(flag==1) bottom_vp.currentItem = 3
+
+        if(intent.hasExtra("orderIdx")){
+            bottom_vp.currentItem = 3
+        }
     }
 
     private fun setTabBar() {
@@ -75,7 +79,7 @@ class BottomTabActivity : AppCompatActivity() {
         bottom_tab_layout!!.addOnTabSelectedListener(object : OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 if (tab.position == 2) {
-                    val intent = Intent(this@BottomTabActivity, MainActivity::class.java)
+                    val intent = Intent(this@BottomTabActivity, SelectStoreActivity::class.java)
                     val t = bottom_tab_layout.getTabAt(bottom_vp!!.currentItem)
                     t!!.select()
                     startActivity(intent)
