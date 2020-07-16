@@ -28,7 +28,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/mypage_cl_1"
+            android:id="@+id/act_order_detail_cl_file_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
@@ -125,8 +125,8 @@
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mypage_cl_1">
 
+            app:layout_constraintTop_toBottomOf="@+id/act_order_detail_cl_file_info">
             <TextView
                 android:id="@+id/mypage_tv_current_engine"
                 android:layout_width="wrap_content"

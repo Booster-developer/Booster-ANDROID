@@ -31,7 +31,7 @@ class OrderAdapter(private val context: Context,
     }
 
     override fun onBindViewHolder(holder: OrderDetailViewHolder, position: Int) {
-        holder.bind(data[position]) //data를 통째로 xml에 전달
+        holder.bind(data[position])
         if(position > previousPostition ){
             animationUtil.fade_out(holder.itemView)
         }
