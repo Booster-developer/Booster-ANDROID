@@ -210,6 +210,8 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         builder.setView(dialogView)
             .setPositiveButton("예") { dialog: DialogInterface?, which: Int ->
                 fileStorageViewModel.deleteItem(item)
+                fileStorageViewModel.getPrice(orderIdx)
+                Log.e("orderIdx on Delete", "check: " + orderIdx)
             }
             .setNegativeButton("아니오") { dialog: DialogInterface?, which: Int ->
 
