@@ -27,6 +27,7 @@ import com.example.booster.data.datasource.model.*
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.PdfViewerActivity
+import com.example.booster.ui.payment.PaymentActivity
 import com.example.booster.util.BoosterUtil
 import droidninja.filepicker.FilePickerBuilder
 import droidninja.filepicker.FilePickerConst
@@ -52,16 +53,6 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 
     private var storeIdx: Int = -1
     private var orderIdx: Int = -1
-
-
-//    var fileColor = ""
-//    var fileDir = ""
-//    var fileSided = ""
-//    var fileCollect = 0
-//    var fileCopyNum = 0
-//    var fileRange = ""
-//
-//    val requestToServer = BoosterServiceImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,8 +91,15 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
             //처음 대기리스트 들어갔을때 통신
             fileStorageViewModel.getOrderIdx(storeIdx)
 
-
+            //결제하기
+            fileStorage_tv_order.setOnClickListener {
+                val intent = Intent(this, PaymentActivity::class.java)
+                intent.putExtra("order_idx", this.orderIdx)
+                Log.e("orderidxfilesto", this.orderIdx.toString())
+                startActivity(intent)
+            }
         }
+
     }
 
     private fun subscribeObservers() {
@@ -135,8 +133,8 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                 Toast.makeText(this, errormessage, Toast.LENGTH_SHORT).show()
             }
         })
-        fileStorageViewModel.orderIdxMutableLiveData.observe(this, Observer{
-            if(it >= 0){
+        fileStorageViewModel.orderIdxMutableLiveData.observe(this, Observer {
+            if (it >= 0) {
                 fileStorageViewModel.getPrice(it)
                 this.orderIdx = it
             }
@@ -157,16 +155,16 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         val view = inflater.inflate(R.layout.dialog_item_view, null)
 
         // Set item text
-        
+
         view.dial_item_view_tv_color2.text = "${popupOptionInfo.file_color}"
         view.dial_item_view_tv_orientation2.text = "${popupOptionInfo.file_direction}"
         view.dial_item_view_tv_sided2.text = "${popupOptionInfo.file_sided_type}"
         view.dial_item_view_tv_multiple2.text = "${popupOptionInfo.file_collect} 개"
         view.dial_item_view_tv_number2.text = "${popupOptionInfo.file_copy_number} p"
 
-        if(popupOptionInfo.file_range != "전체 페이지"){
+        if (popupOptionInfo.file_range != "전체 페이지") {
             view.dial_item_view_tv_partial2.text = "${popupOptionInfo.file_range} 부"
-        }else view.dial_item_view_tv_partial2.text = "${popupOptionInfo.file_range}"
+        } else view.dial_item_view_tv_partial2.text = "${popupOptionInfo.file_range}"
 
 
         val alertDialog = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
@@ -215,10 +213,10 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
             }
             .setNegativeButton("아니오") { dialog: DialogInterface?, which: Int ->
 
-            }
-            .show()
 
+            }
     }
+
 
     override fun onActivityResult(
         requestCode: Int,
@@ -257,46 +255,9 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                 FINISH_SETTING_OPTION -> {
                     Log.e("chekc storeIdx", "asdfasdfasdfadsf: " + storeIdx)
                     fileStorageViewModel.getOrderIdx(storeIdx)
-//                    data?.let {
-//                        val color = it.getStringExtra("color")
-//                        val direction = it.getStringExtra("direction")
-//                        val side = it.getStringExtra("side")
-//                        val combine = it.getStringExtra("combine")
-//
-//                        val range = it.getStringExtra("range")
-//
-//                        val rangeMin = it.getStringExtra("rangeMin")
-//                        val rangeMax = it.getStringExtra("rangeMax")
-//
-//                        val number = it.getStringExtra("num")
-//
-//                        val popupOptionInfo = rangeMin?.let {
-//                            PopupOptionInfo(
-//                                file_color = color,
-//                                file_direction = direction,
-//                                file_sided_type = side,
-//                                file_collect = combine.toInt(),
-//                                file_copy_number = number.toInt(),
-//                                file_range = range,
-//                                file_range_min = rangeMin.toInt(),
-//                                file_range_max = rangeMax.toInt()
-//                            )
-//                        } ?: PopupOptionInfo(
-//                            file_color = color,
-//                            file_direction = direction,
-//                            file_sided_type = side,
-//                            file_collect = combine.toInt(),
-//                            file_copy_number = number.toInt(),
-//                            file_range = range
-//                        )
-//                        addThemToView()
-//                        fileStorageViewModel.setOptions(popupOptionInfo)
-//                    }
                 }
-
             }
         }
-
     }
 
     private fun addThemToView(flag: Boolean) {
@@ -340,7 +301,8 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 
 
     private fun fileAdd() {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(this, R.style.MyAlertDialogStyle2)
+        val builder: AlertDialog.Builder =
+            AlertDialog.Builder(this, R.style.MyAlertDialogStyle2)
         builder.setTitle("추가할 파일의 종류를 선택해주세요")
         builder.setPositiveButton("이미지") { dialogInterface: DialogInterface, i: Int ->
             FilePickerBuilder.instance

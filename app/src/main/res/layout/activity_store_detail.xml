@@ -474,6 +474,7 @@
                 app:layout_constraintEnd_toEndOf="parent"/>
 
             <TextView
+                android:id="@+id/act_store_detail_btn_order"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 setBtnActive="@{vm.storeDetail.data.store_open}"

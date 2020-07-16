@@ -23,10 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         override fun onPermissionDenied(deniedPermissions: List<String>) {
             Toast.makeText(
-                this@MainActivity,
-                "Permission Denied\n$deniedPermissions",
-                Toast.LENGTH_SHORT
-            ).show()
+                this@MainActivity, "Permission Denied\n$deniedPermissions", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -55,7 +52,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn_storage.onlyOneClickListener {
-            //val intent = Intent(this, FileStorageActivity::class.java)
             val intent = Intent(this, SelectStoreActivity::class.java)
             startActivity(intent)
         }
