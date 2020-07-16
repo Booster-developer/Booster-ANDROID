@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.activity_join.*
 import kotlinx.android.synthetic.main.fragment_edit_profile.*
 import kotlinx.android.synthetic.main.fragment_edit_profile.univList
 import kotlinx.android.synthetic.main.fragment_edit_profile.univSelectBtn
-import kotlinx.android.synthetic.main.fragment_edit_profile.univSelected
 import kotlinx.android.synthetic.main.fragment_edit_profile.univ_1
 import kotlinx.android.synthetic.main.fragment_edit_profile.univ_2
 import kotlinx.android.synthetic.main.fragment_edit_profile.univ_3
@@ -39,17 +38,17 @@ class EditProfileFragment : Fragment() {
         }
 
         univ_1.setOnClickListener {
-            univSelected.text = "숭실대학교"
+            edit_profile_tv_univ_select.text = "숭실대학교"
             univIdx = 1
             univList.visibility = View.GONE
         }
         univ_2.setOnClickListener {
-            univSelected.text = "중앙대학교"
+            edit_profile_tv_univ_select.text = "중앙대학교"
             univIdx = 2
             univList.visibility = View.GONE
         }
         univ_3.setOnClickListener {
-            univSelected.text = "서울대학교"
+            edit_profile_tv_univ_select.text = "서울대학교"
             univIdx = 3
             univList.visibility = View.GONE
         }
@@ -63,9 +62,9 @@ class EditProfileFragment : Fragment() {
 
     fun edit() {
         val editJsonData = JSONObject()
-        editJsonData.put("user_name", edit_name)
+        editJsonData.put("user_name", edit_profile_edt_name)
         editJsonData.put("user_university", univIdx)
-        editJsonData.put("user_pw", edit_pw)
+        editJsonData.put("user_pw", edit_profile_edt_pw_new)
 
         val body = JsonParser.parseString(editJsonData.toString()) as JsonObject
         BoosterServiceImpl.service.editMyProfile(body = body, token = "")
