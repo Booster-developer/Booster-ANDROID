@@ -62,8 +62,10 @@ class StoreFileOptionNumFragment : DialogFragment() {
             edt_printNum.setText(printOption.toString())
         }
 
+
         dial_store_file_option_num.onlyOneClickListener {
-            sendData("${printOption}")
+            sendData(printOption)
+
             dismiss()
         }
 
@@ -91,7 +93,7 @@ class StoreFileOptionNumFragment : DialogFragment() {
             Toast.LENGTH_SHORT).show();
     }
 
-    fun sendData(num:String)
+    fun sendData(num:Int)
     {
         mCallback!!.communicateNum(num);
 

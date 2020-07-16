@@ -1,5 +1,6 @@
 package com.example.booster.ui.fileStorage
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
@@ -49,16 +50,17 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
     private lateinit var docPaths: ArrayList<Uri>
     private lateinit var photoPaths: ArrayList<Uri>
 
+    private var storeIdx: Int = -1
 
 
-    var fileColor = ""
-    var fileDir = ""
-    var fileSided = ""
-    var fileCollect = 0
-    var fileCopyNum = 0
-    var fileRange = ""
-
-    val requestToServer = BoosterServiceImpl
+//    var fileColor = ""
+//    var fileDir = ""
+//    var fileSided = ""
+//    var fileCollect = 0
+//    var fileCopyNum = 0
+//    var fileRange = ""
+//
+//    val requestToServer = BoosterServiceImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,20 +81,25 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         subscribeObservers()
 
 
-        //fileStorageViewModel.getWaitList()
-
-
-
         //get intent values
-        intent?.let{
+        intent?.let {
+            val storeIdx = it.getIntExtra("storeIdx", -1)
             val storeName = it.getStringExtra("storeName")
             val address = it.getStringExtra("storeAddress")
-            storeName?.let{name->
+            storeName?.let { name ->
                 fileStorage_tv_store_name.text = name
             }
-            address?.let{address->
+            address?.let { address ->
                 fileStorage_tv_store_address.text = address
             }
+            if (storeIdx != -1) {
+                this.storeIdx = storeIdx
+
+            }
+            //처음 대기리스트 들어갔을때 통신
+            fileStorageViewModel.getOrderIdx(storeIdx)
+
+
         }
     }
 
@@ -110,6 +117,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
             mAdapter.apply {
                 submitList(it)
             }
+
         })
         fileStorageViewModel.popupOptionLiveData.observe(this, Observer {
             it?.let {
@@ -122,8 +130,13 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
             }
         })
         fileStorageViewModel.responseMessageLiveData.observe(this, Observer {
-            it?.let{errormessage ->
-                Toast.makeText(this, errormessage,Toast.LENGTH_SHORT).show()
+            it?.let { errormessage ->
+                Toast.makeText(this, errormessage, Toast.LENGTH_SHORT).show()
+            }
+        })
+        fileStorageViewModel.orderIdxMutableLiveData.observe(this, Observer{
+            if(it >= 0){
+                fileStorageViewModel.getPrice(it)
             }
         })
 
@@ -136,17 +149,23 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 //        })
     }
 
+    @SuppressLint("SetTextI18n")
     private fun showOptionDialog(popupOptionInfo: PopupOptionInfo) {
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = inflater.inflate(R.layout.dialog_item_view, null)
 
         // Set item text
+        
         view.dial_item_view_tv_color2.text = "${popupOptionInfo.file_color}"
         view.dial_item_view_tv_orientation2.text = "${popupOptionInfo.file_direction}"
         view.dial_item_view_tv_sided2.text = "${popupOptionInfo.file_sided_type}"
-        view.dial_item_view_tv_multiple2.text = "${popupOptionInfo.file_collect}"
-        view.dial_item_view_tv_number2.text = "${popupOptionInfo.file_copy_number}"
-        view.dial_item_view_tv_partial2.text = "${popupOptionInfo.file_range}"
+        view.dial_item_view_tv_multiple2.text = "${popupOptionInfo.file_collect} 개"
+        view.dial_item_view_tv_number2.text = "${popupOptionInfo.file_copy_number} p"
+
+        if(popupOptionInfo.file_range != "전체 페이지"){
+            view.dial_item_view_tv_partial2.text = "${popupOptionInfo.file_range} 부"
+        }else view.dial_item_view_tv_partial2.text = "${popupOptionInfo.file_range}"
+
 
         val alertDialog = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
             .create()
@@ -160,22 +179,21 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
     }
 
     private fun setWaitList(wait: Wait) {
-        fileStorage_tv_store_name.text = "${wait.store_name}"
-        fileStorage_tv_store_address.text = "${wait.store_address}"
-        fileStorage_tv_cost_amount.text = "${wait.order_price}"
+        fileStorage_tv_cost_amount.text = "${wait.order_price} 원"
     }
 
 
     override fun itemOptionChange(item: File, position: Int) {
         val intent = Intent(this@FileStorageActivity, StoreFileOptionActivity::class.java)
+        intent.putExtra("fileIdx", item.file_idx)
         //intent.putExtra("color",item.popupOptionInfo.file_color)
         //intent.put("item", item.popupOptionInfo)  custom object class를 intent로 넘기는 방법 (parcelable)
-
-        startActivity(intent)
+        startActivityForResult(intent, FINISH_SETTING_OPTION)
     }
 
     override fun itemOptionView(item: File, position: Int) {
-        fileStorageViewModel.getPopupOption()
+        Log.e("whatis fileIdx", "here: " + item.file_idx)
+        fileStorageViewModel.getPopupOption(item.file_idx)
 
 
 //        val args = Bundle()
@@ -285,7 +303,8 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                     }
                 }
                 FINISH_SETTING_OPTION -> {
-
+                    Log.e("chekc storeIdx", "asdfasdfasdfadsf: " + storeIdx)
+                    fileStorageViewModel.getOrderIdx(storeIdx)
 //                    data?.let {
 //                        val color = it.getStringExtra("color")
 //                        val direction = it.getStringExtra("direction")
@@ -328,11 +347,6 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 
     }
 
-    private fun showOptionActivity() {
-        val intent = Intent(this@FileStorageActivity, StoreFileOptionActivity::class.java)
-        startActivityForResult(intent, FINISH_SETTING_OPTION)
-    }
-
     private fun addThemToView(flag: Boolean) {
         val filePaths: ArrayList<Uri> = ArrayList()
         if (flag) {
@@ -340,24 +354,23 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                 val filePath = BoosterUtil().getPathFromUri(imgUri)
                 val fileName = BoosterUtil().getFileName(imgUri)
                 val fileType = BoosterUtil().getFileType(filePath!!)
-                val file = File(55, fileName, fileType, filePath, imgUri)
+                val file = File(-1, fileName, fileType, filePath, imgUri)
                 Log.e("check", file.file_name + " " + file.file_extension)
 //                file.name = BoosterUtil(this).getFileName(imguri)
 //                file.type = "img"
                 fileStorageViewModel.addItem(file)
-                fileStorageViewModel.order()
+                fileStorageViewModel.order(storeIdx)
             }
-        }
-        else if (!flag) {
+        } else if (!flag) {
             for (docUri in docPaths) {
                 val filePath = BoosterUtil().getPathFromUri(docUri)
                 val fileName = BoosterUtil().getFileName(docUri)
                 val fileType = BoosterUtil().getFileType(filePath!!)
-                val file = File(55, fileName, fileType, filePath, docUri)
+                val file = File(-1, fileName, fileType, filePath, docUri)
 //                file.name = BoosterUtil(this).getFileName(docuri)
 //                file.type = BoosterUtil(this).getFileType(docuri)
                 fileStorageViewModel.addItem(file)
-                fileStorageViewModel.order()
+                fileStorageViewModel.order(storeIdx)
             }
         }
         fileStorage_rv_file_add.adapter?.notifyDataSetChanged()
@@ -411,7 +424,6 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
             }
             .show()
     }
-
 
 
     override fun pdfviewer(item: File, position: Int) {

@@ -48,7 +48,8 @@ class AlertViewHolder(view: View,
             itemView.item_alert_img.setImageResource(R.drawable.notice_ic_alarm_inactive)
         }
         itemView.item_alert_idx.text = "no. " + alertDataInfo.notice_idx.toString()
-        itemView.item_alert_msg.text = "복사왕 김제본에서 주문하신 인쇄가 완료되었습니다.\n픽업 완료 버튼을 눌러주세요."
+        itemView.item_alert_msg.text = alertDataInfo.store_name
+        itemView.item_alert_txt1.text = "에서 주문하신 인쇄가 완료되었습니다."
         itemView.item_alert_time.text = alertDataInfo.notice_time
     }
 

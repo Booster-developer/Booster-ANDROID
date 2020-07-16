@@ -8,9 +8,9 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:fitsSystemWindows="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         tools:context=".ui.home.HomeFragment">
 
         <com.airbnb.lottie.LottieAnimationView
@@ -18,13 +18,13 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:scaleType="fitXY"
-            app:lottie_repeatCount="3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:lottie_autoPlay="true"
-            app:lottie_fileName="home_s8_3.json" />
+            app:lottie_fileName="home_s8_3.json"
+            app:lottie_repeatCount="3" />
 
         <ImageView
             android:id="@+id/frag_home_btn_alert"
