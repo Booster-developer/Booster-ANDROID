@@ -159,7 +159,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         })
         fileStorageViewModel.orderIdxMutableLiveData.observe(this, Observer {
             if (it >= 0) {
-                fileStorageViewModel.getPrice(it)
+                //fileStorageViewModel.getPrice(it)
                 this.orderIdx = it
             }
         })
@@ -277,8 +277,8 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                     }
                 }
                 FINISH_SETTING_OPTION -> {
-                    Log.e("chekc storeIdx", "asdfasdfasdfadsf: " + storeIdx)
-                    fileStorageViewModel.getOrderIdx(storeIdx)
+                    Log.e("chekc orderIdx", "asdfasdfasdfadsf: " + orderIdx)
+                    fileStorageViewModel.getPrice(orderIdx)
                 }
             }
         }
@@ -297,6 +297,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 //                file.type = "img"
                 fileStorageViewModel.addItem(file)
                 fileStorageViewModel.order(orderIdx)
+                fileStorageViewModel.getPrice(orderIdx)
             }
         } else if (!flag) {
             for (docUri in docPaths) {
@@ -308,6 +309,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 //                file.type = BoosterUtil(this).getFileType(docuri)
                 fileStorageViewModel.addItem(file)
                 fileStorageViewModel.order(orderIdx)
+                fileStorageViewModel.getPrice(orderIdx)
             }
         }
         fileStorage_rv_file_add.adapter?.notifyDataSetChanged()
