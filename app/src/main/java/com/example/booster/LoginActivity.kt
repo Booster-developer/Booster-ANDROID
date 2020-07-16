@@ -39,10 +39,10 @@ class LoginActivity : AppCompatActivity() {
             login_edt_id.isSelected = hasFocus
         }
 
-        // 비밀번호 focused
         login_edt_pw.setOnFocusChangeListener { v, hasFocus ->
             login_edt_pw.isSelected = hasFocus
         }
+      
         login_edt_pw.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
                 v.clearFocus()

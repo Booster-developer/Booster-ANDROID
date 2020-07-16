@@ -36,7 +36,9 @@ class OrderDetailImgFragment : DialogFragment() {
 
         val position = arguments
 
-        Glide.with(view.context).load("https://img1.daumcdn.net/thumb/R720x0.q80/?scode=mtistory2&fname=http%3A%2F%2Fcfs15.tistory.com%2Fimage%2F24%2Ftistory%2F2009%2F02%2F12%2F13%2F43%2F4993a8fa190c9").into(dialog_order_detail_img)
+        if (position != null) {
+            Glide.with(view.context).load(position.getString("thumbnail")).into(dialog_order_detail_img)
+        }
         dialog_order_detail_name.setText(position?.getString("name"))
 //        dialog_order_detail_img.setImageResource(R.drawable.sel_order_option_btn_cut_16)
     }

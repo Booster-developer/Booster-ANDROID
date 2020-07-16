@@ -1,12 +1,14 @@
 package com.example.booster.ui.bottomtap
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.booster.BoosterApplication
 import com.example.booster.R
 import com.example.booster.ui.selectStore.SelectStoreActivity
 import com.google.android.material.tabs.TabLayout
@@ -36,6 +38,7 @@ class BottomTabActivity : AppCompatActivity() {
             bottom_vp.currentItem = 0
             token = intent.getStringExtra("token")
             Log.e("token", token)
+            BoosterApplication.prefs.isLoggedIn = token
         }
     }
 
