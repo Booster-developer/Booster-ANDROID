@@ -27,6 +27,7 @@ import com.example.booster.data.datasource.model.*
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.PdfViewerActivity
+import com.example.booster.ui.payment.PaymentActivity
 import com.example.booster.util.BoosterUtil
 import droidninja.filepicker.FilePickerBuilder
 import droidninja.filepicker.FilePickerConst
@@ -51,16 +52,6 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
     private lateinit var photoPaths: ArrayList<Uri>
 
     private var storeIdx: Int = -1
-
-
-//    var fileColor = ""
-//    var fileDir = ""
-//    var fileSided = ""
-//    var fileCollect = 0
-//    var fileCopyNum = 0
-//    var fileRange = ""
-//
-//    val requestToServer = BoosterServiceImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,6 +91,12 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
             fileStorageViewModel.getOrderIdx(storeIdx)
 
 
+        }
+
+        fileStorage_tv_order.setOnClickListener {
+            val intent = Intent(this, PaymentActivity::class.java)
+//            intent.putExtra("order_idx", )
+            startActivity(intent)
         }
     }
 

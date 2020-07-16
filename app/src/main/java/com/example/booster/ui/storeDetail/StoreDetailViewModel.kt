@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.booster.data.datasource.model.MarkerData
 import com.example.booster.data.datasource.model.StoreDetailData
 import com.example.booster.data.datasource.model.StoreFavData
 import com.example.booster.data.repository.StoreDetailRepository
@@ -39,6 +38,7 @@ class StoreDetailViewModel : ViewModel() {
                 // onResponse
                 Log.e("postUserData 응답 성공 : ", it.message)
                 _storeDetail.postValue(it)
+
             }){
                 // 에러 블록
                 // 네트워크 오류나 데이터 처리 오류 등
