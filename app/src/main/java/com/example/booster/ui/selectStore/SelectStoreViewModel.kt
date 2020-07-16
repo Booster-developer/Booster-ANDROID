@@ -1,5 +1,6 @@
 package com.example.booster.ui.selectStore
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -21,7 +22,6 @@ class SelectStoreViewModel : ViewModel() {
     }
 
     fun getOrder() {
-
     }
 
     fun getStoreList() {
@@ -31,6 +31,7 @@ class SelectStoreViewModel : ViewModel() {
             )
             if (response.status == 200) {
                 val data = response.data
+                Log.e("storeIdx", "check: " + data?.recent_order_store?.store_idx)
                 val list = mutableListOf<Store>()
                 data?.let {
                     it.recent_order_store?.let { store ->

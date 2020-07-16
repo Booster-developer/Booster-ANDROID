@@ -1,8 +1,8 @@
 package com.example.booster.ui.orderDetail
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.booster.R
 import com.example.booster.data.datasource.model.OrderDetailData
@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_order_detail.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class OrderDetailActivity : AppCompatActivity() {
 
@@ -74,7 +75,22 @@ class OrderDetailActivity : AppCompatActivity() {
                         )
 
                     }
+                },
+            object : OrderDetailViewHolder.onClickImgListener {
+                override fun onClickImg(position: Int) {
+                    datas[position]
+                    Log.e("position", position.toString())
+
+                    val imgDialog = OrderDetailImgFragment()
+                    val args = Bundle()
+                    args.putString("name", datas[position].file_name)
+                    imgDialog.arguments = args
+                    imgDialog.show(
+                        supportFragmentManager, "item option fragment"
+                    )
                 }
+
+            }
             )
 
         order_detail_rv.adapter = orderAdapter

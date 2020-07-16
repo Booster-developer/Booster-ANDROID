@@ -11,4 +11,5 @@ interface RemoteDataSource {
     fun getPaymentInfo(orderIdx: Int) : Observable<PaymentData>
     fun putPickUp(orderIdx: Int) : Observable<DefaultData>
     fun getStoreList(univIdx: Int) : Observable<StoreListData>
+    fun getHome() : Observable<HomeData>
 }

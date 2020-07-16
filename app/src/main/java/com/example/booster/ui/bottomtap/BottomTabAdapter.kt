@@ -8,6 +8,7 @@ import com.example.booster.ui.myPage.MypageFragment
 import com.example.booster.ui.orderList.OrderListFragment
 import com.example.booster.ui.storeList.StoreListFragment
 
+
 class BottomTabAdapter (fm : FragmentManager, val fragmentCount : Int):
     FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
 
@@ -15,8 +16,8 @@ class BottomTabAdapter (fm : FragmentManager, val fragmentCount : Int):
         when(position){
             0 -> return HomeFragment()
             1 -> return StoreListFragment()
-            2 -> return HomeFragment()
-            3 -> return StoreListFragment()
+            2 -> return StoreListFragment()
+            3 -> return OrderListFragment()
             4 -> return MypageFragment()
             else -> null!!
         }

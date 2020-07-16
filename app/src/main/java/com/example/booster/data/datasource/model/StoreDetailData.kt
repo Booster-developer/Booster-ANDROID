@@ -31,5 +31,6 @@ data class StoreDetail(
     val univ_line: Int,
     val store_favorite: Int,
     val store_x_location: Double,
-    val store_y_location: Double
+    val store_y_location: Double,
+    val store_open: Int
 )

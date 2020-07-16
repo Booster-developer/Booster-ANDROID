@@ -125,8 +125,25 @@ interface BoosterService {
     fun getAlertList(
         ): Call<AlertData>
 
+    @POST("/orders/{store_idx}")
+    suspend fun getOrderIdx(
+        @Header("token") token: String,
+        @Path("store_idx") storeIdx: Int
+    ): ApiWrapper<OrderDetailInfo>
+
+    @DELETE("/orders/{file_idx}")
+    suspend fun deleteFile(
+        @Header("token") token: String,
+        @Path("file_idx") fileIdx: Int
+    ): ApiWrapper<String?>
+
     @PUT("/mypage/notice/{order_idx}")
     fun checkNotice(
-        @Header("token") token: String
+        @Header("token") token: String,
+        @Path("order_idx") orderIdx: Int
     ): Call<NoticeData>
+
+    @GET("/home/orders")
+    fun getHome() : Observable<HomeData>
+
 }

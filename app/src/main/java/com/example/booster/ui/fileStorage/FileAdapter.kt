@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.booster.AnimationUtil
 import com.example.booster.R
 import com.example.booster.data.datasource.model.File
+import com.example.booster.onlyOneClickListener
 import com.example.booster.util.BoosterUtil
 import com.example.booster.util.PDFThumbnailUtils
 import kotlinx.android.synthetic.main.activity_file_storage.*
@@ -88,24 +89,24 @@ class FileAdapter(
 
             //itemView.tv_option_view.text = file.option_view //사용하면 옵션보기 텍스트가 안뜸
 
-            itemView.iv_file_delete.setOnClickListener{
+            itemView.iv_file_delete.onlyOneClickListener{
                 fileRecyclerViewOnClickListener?.itemDelete(file, bindingAdapterPosition)
                 //itemDelete(file, bindingAdapterPosition)
             }
 
-            itemView.tv_option_change.setOnClickListener {
+            itemView.tv_option_change.onlyOneClickListener {
                 fileRecyclerViewOnClickListener?.itemOptionChange(file, bindingAdapterPosition)
 
                 // itemOptionChange(file, bindingAdapterPosition)
             }
 
-            itemView.tv_option_view.setOnClickListener {
+            itemView.tv_option_view.onlyOneClickListener {
                 fileRecyclerViewOnClickListener?.itemOptionView(file, bindingAdapterPosition)
 
                 // itemOptionView(file, bindingAdapterPosition)
             }
 
-            itemView.iv_file.setOnClickListener {
+            itemView.iv_file.onlyOneClickListener {
                 fileRecyclerViewOnClickListener?.pdfviewer(file, bindingAdapterPosition)
             }
 

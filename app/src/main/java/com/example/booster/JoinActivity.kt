@@ -32,22 +32,22 @@ class JoinActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_join)
 
-        join_tv_univ_select_btn.setOnClickListener {
-            join_ll_univ.visibility = View.VISIBLE
+        join_tv_univ_select_btn.onlyOneClickListener {
+            univList.visibility = View.VISIBLE
         }
 
-        join_tv_univ_1.setOnClickListener {
-            join_tv_univ_select.text = "숭실대학교"
+        join_tv_univ_1.onlyOneClickListener {
+            univSelected.text = "숭실대학교"
             univIdx = 1
             join_ll_univ.visibility = View.GONE
         }
-        join_tv_univ_2.setOnClickListener {
-            join_tv_univ_select.text = "중앙대학교"
+        join_tv_univ_2.onlyOneClickListener {
+            univSelected.text = "중앙대학교"
             univIdx = 2
             join_ll_univ.visibility = View.GONE
         }
-        join_tv_univ_3.setOnClickListener {
-            join_tv_univ_select.text = "서울대학교"
+        join_tv_univ_3.onlyOneClickListener {
+            univSelected.text = "서울대학교"
             univIdx = 3
             join_ll_univ.visibility = View.GONE
         }
@@ -105,12 +105,12 @@ class JoinActivity : AppCompatActivity() {
         }
 
         // 아이디 중복 확인
-        join_tv_id_chk.setOnClickListener {
+        join_tv_id_chk.onlyOneClickListener {
             checkId()
         }
 
         // 회원가입 request
-        join_btn_join.setOnClickListener {
+        join_btn_join.onlyOneClickListener {
             join()
         }
     }

@@ -9,8 +9,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 
 import com.example.booster.R
+import com.example.booster.onlyOneClickListener
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
@@ -30,34 +33,32 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        // TODO: Use the ViewModel
 
+        setClick()
+        viewModel.getHome()
+        viewModel.homeRes.observe(requireActivity() , Observer {
+            frag_home_user_name.text = it.data.user_name
+            when (it.data.home_state) {
+                1 -> {
+                    frag_home_lt.setAnimation("home_s8_1.json")
+                }
+                2 -> {
+                    frag_home_lt.setAnimation("home_s8_2.json")
+                }
+                else -> {
+                    frag_home_lt.setAnimation("home_s8_3.json")
+                }
+            }
+        })
 
-        frag_home_btn_alert.setOnClickListener {
+        frag_home_lt.repeatCount = 2
+        frag_home_lt.playAnimation()
+    }
+
+    fun setClick(){
+        frag_home_btn_alert.onlyOneClickListener {
             val intent = Intent(activity, AlertActivity::class.java)
             startActivity(intent)
         }
-
-        Handler().postDelayed({
-
-        }, SPLASH_TIME_OUT)
-
-        frag_home_lt.setAnimation("1_door_open_0734.json")
-        frag_home_lt.loop(true)
-        frag_home_lt.playAnimation()
-        frag_home_lt.addAnimatorListener(object : Animator.AnimatorListener {
-            override fun onAnimationStart(animation: Animator) {
-            }
-
-            override fun onAnimationEnd(animation: Animator) {
-            }
-
-            override fun onAnimationCancel(animation: Animator) {
-            }
-
-            override fun onAnimationRepeat(animation: Animator) {
-            }
-        })
     }
-
 }
