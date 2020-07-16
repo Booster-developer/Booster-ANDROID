@@ -36,4 +36,9 @@ class RemoteDataSourceImpl : RemoteDataSource {
         api.getStoreList(univIdx).map{
             it
         }
+
+    override fun getHome(): Observable<HomeData> =
+        api.getHome().map{
+            it
+    }
 }

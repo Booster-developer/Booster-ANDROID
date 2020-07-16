@@ -476,6 +476,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                setBtnActive="@{vm.storeDetail.data}"
                 android:background="@drawable/bg_btn_gradation"
                 android:textSize="20sp"
                 android:textColor="#ffffff"
