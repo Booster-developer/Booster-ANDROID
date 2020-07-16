@@ -248,7 +248,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                         fileStorageViewModel.getPrice(orderIdx)
 
                     }
-                },200)
+                },2000)
                 Log.e("orderIdx on Delete", "check: " + orderIdx)
             }
             .setNegativeButton("아니오") { dialog: DialogInterface?, which: Int ->
@@ -300,7 +300,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                             fileStorageViewModel.getPrice(orderIdx)
 
                         }
-                    },200)
+                    },2000)
                 }
             }
         }
@@ -357,7 +357,13 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 //                file.type = "img"
                 fileStorageViewModel.addItem(file)
                 fileStorageViewModel.order(orderIdx)
-                fileStorageViewModel.getPrice(orderIdx)
+                val handler= android.os.Handler()
+                handler.postDelayed(object :Runnable{
+                    override fun run() {
+                        fileStorageViewModel.getPrice(orderIdx)
+
+                    }
+                },2000)
             }
         } else if (!flag) {
             for (docUri in docPaths) {
@@ -373,7 +379,13 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 
                 fileStorageViewModel.addItem(file)
                 fileStorageViewModel.order(orderIdx)
-                fileStorageViewModel.getPrice(orderIdx)
+                val handler= android.os.Handler()
+                handler.postDelayed(object :Runnable{
+                    override fun run() {
+                        fileStorageViewModel.getPrice(orderIdx)
+
+                    }
+                },2000)
             }
         }
         fileStorage_rv_file_add.adapter?.notifyDataSetChanged()
