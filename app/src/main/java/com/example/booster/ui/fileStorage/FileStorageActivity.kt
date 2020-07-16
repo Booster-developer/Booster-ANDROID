@@ -1,5 +1,6 @@
 package com.example.booster.ui.fileStorage
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
@@ -50,6 +51,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
     private lateinit var photoPaths: ArrayList<Uri>
 
     private var storeIdx: Int = -1
+    private var orderIdx: Int = -1
 
 
 //    var fileColor = ""
@@ -136,6 +138,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         fileStorageViewModel.orderIdxMutableLiveData.observe(this, Observer{
             if(it >= 0){
                 fileStorageViewModel.getPrice(it)
+                this.orderIdx = it
             }
         })
 
@@ -148,6 +151,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 //        })
     }
 
+    @SuppressLint("SetTextI18n")
     private fun showOptionDialog(popupOptionInfo: PopupOptionInfo) {
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = inflater.inflate(R.layout.dialog_item_view, null)
@@ -157,9 +161,13 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         view.dial_item_view_tv_color2.text = "${popupOptionInfo.file_color}"
         view.dial_item_view_tv_orientation2.text = "${popupOptionInfo.file_direction}"
         view.dial_item_view_tv_sided2.text = "${popupOptionInfo.file_sided_type}"
-        view.dial_item_view_tv_multiple2.text = "${popupOptionInfo.file_collect}"
-        view.dial_item_view_tv_number2.text = "${popupOptionInfo.file_copy_number}"
-        view.dial_item_view_tv_partial2.text = "${popupOptionInfo.file_range}"
+        view.dial_item_view_tv_multiple2.text = "${popupOptionInfo.file_collect} 개"
+        view.dial_item_view_tv_number2.text = "${popupOptionInfo.file_copy_number} p"
+
+        if(popupOptionInfo.file_range != "전체 페이지"){
+            view.dial_item_view_tv_partial2.text = "${popupOptionInfo.file_range} 부"
+        }else view.dial_item_view_tv_partial2.text = "${popupOptionInfo.file_range}"
+
 
         val alertDialog = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
             .create()
@@ -180,6 +188,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
     override fun itemOptionChange(item: File, position: Int) {
         val intent = Intent(this@FileStorageActivity, StoreFileOptionActivity::class.java)
         intent.putExtra("fileIdx", item.file_idx)
+        intent.putExtra("fileType", item.file_extension)
         //intent.putExtra("color",item.popupOptionInfo.file_color)
         //intent.put("item", item.popupOptionInfo)  custom object class를 intent로 넘기는 방법 (parcelable)
         startActivityForResult(intent, FINISH_SETTING_OPTION)
@@ -353,7 +362,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 //                file.name = BoosterUtil(this).getFileName(imguri)
 //                file.type = "img"
                 fileStorageViewModel.addItem(file)
-                fileStorageViewModel.order(storeIdx)
+                fileStorageViewModel.order(orderIdx)
             }
         } else if (!flag) {
             for (docUri in docPaths) {
@@ -364,7 +373,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 //                file.name = BoosterUtil(this).getFileName(docuri)
 //                file.type = BoosterUtil(this).getFileType(docuri)
                 fileStorageViewModel.addItem(file)
-                fileStorageViewModel.order(storeIdx)
+                fileStorageViewModel.order(orderIdx)
             }
         }
         fileStorage_rv_file_add.adapter?.notifyDataSetChanged()

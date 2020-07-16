@@ -19,8 +19,8 @@ class StoreFileOptionRangeFragment : DialogFragment() {
     private var mCallback: FragmentToActivity? = null
 
     private var printOption: String = "전체"
-    private var printMinNum: String = "0"
-    private var printMaxNum: String = "0"
+    var printMinNum = 0
+    var printMaxNum = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,8 +41,11 @@ class StoreFileOptionRangeFragment : DialogFragment() {
 
         //default로 전체
         order_option_btn_whole1.isSelected = true
+        edt_printMinNum.isEnabled = false  // 전체범위 선택됐을 경우 범위 선택 불가 default
+        edt_printMaxNum.isEnabled = false
 
         order_dialog_btn_close_black.onlyOneClickListener {
+            printOption = "all"
             dismiss()
         }
 
@@ -50,33 +53,37 @@ class StoreFileOptionRangeFragment : DialogFragment() {
             order_option_btn_whole2.isSelected = false
             order_option_btn_whole1.isSelected = !order_option_btn_whole1.isSelected
             printOption = "all"
+            edt_printMinNum.isEnabled = false  // 전체범위 선택됐을 경우 범위 선택 불가
+            edt_printMaxNum.isEnabled = false
         }
 
         order_option_btn_whole2.onlyOneClickListener {
             order_option_btn_whole1.isSelected = false
             order_option_btn_whole2.isSelected = !order_option_btn_whole2.isSelected
             printOption= "part"
+            edt_printMinNum.isEnabled = true
+            edt_printMaxNum.isEnabled = true
         }
 
         dial_store_file_option_range.onlyOneClickListener {
             //완료버튼
-            printMinNum = edt_printMinNum.text.toString()
-            printMaxNum = edt_printMaxNum.text.toString()
 
+            printMinNum = if(edt_printMinNum.text.isNullOrBlank()){ 0 } else edt_printMinNum.text.toString().toInt()
+            printMaxNum = if(edt_printMaxNum.text.isNullOrBlank()){0} else edt_printMaxNum.text.toString().toInt()
 
             if(printOption == "all"){
                 sendData("전체", 0, 0)
                 dismiss()
             }
             else if(printOption == "part"){
-                if(printMinNum.isNullOrBlank() || printMaxNum.isNullOrBlank()){
+                if(edt_printMaxNum.text.isNullOrBlank() || edt_printMinNum.text.isNullOrBlank()){
                     Toast.makeText(context, "범위를 입력해주세요.", Toast.LENGTH_SHORT).show()
                 }
                 else{
-                    if(printMaxNum<printMinNum){
+                    if(printMaxNum < printMinNum){
                         Toast.makeText(context, "범위를 확인해주세요.", Toast.LENGTH_SHORT).show()
                     }else{
-                        sendData("부분 ", printMinNum.toInt() , printMaxNum.toInt())
+                        sendData("부분 ", printMinNum , printMaxNum)
                         dismiss()
                     }
                 }
@@ -118,4 +125,3 @@ class StoreFileOptionRangeFragment : DialogFragment() {
     }
 
 }
-

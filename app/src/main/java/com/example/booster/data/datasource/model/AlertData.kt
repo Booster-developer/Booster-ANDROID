@@ -10,5 +10,6 @@ data class AlertData(
 data class AlertDataInfo(
     var notice_confirm: Int,
     val notice_idx: Int,
-    val notice_time: String
+    val notice_time: String,
+    val store_name: String
 )

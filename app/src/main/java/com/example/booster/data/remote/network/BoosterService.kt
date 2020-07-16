@@ -145,7 +145,8 @@ interface BoosterService {
 
     @PUT("/mypage/notice/{order_idx}")
     fun checkNotice(
-        @Header("token") token: String
+        @Header("token") token: String,
+        @Path("order_idx") orderIdx: Int
     ): Call<NoticeData>
 
 }

@@ -41,27 +41,49 @@
         android:id="@+id/item_alert_msg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
+        android:text="부스터"
         android:fontFamily="@font/noto_sans_kr_regular"
         android:textColor="@color/black"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/item_alert_idx"
-        app:layout_constraintTop_toBottomOf="@id/item_alert_idx"
-        tools:text="복사왕 김제본에서 주문하신 인쇄가 완료되었습니다.\n픽업 완료 버튼을 눌러주세요." />
+        app:layout_constraintTop_toBottomOf="@+id/item_alert_idx" />
+
+    <TextView
+        android:id="@+id/item_alert_txt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/item_alert_msg"
+        app:layout_constraintStart_toEndOf="@+id/item_alert_msg"
+        app:layout_constraintTop_toBottomOf="@+id/item_alert_idx"
+        tools:text="에서 주문하신 인쇄가 완료되었습니다." />
+
+    <TextView
+        android:id="@+id/item_alert_txt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="픽업 완료 버튼을 눌러주세요!"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/item_alert_msg"
+        app:layout_constraintTop_toBottomOf="@+id/item_alert_txt1" />
 
     <TextView
         android:id="@+id/item_alert_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/noto_sans_kr_regular"
         android:lineSpacingExtra="5sp"
         android:text="2020.05.09 16:29"
         android:textColor="@color/black"
         android:textSize="10sp"
+        android:layout_marginTop="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/item_alert_msg"
-        app:layout_constraintTop_toBottomOf="@+id/item_alert_msg" />
+        app:layout_constraintStart_toStartOf="@+id/item_alert_txt2"
+        app:layout_constraintTop_toBottomOf="@+id/item_alert_txt2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
