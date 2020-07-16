@@ -41,6 +41,8 @@ class StoreFileOptionRangeFragment : DialogFragment() {
 
         //default로 전체
         order_option_btn_whole1.isSelected = true
+        edt_printMinNum.isEnabled = false  // 전체범위 선택됐을 경우 범위 선택 불가 default
+        edt_printMaxNum.isEnabled = false
 
         order_dialog_btn_close_black.onlyOneClickListener {
             printOption = "all"
@@ -51,12 +53,16 @@ class StoreFileOptionRangeFragment : DialogFragment() {
             order_option_btn_whole2.isSelected = false
             order_option_btn_whole1.isSelected = !order_option_btn_whole1.isSelected
             printOption = "all"
+            edt_printMinNum.isEnabled = false  // 전체범위 선택됐을 경우 범위 선택 불가
+            edt_printMaxNum.isEnabled = false
         }
 
         order_option_btn_whole2.onlyOneClickListener {
             order_option_btn_whole1.isSelected = false
             order_option_btn_whole2.isSelected = !order_option_btn_whole2.isSelected
             printOption= "part"
+            edt_printMinNum.isEnabled = true
+            edt_printMaxNum.isEnabled = true
         }
 
         dial_store_file_option_range.onlyOneClickListener {
