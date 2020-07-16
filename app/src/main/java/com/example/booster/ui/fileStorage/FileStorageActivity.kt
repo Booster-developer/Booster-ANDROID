@@ -239,9 +239,8 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                 Log.e("orderIdx on Delete", "check: " + orderIdx)
             }
             .setNegativeButton("아니오") { dialog: DialogInterface?, which: Int ->
-
-
             }
+        builder.show()
     }
 
 

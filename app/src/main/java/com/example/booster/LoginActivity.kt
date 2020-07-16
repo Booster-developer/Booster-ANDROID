@@ -31,6 +31,14 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        login_edt_id.setOnFocusChangeListener { v, hasFocus ->
+            login_edt_id.isSelected = hasFocus
+        }
+
+        login_edt_pw.setOnFocusChangeListener { v, hasFocus ->
+            login_edt_pw.isSelected = hasFocus
+        }
+
         // 로그인 request
         login_button_login.onlyOneClickListener {
             login()

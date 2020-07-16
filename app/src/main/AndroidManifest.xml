@@ -28,7 +28,6 @@
             android:windowSoftInputMode="adjustPan|stateHidden"/>
         <activity android:name=".ui.fileStorage.FileStorageActivity" />
         <activity android:name=".ui.storeList.MapActivity" />
-        <activity android:name=".ui.ResultActivity" />
         <activity android:name=".SplashActivity" />
         <activity android:name=".ui.fileStorage.StoreFileOptionActivity" />
         <activity android:name=".ui.PdfTestActivity" />
