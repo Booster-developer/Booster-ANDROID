@@ -83,7 +83,6 @@ class OrderDetailActivity : AppCompatActivity() {
 
                     val imgDialog = OrderDetailImgFragment()
                     val args = Bundle()
-                    args.putString("name", datas[position].file_name)
                     args.putString("thumbnail", datas[position].file_thumbnail_path)
                     imgDialog.arguments = args
                     imgDialog.show(
