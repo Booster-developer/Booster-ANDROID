@@ -72,12 +72,6 @@ interface BoosterService {
         @Body() body: JsonObject
     ): Call<DefaultData>
 
-    @POST("/orders/{file_idx}/options")
-    suspend fun editOption(
-        @Path("file_idx") fileIdx: Int,
-        @Body() body: JsonObject
-    ): ApiWrapper<String?>
-
     @GET("/orders/{order_idx}/payment")
     fun getPaymentInfo(
         @Path("order_idx") orderIdx: Int
