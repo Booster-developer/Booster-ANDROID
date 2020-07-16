@@ -45,11 +45,11 @@ class HomeFragment : Fragment() {
         viewModel.homeRes.observe(requireActivity() , Observer {
             frag_home_user_name.text = it.data.user_name
             when (it.data.home_state) {
-                1 -> {
+                0 -> {
                     frag_home_lt.setAnimation("home_s8_1.json")
                     frag_home_txt2.text = "인쇄를 시작해볼까요?"
                 }
-                2 -> {
+                1,2 -> {
                     frag_home_lt.setAnimation("home_s8_2.json")
                     frag_home_txt2.text = "인쇄 진행 중이에요."
                 }

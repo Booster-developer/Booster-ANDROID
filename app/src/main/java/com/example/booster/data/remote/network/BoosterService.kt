@@ -147,4 +147,8 @@ interface BoosterService {
     @GET("/home/orders")
     fun getHome() : Observable<HomeData>
 
+    @PUT("/stores/{store_idx}/favorite")
+    fun putStoreFavRetrofit(
+        @Path("store_idx") storeIdx: Int
+    ): Call<StoreFavData>
 }

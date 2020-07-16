@@ -15,6 +15,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a2nd_seminar.ui.ItemDecorator
 import com.example.booster.R
 import com.example.booster.data.datasource.model.MarkerData
+import com.example.booster.data.datasource.model.NoticeData
+import com.example.booster.data.datasource.model.StoreFavData
+import com.example.booster.data.remote.network.BoosterService
+import com.example.booster.data.remote.network.BoosterServiceImpl
+import com.example.booster.data.remote.network.BoosterServiceImpl.service
 import com.example.booster.databinding.FragmentStoreListBinding
 import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.storeDetail.StoreDetailActivity
@@ -22,6 +27,9 @@ import com.example.booster.ui.storeDetail.StoreDetailViewModel
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.fragment_order_list.*
 import kotlinx.android.synthetic.main.fragment_store_list.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.lang.Math.abs
 
 class StoreListFragment : Fragment() {
@@ -32,7 +40,6 @@ class StoreListFragment : Fragment() {
     lateinit var adapter: StoreListAdapter
     lateinit var binding: FragmentStoreListBinding
     var markers = arrayListOf<MarkerData>()
-    var univData = "숭실대"
     var univIdx = 1
     var status = 0
 
@@ -123,14 +130,23 @@ class StoreListFragment : Fragment() {
             },
             object : StoreListViewHolder.onClickFavListener {
                 override fun onClickFav(position: Int, imageView: ImageView, fav: Int, storeIdx: Int) {
-                    viewModel2.putStoreFav(storeIdx)
-                    viewModel2.favStatus.observe(requireActivity(), Observer {
-                        Log.e("result -> ", it.message)
-                        if(it.status==200){
-                            imageView.setImageResource(R.drawable.store_ic_inactive_star)
-                        } else if(it.status==201){
-                            imageView.setImageResource(R.drawable.store_ic_active_star)
+                    BoosterServiceImpl.service.putStoreFavRetrofit(storeIdx)
+                        .enqueue(object : Callback<StoreFavData> {
+                        override fun onFailure(call: Call<StoreFavData>, t: Throwable) {
+                            //통신 실패
+                            Log.e("putStoreFavRetrofit", "통신 실패")
                         }
+                        override fun onResponse(
+                            call: Call<StoreFavData>,
+                            response: Response<StoreFavData>
+                        ) {
+                            //통신 성공
+                            Log.e("putStoreFavRetrofit", response.body().toString())
+                            val data = response.body()!!.status
+                            if(data==201) imageView.setImageResource(R.drawable.store_ic_active_star)
+                            else if (data==200) imageView.setImageResource(R.drawable.store_ic_inactive_star)
+                        }
+
                     })
                 }
             })
@@ -145,8 +161,8 @@ class StoreListFragment : Fragment() {
             for(i in 0 .. it.size-1){
                 markers.add(
                     MarkerData(
-                        latitude = it[i]?.store_x_location,
-                        longitude = it[i]?.store_y_location,
+                        latitude = it[i].store_x_location,
+                        longitude = it[i].store_y_location,
                         name = it[i].store_name,
                         idx = it[i].store_idx
                     )
