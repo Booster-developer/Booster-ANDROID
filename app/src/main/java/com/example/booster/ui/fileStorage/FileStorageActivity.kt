@@ -185,10 +185,10 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         view.dial_item_view_tv_orientation2.text = "${popupOptionInfo.file_direction}"
         view.dial_item_view_tv_sided2.text = "${popupOptionInfo.file_sided_type}"
         view.dial_item_view_tv_multiple2.text = "${popupOptionInfo.file_collect} 개"
-        view.dial_item_view_tv_number2.text = "${popupOptionInfo.file_copy_number} p"
+        view.dial_item_view_tv_number2.text = "${popupOptionInfo.file_copy_number} 부"
 
         if (popupOptionInfo.file_range != "전체 페이지") {
-            view.dial_item_view_tv_partial2.text = "${popupOptionInfo.file_range} 부"
+            view.dial_item_view_tv_partial2.text = "${popupOptionInfo.file_range} p"
         } else view.dial_item_view_tv_partial2.text = "${popupOptionInfo.file_range}"
 
 
