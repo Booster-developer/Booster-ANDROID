@@ -1,5 +1,6 @@
 package com.example.booster.data.datasource.model
 
+import android.graphics.Bitmap
 import android.net.Uri
 
 
@@ -16,6 +17,7 @@ data class File(
     val file_extension: String?,
     val file_path: String?,
     val file_uri: Uri? = null,
+    var thumbnail: java.io.File? = null,
     var popupOptionInfo: PopupOptionInfo? = null
 )
 

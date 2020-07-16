@@ -4,18 +4,16 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.ContextWrapper
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.pdf.PdfRenderer
 import android.net.Uri
 import android.os.Bundle
-import android.os.ParcelFileDescriptor
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -24,12 +22,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.booster.R
-import com.example.booster.data.datasource.model.*
-import com.example.booster.data.remote.network.BoosterServiceImpl
+import com.example.booster.data.datasource.model.File
+import com.example.booster.data.datasource.model.PopupOptionInfo
+import com.example.booster.data.datasource.model.Wait
 import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.PdfViewerActivity
 import com.example.booster.ui.payment.PaymentActivity
 import com.example.booster.util.BoosterUtil
+import com.example.booster.util.PDFThumbnailUtils
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import droidninja.filepicker.FilePickerBuilder
@@ -38,10 +38,12 @@ import droidninja.filepicker.FilePickerConst.KEY_SELECTED_DOCS
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_DOC
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_PHOTO
 import kotlinx.android.synthetic.main.activity_file_storage.*
-import kotlinx.android.synthetic.main.activity_pdf_text.*
 import kotlinx.android.synthetic.main.dialog_item_view.view.*
-import org.koin.experimental.builder.getArguments
+import java.io.FileOutputStream
 import java.io.IOException
+import java.io.OutputStream
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 private const val FINISH_SETTING_OPTION = 1000
@@ -124,6 +126,10 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
             }
         }
 
+    }
+
+    override fun onBackPressed() {
+        showDeleteDialog()
     }
 
     private fun subscribeObservers() {
@@ -235,13 +241,19 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         builder.setView(dialogView)
             .setPositiveButton("예") { dialog: DialogInterface?, which: Int ->
                 fileStorageViewModel.deleteItem(item)
-                fileStorageViewModel.getPrice(orderIdx)
+                val handler= android.os.Handler()
+                handler.postDelayed(object :Runnable{
+                    override fun run() {
+                        fileStorageViewModel.getPrice(orderIdx)
+
+                    }
+                },200)
                 Log.e("orderIdx on Delete", "check: " + orderIdx)
             }
             .setNegativeButton("아니오") { dialog: DialogInterface?, which: Int ->
 
-
             }
+        builder.show()
     }
 
 
@@ -293,6 +305,44 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         }
     }
 
+
+    private fun getBitmap(file: File): Bitmap? {
+        val uri = file.file_uri
+        var bitmap: Bitmap? = null
+        if (uri != null) {
+            bitmap =
+                PDFThumbnailUtils.convertPDFtoBitmap(
+                    this,
+                    uri,
+                    0
+                )
+        }
+        return bitmap
+    }
+
+    //bitmap을 file로 변환
+    private fun bitmapToFile(bitmap:Bitmap): java.io.File? {
+        // Get the context wrapper
+        val wrapper = ContextWrapper(applicationContext)
+
+        // Initialize a new file instance to save bitmap object
+        var file = wrapper.getDir("Images",Context.MODE_PRIVATE)
+        file = java.io.File(file,"${UUID.randomUUID()}.png")
+
+        try{
+            // Compress the bitmap and save in jpg format
+            val stream:OutputStream = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.PNG,100,stream)
+            stream.flush()
+            stream.close()
+        }catch (e: IOException){
+            e.printStackTrace()
+        }
+
+        // Return the saved bitmap uri
+        return file
+    }
+
     private fun addThemToView(flag: Boolean) {
         val filePaths: ArrayList<Uri> = ArrayList()
         if (flag) {
@@ -314,8 +364,12 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                 val fileName = BoosterUtil().getFileName(docUri)
                 val fileType = BoosterUtil().getFileType(filePath!!)
                 val file = File(-1, fileName, fileType, filePath, docUri)
-//                file.name = BoosterUtil(this).getFileName(docuri)
-//                file.type = BoosterUtil(this).getFileType(docuri)
+                val bitmap = getBitmap(file)
+
+
+                file.thumbnail =  bitmap?.let { bitmapToFile(it) }
+                //Log.e("thumbnail File", "Check: " + file.thumbnail + " " + java.io.File(file.file_path))
+
                 fileStorageViewModel.addItem(file)
                 fileStorageViewModel.order(orderIdx)
                 fileStorageViewModel.getPrice(orderIdx)

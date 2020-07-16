@@ -1,5 +1,6 @@
 package com.example.booster.util
 
+import android.app.Activity
 import android.content.Context
 import android.database.Cursor
 import android.graphics.Bitmap
@@ -8,6 +9,8 @@ import android.util.Log
 import com.example.booster.BoosterApplication.Companion.globalApplication
 import com.example.booster.R
 import java.io.File
+import java.io.FileOutputStream
+import java.io.OutputStream
 
 class BoosterUtil(var context: Context = globalApplication) {
     fun getPathFromUri(uri: Uri?): String? {
@@ -64,5 +67,6 @@ class BoosterUtil(var context: Context = globalApplication) {
             else -> R.drawable.ic_file_others
         }
     }
+
 
 }
