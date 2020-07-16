@@ -55,6 +55,11 @@ class HomeFragment : Fragment() {
         frag_home_lt.playAnimation()
     }
 
+    override fun onResume() {
+        super.onResume()
+        frag_home_lt.playAnimation()
+    }
+
     fun setClick(){
         frag_home_btn_alert.onlyOneClickListener {
             val intent = Intent(activity, AlertActivity::class.java)

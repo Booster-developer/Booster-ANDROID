@@ -13,11 +13,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.example.a2nd_seminar.ui.ItemDecorator
 import com.example.booster.R
 import com.example.booster.databinding.FragmentOrderListBinding
 import com.example.booster.ui.orderDetail.OrderDetailActivity
 import kotlinx.android.synthetic.main.fragment_order_list.*
+
 
 class OrderListFragment : Fragment() {
 
@@ -42,6 +45,25 @@ class OrderListFragment : Fragment() {
 
         initRv()
         viewModel.getOrderList()
+        viewModel.orderInfo.observe(viewLifecycleOwner, Observer {
+            frag_order_list_tv_name.text = it.user_name
+            frag_order_list_tv_count.text = it.booster_count.toString()
+        })
+        refresh()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getOrderList()
+    }
+
+    private fun refresh(){
+        frag_order_list_srl.apply{
+            setOnRefreshListener {
+                viewModel.getOrderList()
+                this@apply.isRefreshing = false
+            }
+        }
     }
 
     private fun initRv() {
