@@ -149,6 +149,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         })
         fileStorageViewModel.waitlistLiveData.observe(this, Observer {
             it?.let {
+                Log.e("itttt",it.toString())
                 setWaitList(it)
             }
         })
@@ -203,6 +204,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
     }
 
     private fun setWaitList(wait: Wait) {
+        Log.e("ccccc",wait.order_price.toString())
         fileStorage_tv_cost_amount.text = "${wait.order_price} 원"
     }
 
@@ -212,6 +214,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         intent.putExtra("fileIdx", item.file_idx)
         intent.putExtra("fileType", item.file_extension)
         Log.e("sent fileType", "check: " + item.file_extension)
+        Log.e("sent fileIdx", "check: " + item.file_idx)
         //intent.putExtra("color",item.popupOptionInfo.file_color)
         //intent.put("item", item.popupOptionInfo)  custom object class를 intent로 넘기는 방법 (parcelable)
         startActivityForResult(intent, FINISH_SETTING_OPTION)
@@ -277,8 +280,14 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                     }
                 }
                 FINISH_SETTING_OPTION -> {
-                    Log.e("chekc orderIdx", "asdfasdfasdfadsf: " + orderIdx)
-                    fileStorageViewModel.getPrice(orderIdx)
+                    Log.e("check orderIdx", "after returning: " + orderIdx)
+                    val handler= android.os.Handler()
+                    handler.postDelayed(object :Runnable{
+                        override fun run() {
+                            fileStorageViewModel.getPrice(orderIdx)
+
+                        }
+                    },200)
                 }
             }
         }
