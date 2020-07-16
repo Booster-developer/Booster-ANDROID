@@ -20,6 +20,7 @@
             android:id="@+id/act_store_detail_iv"
             android:layout_width="match_parent"
             android:layout_height="205dp"
+            android:scaleType="centerCrop"
             setStoreImg="@{vm.storeDetail.data.store_image}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
