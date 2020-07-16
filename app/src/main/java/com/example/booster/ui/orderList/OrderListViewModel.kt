@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.booster.data.datasource.model.DefaultData
+import com.example.booster.data.datasource.model.Order
 import com.example.booster.data.datasource.model.OrderList
 import com.example.booster.data.datasource.model.OrderListData
 import com.example.booster.data.repository.OrderListRepository
@@ -22,6 +23,8 @@ class OrderListViewModel : ViewModel() {
     private var _pickUpRes = MutableLiveData<DefaultData>()
     val pickUpRes : LiveData<DefaultData> get() = _pickUpRes
 
+    var orderInfo = MutableLiveData<Order>()
+
     fun getOrderList(){
         disposables.add(orderListRepository.getOrderList()
             .observeOn(AndroidSchedulers.mainThread())
@@ -35,7 +38,8 @@ class OrderListViewModel : ViewModel() {
                 // 작업 중 오류가 발생하면 이 블록은 호출되지 x
 
                 // onResponse
-                Log.e("putStoreFav 응답 성공 : ", it.toString())
+                Log.e("getOrderList 응답 성공 : ", it.toString())
+                orderInfo.postValue(it.data)
                 _orderList.postValue(it.data.order_list)
             }){
                 // 에러 블록
