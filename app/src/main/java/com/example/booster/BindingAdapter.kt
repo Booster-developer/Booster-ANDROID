@@ -130,3 +130,10 @@ fun setStoreCloseTxt(view: TextView, open : Int?) {
     }
 }
 
+@BindingAdapter("setBtnActive")
+fun TextView.setBtnActive(close : Int?) {
+    if (close == 0){
+        setBackgroundResource(R.drawable.bg_dddddd_round)
+    }
+}
+

@@ -477,6 +477,7 @@
                 android:id="@+id/act_store_detail_btn_order"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                setBtnActive="@{vm.storeDetail.data.store_open}"
                 android:background="@drawable/bg_btn_gradation"
                 android:textSize="20sp"
                 android:textColor="#ffffff"

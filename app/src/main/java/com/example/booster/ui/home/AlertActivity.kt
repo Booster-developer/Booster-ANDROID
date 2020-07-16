@@ -1,5 +1,6 @@
 package com.example.booster.ui.home
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,8 +11,10 @@ import com.example.booster.data.datasource.model.AlertData
 import com.example.booster.data.datasource.model.AlertDataInfo
 import com.example.booster.data.datasource.model.NoticeData
 import com.example.booster.data.remote.network.BoosterServiceImpl
+import com.example.booster.ui.bottomtap.BottomTabActivity
 import com.example.booster.ui.fileStorage.MarginItemDecoration
 import kotlinx.android.synthetic.main.activity_alert.*
+import kotlinx.android.synthetic.main.activity_bottom_tab.*
 import kotlinx.android.synthetic.main.item_alert.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -65,6 +68,11 @@ class AlertActivity : AppCompatActivity() {
                             }
 
                         })
+
+                        val intent = Intent(this@AlertActivity, BottomTabActivity::class.java)
+                        intent.putExtra("alertFlag", 1)
+                        startActivity(intent)
+                        finish()
                     }
                 }
             }

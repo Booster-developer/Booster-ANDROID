@@ -91,9 +91,7 @@ class OrderDetailActivity : AppCompatActivity() {
                 }
 
             }
-
             )
-
 
         order_detail_rv.adapter = orderAdapter
         order_detail_rv.layoutManager = LinearLayoutManager(this)

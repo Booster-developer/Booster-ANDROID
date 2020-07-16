@@ -4,6 +4,8 @@ import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.booster.R
@@ -23,6 +25,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
     private lateinit var storeFileOptionViewModel: StoreFileOptionViewModel
     private var fileIdx: Int = -1
     private var fileType: String = ""
+
     var color = "흑백"
     var direction = "자동"
     var side = "단면"
@@ -53,6 +56,12 @@ class StoreFileOptionActivity : AppCompatActivity(),
         order_option_btn_auto.isSelected = true
         order_option_btn_single.isSelected = true
         order_option_btn_cut_1.isSelected = true
+
+        // 이미지일 경우 deafult 값
+        if (fileType != ".pdf") {
+            rangeMin = 1
+            rangeMax = 1
+        }
 
         storeFileOptionViewModel = ViewModelProvider(this).get(StoreFileOptionViewModel::class.java)
 
@@ -223,6 +232,8 @@ class StoreFileOptionActivity : AppCompatActivity(),
 
         order_option_btn_range.onlyOneClickListener {
             val fileRangeDialog = StoreFileOptionRangeFragment()
+            //Log.e("what is this filetype", "check: " + fileType)
+            sendType(fileType, fileRangeDialog)
             fileRangeDialog.show(
                 supportFragmentManager,
                 "file option range fragment"
@@ -350,6 +361,13 @@ class StoreFileOptionActivity : AppCompatActivity(),
             act_store_file_option_txt_range.text = rangeRe
         }else act_store_file_option_txt_range.text = rangeRe + "p"
 
+    }
+
+    //파일타입을 다이얼로그프래그먼트로 보내주기 위해
+    override fun sendType(fileType: String, frag: DialogFragment) {
+        var bundle = Bundle()
+        bundle.putString("fileType", fileType)
+        frag.arguments = bundle
     }
 
     override fun communicateRange(r: String, min: Int, max: Int) {

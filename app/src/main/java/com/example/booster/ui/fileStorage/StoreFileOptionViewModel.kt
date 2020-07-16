@@ -30,7 +30,7 @@ class StoreFileOptionViewModel : ViewModel() {
     fun setOptionData(fileIdx: Int, body: JsonObject) {
 
         //val optionData = Gson().fromJson(body.toString(), PopupOptionInfo:: class.java)
-        Log.e("body", "check: " + body.toString())
+        Log.e("body to be posted", "check: " + body.toString())
         requestToServer.service.changeOption(
             fileIdx, body
         ).enqueue(object : Callback<DefaultData> {
