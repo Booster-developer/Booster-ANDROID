@@ -2,20 +2,15 @@ package com.example.booster.ui.fileStorage
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.pdf.PdfRenderer
 import android.net.Uri
 import android.os.Bundle
-import android.os.ParcelFileDescriptor
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -25,7 +20,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.booster.R
 import com.example.booster.data.datasource.model.*
-import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.PdfViewerActivity
 import com.example.booster.ui.payment.PaymentActivity
@@ -38,10 +32,7 @@ import droidninja.filepicker.FilePickerConst.KEY_SELECTED_DOCS
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_DOC
 import droidninja.filepicker.FilePickerConst.REQUEST_CODE_PHOTO
 import kotlinx.android.synthetic.main.activity_file_storage.*
-import kotlinx.android.synthetic.main.activity_pdf_text.*
 import kotlinx.android.synthetic.main.dialog_item_view.view.*
-import org.koin.experimental.builder.getArguments
-import java.io.IOException
 
 
 private const val FINISH_SETTING_OPTION = 1000
@@ -239,9 +230,8 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                 Log.e("orderIdx on Delete", "check: " + orderIdx)
             }
             .setNegativeButton("아니오") { dialog: DialogInterface?, which: Int ->
-
-
             }
+        builder.show()
     }
 
 
