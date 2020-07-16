@@ -149,4 +149,7 @@ interface BoosterService {
         @Path("order_idx") orderIdx: Int
     ): Call<NoticeData>
 
+    @GET("/home/orders")
+    fun getHome() : Observable<HomeData>
+
 }

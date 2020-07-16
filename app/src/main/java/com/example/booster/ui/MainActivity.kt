@@ -7,14 +7,12 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.booster.*
 import com.example.booster.ui.bottomtap.BottomTabActivity
-import com.example.booster.ui.fileStorage.StoreFileOptionActivity
 import com.example.booster.ui.orderList.OrderListActivity
 import com.example.booster.ui.payment.PaymentActivity
 import com.example.booster.ui.selectStore.SelectStoreActivity
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_store_file_option.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -78,7 +76,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         act_main_btn_lottie.setOnClickListener {
-            val intent = Intent(this, LottieActivity::class.java)
+            val intent = Intent(this, SplashActivity::class.java)
             startActivity(intent)
         }
     }

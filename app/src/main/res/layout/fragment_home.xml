@@ -23,8 +23,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:lottie_autoPlay="true"
-            app:lottie_fileName="home_s8_3.json"
-            app:lottie_repeatCount="3" />
+            app:lottie_repeatCount="2" />
 
         <ImageView
             android:id="@+id/frag_home_btn_alert"

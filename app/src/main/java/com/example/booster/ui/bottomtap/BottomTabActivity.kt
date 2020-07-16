@@ -2,6 +2,7 @@ package com.example.booster.ui.bottomtap
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -16,14 +17,17 @@ import kotlinx.android.synthetic.main.activity_bottom_tab.*
 import kotlinx.android.synthetic.main.tab_layout.*
 
 class BottomTabActivity : AppCompatActivity() {
+    var flag = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bottom_tab)
 
+        flag = intent.getIntExtra("alertFlag", 2)
         setAdapter()
         setTabBar()
         click()
+        if(flag==1) bottom_vp.currentItem = 3
     }
 
     private fun setTabBar() {
