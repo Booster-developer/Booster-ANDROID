@@ -33,6 +33,12 @@ class EditProfileFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
+        return inflater.inflate(R.layout.fragment_edit_profile, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
         univSelectBtn.setOnClickListener {
             univList.visibility = View.VISIBLE
         }
@@ -56,8 +62,6 @@ class EditProfileFragment : Fragment() {
         edit_btn.setOnClickListener {
             edit()
         }
-
-        return inflater.inflate(R.layout.fragment_edit_profile, container, false)
     }
 
     fun edit() {

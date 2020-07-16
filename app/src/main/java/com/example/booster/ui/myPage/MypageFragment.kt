@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentTransaction
 
 import com.example.booster.R
 import com.example.booster.data.datasource.model.ProfileData
 import com.example.booster.data.remote.network.BoosterServiceImpl
+import com.example.booster.ui.orderList.OrderListFragment
 import kotlinx.android.synthetic.main.fragment_mypage.*
 import org.json.JSONObject
 import retrofit2.Call
@@ -53,5 +55,19 @@ class MypageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        mypage_tv_goto_edit.setOnClickListener {
+//            parentFragmentManager.beginTransaction()
+//                .replace(
+//                    R.id.bottom_vp,
+//                    EditProfileFragment()
+//                ).addToBackStack(null).commit()
+
+            val trans = parentFragmentManager.beginTransaction()
+            trans.replace(R.id.bottom_vp, OrderListFragment())
+            trans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+            trans.addToBackStack(null)
+            trans.commit()
+        }
     }
 }
+
