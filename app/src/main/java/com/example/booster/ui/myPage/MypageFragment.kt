@@ -34,14 +34,14 @@ class MypageFragment : Fragment() {
                 override fun onResponse(call: Call<ProfileData>, response: Response<ProfileData>) {
                     if (response.isSuccessful) {
                         val data = response.body()!!.data
-                        mypage_name.text = data.user_name
+                        mypage_tv_name.text = data.user_name
                         when (data.univ_idx) {
-                            1 -> mypage_univ.text = "숭실대학교"
-                            2 -> mypage_univ.text = "중앙대학교"
-                            3 -> mypage_univ.text = "서울대학교"
+                            1 -> mypage_tv_univ.text = "숭실대학교"
+                            2 -> mypage_tv_univ.text = "중앙대학교"
+                            3 -> mypage_tv_univ.text = "서울대학교"
                         }
-                        mypage_id.text = data.user_id
-                        mypage_point.text = data.user_point.toString()
+                        mypage_tv_id.text = data.user_id
+                        mypage_tv_point.text = data.user_point.toString()
                     }
                 }
 

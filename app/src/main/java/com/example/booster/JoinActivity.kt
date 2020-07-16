@@ -32,70 +32,70 @@ class JoinActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_join)
 
-        univSelectBtn.onlyOneClickListener {
-            univList.visibility = View.VISIBLE
+        join_tv_univ_select_btn.onlyOneClickListener {
+            join_ll_univ.visibility = View.VISIBLE
         }
 
-        univ_1.onlyOneClickListener {
-            univSelected.text = "숭실대학교"
+        join_tv_univ_1.onlyOneClickListener {
+            join_tv_univ_select.text = "숭실대학교"
             univIdx = 1
-            univList.visibility = View.GONE
+            join_ll_univ.visibility = View.GONE
         }
-        univ_2.onlyOneClickListener {
-            univSelected.text = "중앙대학교"
+        join_tv_univ_2.onlyOneClickListener {
+            join_tv_univ_select.text = "중앙대학교"
             univIdx = 2
-            univList.visibility = View.GONE
+            join_ll_univ.visibility = View.GONE
         }
-        univ_3.onlyOneClickListener {
-            univSelected.text = "서울대학교"
+        join_tv_univ_3.onlyOneClickListener {
+            join_tv_univ_select.text = "서울대학교"
             univIdx = 3
-            univList.visibility = View.GONE
+            join_ll_univ.visibility = View.GONE
         }
 
         // 이름입력 focused
-        join_name.setOnFocusChangeListener { v, hasFocus ->
+        join_edt_name.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
-                join_name.isSelected = true
+                join_edt_name.isSelected = true
                 nameChk = true
             } else {
-                join_name.isSelected = false
+                join_edt_name.isSelected = false
             }
             checkJoin()
         }
         // 아이디입력 focused
-        join_id.setOnFocusChangeListener { v, hasFocus ->
-            join_id.isSelected = hasFocus
+        join_edt_id.setOnFocusChangeListener { v, hasFocus ->
+            join_edt_id.isSelected = hasFocus
             checkJoin()
         }
         // 비밀번호입력 focused
-        join_pw.setOnFocusChangeListener { v, hasFocus ->
-            join_pw.isSelected = hasFocus
+        join_edt_pw.setOnFocusChangeListener { v, hasFocus ->
+            join_edt_pw.isSelected = hasFocus
             checkJoin()
         }
         // 비밀번호확인입력 focused
-        join_pw_chk.setOnFocusChangeListener { v, hasFocus ->
-            join_pw_chk.isSelected = hasFocus
+        join_edt_pw_chk.setOnFocusChangeListener { v, hasFocus ->
+            join_edt_pw_chk.isSelected = hasFocus
             // 비밀번호 체크
-            if (join_pw.text.toString() != join_pw_chk.text.toString()) {
-                join_pw_chk_txt.visibility = View.VISIBLE
+            if (join_edt_pw.text.toString() != join_edt_pw_chk.text.toString()) {
+                join_tv_pw_check_fail.visibility = View.VISIBLE
             } else {
-                join_pw_chk_txt.visibility = View.INVISIBLE
+                join_tv_pw_check_success.visibility = View.INVISIBLE
                 pwChk = true
             }
             checkJoin()
         }
-        join_pw_chk.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+        join_edt_pw_chk.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
                 v.clearFocus()
                 val keyboard: InputMethodManager =
                     getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                keyboard.hideSoftInputFromWindow(join_pw_chk.windowToken, 0)
+                keyboard.hideSoftInputFromWindow(join_edt_pw_chk.windowToken, 0)
                 return@OnKeyListener true
             }
             false
         })
         // 필수항목 체크
-        checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
+        join_checkbox_agree_1.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 checkChk = true
             } else {
@@ -105,12 +105,12 @@ class JoinActivity : AppCompatActivity() {
         }
 
         // 아이디 중복 확인
-        id_chk_btn.onlyOneClickListener {
+        join_tv_id_chk.onlyOneClickListener {
             checkId()
         }
 
         // 회원가입 request
-        join_btn.onlyOneClickListener {
+        join_btn_join.onlyOneClickListener {
             join()
         }
     }
@@ -118,7 +118,7 @@ class JoinActivity : AppCompatActivity() {
     // 아이디 중복 확인
     fun checkId() {
         val checkIdJsonData = JSONObject()
-        checkIdJsonData.put("user_id", join_id.text.toString())
+        checkIdJsonData.put("user_id", join_edt_id.text.toString())
         val body = JsonParser.parseString(checkIdJsonData.toString()) as JsonObject
 
         BoosterServiceImpl.service.requestCheckId(body).enqueue(object : Callback<JoinData> {
@@ -131,12 +131,12 @@ class JoinActivity : AppCompatActivity() {
                 response: Response<JoinData>
             ) {
                 if (response.body()!!.success) {
-                    id_chk_fail.visibility = View.INVISIBLE
-                    id_chk_success.visibility = View.VISIBLE
+                    join_tv_id_check_fail.visibility = View.INVISIBLE
+                    join_tv_id_check_success.visibility = View.VISIBLE
                     idChk = true
                 } else {
-                    id_chk_success.visibility = View.INVISIBLE
-                    id_chk_fail.visibility = View.VISIBLE
+                    join_tv_id_check_success.visibility = View.INVISIBLE
+                    join_tv_id_check_fail.visibility = View.VISIBLE
                 }
             }
         })
@@ -144,9 +144,9 @@ class JoinActivity : AppCompatActivity() {
 
     fun join() {
         val joinJsonData = JSONObject()
-        joinJsonData.put("user_id", join_id)
-        joinJsonData.put("user_name", join_name)
-        joinJsonData.put("user_pw", join_pw)
+        joinJsonData.put("user_id", join_edt_id)
+        joinJsonData.put("user_name", join_edt_name)
+        joinJsonData.put("user_pw", join_edt_pw)
         joinJsonData.put("user_university", univIdx)
 
         val body = JsonParser.parseString(joinJsonData.toString()) as JsonObject
@@ -171,8 +171,8 @@ class JoinActivity : AppCompatActivity() {
                                 .show()
                             if (response.body()!!.success) {
                                 val intent = Intent()
-                                intent.putExtra("id", join_id.text.toString())
-                                intent.putExtra("password", join_pw.text.toString())
+                                intent.putExtra("id", join_edt_id.text.toString())
+                                intent.putExtra("password", join_edt_pw.text.toString())
                                 setResult(Activity.RESULT_OK, intent)
                                 finish()
                             }
@@ -185,10 +185,10 @@ class JoinActivity : AppCompatActivity() {
     // 회원가입 버튼 활성화
     fun checkJoin() {
         if (nameChk && idChk && pwChk && univIdx != 0 && checkChk) {
-            join_btn.setBackgroundResource(R.drawable.bg_btn_gradation)
-            join_btn.setTextColor(getColor(R.color.white))
+            join_btn_join.setBackgroundResource(R.drawable.bg_btn_gradation)
+            join_btn_join.setTextColor(getColor(R.color.white))
         } else {
-            join_btn.setBackgroundResource(R.drawable.join_btn_2)
+            join_btn_join.setBackgroundResource(R.drawable.join_btn_2)
         }
     }
 }

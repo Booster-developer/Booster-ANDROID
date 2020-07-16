@@ -1,8 +1,10 @@
 package com.example.booster.ui.payment
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -13,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a2nd_seminar.ui.ItemDecorator
 import com.example.booster.R
 import com.example.booster.databinding.ActivityPaymentBinding
+import com.example.booster.ui.bottomtap.BottomTabActivity
+import com.example.booster.ui.home.HomeActivity
 import com.example.booster.ui.orderList.OrderListAdapter
 import kotlinx.android.synthetic.main.activity_payment.*
 import kotlinx.android.synthetic.main.fragment_order_list.*
@@ -23,9 +27,14 @@ class PaymentActivity : AppCompatActivity() {
     lateinit var viewModel: PaymentViewModel
     lateinit var adapter: PaymentAdapter
 
+    var orderIdx = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment)
+
+        orderIdx = intent.getIntExtra("order_idx", 0)
+        Log.e("orderIdxpay", orderIdx.toString())
 
         viewModel = ViewModelProvider(this).get(PaymentViewModel::class.java)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_payment)
@@ -33,7 +42,7 @@ class PaymentActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.vm = viewModel
 
-        viewModel.getPaymentInfo(1)
+        viewModel.getPaymentInfo(orderIdx)
         initRv()
         setClick()
     }
@@ -46,6 +55,7 @@ class PaymentActivity : AppCompatActivity() {
 
         viewModel.paymentInfo.observe(this, Observer {
             adapter.data = it.data.fileOption
+            Log.e("patment", adapter.data.toString())
             adapter.notifyDataSetChanged()
         })
     }
@@ -64,6 +74,11 @@ class PaymentActivity : AppCompatActivity() {
         act_payment_et_req.setOnFocusChangeListener { view, b ->
             if(b){
                 view.setBackgroundResource(R.drawable.border_304fff_1dp)
+                act_payment_btn_pay.setOnClickListener {
+                    val intent = Intent(this, BottomTabActivity::class.java)
+                    intent.putExtra("orderIdx", orderIdx)
+                    startActivity(intent)
+                }
             }else{
                 view.setBackgroundResource(R.drawable.border_bbbbbb_1dp)
             }
