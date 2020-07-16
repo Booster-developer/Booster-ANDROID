@@ -43,8 +43,8 @@ class HomeFragment : Fragment() {
 
         }, SPLASH_TIME_OUT)
 
-        frag_home_lt.setAnimation("1_door_open_0734.json")
-        frag_home_lt.loop(true)
+        frag_home_lt.setAnimation("home_s8_3.json")
+        frag_home_lt.repeatCount = 3
         frag_home_lt.playAnimation()
         frag_home_lt.addAnimatorListener(object : Animator.AnimatorListener {
             override fun onAnimationStart(animation: Animator) {
