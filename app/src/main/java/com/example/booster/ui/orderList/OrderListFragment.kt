@@ -72,6 +72,7 @@ class OrderListFragment : Fragment() {
                 override fun onClickPickUp(position: Int, textView: TextView, orderIdx: Int) {
                     Log.e("orderIdx -> ", orderIdx.toString())
                     viewModel.putPickUp(orderIdx)
+                    Log.e("orderlistorderidx", orderIdx.toString())
                     Handler().postDelayed({ viewModel.getOrderList() }, 500)
                 }
 

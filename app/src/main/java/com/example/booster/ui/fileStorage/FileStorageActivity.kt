@@ -1,5 +1,6 @@
 package com.example.booster.ui.fileStorage
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
@@ -27,7 +28,10 @@ import com.example.booster.data.datasource.model.*
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.PdfViewerActivity
+import com.example.booster.ui.payment.PaymentActivity
 import com.example.booster.util.BoosterUtil
+import com.gun0912.tedpermission.PermissionListener
+import com.gun0912.tedpermission.TedPermission
 import droidninja.filepicker.FilePickerBuilder
 import droidninja.filepicker.FilePickerConst
 import droidninja.filepicker.FilePickerConst.KEY_SELECTED_DOCS
@@ -53,19 +57,30 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
     private var storeIdx: Int = -1
     private var orderIdx: Int = -1
 
+    var permissionlistener: PermissionListener = object : PermissionListener {
+        override fun onPermissionGranted() {
+            Toast.makeText(this@FileStorageActivity, "Permission Granted", Toast.LENGTH_SHORT).show()
+        }
 
-//    var fileColor = ""
-//    var fileDir = ""
-//    var fileSided = ""
-//    var fileCollect = 0
-//    var fileCopyNum = 0
-//    var fileRange = ""
-//
-//    val requestToServer = BoosterServiceImpl
+        override fun onPermissionDenied(deniedPermissions: List<String>) {
+            Toast.makeText(
+                this@FileStorageActivity, "Permission Denied\n$deniedPermissions", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_file_storage)
+
+        TedPermission.with(this)
+            .setPermissionListener(permissionlistener)
+            .setDeniedMessage("If you reject permission,you can not use this service\n\nPlease turn on permissions at [Setting] > [Permission]")
+            .setPermissions(
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+            .check()
+
         //photoPaths = ArrayList()
         fileStorage_rv_file_add.apply {
             layoutManager = LinearLayoutManager(this@FileStorageActivity)
@@ -100,8 +115,15 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
             //처음 대기리스트 들어갔을때 통신
             fileStorageViewModel.getOrderIdx(storeIdx)
 
-
+            //결제하기
+            fileStorage_tv_order.setOnClickListener {
+                val intent = Intent(this, PaymentActivity::class.java)
+                intent.putExtra("order_idx", this.orderIdx)
+                Log.e("orderidxfilesto", this.orderIdx.toString())
+                startActivity(intent)
+            }
         }
+
     }
 
     private fun subscribeObservers() {
@@ -127,6 +149,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         })
         fileStorageViewModel.waitlistLiveData.observe(this, Observer {
             it?.let {
+                Log.e("itttt",it.toString())
                 setWaitList(it)
             }
         })
@@ -135,9 +158,9 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                 Toast.makeText(this, errormessage, Toast.LENGTH_SHORT).show()
             }
         })
-        fileStorageViewModel.orderIdxMutableLiveData.observe(this, Observer{
-            if(it >= 0){
-                fileStorageViewModel.getPrice(it)
+        fileStorageViewModel.orderIdxMutableLiveData.observe(this, Observer {
+            if (it >= 0) {
+                //fileStorageViewModel.getPrice(it)
                 this.orderIdx = it
             }
         })
@@ -157,16 +180,16 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         val view = inflater.inflate(R.layout.dialog_item_view, null)
 
         // Set item text
-        
+
         view.dial_item_view_tv_color2.text = "${popupOptionInfo.file_color}"
         view.dial_item_view_tv_orientation2.text = "${popupOptionInfo.file_direction}"
         view.dial_item_view_tv_sided2.text = "${popupOptionInfo.file_sided_type}"
         view.dial_item_view_tv_multiple2.text = "${popupOptionInfo.file_collect} 개"
-        view.dial_item_view_tv_number2.text = "${popupOptionInfo.file_copy_number} p"
+        view.dial_item_view_tv_number2.text = "${popupOptionInfo.file_copy_number} 부"
 
-        if(popupOptionInfo.file_range != "전체 페이지"){
-            view.dial_item_view_tv_partial2.text = "${popupOptionInfo.file_range} 부"
-        }else view.dial_item_view_tv_partial2.text = "${popupOptionInfo.file_range}"
+        if (popupOptionInfo.file_range != "전체 페이지") {
+            view.dial_item_view_tv_partial2.text = "${popupOptionInfo.file_range} p"
+        } else view.dial_item_view_tv_partial2.text = "${popupOptionInfo.file_range}"
 
 
         val alertDialog = AlertDialog.Builder(this, R.style.MyAlertDialogStyle)
@@ -181,6 +204,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
     }
 
     private fun setWaitList(wait: Wait) {
+        Log.e("ccccc",wait.order_price.toString())
         fileStorage_tv_cost_amount.text = "${wait.order_price} 원"
     }
 
@@ -190,6 +214,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         intent.putExtra("fileIdx", item.file_idx)
         intent.putExtra("fileType", item.file_extension)
         Log.e("sent fileType", "check: " + item.file_extension)
+        Log.e("sent fileIdx", "check: " + item.file_idx)
         //intent.putExtra("color",item.popupOptionInfo.file_color)
         //intent.put("item", item.popupOptionInfo)  custom object class를 intent로 넘기는 방법 (parcelable)
         startActivityForResult(intent, FINISH_SETTING_OPTION)
@@ -199,60 +224,6 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         Log.e("whatis fileIdx", "here: " + item.file_idx)
         fileStorageViewModel.getPopupOption(item.file_idx)
 
-
-//        val args = Bundle()
-//        val fc = fileColor
-//        val fd = fileDir
-//        val fs = fileSided
-//        val fcol = fileCollect
-//        val fcopy = fileCopyNum
-//        val fr = fileRange
-//
-//        args.putString("fileColor", fc)
-//        args.putString("fileDir", fd)
-//        args.putString("fileSided", fs)
-//        args.putInt("fileCollect", fcol)
-//        args.putInt("fileCopyNum", fcopy)
-//        args.putString("fileRange", fr)
-//
-//        val itemOptionDialog = ItemOptionFragment()
-//
-//        itemOptionDialog.show(
-//            supportFragmentManager, "item option fragment"
-//        )
-//        itemOptionDialog.arguments = args
-//        Log.e("argsss", args.toString())
-//
-//        requestToServer.service.getPopupOption(
-//            2
-//        ).enqueue(object :Callback<PopupOptionData>{
-//            override fun onFailure(call: Call<PopupOptionData>, t: Throwable) {
-//                //통신 실패
-//                Log.e("error", t.toString())
-//            }
-//
-//            override fun onResponse(
-//                call: Call<PopupOptionData>,
-//                response: Response<PopupOptionData>
-//            ) {
-//                //통신 성공
-//                if (response.isSuccessful){
-//                    Log.e("통신 성공", response.body().toString())
-//                    if(response.body()!!.status==200){
-//                        val data = response.body()!!.data
-//                        fileColor = data.file_color
-//                        fileDir = data.file_direction
-//                        fileSided = data.file_sided_type
-//                        fileCollect = data.file_collect
-//                        fileCopyNum = data.file_copy_number
-//                        fileRange = data.file_range!!
-//
-//                        Log.e("file info -> ", fileColor+ " "+fileDir+ " "+fileSided+ " "+fileCollect+ " "+fileCopyNum+ " "+fileRange)
-//                    }
-//                }
-//            }
-//
-//        })
     }
 
 
@@ -264,13 +235,15 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         builder.setView(dialogView)
             .setPositiveButton("예") { dialog: DialogInterface?, which: Int ->
                 fileStorageViewModel.deleteItem(item)
+                fileStorageViewModel.getPrice(orderIdx)
+                Log.e("orderIdx on Delete", "check: " + orderIdx)
             }
             .setNegativeButton("아니오") { dialog: DialogInterface?, which: Int ->
 
-            }
-            .show()
 
+            }
     }
+
 
     override fun onActivityResult(
         requestCode: Int,
@@ -307,48 +280,17 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                     }
                 }
                 FINISH_SETTING_OPTION -> {
-                    Log.e("chekc storeIdx", "asdfasdfasdfadsf: " + storeIdx)
-                    fileStorageViewModel.getOrderIdx(storeIdx)
-//                    data?.let {
-//                        val color = it.getStringExtra("color")
-//                        val direction = it.getStringExtra("direction")
-//                        val side = it.getStringExtra("side")
-//                        val combine = it.getStringExtra("combine")
-//
-//                        val range = it.getStringExtra("range")
-//
-//                        val rangeMin = it.getStringExtra("rangeMin")
-//                        val rangeMax = it.getStringExtra("rangeMax")
-//
-//                        val number = it.getStringExtra("num")
-//
-//                        val popupOptionInfo = rangeMin?.let {
-//                            PopupOptionInfo(
-//                                file_color = color,
-//                                file_direction = direction,
-//                                file_sided_type = side,
-//                                file_collect = combine.toInt(),
-//                                file_copy_number = number.toInt(),
-//                                file_range = range,
-//                                file_range_min = rangeMin.toInt(),
-//                                file_range_max = rangeMax.toInt()
-//                            )
-//                        } ?: PopupOptionInfo(
-//                            file_color = color,
-//                            file_direction = direction,
-//                            file_sided_type = side,
-//                            file_collect = combine.toInt(),
-//                            file_copy_number = number.toInt(),
-//                            file_range = range
-//                        )
-//                        addThemToView()
-//                        fileStorageViewModel.setOptions(popupOptionInfo)
-//                    }
-                }
+                    Log.e("check orderIdx", "after returning: " + orderIdx)
+                    val handler= android.os.Handler()
+                    handler.postDelayed(object :Runnable{
+                        override fun run() {
+                            fileStorageViewModel.getPrice(orderIdx)
 
+                        }
+                    },200)
+                }
             }
         }
-
     }
 
     private fun addThemToView(flag: Boolean) {
@@ -364,6 +306,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 //                file.type = "img"
                 fileStorageViewModel.addItem(file)
                 fileStorageViewModel.order(orderIdx)
+                fileStorageViewModel.getPrice(orderIdx)
             }
         } else if (!flag) {
             for (docUri in docPaths) {
@@ -375,6 +318,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 //                file.type = BoosterUtil(this).getFileType(docuri)
                 fileStorageViewModel.addItem(file)
                 fileStorageViewModel.order(orderIdx)
+                fileStorageViewModel.getPrice(orderIdx)
             }
         }
         fileStorage_rv_file_add.adapter?.notifyDataSetChanged()
@@ -392,7 +336,8 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 
 
     private fun fileAdd() {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(this, R.style.MyAlertDialogStyle2)
+        val builder: AlertDialog.Builder =
+            AlertDialog.Builder(this, R.style.MyAlertDialogStyle2)
         builder.setTitle("추가할 파일의 종류를 선택해주세요")
         builder.setPositiveButton("이미지") { dialogInterface: DialogInterface, i: Int ->
             FilePickerBuilder.instance

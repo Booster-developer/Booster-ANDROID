@@ -10,6 +10,8 @@ import android.util.Log
 import android.widget.Toast
 import com.example.booster.data.datasource.model.LoginData
 import com.example.booster.data.remote.network.BoosterServiceImpl
+import com.example.booster.ui.bottomtap.BottomTabActivity
+import com.example.booster.ui.home.HomeActivity
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_login.*
@@ -30,11 +32,11 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         // 로그인 request
-        login_btn.onlyOneClickListener {
+        login_button_login.onlyOneClickListener {
             login()
         }
 
-        goto_join.onlyOneClickListener {
+        login_tv_goto_join.onlyOneClickListener {
             val intent = Intent(this, JoinActivity::class.java)
             startActivityForResult(intent, 100)
         }
@@ -47,8 +49,8 @@ class LoginActivity : AppCompatActivity() {
                 100 -> {
                     val savedId = data?.getStringExtra("id").toString()
                     val savedPw = data?.getStringExtra("password").toString()
-                    login_id.setText(savedId)
-                    login_pw.setText(savedPw)
+                    login_edt_id.setText(savedId)
+                    login_edt_pw.setText(savedPw)
                 }
             }
         }
@@ -56,11 +58,11 @@ class LoginActivity : AppCompatActivity() {
 
     fun login() {
         val loginJsonData = JSONObject()
-        loginJsonData.put("user_id", login_id.text.toString())
-        loginJsonData.put("user_pw", login_pw.text.toString())
+        loginJsonData.put("user_id", login_edt_id.text.toString())
+        loginJsonData.put("user_pw", login_edt_pw.text.toString())
 
         val body = JsonParser.parseString(loginJsonData.toString()) as JsonObject
-        if (login_id.text.isNullOrBlank() || login_pw.text.isNullOrBlank()) {
+        if (login_edt_id.text.isNullOrBlank() || login_edt_pw.text.isNullOrBlank()) {
             Toast.makeText(this, "아이디와 비밀번호를 입력하세요", Toast.LENGTH_SHORT).show()
         } else {
             BoosterServiceImpl.service.requestLogin(body)
@@ -79,12 +81,13 @@ class LoginActivity : AppCompatActivity() {
                             Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT)
                                 .show()
                             if (response.body()!!.success) {
-//                                val intent =
-//                                    Intent(this@LoginActivity, BoosterApplication::class.java)
-//                                startActivity(intent)
-//
+                                val intent = Intent(this@LoginActivity, BottomTabActivity::class.java)
+                                intent.putExtra("univ", response.body()!!.data.university_idx)
+                                intent.putExtra("token", response.body()!!.data.accessToken)
+                                startActivity(intent)
+
                                 isLoggedIn.isLoggedIn = "isLoggedIn"
-//                                finish()
+                                finish()
                             }
                         } else {
                             Log.e("onReponse else", response.toString())

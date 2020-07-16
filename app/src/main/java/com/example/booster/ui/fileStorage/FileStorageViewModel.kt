@@ -9,9 +9,11 @@ import com.example.booster.data.datasource.model.File
 import com.example.booster.data.datasource.model.PopupOptionInfo
 import com.example.booster.data.datasource.model.Wait
 import com.example.booster.data.remote.network.BoosterServiceImpl
+import kotlinx.android.synthetic.main.activity_file_storage.*
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import okhttp3.*
+import java.util.logging.Handler
 
 
 class FileStorageViewModel : ViewModel() {
@@ -61,6 +63,8 @@ class FileStorageViewModel : ViewModel() {
         }
     }
     fun getPrice(orderIdx: Int){
+
+
         viewModelScope.launch(IO) {
             val response = BoosterServiceImpl.serviceFileUpload.getFileList(
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8",

@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.example.booster.R
 import com.example.booster.onlyOneClickListener
+import kotlinx.android.synthetic.main.activity_store_file_option.*
 import kotlinx.android.synthetic.main.dialog_store_file_option_range.*
 
 class StoreFileOptionRangeFragment : DialogFragment() {
@@ -63,17 +64,22 @@ class StoreFileOptionRangeFragment : DialogFragment() {
         }
 
         order_option_btn_whole1.onlyOneClickListener {
-            order_option_btn_whole2.isSelected = false
+
+            optionReset()
             order_option_btn_whole1.isSelected = !order_option_btn_whole1.isSelected
-            printOption = "all"
+            if (order_option_btn_whole1.isSelected) {
+                printOption = "all"
+            } else optionReset()
             edt_printMinNum.isEnabled = false  // 전체범위 선택됐을 경우 범위 선택 불가
             edt_printMaxNum.isEnabled = false
         }
 
         order_option_btn_whole2.onlyOneClickListener {
-            order_option_btn_whole1.isSelected = false
+            optionReset()
             order_option_btn_whole2.isSelected = !order_option_btn_whole2.isSelected
-            printOption= "part"
+            if (order_option_btn_whole2.isSelected) {
+                printOption = "part"
+            } else optionReset()
             edt_printMinNum.isEnabled = true
             edt_printMaxNum.isEnabled = true
         }
@@ -137,4 +143,9 @@ class StoreFileOptionRangeFragment : DialogFragment() {
 
     }
 
+    fun optionReset() {
+        printOption = ""
+        order_option_btn_whole1.isSelected = false
+        order_option_btn_whole2.isSelected = false
+    }
 }

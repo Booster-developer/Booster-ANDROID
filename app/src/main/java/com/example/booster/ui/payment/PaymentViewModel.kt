@@ -31,6 +31,7 @@ class PaymentViewModel : ViewModel() {
 
                 // onResponse
                 Log.e("getPaymentInfo 응답 성공 : ", it.toString())
+                Log.e("orderIdx", "checkkkkkitout" + orderIdx)
                 _paymentInfo.postValue(it)
             }){
                 // 에러 블록
