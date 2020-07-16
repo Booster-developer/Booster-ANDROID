@@ -9,6 +9,7 @@ import com.example.booster.data.datasource.model.File
 import com.example.booster.data.datasource.model.PopupOptionInfo
 import com.example.booster.data.datasource.model.Wait
 import com.example.booster.data.remote.network.BoosterServiceImpl
+import kotlinx.android.synthetic.main.activity_file_storage.*
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import okhttp3.*
