@@ -45,8 +45,7 @@ class OrderDetailViewHolder( view: View,
     val clickImgListener: onClickImgListener) : RecyclerView.ViewHolder(view){
 
     fun bind(orderOption: OrderOption) {
-//        Glide.with(itemView.context).load(orderOption.file_path).into(itemView.iv_order_detail)
-        itemView.iv_order_detail.setImageResource(R.drawable.order_wait_img_1)
+        Glide.with(itemView.context).load(orderOption.file_thumbnail_path).into(itemView.iv_order_detail)
         itemView.tv_order_detail_file_name.text = orderOption.file_name + "." + orderOption.file_extension
         itemView.tv_order_detail_file_price.text = orderOption.file_price.toString() + "원"
     }

@@ -8,10 +8,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
 import com.example.booster.R
+import com.example.booster.onlyOneClickListener
 import kotlinx.android.synthetic.main.dialog_order_detail_img.*
 
 class OrderDetailImgFragment : DialogFragment() {
@@ -28,6 +30,7 @@ class OrderDetailImgFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return super.onCreateDialog(savedInstanceState).apply {
             window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            window!!.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         }
     }
 
@@ -36,10 +39,12 @@ class OrderDetailImgFragment : DialogFragment() {
 
         val position = arguments
 
+        dialog_order_detail_img_close.onlyOneClickListener {
+            dismiss()
+        }
+
         if (position != null) {
             Glide.with(view.context).load(position.getString("thumbnail")).into(dialog_order_detail_img)
         }
-        dialog_order_detail_name.setText(position?.getString("name"))
-//        dialog_order_detail_img.setImageResource(R.drawable.sel_order_option_btn_cut_16)
     }
 }
