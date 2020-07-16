@@ -20,6 +20,7 @@ import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.storeDetail.StoreDetailActivity
 import com.example.booster.ui.storeDetail.StoreDetailViewModel
 import com.google.android.material.appbar.AppBarLayout
+import kotlinx.android.synthetic.main.fragment_order_list.*
 import kotlinx.android.synthetic.main.fragment_store_list.*
 import java.lang.Math.abs
 
@@ -47,17 +48,6 @@ class StoreListFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         viewModel.getStoreList(univIdx)
-        if(univIdx==1){
-            Log.e("onResume", "실행1")
-        }else if(univIdx==2){
-            Log.e("onResume", "실행2")
-        }
-        Log.e("onResume", "실행")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.e("onPause", "실행")
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -69,6 +59,16 @@ class StoreListFragment : Fragment() {
         setClick()
         setAppBar()
         viewModel.getStoreList(univIdx)
+        refresh()
+    }
+
+    private fun refresh(){
+        frag_store_list_srl.apply{
+            setOnRefreshListener {
+                viewModel.getStoreList(univIdx)
+                this@apply.isRefreshing = false
+            }
+        }
     }
 
     private fun setAppBar(){

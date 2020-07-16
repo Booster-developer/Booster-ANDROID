@@ -97,7 +97,7 @@
             android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/act_order_detail_store_name"
-            app:layout_constraintTop_toBottomOf="@+id/act_order_detail_store_name"/>
+            app:layout_constraintTop_toBottomOf="@+id/act_order_detail_store_name" />
 
         <TextView
             android:id="@+id/act_order_detail_txt_orderTime"

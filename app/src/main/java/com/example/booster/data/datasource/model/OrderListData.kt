@@ -8,6 +8,7 @@ data class OrderListData (
 )
 
 data class Order(
+    val user_name: String,
     val booster_count: Int,
     val order_list: ArrayList<OrderList>
 )

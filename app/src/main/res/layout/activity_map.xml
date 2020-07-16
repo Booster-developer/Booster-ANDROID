@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:fontFamily="@font/noto_sans_kr_bold"
+                android:fontFamily="@font/noto_sans_kr_medium"
                 android:text="숭실대학교"
                 android:textColor="@color/black"
                 android:textSize="18sp"

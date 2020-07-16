@@ -119,7 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:fontFamily="@font/noto_sans_kr_medium"
-                    android:lineSpacingExtra="6sp"
+                    android:maxLength="30"
                     android:text="@{orderListRes.order_title}"
                     android:textColor="@color/main_color"
                     android:textSize="12sp"

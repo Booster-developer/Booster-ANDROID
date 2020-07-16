@@ -283,7 +283,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{String.valueOf(vm.paymentInfo.data.order_price)}"
+                            android:text="@{String.valueOf(vm.paymentInfo.data.user_point)}"
                             android:textColor="@color/black"
                             android:textSize="18sp"
                             android:fontFamily="@font/noto_sans_kr_medium"
@@ -337,7 +337,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{String.valueOf(vm.paymentInfo.data.user_point)}"
+                            android:text="@{String.valueOf(vm.paymentInfo.data.order_price)}"
                             android:textColor="#467fff"
                             android:textSize="18sp"
                             android:fontFamily="@font/noto_sans_kr_medium"

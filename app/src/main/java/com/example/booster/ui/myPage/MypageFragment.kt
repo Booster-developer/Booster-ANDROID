@@ -1,17 +1,16 @@
 package com.example.booster.ui.myPage
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.example.booster.R
 import com.example.booster.data.datasource.model.ProfileData
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import kotlinx.android.synthetic.main.fragment_mypage.*
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,7 +24,7 @@ class MypageFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        BoosterServiceImpl.service.getMyProfile(token = "")
+        BoosterServiceImpl.service.getMyProfile(token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8")
             .enqueue(object : Callback<ProfileData> {
                 override fun onFailure(call: Call<ProfileData>, t: Throwable) {
                     Log.e("error", t.toString())
@@ -53,5 +52,17 @@ class MypageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        mypage_tv_goto_edit.setOnClickListener {
+
+            val intent = Intent(context, EditProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        mypage_tv_goto_myengine.setOnClickListener {
+
+            val intent = Intent(context, MyengineActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
+

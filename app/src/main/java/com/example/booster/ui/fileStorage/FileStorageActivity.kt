@@ -2,7 +2,6 @@ package com.example.booster.ui.fileStorage
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.DialogInterface
@@ -25,6 +24,7 @@ import com.example.booster.R
 import com.example.booster.data.datasource.model.File
 import com.example.booster.data.datasource.model.PopupOptionInfo
 import com.example.booster.data.datasource.model.Wait
+import com.example.booster.data.datasource.model.*
 import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.PdfViewerActivity
 import com.example.booster.ui.payment.PaymentActivity
@@ -44,6 +44,7 @@ import java.io.IOException
 import java.io.OutputStream
 import java.util.*
 import kotlin.collections.ArrayList
+
 
 
 private const val FINISH_SETTING_OPTION = 1000
@@ -191,10 +192,10 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         view.dial_item_view_tv_orientation2.text = "${popupOptionInfo.file_direction}"
         view.dial_item_view_tv_sided2.text = "${popupOptionInfo.file_sided_type}"
         view.dial_item_view_tv_multiple2.text = "${popupOptionInfo.file_collect} 개"
-        view.dial_item_view_tv_number2.text = "${popupOptionInfo.file_copy_number} p"
+        view.dial_item_view_tv_number2.text = "${popupOptionInfo.file_copy_number} 부"
 
         if (popupOptionInfo.file_range != "전체 페이지") {
-            view.dial_item_view_tv_partial2.text = "${popupOptionInfo.file_range} 부"
+            view.dial_item_view_tv_partial2.text = "${popupOptionInfo.file_range} p"
         } else view.dial_item_view_tv_partial2.text = "${popupOptionInfo.file_range}"
 
 

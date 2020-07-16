@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.booster.BoosterApplication.Companion.prefs
 import com.example.booster.R
 import com.example.booster.data.datasource.model.MarkerData
 import com.example.booster.databinding.ActivityStoreDetailBinding
@@ -14,7 +15,7 @@ import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.fileStorage.FileStorageActivity
 import kotlinx.android.synthetic.main.activity_store_detail.*
 
-class StoreDetailActivity() : AppCompatActivity() {
+class StoreDetailActivity : AppCompatActivity() {
 
     var markers = arrayListOf<MarkerData>()
 
@@ -27,6 +28,10 @@ class StoreDetailActivity() : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val pref = this.getPreferences(0)
+        val a = pref.getString("isLoggedIn", "0").toString()
+        Log.e("prefToken", a)
+        Log.e("prefTokenall", pref.all.toString())
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_store_detail)
         viewModel = ViewModelProvider(this@StoreDetailActivity).get(StoreDetailViewModel::class.java)
