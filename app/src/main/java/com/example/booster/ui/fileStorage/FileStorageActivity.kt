@@ -199,60 +199,6 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         Log.e("whatis fileIdx", "here: " + item.file_idx)
         fileStorageViewModel.getPopupOption(item.file_idx)
 
-
-//        val args = Bundle()
-//        val fc = fileColor
-//        val fd = fileDir
-//        val fs = fileSided
-//        val fcol = fileCollect
-//        val fcopy = fileCopyNum
-//        val fr = fileRange
-//
-//        args.putString("fileColor", fc)
-//        args.putString("fileDir", fd)
-//        args.putString("fileSided", fs)
-//        args.putInt("fileCollect", fcol)
-//        args.putInt("fileCopyNum", fcopy)
-//        args.putString("fileRange", fr)
-//
-//        val itemOptionDialog = ItemOptionFragment()
-//
-//        itemOptionDialog.show(
-//            supportFragmentManager, "item option fragment"
-//        )
-//        itemOptionDialog.arguments = args
-//        Log.e("argsss", args.toString())
-//
-//        requestToServer.service.getPopupOption(
-//            2
-//        ).enqueue(object :Callback<PopupOptionData>{
-//            override fun onFailure(call: Call<PopupOptionData>, t: Throwable) {
-//                //통신 실패
-//                Log.e("error", t.toString())
-//            }
-//
-//            override fun onResponse(
-//                call: Call<PopupOptionData>,
-//                response: Response<PopupOptionData>
-//            ) {
-//                //통신 성공
-//                if (response.isSuccessful){
-//                    Log.e("통신 성공", response.body().toString())
-//                    if(response.body()!!.status==200){
-//                        val data = response.body()!!.data
-//                        fileColor = data.file_color
-//                        fileDir = data.file_direction
-//                        fileSided = data.file_sided_type
-//                        fileCollect = data.file_collect
-//                        fileCopyNum = data.file_copy_number
-//                        fileRange = data.file_range!!
-//
-//                        Log.e("file info -> ", fileColor+ " "+fileDir+ " "+fileSided+ " "+fileCollect+ " "+fileCopyNum+ " "+fileRange)
-//                    }
-//                }
-//            }
-//
-//        })
     }
 
 
