@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/mypage_tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -28,7 +28,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout8"
+            android:id="@+id/mypage_cl_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
@@ -38,10 +38,10 @@
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title">
+            app:layout_constraintTop_toBottomOf="@+id/mypage_tv_title">
 
             <TextView
-                android:id="@+id/mypage_name"
+                android:id="@+id/mypage_tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_kr_medium"
@@ -52,7 +52,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/mypage_tv_nim"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
@@ -60,12 +60,12 @@
                 android:text="님"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/mypage_name"
-                app:layout_constraintStart_toEndOf="@+id/mypage_name"
+                app:layout_constraintBottom_toBottomOf="@+id/mypage_tv_name"
+                app:layout_constraintStart_toEndOf="@+id/mypage_tv_name"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/mypage_univ"
+                android:id="@+id/mypage_tv_univ"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -74,10 +74,10 @@
                 android:textColor="@color/grey"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mypage_name" />
+                app:layout_constraintTop_toBottomOf="@+id/mypage_tv_name" />
 
             <TextView
-                android:id="@+id/textView17"
+                android:id="@+id/mypage_tv_or"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -85,12 +85,12 @@
                 android:text="|"
                 android:textColor="@color/grey"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/mypage_univ"
-                app:layout_constraintStart_toEndOf="@+id/mypage_univ"
-                app:layout_constraintTop_toTopOf="@+id/mypage_univ" />
+                app:layout_constraintBottom_toBottomOf="@+id/mypage_tv_univ"
+                app:layout_constraintStart_toEndOf="@+id/mypage_tv_univ"
+                app:layout_constraintTop_toTopOf="@+id/mypage_tv_univ" />
 
             <TextView
-                android:id="@+id/mypage_id"
+                android:id="@+id/mypage_tv_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -98,12 +98,12 @@
                 android:text="jeongmi7593"
                 android:textColor="@color/grey"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView17"
-                app:layout_constraintStart_toEndOf="@+id/textView17"
-                app:layout_constraintTop_toTopOf="@+id/textView17" />
+                app:layout_constraintBottom_toBottomOf="@+id/mypage_tv_or"
+                app:layout_constraintStart_toEndOf="@+id/mypage_tv_or"
+                app:layout_constraintTop_toTopOf="@+id/mypage_tv_or" />
 
             <TextView
-                android:id="@+id/goto_edit"
+                android:id="@+id/mypage_tv_goto_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_kr_medium"
@@ -116,20 +116,19 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/goto_myengine"
+            android:id="@+id/mypage_tv_goto_myengine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="10dp"
             android:background="@drawable/bg_ffffff_round"
             android:elevation="5dp"
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout8">
+            app:layout_constraintTop_toBottomOf="@+id/mypage_cl_1">
 
             <TextView
-                android:id="@+id/textView21"
+                android:id="@+id/mypage_tv_current_engine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_kr_medium"
@@ -141,7 +140,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView22"
+                android:id="@+id/mypage_tv_P"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_kr_medium"
@@ -153,7 +152,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/mypage_point"
+                android:id="@+id/mypage_tv_point"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_kr_medium"
@@ -162,22 +161,22 @@
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView22"
+                app:layout_constraintEnd_toStartOf="@+id/mypage_tv_P"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/mypage_img_locket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="6dp"
                 android:src="@drawable/mypage_ic_engine"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/mypage_point"
+                app:layout_constraintEnd_toStartOf="@+id/mypage_tv_point"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout12"
+            android:id="@+id/mypage_cl_2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -187,10 +186,10 @@
             android:paddingBottom="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/goto_myengine">
+            app:layout_constraintTop_toBottomOf="@+id/mypage_tv_goto_myengine">
 
             <TextView
-                android:id="@+id/textView25"
+                android:id="@+id/mypage_tv_setting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_kr_regular"
@@ -201,7 +200,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView24"
+                android:id="@+id/mypage_tv_popup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
@@ -211,16 +210,16 @@
                 android:textColor="@color/grey"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView25" />
+                app:layout_constraintTop_toBottomOf="@+id/mypage_tv_setting" />
 
             <Switch
                 android:id="@+id/switch1"
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"
                 android:trackTint="@color/blue"
-                app:layout_constraintBottom_toBottomOf="@+id/textView24"
+                app:layout_constraintBottom_toBottomOf="@+id/mypage_tv_popup"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView24" />
+                app:layout_constraintTop_toTopOf="@+id/mypage_tv_popup" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -231,7 +230,7 @@
             android:paddingVertical="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout12">
+            app:layout_constraintTop_toBottomOf="@+id/mypage_cl_2">
 
             <TextView
                 android:id="@+id/logout_btn"
