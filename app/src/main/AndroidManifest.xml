@@ -18,14 +18,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.home.AlertActivity"></activity>
+        <activity android:name=".ui.myPage.EditProfileActivity"></activity>
+        <activity android:name=".ui.myPage.MyengineActivity" />
+        <activity android:name=".ui.home.AlertActivity" />
         <activity android:name=".ui.storeDetail.StoreDetailMapActivity" />
-
-        <activity android:name=".ui.PdfViewerActivity"></activity>
+        <activity android:name=".ui.PdfViewerActivity" />
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.orderDetail.OrderDetailActivity" />
-        <activity android:name=".ui.payment.PaymentActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity
+            android:name=".ui.payment.PaymentActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".ui.fileStorage.FileStorageActivity" />
         <activity android:name=".ui.storeList.MapActivity" />
         <activity android:name=".SplashActivity" />
