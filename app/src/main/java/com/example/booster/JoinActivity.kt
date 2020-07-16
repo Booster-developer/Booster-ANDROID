@@ -113,7 +113,6 @@ class JoinActivity : AppCompatActivity() {
             }
             false
         })
-        
         // 필수항목 체크
         join_checkbox_agree_1.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
@@ -164,12 +163,13 @@ class JoinActivity : AppCompatActivity() {
 
     fun join() {
         val joinJsonData = JSONObject()
-        joinJsonData.put("user_id", join_edt_id)
-        joinJsonData.put("user_name", join_edt_name)
-        joinJsonData.put("user_pw", join_edt_pw)
+        joinJsonData.put("user_id", join_edt_id.text.toString())
+        joinJsonData.put("user_name", join_edt_name.text.toString())
+        joinJsonData.put("user_pw", join_edt_pw.text.toString())
         joinJsonData.put("user_university", univIdx)
 
         val body = JsonParser.parseString(joinJsonData.toString()) as JsonObject
+        Log.e("joinBody", body.toString())
 
         Log.e("join", "${nameChk}  ${idChk}  ${pwChk}  ${univIdx}  ${checkChk}")
 
@@ -195,6 +195,7 @@ class JoinActivity : AppCompatActivity() {
                                 val intent = Intent()
                                 intent.putExtra("id", join_edt_id.text.toString())
                                 intent.putExtra("password", join_edt_pw.text.toString())
+                                Log.e("joinExe", "회원가입완료 ${response.body()}")
                                 setResult(Activity.RESULT_OK, intent)
                                 finish()
                             }
