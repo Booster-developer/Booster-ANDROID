@@ -32,7 +32,7 @@ class StoreListViewModel : ViewModel() {
                 // 작업 중 오류가 발생하면 이 블록은 호출되지 x
 
                 // onResponse
-                Log.e("get 응답 성공 : ", it.toString())
+//                Log.e("get 응답 성공 : ", it.toString())
                 _storeList.postValue(it.data)
             }){
                 // 에러 블록

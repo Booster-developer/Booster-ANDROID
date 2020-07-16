@@ -7,14 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentManager
-import com.example.booster.JoinActivity
-
 import com.example.booster.R
 import com.example.booster.data.datasource.model.ProfileData
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import kotlinx.android.synthetic.main.fragment_mypage.*
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -69,3 +65,4 @@ class MypageFragment : Fragment() {
         }
     }
 }
+

@@ -97,13 +97,6 @@ class OrderDetailActivity : AppCompatActivity() {
 
         order_detail_rv.adapter = orderAdapter
         order_detail_rv.layoutManager = LinearLayoutManager(this)
-//        order_detail_rv.addItemDecoration(
-//            MarginItemDecoration(
-//                0,
-//                resources.getDimensionPixelSize(R.dimen.paddingItemDecorationDefault)
-//            )
-//        )
-
         order_detail_rv.addItemDecoration(ItemDecorator(24))
     }
 

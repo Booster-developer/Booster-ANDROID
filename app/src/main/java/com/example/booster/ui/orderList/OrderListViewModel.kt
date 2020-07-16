@@ -38,7 +38,7 @@ class OrderListViewModel : ViewModel() {
                 // 작업 중 오류가 발생하면 이 블록은 호출되지 x
 
                 // onResponse
-                Log.e("getOrderList 응답 성공 : ", it.toString())
+//                Log.e("getOrderList 응답 성공 : ", it.toString())
                 orderInfo.postValue(it.data)
                 _orderList.postValue(it.data.order_list)
             }){
@@ -64,7 +64,7 @@ class OrderListViewModel : ViewModel() {
                 // 작업 중 오류가 발생하면 이 블록은 호출되지 x
 
                 // onResponse
-                Log.e("putStoreFav 응답 성공 : ", it.toString())
+                Log.e("putPickUp 응답 성공 : ", it.toString())
                 _pickUpRes.postValue(it)
             }){
                 // 에러 블록
