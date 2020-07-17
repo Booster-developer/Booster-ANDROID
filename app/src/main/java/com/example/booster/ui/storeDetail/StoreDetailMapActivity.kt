@@ -5,7 +5,7 @@ import androidx.annotation.UiThread
 import androidx.appcompat.app.AppCompatActivity
 import com.example.booster.R
 import com.example.booster.data.datasource.model.MarkerData
-import com.example.booster.onlyOneClickListener
+import com.example.booster.listener.onlyOneClickListener
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.MapFragment

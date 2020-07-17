@@ -14,7 +14,7 @@ import com.example.booster.R
 import androidx.appcompat.app.AppCompatActivity
 import com.example.booster.data.datasource.model.LoginData
 import com.example.booster.data.remote.network.BoosterServiceImpl
-import com.example.booster.onlyOneClickListener
+import com.example.booster.listener.onlyOneClickListener
 import com.example.booster.ui.bottomtap.BottomTabActivity
 import com.example.booster.util.UserManager
 import com.google.gson.JsonObject

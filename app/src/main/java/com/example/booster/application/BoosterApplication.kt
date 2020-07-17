@@ -1,4 +1,4 @@
-package com.example.booster
+package com.example.booster.application
 
 import android.app.Application
 import com.example.booster.ui.user.MySharedPreferences

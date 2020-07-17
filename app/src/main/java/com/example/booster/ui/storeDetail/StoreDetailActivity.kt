@@ -7,11 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.booster.BoosterApplication.Companion.prefs
 import com.example.booster.R
 import com.example.booster.data.datasource.model.MarkerData
 import com.example.booster.databinding.ActivityStoreDetailBinding
-import com.example.booster.onlyOneClickListener
+import com.example.booster.listener.onlyOneClickListener
 import com.example.booster.ui.fileStorage.FileStorageActivity
 import com.example.booster.util.UserManager
 import kotlinx.android.synthetic.main.activity_store_detail.*

@@ -7,15 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.ParcelFileDescriptor
 import android.util.Log
-import android.view.Gravity
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.booster.R
-import com.example.booster.onlyOneClickListener
+import com.example.booster.listener.onlyOneClickListener
 import kotlinx.android.synthetic.main.activity_pdf_viewer.*
-import kotlinx.android.synthetic.main.my_file.view.*
 import java.io.IOException
 
 class PdfViewerActivity : AppCompatActivity() {

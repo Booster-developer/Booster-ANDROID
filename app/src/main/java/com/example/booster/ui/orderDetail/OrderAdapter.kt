@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.booster.util.AnimationUtil
 import com.example.booster.R
 import com.example.booster.data.datasource.model.OrderOption
-import com.example.booster.onlyOneClickListener
+import com.example.booster.listener.onlyOneClickListener
 import kotlinx.android.synthetic.main.item_order_detail.view.*
 
 
