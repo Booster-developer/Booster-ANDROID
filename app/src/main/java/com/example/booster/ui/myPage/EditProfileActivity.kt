@@ -12,7 +12,6 @@ import androidx.core.widget.addTextChangedListener
 import com.example.booster.R
 import com.example.booster.data.datasource.model.EditProfileData
 import com.example.booster.data.datasource.model.NoticeData
-import com.example.booster.data.datasource.model.ProfileData
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
