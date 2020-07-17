@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.example.booster.R
 
 @BindingAdapter("changeCircleF")
 fun ImageView.changeCircleF(status : Int) {
