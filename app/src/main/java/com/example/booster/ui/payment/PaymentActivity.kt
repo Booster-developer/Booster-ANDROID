@@ -96,7 +96,6 @@ class PaymentActivity : AppCompatActivity() {
         //결제완료하고 주문현황 넘어가기
         act_payment_btn_pay.setOnClickListener {
 
-
             val jsonData = JSONObject()
 
             jsonData.put("order_comment", act_payment_et_req.text)
@@ -114,12 +113,10 @@ class PaymentActivity : AppCompatActivity() {
 
                 override fun onResponse(call: Call<DefaultData>, response: Response<DefaultData>) {
                     if(response.isSuccessful){
-                        Success()
+                        success()
                     }
                 }
-
             })
-
         }
 
         act_payment_iv_back.setOnClickListener{
@@ -127,9 +124,10 @@ class PaymentActivity : AppCompatActivity() {
         }
     }
 
-    fun Success(){
+    private fun success(){
         val intent = Intent(this, BottomTabActivity::class.java)
         intent.putExtra("orderIdx", orderIdx)
         startActivity(intent)
+        finish()
     }
 }
