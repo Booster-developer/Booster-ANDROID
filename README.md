@@ -401,7 +401,40 @@ frag_store_list_appBar.addOnOffsetChangedListener(OnOffsetChangedListener { frag
 
 #### 🗞 result
 
-<br>
+- 애니메이션을 더하니 좀 더 생기있는 뷰를 만들 수 있었다.
+
+- 하지만 애니메이션을 적용하니 디자이너가 요구하는 정확한 뷰(그림자 등)을 만드는 데에는 약간의 어려움이 있었다.
+
+### 4. form-data 로 서버에 데이터(image,pdf 등) 전송하기
+
+#### 🔥 issue
+
+- form-data 로 pdf,image 파일을 서버에 전송해야 한다.
+
+#### 📒 solution
+
+- 경로를 통해 File 객체를 만들어 준 다음 ResponseBody -> Multipart.Part 순으로 변환한 다음 통신을 진행한다.
+
+- 참고 자료 (멋쟁이 비활님이 간단하게 쓴 글..) : https://gaybee.tistory.com/42
+
+BoosterService.kt
+
+```kotlin
+    @Multipart
+    @POST("/orders/{order_idx}/file")
+    suspend fun postUploadFile(
+        @Header("token") token: String,
+        @Path("order_idx") orderIdx: Int,
+        @Part file: MultipartBody.Part?,
+        @Part thumbnail: MultipartBody.Part?
+    ): ApiWrapper<com.example.booster.data.datasource.model.File>
+
+```
+
+#### 🗞 result
+
+- MediaType 변환 문구가 틀리고, 불 필요한 헤더를 넣어서 처음엔 시행착오를 많이 겪었지만, 결국 해내서 또 한 번의 성장을 이룩했다.
+
 
 ## 👨‍👨‍👧‍👧‍👧 Developer
 
