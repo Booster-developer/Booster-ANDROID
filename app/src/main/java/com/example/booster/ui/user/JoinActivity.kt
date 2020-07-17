@@ -101,11 +101,7 @@ class JoinActivity : AppCompatActivity() {
 
         // 필수항목 체크
         act_join_checkbox_agree_1.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) {
-                checkChk = true
-            } else {
-                checkChk = false
-            }
+            checkChk = isChecked
             checkJoin()
         }
 
@@ -136,10 +132,12 @@ class JoinActivity : AppCompatActivity() {
                 response: Response<JoinData>
             ) {
                 if (response.body()!!.success) {
+                    act_join_edt_id.setBackgroundResource(R.drawable.join_input)
                     act_join_tv_id_check_fail.visibility = View.INVISIBLE
                     act_join_tv_id_check_success.visibility = View.VISIBLE
                     idChk = true
                 } else {
+                    act_join_edt_id.setBackgroundResource(R.drawable.join_input_fail)
                     act_join_tv_id_check_success.visibility = View.INVISIBLE
                     act_join_tv_id_check_fail.visibility = View.VISIBLE
                 }
