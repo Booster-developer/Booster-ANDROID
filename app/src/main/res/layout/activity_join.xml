@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".JoinActivity">
+
+    <TextView
+        android:id="@+id/join_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/noto_sans_kr_bold"
+        android:text="회원가입"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/join_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:text="이름"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/join_tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/join_tv_title" />
+
+    <TextView
+        android:id="@+id/join_tv_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:text="아이디"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/join_edt_name"
+        app:layout_constraintTop_toBottomOf="@+id/join_edt_name" />
+
+    <EditText
+        android:id="@+id/join_edt_name"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/join_input"
+        android:ems="10"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:hint="이름을 입력해주세요"
+        android:inputType="textPersonName"
+        android:paddingLeft="12dp"
+        android:textColor="@color/tab_grey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/join_tv_name" />
+
+    <EditText
+        android:id="@+id/join_edt_id"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/join_input"
+        android:ems="10"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:hint="아이디를 입력해주세요"
+        android:inputType="textPersonName"
+        android:paddingLeft="12dp"
+        android:textColor="@color/tab_grey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/join_tv_id_chk"
+        app:layout_constraintStart_toStartOf="@+id/join_edt_name"
+        app:layout_constraintTop_toBottomOf="@+id/join_tv_id" />
+
+    <TextView
+        android:id="@+id/join_tv_id_chk"
+        android:layout_width="84dp"
+        android:layout_height="44dp"
+        android:background="@drawable/join_btn_1"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:gravity="center"
+        android:text="중복확인"
+        android:textColor="#304fff"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/join_edt_id"
+        app:layout_constraintEnd_toEndOf="@+id/join_edt_name"
+        app:layout_constraintTop_toTopOf="@+id/join_edt_id" />
+
+    <TextView
+        android:id="@+id/join_tv_pw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:text="비밀번호"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/join_edt_id"
+        app:layout_constraintTop_toBottomOf="@+id/join_edt_id" />
+
+    <EditText
+        android:id="@+id/join_edt_pw"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/join_input"
+        android:ems="10"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:hint="비밀번호를 입력해주세요"
+        android:inputType="textPassword"
+        android:paddingLeft="12dp"
+        android:textColor="@color/tab_grey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/join_tv_id_chk"
+        app:layout_constraintStart_toStartOf="@+id/join_edt_id"
+        app:layout_constraintTop_toBottomOf="@+id/join_tv_pw" />
+
+    <EditText
+        android:id="@+id/join_edt_pw_chk"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/join_input"
+        android:ems="10"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:hint="비밀번호를 확인해주세요"
+        android:inputType="textPassword"
+        android:paddingLeft="12dp"
+        android:textColor="@color/tab_grey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/join_edt_pw"
+        app:layout_constraintStart_toStartOf="@+id/join_edt_pw"
+        app:layout_constraintTop_toBottomOf="@+id/join_edt_pw" />
+
+    <TextView
+        android:id="@+id/join_tv_univ"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:text="대학교"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/join_edt_pw_chk"
+        app:layout_constraintTop_toBottomOf="@+id/join_edt_pw_chk" />
+
+    <TextView
+        android:id="@+id/join_tv_univ_select"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/join_input"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:gravity="center_vertical"
+        android:hint="대학교를 선택해주세요"
+        android:paddingLeft="12dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/tab_grey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/join_tv_univ_select_btn"
+        app:layout_constraintStart_toStartOf="@+id/join_edt_pw_chk"
+        app:layout_constraintTop_toBottomOf="@+id/join_tv_univ" />
+
+    <TextView
+        android:id="@+id/join_tv_univ_select_btn"
+        android:layout_width="58dp"
+        android:layout_height="44dp"
+        android:background="@drawable/join_btn_1"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:gravity="center"
+        android:text="선택"
+        android:textColor="#304fff"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/join_tv_univ_select"
+        app:layout_constraintEnd_toEndOf="@+id/join_edt_pw_chk"
+        app:layout_constraintTop_toTopOf="@+id/join_tv_univ_select" />
+
+    <CheckBox
+        android:id="@+id/join_checkbox_agree_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:buttonTint="@color/main_color"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:text="@string/join_1"
+        app:layout_constraintStart_toStartOf="@+id/join_tv_univ_select"
+        app:layout_constraintTop_toBottomOf="@+id/join_tv_univ_select" />
+
+    <CheckBox
+        android:id="@+id/join_checkbox_agree_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:buttonTint="@color/main_color"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:text="@string/join_2"
+        app:layout_constraintStart_toStartOf="@+id/join_checkbox_agree_1"
+        app:layout_constraintTop_toBottomOf="@+id/join_checkbox_agree_1" />
+
+    <Button
+        android:id="@+id/join_btn_join"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/join_btn_2"
+        android:text="가입하기"
+        android:textColor="#7d7d7d"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/join_tv_agree_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:text="@string/join_see"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/join_checkbox_agree_1"
+        app:layout_constraintEnd_toEndOf="@+id/join_tv_univ_select_btn"
+        app:layout_constraintTop_toTopOf="@+id/join_checkbox_agree_1" />
+
+    <TextView
+        android:id="@+id/join_tv_agree_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:text="@string/join_see"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/join_checkbox_agree_2"
+        app:layout_constraintEnd_toEndOf="@+id/join_tv_agree_1"
+        app:layout_constraintTop_toTopOf="@+id/join_checkbox_agree_2" />
+
+    <LinearLayout
+        android:id="@+id/join_ll_univ"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/join_checkbox_agree_1"
+        app:layout_constraintEnd_toEndOf="@+id/join_tv_univ_select_btn"
+        app:layout_constraintStart_toStartOf="@+id/join_tv_univ_select"
+        app:layout_constraintTop_toBottomOf="@+id/join_tv_univ_select">
+
+        <TextView
+            android:id="@+id/join_tv_univ_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="12dp"
+            android:text="숭실대학교"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/join_tv_univ_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="12dp"
+            android:text="중앙대학교"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/join_tv_univ_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="12dp"
+            android:text="서울대학교"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/join_tv_pw_check_fail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:text="비밀번호가 일치하지 않습니다."
+        android:textColor="#f1290a"
+        android:textSize="12sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/join_edt_pw_chk"
+        app:layout_constraintTop_toBottomOf="@+id/join_edt_pw_chk" />
+
+    <TextView
+        android:id="@+id/join_tv_id_check_fail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:text="이미 존재하는 아이디입니다."
+        android:textColor="#f1290a"
+        android:textSize="12sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/join_edt_id"
+        app:layout_constraintTop_toBottomOf="@+id/join_edt_id" />
+
+    <TextView
+        android:id="@+id/join_tv_id_check_success"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:text="사용 가능한 아이디입니다."
+        android:textColor="#63d920"
+        android:textSize="12sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/join_edt_id"
+        app:layout_constraintTop_toBottomOf="@+id/join_edt_id" />
+
+    <TextView
+        android:id="@+id/join_tv_pw_check_success"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/join_btn_join"
+        app:srcCompat="@drawable/bg_ffffff_round" />
+</androidx.constraintlayout.widget.ConstraintLayout>

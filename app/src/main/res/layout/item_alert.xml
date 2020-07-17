@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:background="@drawable/bg_ffffff_round"
+    android:backgroundTint="@color/white"
+    android:elevation="5dp">
+
+    <ImageView
+        android:id="@+id/item_alert_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/notice_ic_alarm_active" />
+
+    <TextView
+        android:id="@+id/item_alert_idx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:lineSpacingExtra="5sp"
+        android:textColor="@color/grey"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/item_alert_img"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="no. 121" />
+
+    <TextView
+        android:id="@+id/item_alert_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="부스터"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/item_alert_idx"
+        app:layout_constraintTop_toBottomOf="@+id/item_alert_idx" />
+
+    <TextView
+        android:id="@+id/item_alert_txt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/item_alert_msg"
+        app:layout_constraintStart_toEndOf="@+id/item_alert_msg"
+        app:layout_constraintTop_toBottomOf="@+id/item_alert_idx"
+        tools:text="에서 주문하신 인쇄가 완료되었습니다." />
+
+    <TextView
+        android:id="@+id/item_alert_txt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="픽업 완료 버튼을 눌러주세요!"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/item_alert_msg"
+        app:layout_constraintTop_toBottomOf="@+id/item_alert_txt1" />
+
+    <TextView
+        android:id="@+id/item_alert_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:lineSpacingExtra="5sp"
+        android:text="2020.05.09 16:29"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        android:layout_marginTop="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/item_alert_txt2"
+        app:layout_constraintTop_toBottomOf="@+id/item_alert_txt2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

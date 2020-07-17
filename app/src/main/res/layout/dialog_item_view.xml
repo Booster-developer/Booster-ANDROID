@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/MyAlertDialogStyle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/bg_ffffff_round"
+        android:layout_centerHorizontal="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/dial_item_view_cl_heading"
+            android:layout_width="246dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/dial_item_view_tv_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="옵션 보기"
+                android:textSize="18sp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"/>
+
+            <ImageView
+                android:id="@+id/dial_item_view_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/order_dialog_btn_close_black"
+                app:layout_constraintStart_toEndOf="@id/dial_item_view_tv_heading"
+                app:layout_constraintTop_toTopOf="@id/dial_item_view_tv_heading"
+                app:layout_constraintBottom_toBottomOf="@id/dial_item_view_tv_heading"
+                android:layout_marginStart="112dp"
+                android:layout_marginBottom="1dp" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/dial_item_view_guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="21dp"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/dial_item_view_guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="115dp"/>
+
+        <TextView
+            android:id="@+id/dial_item_view_tv_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="흑백/컬러"
+            android:textSize="14sp"
+            android:textColor="#467fff"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            app:layout_constraintTop_toBottomOf="@id/dial_item_view_cl_heading"
+            app:layout_constraintStart_toEndOf="@id/dial_item_view_guideline1"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/dial_item_view_tv_color2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="컬러"
+            android:textSize="14sp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:textColor="#000000"
+            app:layout_constraintTop_toBottomOf="@id/dial_item_view_cl_heading"
+            app:layout_constraintStart_toEndOf="@id/dial_item_view_guideline2"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/dial_item_view_tv_orientation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:text="용지방향"
+            android:textColor="#467fff"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/dial_item_view_guideline1"
+            app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_color" />
+
+        <TextView
+            android:id="@+id/dial_item_view_tv_orientation2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="자동"
+            android:textSize="14sp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:textColor="#000000"
+            app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_color2"
+            app:layout_constraintStart_toEndOf="@id/dial_item_view_guideline2"
+            android:layout_marginTop="13dp"/>
+
+        <TextView
+            android:id="@+id/dial_item_view_tv_sided"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="양단면"
+            android:textSize="14sp"
+            android:textColor="#467fff"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_orientation"
+            app:layout_constraintStart_toEndOf="@id/dial_item_view_guideline1"
+            android:layout_marginTop="13dp"/>
+
+        <TextView
+            android:id="@+id/dial_item_view_tv_sided2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/dial_item_view_guideline2"
+            app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_orientation2"
+            android:text="단면" />
+
+        <TextView
+            android:id="@+id/dial_item_view_tv_multiple"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="모아찍기"
+            android:textSize="14sp"
+            android:textColor="#467fff"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_sided"
+            app:layout_constraintStart_toEndOf="@id/dial_item_view_guideline1"
+            android:layout_marginTop="13dp"/>
+
+        <TextView
+            android:id="@+id/dial_item_view_tv_multiple2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/dial_item_view_guideline2"
+            app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_sided2"
+            android:text="1개" />
+
+        <TextView
+            android:id="@+id/dial_item_view_tv_partial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="부분인쇄"
+            android:textSize="14sp"
+            android:textColor="#467fff"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_multiple"
+            app:layout_constraintStart_toEndOf="@id/dial_item_view_guideline1"
+            android:layout_marginTop="13dp"/>
+
+        <TextView
+            android:id="@+id/dial_item_view_tv_partial2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="4~7 페이지"
+            android:textSize="14sp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:textColor="#000000"
+            app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_multiple2"
+            app:layout_constraintStart_toEndOf="@id/dial_item_view_guideline2"
+            android:layout_marginTop="13dp"/>
+
+        <TextView
+            android:id="@+id/dial_item_view_tv_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="32dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:text="부수"
+            android:textColor="#467fff"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/dial_item_view_guideline1"
+            app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_partial" />
+
+        <TextView
+            android:id="@+id/dial_item_view_tv_number2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1부"
+            android:textSize="14sp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:textColor="#000000"
+            app:layout_constraintTop_toBottomOf="@id/dial_item_view_tv_partial2"
+            app:layout_constraintStart_toEndOf="@id/dial_item_view_guideline2"
+            android:layout_marginTop="13dp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</RelativeLayout>

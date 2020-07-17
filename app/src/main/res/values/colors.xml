@@ -2,5 +2,12 @@
 <resources>
     <color name="main_color">#304fff</color>
     <color name="white">#ffffff</color>
-    <color name="black">#313131</color>
+    <color name="black">#131313</color>
+    <color name="tab_grey">#bbbbbb</color>
+    <color name="line2">#3db449</color>
+    <color name="line7">#8a8623</color>
+    <color name="line9">#cda43a</color>
+    <color name="blue">#467fff</color>
+    <color name="grey">#7d7d7d</color>
+    <color name="red">#ff1200</color>
 </resources>

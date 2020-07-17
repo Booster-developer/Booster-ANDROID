@@ -25,6 +25,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.example.booster.R
+import com.example.booster.onlyOneClickListener
 import kotlinx.android.synthetic.main.activity_pdf_text.*
 import java.io.File
 import java.io.IOException
@@ -43,7 +44,7 @@ class PdfTestActivity : AppCompatActivity() {
         setContentView(R.layout.activity_pdf_text)
 
         verifyStoragePermissions(this)
-        act_main_btn_pdf.setOnClickListener {
+        act_main_btn_pdf.onlyOneClickListener {
             openFile()
         }
     }

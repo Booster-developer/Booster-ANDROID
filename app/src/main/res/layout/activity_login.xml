@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/login_img_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/login_img_logo" />
+
+    <EditText
+        android:id="@+id/login_edt_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/join_input"
+        android:ems="10"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:hint="아이디를 입력해 주세요"
+        android:inputType="textPersonName"
+        android:padding="12dp"
+        android:textColorHint="@color/tab_grey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_tv_id" />
+
+    <EditText
+        android:id="@+id/login_edt_pw"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/join_input"
+        android:ems="10"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:hint="비밀번호를 입력해 주세요"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:textColorHint="@color/tab_grey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/login_edt_id"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/login_edt_id"
+        app:layout_constraintTop_toBottomOf="@+id/login_tv_pw" />
+
+    <TextView
+        android:id="@+id/login_tv_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="75dp"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:text="ID"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_img_logo" />
+
+    <TextView
+        android:id="@+id/login_tv_pw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:text="비밀번호"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_edt_id" />
+
+    <Button
+        android:id="@+id/login_button_login"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/bg_btn_gradation"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        android:lineHeight="25sp"
+        android:text="로그인"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="@+id/login_edt_pw"
+        app:layout_constraintStart_toStartOf="@+id/login_edt_pw"
+        app:layout_constraintTop_toBottomOf="@+id/login_edt_pw" />
+
+    <TextView
+        android:id="@+id/login_tv_ask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:text="Booster가 처음이신가요?"
+        android:textColorHint="@color/tab_grey"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_button_login" />
+
+    <TextView
+        android:id="@+id/login_tv_goto_join"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/noto_sans_kr_regular"
+        android:lineHeight="16sp"
+        android:text="@string/goto_join"
+        android:textColor="#2435ff"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/login_tv_ask"
+        app:layout_constraintStart_toStartOf="@+id/login_tv_ask"
+        app:layout_constraintTop_toBottomOf="@+id/login_tv_ask" />
+</androidx.constraintlayout.widget.ConstraintLayout>
