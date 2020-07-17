@@ -261,7 +261,9 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                 fileStorageViewModel.deleteItem(item)
                 val progressDialog = ProgressDialog(this)
                 progressDialog.setMessage("파일 삭제 중입니다..")
+                progressDialog.setCancelable(false)
                 progressDialog.show()
+
                 val handler = android.os.Handler()
                 handler.postDelayed(object : Runnable {
                     override fun run() {
@@ -384,6 +386,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 
                 }
                 progressDialog.setMessage("파일 업로드 중입니다..")
+                progressDialog.setCancelable(false)
                 progressDialog.show()
 
                 val handler = android.os.Handler()
@@ -415,6 +418,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 
                 }
                 progressDialog.setMessage("파일 업로드 중입니다..")
+                progressDialog.setCancelable(false)
                 progressDialog.show()
                 val handler = android.os.Handler()
                 handler.postDelayed(object : Runnable {
