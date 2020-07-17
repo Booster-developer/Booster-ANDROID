@@ -413,9 +413,7 @@ frag_store_list_appBar.addOnOffsetChangedListener(OnOffsetChangedListener { frag
 
 #### 📒 solution
 
-- 경로를 통해 File 객체를 만들어 준 다음 ResponseBody -> Multipart.Part 순으로 변환한 다음 통신을 진행한다.
-
-- 참고 자료 (멋쟁이 비활님이 간단하게 쓴 글..) : https://gaybee.tistory.com/42
+- 경로를 통해 File 객체를 만들어 준 다음 RequestBody -> Multipart.Part 순으로 변환한 다음 통신을 진행한다.
 
 BoosterService.kt
 
@@ -430,6 +428,53 @@ BoosterService.kt
     ): ApiWrapper<com.example.booster.data.datasource.model.File>
 
 ```
+
+FileStorageViewModel.kt
+
+```kotlin
+var requestBody: RequestBody? = null
+        var requestBody2: RequestBody? = null
+
+        when (file?.file_extension) {
+            ".png" -> {
+                requestBody = RequestBody.create(
+                    MediaType.parse("image/png"), imageFile
+                )
+                requestBody2 = RequestBody.create(
+                    MediaType.parse("image/png"), imageFile
+                )
+            }
+            ".pdf" -> {
+                requestBody = RequestBody.create(
+                    MediaType.parse("application/pdf"), docFile
+                )
+                requestBody2 = RequestBody.create(
+                    MediaType.parse("image/png"), thumbnailFile
+                )
+            }
+            ".docx" -> requestBody = RequestBody.create(
+                MediaType.parse("multipart/form-data"), docFile
+            )
+            ".jpeg", ".jpg" -> {
+                requestBody = RequestBody.create(
+                    MediaType.parse("image/jpeg"), imageFile
+                )
+                requestBody2 = RequestBody.create(
+                    MediaType.parse("image/jpeg"), imageFile
+                )
+            }
+        }
+        Log.e(
+            "pdfcheck",
+            "check: " + requestBody + " " + file?.file_extension + " " + file?.file_name
+        )
+        val multipartBody =
+            MultipartBody.Part.createFormData("file", file?.file_name, requestBody)
+
+        val multipartBody2 =
+            MultipartBody.Part.createFormData("thumbnail", "png", requestBody2)
+            
+       ```
 
 #### 🗞 result
 
