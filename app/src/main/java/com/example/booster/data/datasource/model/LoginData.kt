@@ -8,5 +8,6 @@ data class LoginData(
 )
 
 data class LoginToken(
+    val university_idx: Int,
     val accessToken: String
 )

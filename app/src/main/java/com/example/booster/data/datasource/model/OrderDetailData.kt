@@ -18,6 +18,7 @@ data class OrderDetailInfo(
 )
 
 data class OrderOption(
+    val file_thumbnail_path: String,
     val file_name: String,
     val file_extension: String,
     val file_price: Int,

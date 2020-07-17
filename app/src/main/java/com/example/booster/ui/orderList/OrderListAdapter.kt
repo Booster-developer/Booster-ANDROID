@@ -14,7 +14,8 @@ import kotlinx.android.synthetic.main.item_order_list.view.*
 
 class OrderListAdapter (private val context : Context,
                         private val clickPickUp : OrderListViewHolder.onClickPickUpListener,
-                        private val clickDetail: OrderListViewHolder.onClickDetailListener) : RecyclerView.Adapter<OrderListViewHolder>(){
+                        private val clickDetail: OrderListViewHolder.onClickDetailListener,
+                        private val cancel: OrderListViewHolder.onClickCancelListener) : RecyclerView.Adapter<OrderListViewHolder>(){
 
     var data = mutableListOf<OrderList>()
     var previousPosition = 0
@@ -22,7 +23,7 @@ class OrderListAdapter (private val context : Context,
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderListViewHolder {
         val binding = ItemOrderListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return OrderListViewHolder(binding, clickPickUp, clickDetail)
+        return OrderListViewHolder(binding, clickPickUp, clickDetail, cancel)
     }
 
     override fun getItemCount(): Int {
@@ -41,12 +42,14 @@ class OrderListAdapter (private val context : Context,
         if(status==1 || status==2){
             holder.binding.itemOrderListTvDonePick.isClickable = false
         }
+
     }
 }
 
 class OrderListViewHolder(val binding : ItemOrderListBinding,
                           val clickPickUp: onClickPickUpListener,
-                          val clickDetail: onClickDetailListener) : RecyclerView.ViewHolder(binding.root){
+                          val clickDetail: onClickDetailListener,
+                          val cancel: onClickCancelListener) : RecyclerView.ViewHolder(binding.root){
     init {
         binding.itemOrderListTvDonePick.onlyOneClickListener {
             clickPickUp.onClickPickUp(adapterPosition,
@@ -56,6 +59,9 @@ class OrderListViewHolder(val binding : ItemOrderListBinding,
         itemView.item_order_list_detail.onlyOneClickListener{
             clickDetail.onClickDetail(adapterPosition)
         }
+        itemView.item_order_list_cancel.onlyOneClickListener {
+            cancel.onCancel(adapterPosition)
+        }
     }
 
     interface onClickPickUpListener{
@@ -64,5 +70,9 @@ class OrderListViewHolder(val binding : ItemOrderListBinding,
 
     interface onClickDetailListener{
         fun onClickDetail(position: Int)
+    }
+
+    interface onClickCancelListener{
+        fun onCancel(position: Int)
     }
 }

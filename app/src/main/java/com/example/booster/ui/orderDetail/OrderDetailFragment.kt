@@ -21,7 +21,6 @@ class OrderDetailFragment : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.dialog_item_view, container, false)
     }
 
@@ -42,8 +41,6 @@ class OrderDetailFragment : DialogFragment() {
         val start = mArgs.getString("fileStart")
         val end = mArgs.getString("fileEnd")
         val copy = mArgs.getString("fileCopy")
-
-//        Log.e("frag file info -> ", fileColor+ " "+fileDir)
 
         dial_item_view_tv_color2.text = color
         dial_item_view_tv_orientation2.text = direction

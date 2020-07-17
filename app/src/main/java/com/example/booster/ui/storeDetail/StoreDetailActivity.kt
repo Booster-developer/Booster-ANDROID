@@ -7,14 +7,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.booster.BoosterApplication.Companion.prefs
 import com.example.booster.R
 import com.example.booster.data.datasource.model.MarkerData
 import com.example.booster.databinding.ActivityStoreDetailBinding
 import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.fileStorage.FileStorageActivity
+import com.example.booster.util.UserManager
 import kotlinx.android.synthetic.main.activity_store_detail.*
 
-class StoreDetailActivity() : AppCompatActivity() {
+class StoreDetailActivity : AppCompatActivity() {
 
     var markers = arrayListOf<MarkerData>()
 
@@ -27,6 +29,7 @@ class StoreDetailActivity() : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        Log.e("User token", UserManager.token)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_store_detail)
         viewModel = ViewModelProvider(this@StoreDetailActivity).get(StoreDetailViewModel::class.java)
@@ -75,10 +78,11 @@ class StoreDetailActivity() : AppCompatActivity() {
             )
             val orderIdx = viewModel.orderIdxMutableLiveData
             Log.e("orderIdx", orderIdx.toString())
-//            val intent = Intent(this, FileStorageActivity::class.java)
-//            intent.putExtra("orderIdx", orderIdx)
-//            startActivity(intent)
+            val intent = Intent(this, FileStorageActivity::class.java)
+            intent.putExtra("storeIdx", idx)
+            intent.putExtra("storeName", viewModel.storeDetail.value?.data?.store_name)
+            intent.putExtra("storeAddress", viewModel.storeDetail.value?.data?.store_address)
+            startActivity(intent)
         }
-
     }
 }

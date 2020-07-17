@@ -28,7 +28,7 @@ class HomeViewModel : ViewModel() {
                 // 작업 중 오류가 발생하면 이 블록은 호출되지 x
 
                 // onResponse
-                Log.e("putStoreFav 응답 성공 : ", it.toString())
+                Log.e("getHome 응답 성공 : ", it.toString())
                 homeRes.postValue(it)
             }){
                 // 에러 블록

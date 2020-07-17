@@ -134,10 +134,11 @@
                             android:textSize="13sp" />
 
                         <TextView
+                            android:id="@+id/act_payment_tv_order_idx"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/noto_sans_kr_regular"
-                            android:text="@{String.valueOf(vm.paymentInfo.data.store_idx)}"
+                            android:text="0"
                             android:textColor="#7d7d7d"
                             android:textSize="13sp" />
 
@@ -282,7 +283,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{String.valueOf(vm.paymentInfo.data.order_price)}"
+                            android:text="@{String.valueOf(vm.paymentInfo.data.user_point)}"
                             android:textColor="@color/black"
                             android:textSize="18sp"
                             android:fontFamily="@font/noto_sans_kr_medium"
@@ -336,7 +337,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{String.valueOf(vm.paymentInfo.data.user_point)}"
+                            android:text="@{String.valueOf(vm.paymentInfo.data.order_price)}"
                             android:textColor="#467fff"
                             android:textSize="18sp"
                             android:fontFamily="@font/noto_sans_kr_medium"

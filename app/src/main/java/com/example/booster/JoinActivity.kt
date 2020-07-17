@@ -10,6 +10,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import com.example.booster.data.datasource.model.JoinData
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.google.gson.JsonObject
@@ -70,12 +71,6 @@ class JoinActivity : AppCompatActivity() {
         // 비밀번호입력 focused
         join_edt_pw.setOnFocusChangeListener { v, hasFocus ->
             join_edt_pw.isSelected = hasFocus
-            checkJoin()
-        }
-        // 비밀번호확인입력 focused
-        join_edt_pw_chk.setOnFocusChangeListener { v, hasFocus ->
-            join_edt_pw_chk.isSelected = hasFocus
-            // 비밀번호 체크
             if (join_edt_pw.text.toString() != join_edt_pw_chk.text.toString()) {
                 join_tv_pw_check_fail.visibility = View.VISIBLE
             } else {
@@ -84,6 +79,24 @@ class JoinActivity : AppCompatActivity() {
             }
             checkJoin()
         }
+
+//         비밀번호확인입력 focused
+        join_edt_pw_chk.setOnFocusChangeListener { v, hasFocus ->
+            join_edt_pw_chk.isSelected = hasFocus
+            // 비밀번호 체크
+            join_edt_pw_chk.addTextChangedListener {
+
+                if (join_edt_pw.text.toString() == join_edt_pw_chk.text.toString()) {
+                    join_tv_pw_check_fail.visibility = View.INVISIBLE
+                    pwChk = true
+                } else {
+                    join_tv_pw_check_fail.visibility = View.VISIBLE
+                }
+
+            }
+            checkJoin()
+        }
+
         join_edt_pw_chk.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
                 v.clearFocus()
@@ -94,6 +107,7 @@ class JoinActivity : AppCompatActivity() {
             }
             false
         })
+
         // 필수항목 체크
         join_checkbox_agree_1.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
@@ -144,14 +158,17 @@ class JoinActivity : AppCompatActivity() {
 
     fun join() {
         val joinJsonData = JSONObject()
-        joinJsonData.put("user_id", join_edt_id)
-        joinJsonData.put("user_name", join_edt_name)
-        joinJsonData.put("user_pw", join_edt_pw)
+        joinJsonData.put("user_id", join_edt_id.text.toString())
+        joinJsonData.put("user_name", join_edt_name.text.toString())
+        joinJsonData.put("user_pw", join_edt_pw.text.toString())
         joinJsonData.put("user_university", univIdx)
 
         val body = JsonParser.parseString(joinJsonData.toString()) as JsonObject
+        Log.e("joinBody", body.toString())
 
-        if (!(nameChk && idChk && pwChk && univIdx == 0 && checkChk)) {
+        Log.e("join", "${nameChk}  ${idChk}  ${pwChk}  ${univIdx}  ${checkChk}")
+
+        if (!(nameChk && idChk && pwChk && !(univIdx == 0) && checkChk)) {
             Toast.makeText(this, "모든 항목을 확인해주세요", Toast.LENGTH_SHORT).show()
         } else {
             BoosterServiceImpl.service.requestJoin(body)
@@ -173,6 +190,7 @@ class JoinActivity : AppCompatActivity() {
                                 val intent = Intent()
                                 intent.putExtra("id", join_edt_id.text.toString())
                                 intent.putExtra("password", join_edt_pw.text.toString())
+                                Log.e("joinExe", "회원가입완료 ${response.body()}")
                                 setResult(Activity.RESULT_OK, intent)
                                 finish()
                             }

@@ -15,15 +15,23 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a2nd_seminar.ui.ItemDecorator
 import com.example.booster.R
+import com.example.booster.data.datasource.model.DefaultData
+import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.databinding.FragmentOrderListBinding
 import com.example.booster.ui.orderDetail.OrderDetailActivity
 import kotlinx.android.synthetic.main.fragment_order_list.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 
 class OrderListFragment : Fragment() {
 
     private lateinit var viewModel: OrderListViewModel
     lateinit var adapter: OrderListAdapter
     lateinit var binding: FragmentOrderListBinding
+
+    val requestToServer = BoosterServiceImpl
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,10 +46,29 @@ class OrderListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(OrderListViewModel::class.java)
-        binding.vm = (this@OrderListFragment).viewModel
 
         initRv()
         viewModel.getOrderList()
+        viewModel.orderInfo.observe(viewLifecycleOwner, Observer {
+            frag_order_list_tv_name.text = it.user_name
+            frag_order_list_tv_count.text = it.booster_count.toString()
+        })
+        binding.vm = (this@OrderListFragment).viewModel
+        refresh()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getOrderList()
+    }
+
+    private fun refresh(){
+        frag_order_list_srl.apply{
+            setOnRefreshListener {
+                viewModel.getOrderList()
+                this@apply.isRefreshing = false
+            }
+        }
     }
 
     private fun initRv() {
@@ -62,6 +89,39 @@ class OrderListFragment : Fragment() {
                 startActivity(intent)
             }
 
+        },
+        object : OrderListViewHolder.onClickCancelListener{
+            override fun onCancel(position: Int) {
+
+                val orderCancelDialog = OrderCancelFragment()
+                orderCancelDialog.show(
+                    childFragmentManager,
+                    "file option range fragment"
+                )
+
+                viewModel.orderList.value?.get(position)?.order_idx?.let {
+                    requestToServer.service.deleteOrder(
+                        it
+                    ).enqueue(object : Callback<DefaultData>{
+                        override fun onFailure(call: Call<DefaultData>, t: Throwable) {
+                            //통신 실패
+                            Log.e("orderlistdelete", "통신 실패")
+                        }
+
+                        override fun onResponse(
+                            call: Call<DefaultData>,
+                            response: Response<DefaultData>
+                        ) {
+                            if(response.isSuccessful){
+                                Log.e("주문 취소 성공", "${viewModel.orderList.value?.get(position)?.order_idx} 주문 취소")
+                            }
+                        }
+
+                    })
+                }
+                Handler().postDelayed({ viewModel.getOrderList() }, 500)
+            }
+
         })
 
         frag_order_condition_rv.adapter = adapter
@@ -69,8 +129,11 @@ class OrderListFragment : Fragment() {
         frag_order_condition_rv.addItemDecoration(ItemDecorator(24))
 
         viewModel.orderList.observe(viewLifecycleOwner, Observer {
-            adapter.data = it
-            adapter.notifyDataSetChanged()
+            if(it!=null){
+                adapter.data = it
+                adapter.notifyDataSetChanged()
+            }
         })
     }
+
 }

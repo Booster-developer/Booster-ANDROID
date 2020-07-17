@@ -11,6 +11,8 @@ import org.koin.core.context.startKoin
 class BoosterApplication : Application() {
 
     companion object{
+        lateinit var prefs : MySharedPreferences
+
         lateinit var  globalApplication: BoosterApplication
         lateinit var instance : BoosterApplication
 
@@ -20,6 +22,7 @@ class BoosterApplication : Application() {
     }
 
     override fun onCreate() {
+        prefs = MySharedPreferences(applicationContext)
         super.onCreate()
         instance = this
         globalApplication = this

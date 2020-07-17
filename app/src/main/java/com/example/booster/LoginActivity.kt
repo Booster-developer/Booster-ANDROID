@@ -7,9 +7,13 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.example.booster.data.datasource.model.LoginData
 import com.example.booster.data.remote.network.BoosterServiceImpl
+import com.example.booster.ui.bottomtap.BottomTabActivity
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_login.*
@@ -28,6 +32,26 @@ class LoginActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        // 아이디입력 focused
+        login_edt_id.setOnFocusChangeListener { v, hasFocus ->
+            login_edt_id.isSelected = hasFocus
+        }
+
+        login_edt_pw.setOnFocusChangeListener { v, hasFocus ->
+            login_edt_pw.isSelected = hasFocus
+        }
+
+        login_edt_pw.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                v.clearFocus()
+                val keyboard: InputMethodManager =
+                    getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                keyboard.hideSoftInputFromWindow(login_edt_pw.windowToken, 0)
+                return@OnKeyListener true
+            }
+            false
+        })
 
         // 로그인 request
         login_button_login.onlyOneClickListener {
@@ -74,17 +98,19 @@ class LoginActivity : AppCompatActivity() {
                         call: Call<LoginData>,
                         response: Response<LoginData>
                     ) {
+                        val message = response.body()!!.message
+                        Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT).show()
+
                         if (response.isSuccessful) {
-                            val message = response.body()!!.message
-                            Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT)
-                                .show()
                             if (response.body()!!.success) {
-//                                val intent =
-//                                    Intent(this@LoginActivity, BoosterApplication::class.java)
-//                                startActivity(intent)
-//
+                                val intent =
+                                    Intent(this@LoginActivity, BottomTabActivity::class.java)
+                                intent.putExtra("univ", response.body()!!.data.university_idx)
+                                intent.putExtra("token", response.body()!!.data.accessToken)
+                                startActivity(intent)
+
                                 isLoggedIn.isLoggedIn = "isLoggedIn"
-//                                finish()
+                                finish()
                             }
                         } else {
                             Log.e("onReponse else", response.toString())

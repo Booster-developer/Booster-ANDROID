@@ -1,16 +1,17 @@
 package com.example.booster.ui.bottomtap
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.booster.BoosterApplication
 import com.example.booster.R
-import com.example.booster.ui.MainActivity
-import com.example.booster.ui.fileStorage.FragmentToActivity
 import com.example.booster.ui.selectStore.SelectStoreActivity
+import com.example.booster.util.UserManager
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import kotlinx.android.synthetic.main.activity_bottom_tab.*
@@ -18,6 +19,7 @@ import kotlinx.android.synthetic.main.tab_layout.*
 
 class BottomTabActivity : AppCompatActivity() {
     var flag = 0
+    var token = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +33,14 @@ class BottomTabActivity : AppCompatActivity() {
 
         if(intent.hasExtra("orderIdx")){
             bottom_vp.currentItem = 3
+        }
+
+        if(intent.hasExtra("token")){
+            bottom_vp.currentItem = 0
+            token = intent.getStringExtra("token")
+            Log.e("token", token)
+            UserManager.token = token
+
         }
     }
 

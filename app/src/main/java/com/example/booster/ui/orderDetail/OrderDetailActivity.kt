@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.a2nd_seminar.ui.ItemDecorator
 import com.example.booster.R
 import com.example.booster.data.datasource.model.OrderDetailData
 import com.example.booster.data.datasource.model.OrderDetailInfo
@@ -11,6 +12,7 @@ import com.example.booster.data.datasource.model.OrderOption
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.ui.fileStorage.MarginItemDecoration
 import kotlinx.android.synthetic.main.activity_order_detail.*
+import kotlinx.android.synthetic.main.fragment_order_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -83,7 +85,7 @@ class OrderDetailActivity : AppCompatActivity() {
 
                     val imgDialog = OrderDetailImgFragment()
                     val args = Bundle()
-                    args.putString("name", datas[position].file_name)
+                    args.putString("thumbnail", datas[position].file_thumbnail_path)
                     imgDialog.arguments = args
                     imgDialog.show(
                         supportFragmentManager, "item option fragment"
@@ -95,13 +97,7 @@ class OrderDetailActivity : AppCompatActivity() {
 
         order_detail_rv.adapter = orderAdapter
         order_detail_rv.layoutManager = LinearLayoutManager(this)
-        order_detail_rv.addItemDecoration(
-            MarginItemDecoration(
-                0,
-                resources.getDimensionPixelSize(R.dimen.paddingItemDecorationDefault)
-            )
-        )
-
+        order_detail_rv.addItemDecoration(ItemDecorator(24))
     }
 
 

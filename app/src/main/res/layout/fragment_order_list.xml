@@ -38,9 +38,7 @@
                     android:layout_height="120dp"
                     android:background="@color/white"
                     app:layout_collapseMode="pin"
-                    app:popupTheme="@style/AppTheme.PopupOverlay">
-
-                </androidx.appcompat.widget.Toolbar>
+                    app:popupTheme="@style/AppTheme.PopupOverlay" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/frag_order_condition_cl_title"
@@ -79,10 +77,11 @@
                             android:textSize="18sp" />
 
                         <TextView
+                            android:id="@+id/frag_order_list_tv_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/noto_sans_kr_regular"
-                            android:text="니나노"
+                            android:text="@{vm.orderInfo.user_name}"
                             android:textColor="@color/black"
                             android:textSize="18sp" />
 
@@ -103,10 +102,11 @@
                         app:layout_constraintTop_toBottomOf="@id/frag_order_condition_ll_first">
 
                         <TextView
+                            android:id="@+id/frag_order_list_tv_count"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/noto_sans_kr_medium"
-                            android:text="3"
+                            android:text="@{String.valueOf(vm.orderInfo.booster_count)}"
                             android:textColor="#467fff"
                             android:textSize="18sp" />
 
@@ -142,16 +142,23 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/frag_order_condition_rv"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/frag_order_list_srl"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:paddingTop="8dp"
-            android:clipToPadding="false"
+            android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        </androidx.recyclerview.widget.RecyclerView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/frag_order_condition_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:clipToPadding="false"
+                android:paddingTop="8dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
