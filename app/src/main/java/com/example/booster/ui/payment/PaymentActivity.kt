@@ -121,6 +121,10 @@ class PaymentActivity : AppCompatActivity() {
             })
 
         }
+
+        act_payment_iv_back.setOnClickListener{
+            finish()
+        }
     }
 
     fun Success(){

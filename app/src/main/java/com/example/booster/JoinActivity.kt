@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
@@ -79,17 +81,6 @@ class JoinActivity : AppCompatActivity() {
             }
             checkJoin()
         }
-
-//        join_edt_pw_chk.addTextChangedListener {
-//
-//            if (join_edt_pw.text.toString() == join_edt_pw_chk.text.toString()) {
-//                join_tv_pw_check_fail.visibility = View.INVISIBLE
-//                pwChk = true
-//            } else {
-//                join_tv_pw_check_fail.visibility = View.VISIBLE
-//            }
-//
-//        }
 
 //         비밀번호확인입력 focused
         join_edt_pw_chk.setOnFocusChangeListener { v, hasFocus ->

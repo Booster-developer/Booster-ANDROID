@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.example.booster.ui.home.HomeViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,7 +47,7 @@
             android:layout_marginTop="87dp"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:lineSpacingExtra="4sp"
-            android:text="탱구"
+            android:text="@{vm.homeRes.data.user_name}"
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +59,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/noto_sans_kr_medium"
             android:lineSpacingExtra="4sp"
-            android:text="님,"
+            android:text=" 님,"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/frag_home_user_name"
@@ -68,8 +72,6 @@
             android:layout_marginStart="1dp"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/noto_sans_kr_medium"
-            android:lineSpacingExtra="4sp"
-            android:text="엔진이 준비되었어요!"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/frag_home_user_name"

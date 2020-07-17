@@ -3,6 +3,7 @@ package com.example.booster.ui.bottomtap
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.viewpager.widget.PagerAdapter
 import com.example.booster.ui.home.HomeFragment
 import com.example.booster.ui.myPage.MypageFragment
 import com.example.booster.ui.orderList.OrderListFragment
@@ -23,4 +24,5 @@ class BottomTabAdapter (fm : FragmentManager, val fragmentCount : Int):
         }
     }
     override fun getCount(): Int = fragmentCount
+
 }

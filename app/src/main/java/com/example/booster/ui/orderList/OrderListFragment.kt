@@ -41,7 +41,6 @@ class OrderListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(OrderListViewModel::class.java)
-        binding.vm = (this@OrderListFragment).viewModel
 
         initRv()
         viewModel.getOrderList()
@@ -49,6 +48,7 @@ class OrderListFragment : Fragment() {
             frag_order_list_tv_name.text = it.user_name
             frag_order_list_tv_count.text = it.booster_count.toString()
         })
+        binding.vm = (this@OrderListFragment).viewModel
         refresh()
     }
 

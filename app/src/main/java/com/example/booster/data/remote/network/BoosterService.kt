@@ -97,7 +97,8 @@ interface BoosterService {
     suspend fun postUploadFile(
         @Header("token") token: String,
         @Path("order_idx") orderIdx: Int,
-        @Part file: MultipartBody.Part?
+        @Part file: MultipartBody.Part?,
+        @Part thumbnail: MultipartBody.Part?
     ): ApiWrapper<com.example.booster.data.datasource.model.File>
 
     @GET("/stores/list")
@@ -149,4 +150,8 @@ interface BoosterService {
         @Body() body: JsonObject
     ): Call<DefaultData>
 
+    @PUT("/stores/{store_idx}/favorite")
+    fun putStoreFavRetrofit(
+        @Path("store_idx") storeIdx: Int
+    ): Call<StoreFavData>
 }

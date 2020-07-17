@@ -16,7 +16,7 @@ import com.example.booster.ui.fileStorage.FileStorageActivity
 import com.example.booster.util.UserManager
 import kotlinx.android.synthetic.main.activity_store_detail.*
 
-class StoreDetailActivity() : AppCompatActivity() {
+class StoreDetailActivity : AppCompatActivity() {
 
     var markers = arrayListOf<MarkerData>()
 

@@ -1,5 +1,7 @@
 package com.example.booster.ui.fileStorage
 
+import android.graphics.Bitmap
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,12 +11,17 @@ import com.example.booster.data.datasource.model.File
 import com.example.booster.data.datasource.model.PopupOptionInfo
 import com.example.booster.data.datasource.model.Wait
 import com.example.booster.data.remote.network.BoosterServiceImpl
+import com.example.booster.util.BoosterUtil
+import com.google.android.material.internal.ContextUtils.getActivity
 import com.example.booster.util.UserManager
 import kotlinx.android.synthetic.main.activity_file_storage.*
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
-import okhttp3.*
-import java.util.logging.Handler
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.FileOutputStream
+import java.io.IOException
 
 
 class FileStorageViewModel : ViewModel() {
@@ -64,8 +71,6 @@ class FileStorageViewModel : ViewModel() {
         }
     }
     fun getPrice(orderIdx: Int){
-
-
         viewModelScope.launch(IO) {
             val response = BoosterServiceImpl.serviceFileUpload.getFileList(
                 UserManager.token.toString(),
@@ -114,11 +119,19 @@ class FileStorageViewModel : ViewModel() {
         _fileMutableLiveData.value = list
     }
 
+
     fun order(orderIdx: Int) {
         //val file = _fileMutableLiveData.value?.get(0)
         val file = _fileMutableLiveData.value?.get((_fileMutableLiveData.value?.size!! - 1))
         val imageFile = java.io.File(file?.file_path)
         val docFile = java.io.File(file?.file_path)
+        val thumbnailFile = file?.thumbnail
+
+        val thumbnailFilename = thumbnailFile.toString().split("/")
+
+        val name = thumbnailFilename?.get(thumbnailFilename.size - 1)
+
+        Log.e("thumbnail uri", "check: " + Uri.parse(thumbnailFile.toString()) + " " + name)
 
         Log.e("asdf", "check : " + file?.file_path + " " + file?.file_name)
 /*        val requestFile: RequestBody = RequestBody.create(
@@ -127,20 +140,36 @@ class FileStorageViewModel : ViewModel() {
         )*/
 
         var requestBody: RequestBody? = null
+        var requestBody2: RequestBody? = null
 
         when (file?.file_extension) {
-            ".png" -> requestBody = RequestBody.create(
-                MediaType.parse("image/png"), imageFile
-            )
-            ".pdf" -> requestBody = RequestBody.create(
-                MediaType.parse("application/pdf"), docFile
-            )
+            ".png" -> {
+                requestBody = RequestBody.create(
+                    MediaType.parse("image/png"), imageFile
+                )
+                requestBody2 = RequestBody.create(
+                    MediaType.parse("image/png"), imageFile
+                )
+            }
+            ".pdf" -> {
+                requestBody = RequestBody.create(
+                    MediaType.parse("application/pdf"), docFile
+                )
+                requestBody2 = RequestBody.create(
+                    MediaType.parse("image/png"), thumbnailFile
+                )
+            }
             ".docx" -> requestBody = RequestBody.create(
                 MediaType.parse("multipart/form-data"), docFile
             )
-            ".jpeg", ".jpg" -> requestBody = RequestBody.create(
-                MediaType.parse("image/jpeg"), imageFile
-            )
+            ".jpeg", ".jpg" -> {
+                requestBody = RequestBody.create(
+                    MediaType.parse("image/jpeg"), imageFile
+                )
+                requestBody2 = RequestBody.create(
+                    MediaType.parse("image/jpeg"), imageFile
+                )
+            }
         }
         Log.e(
             "pdfcheck",
@@ -149,12 +178,20 @@ class FileStorageViewModel : ViewModel() {
         val multipartBody =
             MultipartBody.Part.createFormData("file", file?.file_name, requestBody)
 
+        val multipartBody2 =
+            MultipartBody.Part.createFormData("thumbnail", "png", requestBody2)
+
+        //Log.e("thumbnail", "check: " + thumbnailFile + " " + name)
+        Log.e("pdf file", "check: " + docFile + " " + file?.file_name)
+        Log.e("multipartBody", "check: " + multipartBody + " " + multipartBody2)
+
 
         viewModelScope.launch(IO) {
             val response = BoosterServiceImpl.serviceFileUpload.postUploadFile(
                 UserManager.token.toString(),
                 orderIdx,
-                multipartBody
+                multipartBody,
+                multipartBody2
             )
             if (response.status == 200) {
                 val data = response.data
