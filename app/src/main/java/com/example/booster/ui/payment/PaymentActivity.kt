@@ -65,6 +65,9 @@ class PaymentActivity : AppCompatActivity() {
             adapter.data = it.data.fileOption
             act_payment_tv_name.text =it.data.store_name
             act_payment_tv_order_idx.text = orderIdx.toString()
+//            if(adapter.data[orderIdx].file_range!="전체 페이지") {
+//                payment_all_or_part.text = "p"
+//            }
 
             adapter.notifyDataSetChanged()
         })

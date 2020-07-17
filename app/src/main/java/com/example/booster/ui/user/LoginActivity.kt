@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -12,10 +11,12 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.example.booster.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.booster.data.datasource.model.LoginData
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.bottomtap.BottomTabActivity
+import com.example.booster.util.UserManager
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_login.*
@@ -43,7 +44,7 @@ class LoginActivity : AppCompatActivity() {
         login_edt_pw.setOnFocusChangeListener { v, hasFocus ->
             login_edt_pw.isSelected = hasFocus
         }
-      
+
         login_edt_pw.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
                 v.clearFocus()
@@ -100,16 +101,18 @@ class LoginActivity : AppCompatActivity() {
                         call: Call<LoginData>,
                         response: Response<LoginData>
                     ) {
+                        val message = response.body()!!.message
+                        Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT).show()
+
                         if (response.isSuccessful) {
-                            val message = response.body()!!.message
-//                            Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT).show()
                             if (response.body()!!.success) {
                                 val intent =
                                     Intent(this@LoginActivity, BottomTabActivity::class.java)
                                 intent.putExtra("univ", response.body()!!.data.university_idx)
                                 intent.putExtra("token", response.body()!!.data.accessToken)
                                 startActivity(intent)
-
+                                Log.e("tokttttttttt", response.body()!!.data.accessToken)
+                               UserManager.token=  response.body()!!.data.accessToken
                                 isLoggedIn.isLoggedIn = "isLoggedIn"
                                 finish()
                             }
@@ -121,15 +124,6 @@ class LoginActivity : AppCompatActivity() {
                 })
         }
     }
-
-//    // 로그인 유지
-//    override fun onStart() {
-//        super.onStart()
-//        if (isLoggedIn.isLoggedIn == "isLoggedIn") {
-//            startActivity(Intent(this, MainActivity::class.java))
-//            finish()
-//        }
-//    }
 }
 
 class MySharedPreferences(context: Context) {

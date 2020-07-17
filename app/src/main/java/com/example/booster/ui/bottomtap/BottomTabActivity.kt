@@ -1,14 +1,12 @@
 package com.example.booster.ui.bottomtap
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.booster.BoosterApplication
 import com.example.booster.R
 import com.example.booster.ui.selectStore.SelectStoreActivity
 import com.example.booster.util.UserManager
@@ -19,7 +17,7 @@ import kotlinx.android.synthetic.main.tab_layout.*
 
 class BottomTabActivity : AppCompatActivity() {
     var flag = 0
-    var token = UserManager.token
+    var token = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,13 +27,13 @@ class BottomTabActivity : AppCompatActivity() {
         setAdapter()
         setTabBar()
         click()
-        if(flag==1) bottom_vp.currentItem = 3
+        if (flag == 1) bottom_vp.currentItem = 3
 
-        if(intent.hasExtra("orderIdx")){
+        if (intent.hasExtra("orderIdx")) {
             bottom_vp.currentItem = 3
         }
 
-        if(intent.hasExtra("token")){
+        if (intent.hasExtra("token")) {
             bottom_vp.currentItem = 0
             token = intent.getStringExtra("token")
             Log.e("token", token)
@@ -74,7 +72,7 @@ class BottomTabActivity : AppCompatActivity() {
         }
     }
 
-    private fun setAdapter(){
+    private fun setAdapter() {
         bottom_vp.adapter =
             BottomTabAdapter(
                 supportFragmentManager,
@@ -98,9 +96,11 @@ class BottomTabActivity : AppCompatActivity() {
 
                 }
             }
+
             override fun onTabUnselected(tab: TabLayout.Tab) {
 
             }
+
             override fun onTabReselected(tab: TabLayout.Tab) {
 
             }
@@ -108,7 +108,7 @@ class BottomTabActivity : AppCompatActivity() {
 
     }
 
-    fun click(){
+    fun click() {
         tab_booster.setOnClickListener {
             val intent = Intent(this, SelectStoreActivity::class.java)
             startActivity(intent)

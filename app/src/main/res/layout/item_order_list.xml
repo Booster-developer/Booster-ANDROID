@@ -235,6 +235,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
+                    android:id="@+id/item_order_list_cancel"
                     setCancelVisible="@{orderListRes.order_state}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
