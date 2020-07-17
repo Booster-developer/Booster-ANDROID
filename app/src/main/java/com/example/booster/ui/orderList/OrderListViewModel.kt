@@ -38,9 +38,9 @@ class OrderListViewModel : ViewModel() {
                 // 작업 중 오류가 발생하면 이 블록은 호출되지 x
 
                 // onResponse
-//                Log.e("getOrderList 응답 성공 : ", it.toString())
+                Log.e("getOrderList 응답 성공 : ", it.toString())
                 orderInfo.postValue(it.data)
-                _orderList.postValue(it.data.order_list)
+                _orderList.value = it.data.order_list
             }){
                 // 에러 블록
                 // 네트워크 오류나 데이터 처리 오류 등
@@ -75,4 +75,5 @@ class OrderListViewModel : ViewModel() {
                 Log.e("통신 실패 error : ", it.message!!)
             })
     }
+
 }

@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.tab_layout.*
 class BottomTabActivity : AppCompatActivity() {
     var flag = 0
     var token = ""
+    var univ = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +37,10 @@ class BottomTabActivity : AppCompatActivity() {
         if (intent.hasExtra("token")) {
             bottom_vp.currentItem = 0
             token = intent.getStringExtra("token")
+            univ = intent.getIntExtra("univ", 1)
             Log.e("token", token)
             UserManager.token = token
+            UserManager.univ = univ
 
         }
     }

@@ -40,6 +40,7 @@ class OrderListFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_order_list, container, false)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_list, container, false)
         binding.lifecycleOwner = this
+
         return rootView
     }
 
@@ -93,33 +94,17 @@ class OrderListFragment : Fragment() {
         object : OrderListViewHolder.onClickCancelListener{
             override fun onCancel(position: Int) {
 
+
+                val idx = viewModel.orderList.value!!.get(position)!!.order_idx
+
                 val orderCancelDialog = OrderCancelFragment()
-                orderCancelDialog.show(
-                    childFragmentManager,
-                    "file option range fragment"
-                )
 
-                viewModel.orderList.value?.get(position)?.order_idx?.let {
-                    requestToServer.service.deleteOrder(
-                        it
-                    ).enqueue(object : Callback<DefaultData>{
-                        override fun onFailure(call: Call<DefaultData>, t: Throwable) {
-                            //통신 실패
-                            Log.e("orderlistdelete", "통신 실패")
-                        }
+                var bundle = Bundle()
+                bundle.putInt("idx", idx)
+                orderCancelDialog.arguments = bundle
 
-                        override fun onResponse(
-                            call: Call<DefaultData>,
-                            response: Response<DefaultData>
-                        ) {
-                            if(response.isSuccessful){
-                                Log.e("주문 취소 성공", "${viewModel.orderList.value?.get(position)?.order_idx} 주문 취소")
-                            }
-                        }
+                orderCancelDialog.show(childFragmentManager, "dialog");
 
-                    })
-                }
-                Handler().postDelayed({ viewModel.getOrderList() }, 500)
             }
 
         })
@@ -132,6 +117,8 @@ class OrderListFragment : Fragment() {
             if(it!=null){
                 adapter.data = it
                 adapter.notifyDataSetChanged()
+            } else{
+                adapter.data.clear()
             }
         })
     }
