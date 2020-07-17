@@ -8,7 +8,7 @@
     tools:context=".ui.myPage.EditProfileActivity">
 
     <TextView
-        android:id="@+id/edit_profile_tv_title"
+        android:id="@+id/act_edit_profile_tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -17,11 +17,11 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/edit_profile_img_back"
+        app:layout_constraintStart_toStartOf="@+id/act_edit_profile_img_back"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/edit_profile_tv_name"
+        android:id="@+id/act_edit_profile_tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -31,10 +31,10 @@
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_profile_img_back" />
+        app:layout_constraintTop_toBottomOf="@+id/act_edit_profile_img_back" />
 
     <TextView
-        android:id="@+id/edit_profile_tv_id"
+        android:id="@+id/act_edit_profile_tv_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -42,11 +42,11 @@
         android:text="아이디"
         android:textColor="@color/black"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/edit_profile_edt_name"
-        app:layout_constraintTop_toBottomOf="@+id/edit_profile_edt_name" />
+        app:layout_constraintStart_toStartOf="@+id/act_edit_profile_edt_name"
+        app:layout_constraintTop_toBottomOf="@+id/act_edit_profile_edt_name" />
 
     <EditText
-        android:id="@+id/edit_profile_edt_name"
+        android:id="@+id/act_edit_profile_edt_name"
         android:layout_width="0dp"
         android:layout_height="44dp"
         android:layout_marginStart="16dp"
@@ -63,10 +63,10 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_profile_tv_name" />
+        app:layout_constraintTop_toBottomOf="@+id/act_edit_profile_tv_name" />
 
     <EditText
-        android:id="@+id/edit_profile_edt_id"
+        android:id="@+id/act_edit_profile_edt_id"
         android:layout_width="0dp"
         android:layout_height="44dp"
         android:layout_marginTop="6dp"
@@ -78,12 +78,12 @@
         android:paddingLeft="12dp"
         android:textColor="@color/tab_grey"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/edit_profile_edt_name"
-        app:layout_constraintStart_toStartOf="@+id/edit_profile_edt_name"
-        app:layout_constraintTop_toBottomOf="@+id/edit_profile_tv_id" />
+        app:layout_constraintEnd_toEndOf="@+id/act_edit_profile_edt_name"
+        app:layout_constraintStart_toStartOf="@+id/act_edit_profile_edt_name"
+        app:layout_constraintTop_toBottomOf="@+id/act_edit_profile_tv_id" />
 
     <TextView
-        android:id="@+id/edit_profile_tv_pw"
+        android:id="@+id/act_edit_profile_tv_pw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -91,11 +91,11 @@
         android:text="비밀번호"
         android:textColor="@color/black"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/edit_profile_edt_id"
-        app:layout_constraintTop_toBottomOf="@+id/edit_profile_edt_id" />
+        app:layout_constraintStart_toStartOf="@+id/act_edit_profile_edt_id"
+        app:layout_constraintTop_toBottomOf="@+id/act_edit_profile_edt_id" />
 
     <EditText
-        android:id="@+id/edit_profile_edt_pw_new"
+        android:id="@+id/act_edit_profile_edt_pw_new"
         android:layout_width="0dp"
         android:layout_height="44dp"
         android:layout_marginTop="29dp"
@@ -108,12 +108,12 @@
         android:textColor="@color/black"
         android:textColorHint="@color/tab_grey"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/edit_profile_edt_pw_now"
-        app:layout_constraintStart_toStartOf="@+id/edit_profile_edt_pw_now"
-        app:layout_constraintTop_toBottomOf="@+id/edit_profile_edt_pw_now" />
+        app:layout_constraintEnd_toEndOf="@+id/act_edit_profile_edt_pw_now"
+        app:layout_constraintStart_toStartOf="@+id/act_edit_profile_edt_pw_now"
+        app:layout_constraintTop_toBottomOf="@+id/act_edit_profile_edt_pw_now" />
 
     <EditText
-        android:id="@+id/edit_profile_edt_pw_chk"
+        android:id="@+id/act_edit_profile_edt_pw_chk"
         android:layout_width="0dp"
         android:layout_height="44dp"
         android:layout_marginTop="6dp"
@@ -126,12 +126,12 @@
         android:textColor="@color/black"
         android:textColorHint="@color/tab_grey"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/edit_profile_edt_pw_new"
-        app:layout_constraintStart_toStartOf="@+id/edit_profile_edt_pw_new"
-        app:layout_constraintTop_toBottomOf="@+id/edit_profile_edt_pw_new" />
+        app:layout_constraintEnd_toEndOf="@+id/act_edit_profile_edt_pw_new"
+        app:layout_constraintStart_toStartOf="@+id/act_edit_profile_edt_pw_new"
+        app:layout_constraintTop_toBottomOf="@+id/act_edit_profile_edt_pw_new" />
 
     <TextView
-        android:id="@+id/edit_profile_tv_univ"
+        android:id="@+id/act_edit_profile_tv_univ"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -139,11 +139,11 @@
         android:text="대학교"
         android:textColor="@color/black"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/edit_profile_edt_pw_chk"
-        app:layout_constraintTop_toBottomOf="@+id/edit_profile_edt_pw_chk" />
+        app:layout_constraintStart_toStartOf="@+id/act_edit_profile_edt_pw_chk"
+        app:layout_constraintTop_toBottomOf="@+id/act_edit_profile_edt_pw_chk" />
 
     <TextView
-        android:id="@+id/edit_profile_tv_univ_select"
+        android:id="@+id/act_edit_profile_tv_univ_select"
         android:layout_width="0dp"
         android:layout_height="44dp"
         android:layout_marginTop="4dp"
@@ -156,12 +156,12 @@
         android:textColor="@color/black"
         android:textColorHint="@color/tab_grey"
         android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/edit_profile_tv_univ_select_btn"
-        app:layout_constraintStart_toStartOf="@+id/edit_profile_edt_pw_chk"
-        app:layout_constraintTop_toBottomOf="@+id/edit_profile_tv_univ" />
+        app:layout_constraintEnd_toStartOf="@+id/act_edit_profile_tv_univ_select_btn"
+        app:layout_constraintStart_toStartOf="@+id/act_edit_profile_edt_pw_chk"
+        app:layout_constraintTop_toBottomOf="@+id/act_edit_profile_tv_univ" />
 
     <TextView
-        android:id="@+id/edit_profile_tv_univ_select_btn"
+        android:id="@+id/act_edit_profile_tv_univ_select_btn"
         android:layout_width="58dp"
         android:layout_height="44dp"
         android:background="@drawable/join_btn_1"
@@ -170,12 +170,12 @@
         android:text="선택"
         android:textColor="#304fff"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/edit_profile_tv_univ_select"
-        app:layout_constraintEnd_toEndOf="@+id/edit_profile_edt_pw_chk"
-        app:layout_constraintTop_toTopOf="@+id/edit_profile_tv_univ_select" />
+        app:layout_constraintBottom_toBottomOf="@+id/act_edit_profile_tv_univ_select"
+        app:layout_constraintEnd_toEndOf="@+id/act_edit_profile_edt_pw_chk"
+        app:layout_constraintTop_toTopOf="@+id/act_edit_profile_tv_univ_select" />
 
     <Button
-        android:id="@+id/edit_profile_button_edit"
+        android:id="@+id/act_edit_profile_button_edit"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="15dp"
@@ -189,22 +189,22 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_profile_ll_univ" />
+        app:layout_constraintTop_toBottomOf="@+id/act_edit_profile_ll_univ" />
 
     <LinearLayout
-        android:id="@+id/edit_profile_ll_univ"
+        android:id="@+id/act_edit_profile_ll_univ"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
         android:background="@color/white"
         android:orientation="vertical"
         android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="@+id/edit_profile_tv_univ_select_btn"
-        app:layout_constraintStart_toStartOf="@+id/edit_profile_tv_univ_select"
-        app:layout_constraintTop_toBottomOf="@+id/edit_profile_tv_univ_select">
+        app:layout_constraintEnd_toEndOf="@+id/act_edit_profile_tv_univ_select_btn"
+        app:layout_constraintStart_toStartOf="@+id/act_edit_profile_tv_univ_select"
+        app:layout_constraintTop_toBottomOf="@+id/act_edit_profile_tv_univ_select">
 
         <TextView
-            android:id="@+id/edit_profile_tv_univ_1"
+            android:id="@+id/act_edit_profile_tv_univ_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="8dp"
@@ -213,7 +213,7 @@
             android:textColor="@color/black" />
 
         <TextView
-            android:id="@+id/edit_profile_tv_univ_2"
+            android:id="@+id/act_edit_profile_tv_univ_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="8dp"
@@ -222,7 +222,7 @@
             android:textColor="@color/black" />
 
         <TextView
-            android:id="@+id/edit_profile_tv_univ_3"
+            android:id="@+id/act_edit_profile_tv_univ_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="8dp"
@@ -232,7 +232,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/edit_profile_pw_chk_txt"
+        android:id="@+id/act_edit_profile_pw_chk_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
@@ -240,11 +240,11 @@
         android:textColor="#f1290a"
         android:textSize="12sp"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/edit_profile_edt_pw_now"
-        app:layout_constraintTop_toBottomOf="@+id/edit_profile_edt_pw_now" />
+        app:layout_constraintEnd_toEndOf="@+id/act_edit_profile_edt_pw_now"
+        app:layout_constraintTop_toBottomOf="@+id/act_edit_profile_edt_pw_now" />
 
     <TextView
-        android:id="@+id/edit_profile_pw_chk_txt2"
+        android:id="@+id/act_edit_profile_pw_chk_txt2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
@@ -252,21 +252,21 @@
         android:textColor="#f1290a"
         android:textSize="12sp"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/edit_profile_edt_pw_chk"
-        app:layout_constraintTop_toBottomOf="@+id/edit_profile_edt_pw_chk" />
+        app:layout_constraintEnd_toEndOf="@+id/act_edit_profile_edt_pw_chk"
+        app:layout_constraintTop_toBottomOf="@+id/act_edit_profile_edt_pw_chk" />
 
     <ImageView
-        android:id="@+id/edit_profile_img_back"
+        android:id="@+id/act_edit_profile_img_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="12dp"
         android:src="@drawable/nav_btn_back_black"
-        app:layout_constraintBottom_toBottomOf="@+id/edit_profile_tv_title"
+        app:layout_constraintBottom_toBottomOf="@+id/act_edit_profile_tv_title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/edit_profile_tv_title" />
+        app:layout_constraintTop_toTopOf="@+id/act_edit_profile_tv_title" />
 
     <EditText
-        android:id="@+id/edit_profile_edt_pw_now"
+        android:id="@+id/act_edit_profile_edt_pw_now"
         android:layout_width="0dp"
         android:layout_height="44dp"
         android:layout_marginTop="6dp"
@@ -279,7 +279,7 @@
         android:textColor="@color/black"
         android:textColorHint="@color/tab_grey"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/edit_profile_edt_id"
-        app:layout_constraintStart_toStartOf="@+id/edit_profile_edt_id"
-        app:layout_constraintTop_toBottomOf="@+id/edit_profile_tv_pw" />
+        app:layout_constraintEnd_toEndOf="@+id/act_edit_profile_edt_id"
+        app:layout_constraintStart_toStartOf="@+id/act_edit_profile_edt_id"
+        app:layout_constraintTop_toBottomOf="@+id/act_edit_profile_tv_pw" />
 </androidx.constraintlayout.widget.ConstraintLayout>
