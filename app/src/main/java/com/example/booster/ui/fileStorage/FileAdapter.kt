@@ -80,6 +80,7 @@ class FileAdapter(
                         //Log.e("context check: ", " " + itemView.context + " " + itemView.context.javaClass.name)
                     }
 
+
                 }
                 //val fileImage = BoosterUtil(itemView.context).getFileImage(file.file_extension)
                 //Glide.with(itemView.context).load(fileImage).into(itemView.iv_file)

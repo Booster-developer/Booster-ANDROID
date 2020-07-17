@@ -8,22 +8,12 @@
     android:elevation="1dp"
     android:layout_gravity="center_horizontal">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/my_file_guideline1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintGuide_begin="370dp"/>
-
     <ImageView
         android:id="@+id/iv_file"
         android:layout_width="48dp"
         android:layout_height="64dp"
         tools:src="@drawable/order_wait_img_1"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,16 +25,27 @@
         android:id="@+id/tv_file_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="파일이름파일이름파일이름.pdf"
+        android:text="파일이름파일이름파일이름"
         android:textSize="16sp"
-        android:singleLine="true"
+        android:maxEms="8"
         android:ellipsize="end"
+        android:singleLine="true"
         android:fontFamily="@font/noto_sans_kr_medium"
         app:layout_constraintStart_toEndOf="@id/iv_file"
         app:layout_constraintTop_toTopOf="@id/iv_file_delete"
         app:layout_constraintBottom_toBottomOf="@id/iv_file_delete"
-        app:layout_constraintEnd_toStartOf="@id/my_file_guideline1"
         android:layout_marginStart="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_file_pdf"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text=".pdf"
+        android:textSize="16sp"
+        android:fontFamily="@font/noto_sans_kr_medium"
+        app:layout_constraintStart_toEndOf="@id/tv_file_name"
+        app:layout_constraintTop_toTopOf="@id/tv_file_name"
+        app:layout_constraintBottom_toBottomOf="@id/tv_file_name"/>
 
     <ImageView
         android:id="@+id/iv_file_delete"

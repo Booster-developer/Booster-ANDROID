@@ -92,5 +92,9 @@ class PaymentActivity : AppCompatActivity() {
             intent.putExtra("orderIdx", orderIdx)
             startActivity(intent)
         }
+
+        act_payment_iv_back.setOnClickListener{
+            finish()
+        }
     }
 }

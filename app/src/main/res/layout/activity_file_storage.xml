@@ -61,7 +61,7 @@
                 android:fontFamily="@font/noto_sans_kr_regular"
                 android:text="내가 선택한 매장"
                 android:textColor="#304fff"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fileStorage_divider1" />
 
