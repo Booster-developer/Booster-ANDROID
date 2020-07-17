@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.tab_layout.*
 
 class BottomTabActivity : AppCompatActivity() {
     var flag = 0
-    var token = UserManager.token
+    var token = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
