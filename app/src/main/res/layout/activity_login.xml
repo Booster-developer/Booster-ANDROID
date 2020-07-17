@@ -88,13 +88,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/act_login_edt_id" />
 
-        <Button
+        <TextView
             android:id="@+id/act_login_button_login"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_marginTop="21dp"
             android:background="@drawable/bg_btn_gradation"
             android:fontFamily="@font/noto_sans_kr_medium"
+            android:gravity="center"
             android:lineHeight="25sp"
             android:text="로그인"
             android:textColor="@color/white"
