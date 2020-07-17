@@ -129,26 +129,9 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
     }
 
     override fun onBackPressed() {
-        showDeleteDialog()
+        if(fileStorageViewModel.fileLiveData.value!!.size!=0) showDeleteDialog()
+        finish()
     }
-
-    fun loading() {
-        //로딩
-        Handler().postDelayed(
-            {
-                val progressDialog = ProgressDialog(this@FileStorageActivity)
-                progressDialog.setIndeterminate(true)
-                progressDialog.setMessage("잠시만 기다려 주세요")
-                progressDialog.show()
-            }, 2000
-        )
-    }
-
-//    fun loadingEnd() {
-//        Handler().postDelayed(
-//            { progressDialog.dismiss() }, 0
-//        )
-//    }
 
     private fun subscribeObservers() {
         fileStorageViewModel.fileLiveData.observe(this, Observer {
@@ -438,11 +421,16 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
     }
 
     fun onClick(view: View) {
-        when (view) {
-            fileStorage_img_close -> showDeleteDialog()
-            fileStorage_iv_file_add -> fileAdd()
-            //fileStorage_tv_order -> fileStorageViewModel.order()
+//        when (view) {
+//            fileStorage_img_close -> showDeleteDialog()
+//            fileStorage_iv_file_add -> fileAdd()
+//            //fileStorage_tv_order -> fileStorageViewModel.order()
+//        }
+        fileStorage_img_close.setOnClickListener {
+            if(fileStorageViewModel.fileLiveData.value!!.size!=0) showDeleteDialog()
+            else finish()
         }
+        fileStorage_iv_file_add.setOnClickListener { fileAdd() }
     }
 
 
