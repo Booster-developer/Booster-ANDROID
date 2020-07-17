@@ -32,28 +32,16 @@ class EditProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
 
-        BoosterServiceImpl.service.getMyProfile()
-            .enqueue(object : Callback<ProfileData> {
-                override fun onFailure(call: Call<ProfileData>, t: Throwable) {
-                    Log.e("error", t.toString())
-                }
+        // 마이페이지로부터 extra 받아오기
+        var a = intent.getStringExtra("id")
+        var b = intent.getStringExtra("univ")
+        var c = intent.getStringExtra("name")
 
-                override fun onResponse(call: Call<ProfileData>, response: Response<ProfileData>) {
-                    Log.e("data", response.body().toString())
-                    if (response.isSuccessful) {
-                        val data = response.body()!!.data
-                        edit_profile_edt_name.setText(data.user_name)
-                        when (data.univ_idx) {
-                            1 -> edit_profile_tv_univ_select.text = "숭실대학교"
-                            2 -> edit_profile_tv_univ_select.text = "중앙대학교"
-                            3 -> edit_profile_tv_univ_select.text = "서울대학교"
-                        }
-                        edit_profile_edt_id.setText(data.user_id)
-                    }
-                }
+        edit_profile_edt_id.setText(a)
+        edit_profile_tv_univ_select.text = b
+        edit_profile_edt_name.setText(c)
 
-            })
-
+        // 대학교 선택
         edit_profile_tv_univ_select_btn.setOnClickListener {
             edit_profile_ll_univ.visibility = View.VISIBLE
         }
@@ -74,6 +62,7 @@ class EditProfileActivity : AppCompatActivity() {
             edit_profile_ll_univ.visibility = View.GONE
         }
 
+        // 수정완료 클릭
         edit_profile_button_edit.setOnClickListener {
             edit()
         }
@@ -114,6 +103,7 @@ class EditProfileActivity : AppCompatActivity() {
         // 현재 비밀번호 체크
         val pwJsonData = JSONObject()
         pwJsonData.put("user_pw", edit_profile_edt_pw_now)
+
 
         val body = JsonParser.parseString(pwJsonData.toString()) as JsonObject
 

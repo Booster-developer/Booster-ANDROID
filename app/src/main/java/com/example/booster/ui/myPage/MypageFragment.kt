@@ -1,5 +1,6 @@
 package com.example.booster.ui.myPage
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import com.example.booster.R
 import com.example.booster.data.datasource.model.ProfileData
 import com.example.booster.data.remote.network.BoosterServiceImpl
+import kotlinx.android.synthetic.main.activity_join.*
 import kotlinx.android.synthetic.main.fragment_mypage.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -55,6 +57,9 @@ class MypageFragment : Fragment() {
         mypage_tv_goto_edit.setOnClickListener {
 
             val intent = Intent(context, EditProfileActivity::class.java)
+            intent.putExtra("id", mypage_tv_id.text.toString())
+            intent.putExtra("univ", mypage_tv_univ.text.toString())
+            intent.putExtra("name", mypage_tv_name.text.toString())
             startActivity(intent)
         }
 
