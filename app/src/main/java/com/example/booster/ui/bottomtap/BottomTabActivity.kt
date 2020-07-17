@@ -7,13 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.example.booster.R
+import com.example.booster.ui.home.HomeFragment
 import com.example.booster.ui.selectStore.SelectStoreActivity
 import com.example.booster.util.UserManager
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import kotlinx.android.synthetic.main.activity_bottom_tab.*
 import kotlinx.android.synthetic.main.tab_layout.*
+
 
 class BottomTabActivity : AppCompatActivity() {
     var flag = 0
@@ -42,6 +45,24 @@ class BottomTabActivity : AppCompatActivity() {
             UserManager.token = token
             UserManager.univ = myUniv
         }
+
+//        bottom_vp.setOnPageChangeListener(object : OnPageChangeListener {
+//            override fun onPageScrollStateChanged(state: Int) {
+//            }
+//
+//            override fun onPageScrolled(
+//                position: Int,
+//                positionOffset: Float,
+//                positionOffsetPixels: Int
+//            ) {
+//            }
+//
+//            override fun onPageSelected(position: Int) {
+//                if(position==0){
+//                    HomeFragment().userVisibleHint = true
+//                }
+//            }
+//        })
     }
 
     private fun setTabBar() {
