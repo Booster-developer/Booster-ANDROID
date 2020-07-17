@@ -1,17 +1,16 @@
 package com.example.booster.ui.orderList
 
 import android.app.Dialog
-import android.content.Context
-import android.content.DialogInterface
-import android.os.Handler
-import android.util.Log
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.booster.R
 import com.example.booster.data.datasource.model.DefaultData
 import com.example.booster.data.remote.network.BoosterServiceImpl
@@ -24,6 +23,7 @@ import retrofit2.Response
 class OrderCancelFragment : DialogFragment() {
 
     val requestToServer = BoosterServiceImpl
+    private lateinit var viewModel: OrderListViewModel
 
 
     override fun onCreateView(
@@ -43,6 +43,7 @@ class OrderCancelFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel = ViewModelProvider(this).get(OrderListViewModel::class.java)
         dialog_order_cancel_back.onlyOneClickListener {
             dismiss()
         }
@@ -67,11 +68,15 @@ class OrderCancelFragment : DialogFragment() {
                     ) {
                         if (response.isSuccessful) {
                             Log.e("주문 취소 성공", "주문 취소")
+                            (requireParentFragment() as OrderListFragment).viewModel.getOrderList()
+                            dismiss()
                         }
+
                     }
 
                 })
             }
+
             dismiss()
         }
     }

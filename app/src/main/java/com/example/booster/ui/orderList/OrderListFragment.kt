@@ -15,32 +15,22 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a2nd_seminar.ui.ItemDecorator
 import com.example.booster.R
-import com.example.booster.data.datasource.model.DefaultData
-import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.databinding.FragmentOrderListBinding
 import com.example.booster.ui.orderDetail.OrderDetailActivity
 import kotlinx.android.synthetic.main.fragment_order_list.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class OrderListFragment : Fragment() {
+    val orderCancelDialog = OrderCancelFragment()
 
-    private lateinit var viewModel: OrderListViewModel
+    lateinit var viewModel: OrderListViewModel
     lateinit var adapter: OrderListAdapter
     lateinit var binding: FragmentOrderListBinding
 
-    val requestToServer = BoosterServiceImpl
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_order_list, container, false)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_list, container, false)
         binding.lifecycleOwner = this
-
         return rootView
     }
 
@@ -73,6 +63,7 @@ class OrderListFragment : Fragment() {
         }
     }
 
+
     private fun initRv() {
         adapter = OrderListAdapter(requireContext(),
             object : OrderListViewHolder.onClickPickUpListener {
@@ -80,32 +71,23 @@ class OrderListFragment : Fragment() {
                     Log.e("orderIdx -> ", orderIdx.toString())
                     viewModel.putPickUp(orderIdx)
                     Log.e("orderlistorderidx", orderIdx.toString())
-                    viewModel.getOrderList()
-                    Handler().postDelayed({ viewModel.getOrderList() }, 500)
+                    Handler().postDelayed({ viewModel.getOrderList() }, 1000)
                 }
-
             },
         object : OrderListViewHolder.onClickDetailListener{
             override fun onClickDetail(position: Int) {
                 val intent = Intent(context, OrderDetailActivity::class.java)
-                intent.putExtra("idx", viewModel.orderList.value!!.get(position)!!.order_idx.toString())
+                intent.putExtra("idx", viewModel.orderList.value!![position].order_idx.toString())
                 startActivity(intent)
             }
-
         },
         object : OrderListViewHolder.onClickCancelListener{
             override fun onCancel(position: Int) {
-
-
-                val idx = viewModel.orderList.value!!.get(position)!!.order_idx
-
-                val orderCancelDialog = OrderCancelFragment()
-
+                val idx = viewModel.orderList.value!![position].order_idx
                 var bundle = Bundle()
                 bundle.putInt("idx", idx)
                 orderCancelDialog.arguments = bundle
-
-                orderCancelDialog.show(childFragmentManager, "dialog");
+                orderCancelDialog.show(childFragmentManager, "dialog")
 
             }
 
@@ -117,10 +99,13 @@ class OrderListFragment : Fragment() {
 
         viewModel.orderList.observe(viewLifecycleOwner, Observer {
             if(it!=null){
+            Log.e("viewModel.orderList.observe", "오오오오오ㅗ오오오오ㅗ오옹")
+
                 adapter.data = it
                 adapter.notifyDataSetChanged()
             } else{
                 adapter.data.clear()
+                adapter.notifyDataSetChanged()
             }
         })
     }
