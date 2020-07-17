@@ -90,6 +90,16 @@ class EditProfileActivity : AppCompatActivity() {
             edit_profile_edt_name.isSelected = hasFocus
         }
 
+        // 현재 비밀번호 입력 focused
+        edit_profile_edt_pw_now.setOnFocusChangeListener { v, hasFocus ->
+            edit_profile_edt_pw_now.isSelected = hasFocus
+        }
+
+        // 새 비밀번호 입력 focused
+        edit_profile_edt_pw_new.setOnFocusChangeListener { v, hasFocus ->
+            edit_profile_edt_pw_new.isSelected = hasFocus
+        }
+
         // 비밀번호확인입력 focused
         edit_profile_edt_pw_chk.setOnFocusChangeListener { v, hasFocus ->
             edit_profile_edt_pw_chk.isSelected = hasFocus
