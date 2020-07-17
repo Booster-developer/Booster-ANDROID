@@ -139,8 +139,14 @@ class StoreListFragment : Fragment() {
                             //통신 성공
                             Log.e("putStoreFavRetrofit", response.body().toString())
                             val data = response.body()!!.status
-                            if(data==201) imageView.setImageResource(R.drawable.store_ic_active_star)
-                            else if (data==200) imageView.setImageResource(R.drawable.store_ic_inactive_star)
+                            if(data==201) {
+                                imageView.setImageResource(R.drawable.store_ic_active_star)
+                                viewModel.getStoreList(univIdx)
+                            }
+                            else if (data==200) {
+                                imageView.setImageResource(R.drawable.store_ic_inactive_star)
+                                viewModel.getStoreList(univIdx)
+                            }
                         }
 
                     })
