@@ -11,6 +11,7 @@ import com.example.booster.R
 import com.example.booster.data.datasource.model.ProfileData
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.onlyOneClickListener
+import com.example.booster.ui.user.LoginActivity
 import kotlinx.android.synthetic.main.fragment_mypage.*
 import retrofit2.Call
 import retrofit2.Callback
