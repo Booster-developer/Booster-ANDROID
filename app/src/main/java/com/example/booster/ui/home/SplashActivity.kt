@@ -1,9 +1,11 @@
-package com.example.booster
+package com.example.booster.ui.home
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import com.example.booster.LoginActivity
+import com.example.booster.R
 import com.example.booster.ui.bottomtap.BottomTabActivity
 import kotlinx.android.synthetic.main.activity_splash.*
 
@@ -16,7 +18,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         Handler().postDelayed({
-            val intent = Intent(this@SplashActivity, BottomTabActivity::class.java)
+            val intent = Intent(this@SplashActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }, SPLASH_TIME_OUT)
