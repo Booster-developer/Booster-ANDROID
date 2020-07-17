@@ -174,7 +174,7 @@
         app:layout_constraintEnd_toEndOf="@+id/act_edit_profile_edt_pw_chk"
         app:layout_constraintTop_toTopOf="@+id/act_edit_profile_tv_univ_select" />
 
-    <Button
+    <TextView
         android:id="@+id/act_edit_profile_button_edit"
         android:layout_width="0dp"
         android:layout_height="48dp"
@@ -183,6 +183,7 @@
         android:layout_marginBottom="17dp"
         android:background="@drawable/bg_btn_gradation"
         android:fontFamily="@font/noto_sans_kr_medium"
+        android:gravity="center"
         android:text="수정완료"
         android:textColor="@color/white"
         android:textSize="17sp"
@@ -206,28 +207,34 @@
             android:id="@+id/act_edit_profile_tv_univ_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr_regular"
             android:paddingHorizontal="8dp"
             android:paddingVertical="12dp"
             android:text="숭실대학교"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/act_edit_profile_tv_univ_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr_regular"
             android:paddingHorizontal="8dp"
             android:paddingVertical="12dp"
             android:text="중앙대학교"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/act_edit_profile_tv_univ_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr_regular"
             android:paddingHorizontal="8dp"
             android:paddingVertical="12dp"
             android:text="서울대학교"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="14sp" />
     </LinearLayout>
 
     <TextView

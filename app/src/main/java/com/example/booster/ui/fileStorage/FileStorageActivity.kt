@@ -175,7 +175,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         })
         fileStorageViewModel.waitlistLiveData.observe(this, Observer {
             it?.let {
-                Log.e("itttt",it.toString())
+                Log.e("itttt", it.toString())
                 setWaitList(it)
             }
         })
@@ -230,7 +230,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
     }
 
     private fun setWaitList(wait: Wait) {
-        Log.e("ccccc",wait.order_price.toString())
+        Log.e("ccccc", wait.order_price.toString())
         fileStorage_tv_cost_amount.text = "${wait.order_price} 원"
     }
 
@@ -322,14 +322,14 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                     progressDialog.setMessage("파일 옵션 변경 중 입니다..")
                     progressDialog.setCancelable(false)
                     progressDialog.show()
-                    val handler= Handler()
-                    handler.postDelayed(object :Runnable{
+                    val handler = Handler()
+                    handler.postDelayed(object : Runnable {
                         override fun run() {
                             fileStorageViewModel.getPrice(orderIdx)
                             progressDialog.dismiss()
 
                         }
-                    },2000)
+                    }, 2000)
                 }
             }
         }
@@ -351,21 +351,21 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
     }
 
     //bitmap을 file로 변환
-    private fun bitmapToFile(bitmap:Bitmap): java.io.File? {
+    private fun bitmapToFile(bitmap: Bitmap): java.io.File? {
         // Get the context wrapper
         val wrapper = ContextWrapper(applicationContext)
 
         // Initialize a new file instance to save bitmap object
-        var file = wrapper.getDir("Images",Context.MODE_PRIVATE)
-        file = java.io.File(file,"${UUID.randomUUID()}.png")
+        var file = wrapper.getDir("Images", Context.MODE_PRIVATE)
+        file = java.io.File(file, "${UUID.randomUUID()}.png")
 
-        try{
+        try {
             // Compress the bitmap and save in jpg format
-            val stream:OutputStream = FileOutputStream(file)
-            bitmap.compress(Bitmap.CompressFormat.PNG,100,stream)
+            val stream: OutputStream = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
             stream.flush()
             stream.close()
-        }catch (e: IOException){
+        } catch (e: IOException) {
             e.printStackTrace()
         }
 

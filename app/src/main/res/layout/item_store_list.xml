@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="storeRes"
             type="com.example.booster.data.datasource.model.StoreListInfo" />
@@ -23,7 +24,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/bg_ffffff_round"
-        android:elevation="2dp">
+        android:backgroundTint="@color/white"
+        android:elevation="1.5dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -32,139 +34,140 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="@color/white">
 
                 <ImageView
                     android:id="@+id/item_store_list_iv"
+                    setStoreImg="@{storeRes.store_image}"
                     android:layout_width="match_parent"
                     android:layout_height="157dp"
                     android:layout_weight="0.8"
                     android:scaleType="centerCrop"
                     android:src="@color/main_color"
-                    setStoreImg="@{storeRes.store_image}"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/item_store_list_iv_black"
+                    setStoreBlackImg="@{storeRes.store_open}"
                     android:layout_width="match_parent"
                     android:layout_height="157dp"
                     android:layout_weight="0.8"
                     android:scaleType="centerCrop"
                     android:src="@color/black"
-                    setStoreBlackImg="@{storeRes.store_open}"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/item_store_list_tv_close"
+                    setStoreCloseTxt="@{storeRes.store_open}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="준비 중"
-                    setStoreCloseTxt="@{storeRes.store_open}"
                     android:fontFamily="@font/noto_sans_kr_regular"
+                    android:text="준비 중"
                     android:textColor="@color/white"
                     android:textSize="18sp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/item_store_list_iv_black"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="@id/item_store_list_iv_black"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/item_store_list_iv_fav"
+                    setFavStarList="@{storeRes.store_favorite}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    setFavStarList="@{storeRes.store_favorite}"
-                    android:src="@drawable/store_ic_inactive_star"
                     android:layout_marginTop="9dp"
                     android:layout_marginEnd="12dp"
-                    app:layout_constraintTop_toBottomOf="@+id/item_store_list_iv"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    android:src="@drawable/store_ic_inactive_star"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/item_store_list_iv" />
 
                 <TextView
                     android:id="@+id/item_store_list_tv_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:textColor="#131313"
-                    android:lineSpacingExtra="6sp"
-                    android:fontFamily="@font/noto_sans_kr_medium"
-                    android:layout_marginTop="12dp"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/noto_sans_kr_medium"
+                    android:lineSpacingExtra="6sp"
                     android:text="@{storeRes.store_name}"
-                    app:layout_constraintTop_toBottomOf="@id/item_store_list_iv"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    android:textColor="#131313"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/item_store_list_iv" />
 
                 <TextView
                     android:id="@+id/item_store_list_tv_dist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textColor="#5f5f5f"
-                    android:fontFamily="@font/noto_sans_kr_regular"
                     android:layout_marginTop="2dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
                     android:text="@{storeRes.store_location}"
-                    app:layout_constraintTop_toBottomOf="@id/item_store_list_tv_name"
-                    app:layout_constraintStart_toStartOf="@id/item_store_list_tv_name" />
+                    android:textColor="#5f5f5f"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@id/item_store_list_tv_name"
+                    app:layout_constraintTop_toBottomOf="@id/item_store_list_tv_name" />
 
                 <TextView
                     android:id="@+id/item_store_list_tv_paper"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="16dp"
-                    android:textColor="#000000"
                     android:fontFamily="@font/noto_sans_kr_regular"
                     android:text="A4"
+                    android:textColor="#000000"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/item_store_list_tv_dist"
-                    app:layout_constraintStart_toStartOf="@id/item_store_list_tv_dist" />
+                    app:layout_constraintStart_toStartOf="@id/item_store_list_tv_dist"
+                    app:layout_constraintTop_toBottomOf="@id/item_store_list_tv_dist" />
 
                 <ImageView
                     android:id="@+id/item_store_list_iv_div"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/store_a_4_line_1"
                     android:layout_marginStart="8dp"
+                    android:src="@drawable/store_a_4_line_1"
+                    app:layout_constraintBottom_toBottomOf="@id/item_store_list_tv_paper"
                     app:layout_constraintStart_toEndOf="@id/item_store_list_tv_paper"
-                    app:layout_constraintTop_toTopOf="@id/item_store_list_tv_paper"
-                    app:layout_constraintBottom_toBottomOf="@id/item_store_list_tv_paper" />
+                    app:layout_constraintTop_toTopOf="@id/item_store_list_tv_paper" />
 
                 <LinearLayout
                     android:id="@+id/item_store_list_ll_black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    app:layout_constraintBottom_toBottomOf="@id/item_store_list_iv_div"
                     app:layout_constraintStart_toEndOf="@id/item_store_list_iv_div"
-                    app:layout_constraintTop_toTopOf="@id/item_store_list_iv_div"
-                    app:layout_constraintBottom_toBottomOf="@id/item_store_list_iv_div">
+                    app:layout_constraintTop_toTopOf="@id/item_store_list_iv_div">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_sans_kr_regular"
                         android:text="흑백"
-                        android:textSize="12sp"
                         android:textColor="#000000"
-                        android:fontFamily="@font/noto_sans_kr_regular"/>
+                        android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_sans_kr_regular"
                         android:text="@{String.valueOf(storeRes.price_gray_single)}"
-                        android:textSize="12sp"
                         android:textColor="#000000"
-                        android:fontFamily="@font/noto_sans_kr_regular"/>
+                        android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_sans_kr_regular"
                         android:text="원"
-                        android:textSize="12sp"
                         android:textColor="#000000"
-                        android:fontFamily="@font/noto_sans_kr_regular"/>
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
@@ -173,47 +176,47 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    app:layout_constraintBottom_toBottomOf="@id/item_store_list_ll_black"
                     app:layout_constraintStart_toEndOf="@id/item_store_list_ll_black"
-                    app:layout_constraintTop_toTopOf="@id/item_store_list_ll_black"
-                    app:layout_constraintBottom_toBottomOf="@id/item_store_list_ll_black">
+                    app:layout_constraintTop_toTopOf="@id/item_store_list_ll_black">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_sans_kr_regular"
                         android:text="컬러"
-                        android:textSize="12sp"
                         android:textColor="#000000"
-                        android:fontFamily="@font/noto_sans_kr_regular"/>
+                        android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_sans_kr_regular"
                         android:text="@{String.valueOf(storeRes.price_color_single)}"
-                        android:textSize="12sp"
                         android:textColor="#000000"
-                        android:fontFamily="@font/noto_sans_kr_regular"/>
+                        android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_sans_kr_regular"
                         android:text="원"
-                        android:textSize="12sp"
                         android:textColor="#000000"
-                        android:fontFamily="@font/noto_sans_kr_regular"/>
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:fontFamily="@font/noto_sans_kr_regular"
-                    android:textColor="#467fff"
                     android:layout_marginStart="8dp"
+                    android:fontFamily="@font/noto_sans_kr_regular"
                     android:text="@{storeRes.store_double_sale}"
+                    android:textColor="#467fff"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/item_store_list_ll_color"
                     app:layout_constraintStart_toEndOf="@id/item_store_list_ll_color"
-                    app:layout_constraintTop_toTopOf="@id/item_store_list_ll_color"
-                    app:layout_constraintBottom_toBottomOf="@+id/item_store_list_ll_color"/>
+                    app:layout_constraintTop_toTopOf="@id/item_store_list_ll_color" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

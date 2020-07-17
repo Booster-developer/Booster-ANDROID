@@ -8,7 +8,7 @@
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp"
     android:background="@drawable/bg_ffffff_round"
-    android:elevation="1dp">
+    android:elevation="1.5dp">
 
     <ImageView
         android:id="@+id/iv_order_detail"
