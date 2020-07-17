@@ -240,7 +240,6 @@
         android:fontFamily="@font/noto_sans_kr_medium"
         android:gravity="center_horizontal"
         android:lineSpacingExtra="-10sp"
-        android:onClick="onClick"
         android:paddingTop="11dp"
         android:paddingBottom="11dp"
         android:text="주문하기"
