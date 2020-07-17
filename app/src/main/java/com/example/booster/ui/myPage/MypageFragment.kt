@@ -18,6 +18,8 @@ import retrofit2.Response
 
 class MypageFragment : Fragment() {
 
+    var univIdx = -1
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,6 +36,7 @@ class MypageFragment : Fragment() {
                     if (response.isSuccessful) {
                         val data = response.body()!!.data
                         mypage_tv_name.text = data.user_name
+                        univIdx = data.univ_idx
                         when (data.univ_idx) {
                             1 -> mypage_tv_univ.text = "숭실대학교"
                             2 -> mypage_tv_univ.text = "중앙대학교"
@@ -56,9 +59,10 @@ class MypageFragment : Fragment() {
 
             val intent = Intent(context, EditProfileActivity::class.java)
             intent.putExtra("id", mypage_tv_id.text.toString())
-            intent.putExtra("univ", mypage_tv_univ.text.toString())
+            intent.putExtra("univ", univIdx.toString())
             intent.putExtra("name", mypage_tv_name.text.toString())
             startActivity(intent)
+            Log.e("univvvvvvvvvv", univIdx.toString())
         }
 
         mypage_tv_goto_myengine.setOnClickListener {

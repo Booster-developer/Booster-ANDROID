@@ -16,6 +16,7 @@ import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_edit_profile.*
+import kotlinx.android.synthetic.main.fragment_mypage.*
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,21 +25,38 @@ import retrofit2.Response
 class EditProfileActivity : AppCompatActivity() {
 
     var univIdx = 0
-    var checkPW = false
-    var checkName = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
 
-        // 마이페이지로부터 extra 받아오기
-        var a = intent.getStringExtra("id")
-        var b = intent.getStringExtra("univ")
-        var c = intent.getStringExtra("name")
+        // 뒤로가기 버튼
+        edit_profile_img_back.setOnClickListener {
+            finish()
+        }
 
-        edit_profile_edt_id.setText(a)
-        edit_profile_tv_univ_select.text = b
-        edit_profile_edt_name.setText(c)
+        // 마이페이지로부터 extra 받아오기
+        var extraId = intent.getStringExtra("id")
+        var extraUnivIdx = intent.getStringExtra("univ")
+        var extraName = intent.getStringExtra("name")
+
+        edit_profile_edt_id.setText(extraId)
+        edit_profile_edt_name.setText(extraName)
+
+        when (extraUnivIdx) {
+            "1" -> {
+                edit_profile_tv_univ_select.text = "숭실대학교"
+                univIdx = 1
+            }
+            "2" -> {
+                edit_profile_tv_univ_select.text = "중앙대학교"
+                univIdx = 2
+            }
+            "3" -> {
+                edit_profile_tv_univ_select.text = "서울대학교"
+                univIdx = 3
+            }
+        }
 
         // 대학교 선택
         edit_profile_tv_univ_select_btn.setOnClickListener {
@@ -101,8 +119,7 @@ class EditProfileActivity : AppCompatActivity() {
 
         // 현재 비밀번호 체크
         val pwJsonData = JSONObject()
-        pwJsonData.put("user_pw", edit_profile_edt_pw_now)
-
+        pwJsonData.put("user_pw", edit_profile_edt_pw_now.text.toString())
 
         val body = JsonParser.parseString(pwJsonData.toString()) as JsonObject
 
@@ -115,49 +132,42 @@ class EditProfileActivity : AppCompatActivity() {
                 }
 
                 override fun onResponse(call: Call<NoticeData>, response: Response<NoticeData>) {
-                    Log.e("rrrrrrrr", response.body().toString())
-                    if (response.isSuccessful) {
-                        checkPW = response.body()!!.success
+                    if (response.body()!!.success) {
+                        edit_profile_pw_chk_txt.visibility = View.INVISIBLE
+                        if (!edit_profile_edt_name.text.isNullOrBlank()) {
+                            requestEdit()
+                        } else {
+                            Toast.makeText(
+                                this@EditProfileActivity,
+                                "이름을 입력해주세요",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
+                    } else {
+                        edit_profile_pw_chk_txt.visibility = View.VISIBLE
                     }
                 }
 
             })
 
         // 이름입력 체크
-        if (!edit_profile_edt_name.text.isNullOrBlank()) {
-            checkName = true
-        } else {
-            Toast.makeText(this@EditProfileActivity, "이름을 입력해주세요", Toast.LENGTH_SHORT)
-                .show()
-        }
 
-        // 비밀번호입력 체크
-        if (checkPW) {
-            edit_profile_pw_chk_txt.visibility = View.INVISIBLE
-        } else {
-            edit_profile_pw_chk_txt.visibility = View.VISIBLE
-        }
-
-        // 수정 요청
-        if (checkName && checkPW) {
-            requestEdit()
-        }
     }
 
     fun requestEdit() {
         val editJsonData = JSONObject()
-        editJsonData.put("user_name", edit_profile_edt_name)
+        editJsonData.put("user_name", edit_profile_edt_name.text.toString())
         editJsonData.put("user_university", univIdx)
 
         // 새로운 비밀번호 입력 안 할 경우, 기존의 비밀번호로 요청
         if (edit_profile_edt_pw_new.text.isNullOrBlank()) {
-            editJsonData.put("user_pw", edit_profile_edt_pw_now)
+            editJsonData.put("user_pw", edit_profile_edt_pw_now.text.toString())
         } else {
-            editJsonData.put("user_pw", edit_profile_edt_pw_new)
+            editJsonData.put("user_pw", edit_profile_edt_pw_new.text.toString())
         }
 
         val body = JsonParser.parseString(editJsonData.toString()) as JsonObject
-<<<<<<< HEAD
         BoosterServiceImpl.service.editMyProfile(
             body = body
         )
@@ -173,27 +183,8 @@ class EditProfileActivity : AppCompatActivity() {
                     val message = response.body()!!.message
                     Toast.makeText(this@EditProfileActivity, message, Toast.LENGTH_SHORT)
                         .show()
-                    if (response.body()!!.success) {
-                        finish()
-                    }
+                    if (response.body()!!.success) finish()
                 }
-
             })
-=======
-//        BoosterServiceImpl.service.editMyProfile(body = body, token = "")
-//            .enqueue(object : Callback<EditProfileData> {
-//                override fun onFailure(call: Call<EditProfileData>, t: Throwable) {
-//                    Log.e("error", t.toString())
-//                }
-//
-//                override fun onResponse(
-//                    call: Call<EditProfileData>,
-//                    response: Response<EditProfileData>
-//                ) {
-//                    TODO("Not yet implemented")
-//                }
-//
-//            })
->>>>>>> 7946f2f1c195c8399b0a3693f54c1f75aa74a9fa
     }
 }
