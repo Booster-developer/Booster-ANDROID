@@ -86,12 +86,15 @@ class OrderListFragment : Fragment() {
         },
         object : OrderListViewHolder.onClickCancelListener{
             override fun onCancel(position: Int) {
-                val idx = viewModel.orderList.value!![position].order_idx
+                val idx = viewModel.orderList.value!!.get(position)!!.order_idx
+
                 val orderCancelDialog = OrderCancelFragment()
                 var bundle = Bundle()
                 bundle.putInt("idx", idx)
                 orderCancelDialog.arguments = bundle
-                orderCancelDialog.show(childFragmentManager, "dialog")
+
+                orderCancelDialog.show(childFragmentManager, "dialog");
+
             }
 
         })
