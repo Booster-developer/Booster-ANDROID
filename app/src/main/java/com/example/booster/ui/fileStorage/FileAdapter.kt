@@ -86,7 +86,8 @@ class FileAdapter(
                 //Glide.with(itemView.context).load(fileImage).into(itemView.iv_file)
             }
 
-            itemView.tv_file_name.text = file.file_name
+            itemView.tv_file_name.text = file.file_name!!.substring(0,file.file_name.length-4)
+            itemView.tv_file_pdf.text= file.file_extension
 
             //itemView.tv_option_view.text = file.option_view //사용하면 옵션보기 텍스트가 안뜸
 

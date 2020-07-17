@@ -248,7 +248,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                         fileStorageViewModel.getPrice(orderIdx)
 
                     }
-                },2000)
+                },500)
                 Log.e("orderIdx on Delete", "check: " + orderIdx)
             }
             .setNegativeButton("아니오") { dialog: DialogInterface?, which: Int ->
