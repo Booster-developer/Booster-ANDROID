@@ -60,5 +60,6 @@ class SelectStoreActivity: AppCompatActivity(), StoreListItemClickListener {
         intent.putExtra("storeName", store.store_name)
         intent.putExtra("storeAddress", store.store_address)
         startActivityForResult(intent, 1000)
+        finish()
     }
 }
