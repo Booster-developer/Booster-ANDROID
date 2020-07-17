@@ -63,10 +63,11 @@
 
 ## ⚙️ Project Structure
 
-- data,ui,util 의 큰 패키지를 두고, 안에 세부 패키지로 나눔.
+- application,bindingadapter,data,listener,ui,util 의 큰 패키지를 두고, 안에 세부 패키지로 나눔.
 
-<img width="300" alt="파일구조 세번째" src="https://user-images.githubusercontent.com/45157374/87788277-0db7c700-c878-11ea-8103-0c0180c51777.png"><img width="300" alt="파일구조 첫번째" src="https://user-images.githubusercontent.com/45157374/87788260-085a7c80-c878-11ea-9b3f-68e82833ce55.png">
-<img width="300" alt="파일구조 두번째" src="https://user-images.githubusercontent.com/45157374/87788271-0c869a00-c878-11ea-8722-5b5d99108f6a.png">
+<img width="370" alt="1" src="https://user-images.githubusercontent.com/45157374/87797082-30041180-c885-11ea-9d33-42dd03383092.png"><img width="370" alt="스크린샷 2020-07-17 오후 11 29 11" src="https://user-images.githubusercontent.com/45157374/87797200-575ade80-c885-11ea-8375-62caedd9af73.png"><img width="370" alt="3" src="https://user-images.githubusercontent.com/45157374/87797097-35615c00-c885-11ea-8a58-4f54b3b3f98d.png">
+
+
 
 ## 🔑 Dependency
 
