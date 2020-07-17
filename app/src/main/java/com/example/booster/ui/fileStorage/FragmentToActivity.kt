@@ -7,4 +7,7 @@ interface FragmentToActivity {
     fun communicateRange(range:String, min:Int, max:Int)
     fun communicateNum(num:Int)
     fun sendType(type: String, frag: DialogFragment)
+
+     fun cancel(iscancel: Int)
+
 }

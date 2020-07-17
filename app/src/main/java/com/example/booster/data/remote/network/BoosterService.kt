@@ -154,4 +154,9 @@ interface BoosterService {
     fun putStoreFavRetrofit(
         @Path("store_idx") storeIdx: Int
     ): Call<StoreFavData>
+
+    @DELETE("/progress/{order_idx}")
+    fun deleteOrder(
+        @Path("order_idx") orderIdx: Int
+    ): Call<DefaultData>
 }

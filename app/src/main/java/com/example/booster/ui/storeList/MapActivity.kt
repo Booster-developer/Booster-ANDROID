@@ -76,14 +76,6 @@ class MapActivity : FragmentActivity(), OnMapReadyCallback {
     }
 
     fun draw(nMap: NaverMap){
-        val infoWindow = InfoWindow()
-        infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(this) {
-            override fun getText(infoWindow: InfoWindow): CharSequence {
-                return infoWindow.marker?.tag as CharSequence? ?:""
-            }
-
-        }
-
         for(i in 0 until markers.size){
             repeat(1000) {
                 array.plusAssign(Marker().apply {
@@ -96,15 +88,26 @@ class MapActivity : FragmentActivity(), OnMapReadyCallback {
             }
         }
 
+        val infoWindow = InfoWindow()
+        infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(this) {
+            override fun getText(infoWindow: InfoWindow): CharSequence {
+                return infoWindow.marker?.tag as CharSequence? ?:""
+            }
+        }
+
         array.forEach { marker ->
             marker.map = nMap
+
             marker.setOnClickListener {
+
                 for ( i in 0 until array.size){
                     array[i].icon = OverlayImage.fromResource(R.drawable.store_map_ic_marker)
                 }
                 marker.icon = OverlayImage.fromResource(R.drawable.store_map_ic_marker_click)
+
                 val cameraUpdate = CameraUpdate.scrollTo(marker.position)
                 nMap.moveCamera(cameraUpdate)
+
                 infoWindow.open(marker)
                 infoWindow.setOnClickListener {
                     val intent = Intent(this, StoreDetailActivity::class.java)
