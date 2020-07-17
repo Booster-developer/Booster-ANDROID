@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.booster.R
 import com.example.booster.databinding.FragmentHomeBinding
 import com.example.booster.listener.onlyOneClickListener
+import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
@@ -57,47 +58,26 @@ class HomeFragment : Fragment() {
 
 //        setLottie()
 
-        frag_home_lt.loop(true)
-        frag_home_lt.playAnimation()
-
-        parentFragmentManager.addOnBackStackChangedListener {
-            viewModel.getHome()
-            frag_home_lt.playAnimation()
-            Log.e("onResume", "실행")
-        }
+//        frag_home_lt.loop(true)
+//        frag_home_lt.playAnimation()
+//        frag_home_lt.run {
+//            loop(true)
+//            playAnimation()
+//        }
     }
 
     override fun onPause() {
         super.onPause()
         frag_home_lt.cancelAnimation()
+
     }
 
     override fun onResume() {
         super.onResume()
         viewModel.getHome()
-//        frag_home_lt.setAnimation("home_s8_1.json")
         frag_home_lt.loop(true)
         frag_home_lt.playAnimation()
         Log.e("HomeFrag", "onResume")
-    }
-
-    fun setLottie(){
-        when (viewModel.homeRes.value!!.data.home_state) {
-            0 -> {
-                frag_home_lt.setAnimation("home_s8_1.json")
-                frag_home_txt2.text = "인쇄를 시작해볼까요?"
-            }
-            1, 2 -> {
-                frag_home_lt.setAnimation("home_s8_2.json")
-                frag_home_txt2.text = "인쇄 진행 중이에요."
-            }
-            else -> {
-                frag_home_lt.setAnimation("home_s8_3.json")
-                frag_home_txt2.text = "인쇄가 완료되었어요 :)"
-            }
-        }
-        frag_home_lt.repeatCount = 2
-        frag_home_lt.playAnimation()
     }
 
     fun setClick() {

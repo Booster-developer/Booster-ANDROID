@@ -43,6 +43,46 @@ class OrderCancelFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+//        viewModel = ViewModelProvider(this).get(OrderListViewModel::class.java)
+//        dialog_order_cancel_back.onlyOneClickListener {
+//            dismiss()
+//        }
+//
+//        val args = arguments
+//        val orderIdx = args?.getInt("idx")
+//
+//        dialog_order_cancel_cancel.onlyOneClickListener {
+//
+//            if (orderIdx != null) {
+//                requestToServer.service.deleteOrder(
+//                    orderIdx
+//                ).enqueue(object : Callback<DefaultData> {
+//                    override fun onFailure(call: Call<DefaultData>, t: Throwable) {
+//                        //통신 실패
+//                        Log.e("orderlistdelete", "통신 실패")
+//                    }
+//
+//                    override fun onResponse(
+//                        call: Call<DefaultData>,
+//                        response: Response<DefaultData>
+//                    ) {
+//                        if (response.isSuccessful) {
+//                            Log.e("주문 취소 성공", "주문 취소")
+//                            (requireParentFragment() as OrderListFragment).viewModel.getOrderList()
+//                            dismiss()
+//                        }
+//
+//                    }
+//
+//                })
+//            }
+//
+//            dismiss()
+//        }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(OrderListViewModel::class.java)
         dialog_order_cancel_back.onlyOneClickListener {
             dismiss()
@@ -69,7 +109,7 @@ class OrderCancelFragment : DialogFragment() {
                         if (response.isSuccessful) {
                             Log.e("주문 취소 성공", "주문 취소")
                             (requireParentFragment() as OrderListFragment).viewModel.getOrderList()
-                            dismiss()
+//                            dismiss()
                         }
 
                     }
