@@ -35,31 +35,31 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         // 아이디입력 focused
-        login_edt_id.setOnFocusChangeListener { v, hasFocus ->
-            login_edt_id.isSelected = hasFocus
+        act_login_edt_id.setOnFocusChangeListener { v, hasFocus ->
+            act_login_edt_id.isSelected = hasFocus
         }
 
-        login_edt_pw.setOnFocusChangeListener { v, hasFocus ->
-            login_edt_pw.isSelected = hasFocus
+        act_login_edt_pw.setOnFocusChangeListener { v, hasFocus ->
+            act_login_edt_pw.isSelected = hasFocus
         }
 
-        login_edt_pw.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+        act_login_edt_pw.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
                 v.clearFocus()
                 val keyboard: InputMethodManager =
                     getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                keyboard.hideSoftInputFromWindow(login_edt_pw.windowToken, 0)
+                keyboard.hideSoftInputFromWindow(act_login_edt_pw.windowToken, 0)
                 return@OnKeyListener true
             }
             false
         })
 
         // 로그인 request
-        login_button_login.onlyOneClickListener {
+        act_login_button_login.onlyOneClickListener {
             login()
         }
 
-        login_tv_goto_join.onlyOneClickListener {
+        act_login_tv_goto_join.onlyOneClickListener {
             val intent = Intent(this, JoinActivity::class.java)
             startActivityForResult(intent, 100)
         }
@@ -72,8 +72,8 @@ class LoginActivity : AppCompatActivity() {
                 100 -> {
                     val savedId = data?.getStringExtra("id").toString()
                     val savedPw = data?.getStringExtra("password").toString()
-                    login_edt_id.setText(savedId)
-                    login_edt_pw.setText(savedPw)
+                    act_login_edt_id.setText(savedId)
+                    act_login_edt_pw.setText(savedPw)
                 }
             }
         }
@@ -81,11 +81,11 @@ class LoginActivity : AppCompatActivity() {
 
     fun login() {
         val loginJsonData = JSONObject()
-        loginJsonData.put("user_id", login_edt_id.text.toString())
-        loginJsonData.put("user_pw", login_edt_pw.text.toString())
+        loginJsonData.put("user_id", act_login_edt_id.text.toString())
+        loginJsonData.put("user_pw", act_login_edt_pw.text.toString())
 
         val body = JsonParser.parseString(loginJsonData.toString()) as JsonObject
-        if (login_edt_id.text.isNullOrBlank() || login_edt_pw.text.isNullOrBlank()) {
+        if (act_login_edt_id.text.isNullOrBlank() || act_login_edt_pw.text.isNullOrBlank()) {
             Toast.makeText(this, "아이디와 비밀번호를 입력하세요", Toast.LENGTH_SHORT).show()
         } else {
             BoosterServiceImpl.service.requestLogin(body)
@@ -110,7 +110,7 @@ class LoginActivity : AppCompatActivity() {
                                 intent.putExtra("token", response.body()!!.data.accessToken)
                                 startActivity(intent)
                                 Log.e("tokttttttttt", response.body()!!.data.accessToken)
-                               UserManager.token=  response.body()!!.data.accessToken
+                                UserManager.token = response.body()!!.data.accessToken
                                 isLoggedIn.isLoggedIn = "isLoggedIn"
                                 finish()
                             }
