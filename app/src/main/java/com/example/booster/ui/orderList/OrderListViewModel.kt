@@ -40,7 +40,8 @@ class OrderListViewModel : ViewModel() {
                 // onResponse
                 Log.e("getOrderList 응답 성공 : ", it.toString())
                 orderInfo.postValue(it.data)
-                _orderList.value = it.data.order_list
+//                _orderList.value = it.data.order_list
+                _orderList.postValue(it.data.order_list)
             }){
                 // 에러 블록
                 // 네트워크 오류나 데이터 처리 오류 등

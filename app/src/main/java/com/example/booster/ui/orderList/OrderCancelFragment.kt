@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.booster.R
 import com.example.booster.data.datasource.model.DefaultData
 import com.example.booster.data.remote.network.BoosterServiceImpl
@@ -24,6 +25,7 @@ import retrofit2.Response
 class OrderCancelFragment : DialogFragment() {
 
     val requestToServer = BoosterServiceImpl
+    private lateinit var viewModel: OrderListViewModel
 
 
     override fun onCreateView(
@@ -43,6 +45,7 @@ class OrderCancelFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel = ViewModelProvider(this).get(OrderListViewModel::class.java)
         dialog_order_cancel_back.onlyOneClickListener {
             dismiss()
         }
@@ -72,7 +75,6 @@ class OrderCancelFragment : DialogFragment() {
 
                 })
             }
-            dismiss()
         }
     }
 }
