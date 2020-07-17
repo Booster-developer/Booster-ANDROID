@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.booster.AnimationUtil
+import com.example.booster.util.AnimationUtil
 import com.example.booster.R
 import com.example.booster.data.datasource.model.OrderOption
 import com.example.booster.onlyOneClickListener

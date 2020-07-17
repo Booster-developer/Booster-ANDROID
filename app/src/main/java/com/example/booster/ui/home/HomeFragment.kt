@@ -1,27 +1,21 @@
 package com.example.booster.ui.home
 
-import android.animation.Animator
 import android.content.Intent
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.os.Handler
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.LifecycleOwner
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-
+import androidx.lifecycle.ViewModelProviders
 import com.example.booster.R
 import com.example.booster.databinding.FragmentHomeBinding
 import com.example.booster.onlyOneClickListener
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
-
-    val SPLASH_TIME_OUT: Long = 2000
-
     private lateinit var viewModel: HomeViewModel
     lateinit var binding : FragmentHomeBinding
 
@@ -38,7 +32,6 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
-
 
         setClick()
         viewModel.getHome()
@@ -63,12 +56,27 @@ class HomeFragment : Fragment() {
         binding.vm = (this@HomeFragment).viewModel
         frag_home_lt.repeatCount = 2
         frag_home_lt.playAnimation()
+
+        parentFragmentManager.addOnBackStackChangedListener {
+            viewModel.getHome()
+            frag_home_lt.playAnimation()
+            Log.e("onResume", "실행")
+        }
+    }
+
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+        if (isVisibleToUser) {
+            viewModel.getHome()
+            frag_home_lt.playAnimation()
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        frag_home_lt.playAnimation()
         viewModel.getHome()
+        frag_home_lt.playAnimation()
+//        Log.e("onResume", "실행")
     }
 
     fun setClick(){
