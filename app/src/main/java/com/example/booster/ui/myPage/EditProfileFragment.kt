@@ -67,19 +67,19 @@ class EditProfileFragment : Fragment() {
         editJsonData.put("user_pw", edit_profile_edt_pw_new)
 
         val body = JsonParser.parseString(editJsonData.toString()) as JsonObject
-        BoosterServiceImpl.service.editMyProfile(body = body, token = "")
-            .enqueue(object : Callback<EditProfileData> {
-                override fun onFailure(call: Call<EditProfileData>, t: Throwable) {
-                    Log.e("error", t.toString())
-                }
-
-                override fun onResponse(
-                    call: Call<EditProfileData>,
-                    response: Response<EditProfileData>
-                ) {
-                    TODO("Not yet implemented")
-                }
-
-            })
+//        BoosterServiceImpl.service.editMyProfile(body = body, token = "")
+//            .enqueue(object : Callback<EditProfileData> {
+//                override fun onFailure(call: Call<EditProfileData>, t: Throwable) {
+//                    Log.e("error", t.toString())
+//                }
+//
+//                override fun onResponse(
+//                    call: Call<EditProfileData>,
+//                    response: Response<EditProfileData>
+//                ) {
+//                    TODO("Not yet implemented")
+//                }
+//
+//            })
     }
 }
