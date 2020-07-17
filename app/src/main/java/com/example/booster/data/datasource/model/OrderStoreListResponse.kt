@@ -1,11 +1,5 @@
 package com.example.booster.data.datasource.model
 
-data class OrderStoreListResponse(
-    val status:Int,
-    val success:Boolean,
-    val message:String,
-    val data: StoreList
-)
 
 data class StoreList(
     val recent_order_store: Store?,
