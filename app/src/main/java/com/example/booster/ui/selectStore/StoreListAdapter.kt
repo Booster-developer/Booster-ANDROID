@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.booster.R
 import com.example.booster.data.datasource.model.Store
-import com.example.booster.onlyOneClickListener
+import com.example.booster.listener.onlyOneClickListener
 import com.example.booster.ui.selectStore.StoreListAdapter.ViewType.*
 import kotlinx.android.synthetic.main.item_selectstore_file.view.*
 

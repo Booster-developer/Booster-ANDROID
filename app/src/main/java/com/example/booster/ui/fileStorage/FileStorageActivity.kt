@@ -26,7 +26,7 @@ import com.example.booster.R
 import com.example.booster.data.datasource.model.File
 import com.example.booster.data.datasource.model.PopupOptionInfo
 import com.example.booster.data.datasource.model.Wait
-import com.example.booster.onlyOneClickListener
+import com.example.booster.listener.onlyOneClickListener
 import com.example.booster.ui.PdfViewerActivity
 import com.example.booster.ui.payment.PaymentActivity
 import com.example.booster.util.BoosterUtil

@@ -3,11 +3,11 @@ package com.example.booster.ui.orderList
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
+import android.os.Handler
+import android.util.Log
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +15,7 @@ import androidx.fragment.app.DialogFragment
 import com.example.booster.R
 import com.example.booster.data.datasource.model.DefaultData
 import com.example.booster.data.remote.network.BoosterServiceImpl
-import com.example.booster.onlyOneClickListener
+import com.example.booster.listener.onlyOneClickListener
 import kotlinx.android.synthetic.main.dialog_order_cancel.*
 import retrofit2.Call
 import retrofit2.Callback

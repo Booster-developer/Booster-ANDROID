@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
 import com.example.booster.R
-import com.example.booster.onlyOneClickListener
+import com.example.booster.listener.onlyOneClickListener
 import kotlinx.android.synthetic.main.dialog_order_detail_img.*
 
 class OrderDetailImgFragment : DialogFragment() {

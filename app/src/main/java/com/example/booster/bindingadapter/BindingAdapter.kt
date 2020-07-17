@@ -1,4 +1,4 @@
-package com.example.booster
+package com.example.booster.bindingadapter
 
 import android.content.res.ColorStateList
 import android.graphics.Color

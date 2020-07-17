@@ -2,12 +2,11 @@ package com.example.booster.ui.storeList
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.annotation.UiThread
 import androidx.fragment.app.FragmentActivity
 import com.example.booster.R
 import com.example.booster.data.datasource.model.MarkerData
-import com.example.booster.onlyOneClickListener
+import com.example.booster.listener.onlyOneClickListener
 import com.example.booster.ui.storeDetail.StoreDetailActivity
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
