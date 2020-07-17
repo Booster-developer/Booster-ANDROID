@@ -27,7 +27,7 @@ import retrofit2.Response
 
 class OrderListFragment : Fragment() {
 
-    private lateinit var viewModel: OrderListViewModel
+    lateinit var viewModel: OrderListViewModel
     lateinit var adapter: OrderListAdapter
     lateinit var binding: FragmentOrderListBinding
 
@@ -83,7 +83,6 @@ class OrderListFragment : Fragment() {
                     viewModel.getOrderList()
                     Handler().postDelayed({ viewModel.getOrderList() }, 500)
                 }
-
             },
         object : OrderListViewHolder.onClickDetailListener{
             override fun onClickDetail(position: Int) {
@@ -96,7 +95,6 @@ class OrderListFragment : Fragment() {
         object : OrderListViewHolder.onClickCancelListener{
             override fun onCancel(position: Int) {
 
-
                 val idx = viewModel.orderList.value!!.get(position)!!.order_idx
 
                 val orderCancelDialog = OrderCancelFragment()
@@ -106,7 +104,6 @@ class OrderListFragment : Fragment() {
                 orderCancelDialog.arguments = bundle
 
                 orderCancelDialog.show(childFragmentManager, "dialog");
-
             }
 
         })

@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import com.example.booster.R
 import com.example.booster.data.datasource.model.DefaultData
 import com.example.booster.data.remote.network.BoosterServiceImpl
@@ -68,10 +69,12 @@ class OrderCancelFragment : DialogFragment() {
                         if (response.isSuccessful) {
                             Log.e("주문 취소 성공", "주문 취소")
                         }
+
                     }
 
                 })
             }
+
             dismiss()
         }
     }
