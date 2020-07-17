@@ -409,8 +409,8 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
             }
         }
         fileStorage_rv_file_add.adapter?.notifyDataSetChanged()
-        Toast.makeText(this, "Num of files selected: " + filePaths.size, Toast.LENGTH_SHORT)
-            .show()
+//        Toast.makeText(this, "Num of files selected: " + filePaths.size, Toast.LENGTH_SHORT)
+//            .show()
     }
 
     fun onClick(view: View) {

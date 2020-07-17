@@ -62,7 +62,7 @@
                     android:id="@+id/item_store_list_tv_close"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="샷따내림"
+                    android:text="준비 중"
                     setStoreCloseTxt="@{storeRes.store_open}"
                     android:fontFamily="@font/noto_sans_kr_regular"
                     android:textColor="@color/white"

@@ -88,11 +88,6 @@ class StoreFileOptionNumFragment : DialogFragment() {
         super.onDetach();
     }
 
-    fun onRefresh() {
-        Toast.makeText(getActivity(), "Fragment : Refresh called.",
-            Toast.LENGTH_SHORT).show();
-    }
-
     fun sendData(num:Int)
     {
         mCallback!!.communicateNum(num);

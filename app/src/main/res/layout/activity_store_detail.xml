@@ -27,10 +27,19 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <ImageView
+            android:id="@+id/act_store_detail_iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/nav_btn_back_white"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <ImageView
             android:id="@+id/act_store_detail_map"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/store_detail_ic_map"
+            android:src="@drawable/store_detail_ic_map_white"
             android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -479,7 +488,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 setBtnActive="@{vm.storeDetail.data.store_open}"
-                android:background="@drawable/bg_btn_gradation"
                 android:textSize="20sp"
                 android:textColor="#ffffff"
                 android:lineSpacingExtra="-10sp"
