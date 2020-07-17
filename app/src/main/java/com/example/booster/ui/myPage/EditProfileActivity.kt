@@ -25,6 +25,7 @@ import retrofit2.Response
 class EditProfileActivity : AppCompatActivity() {
 
     var univIdx = 0
+    var chkNewPW = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,8 +98,10 @@ class EditProfileActivity : AppCompatActivity() {
 
                 if (edit_profile_edt_pw_new.text.toString() == edit_profile_edt_pw_chk.text.toString()) {
                     edit_profile_pw_chk_txt2.visibility = View.INVISIBLE
+                    chkNewPW = true
                 } else {
                     edit_profile_pw_chk_txt2.visibility = View.VISIBLE
+                    chkNewPW = false
                 }
 
             }
@@ -134,12 +137,12 @@ class EditProfileActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<NoticeData>, response: Response<NoticeData>) {
                     if (response.body()!!.success) {
                         edit_profile_pw_chk_txt.visibility = View.INVISIBLE
-                        if (!edit_profile_edt_name.text.isNullOrBlank()) {
+                        if (!edit_profile_edt_name.text.isNullOrBlank() && chkNewPW) {
                             requestEdit()
                         } else {
                             Toast.makeText(
                                 this@EditProfileActivity,
-                                "이름을 입력해주세요",
+                                "모든 항목을 확인해주세요",
                                 Toast.LENGTH_SHORT
                             )
                                 .show()
@@ -150,9 +153,6 @@ class EditProfileActivity : AppCompatActivity() {
                 }
 
             })
-
-        // 이름입력 체크
-
     }
 
     fun requestEdit() {
