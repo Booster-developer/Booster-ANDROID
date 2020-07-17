@@ -6,13 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.booster.AnimationUtil
+import com.example.booster.util.AnimationUtil
 import com.example.booster.R
 import com.example.booster.data.datasource.model.File
 import com.example.booster.onlyOneClickListener
-import com.example.booster.util.BoosterUtil
 import com.example.booster.util.PDFThumbnailUtils
-import kotlinx.android.synthetic.main.activity_file_storage.*
 import kotlinx.android.synthetic.main.my_file.view.*
 
 private const val PAGE_NUMBER = 0

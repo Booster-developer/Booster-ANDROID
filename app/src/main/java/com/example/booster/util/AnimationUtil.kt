@@ -1,4 +1,4 @@
-package com.example.booster
+package com.example.booster.util
 
 import android.view.View
 import android.view.animation.AlphaAnimation
