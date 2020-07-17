@@ -65,8 +65,8 @@
 
 - data,ui,util 의 큰 패키지를 두고, 안에 세부 패키지로 나눔.
 
-<img width="300" alt="파일구조 세번째" src="https://user-images.githubusercontent.com/45157374/87788277-0db7c700-c878-11ea-8103-0c0180c51777.png"><img width="300" alt="파일구조 첫번째" src="https://user-images.githubusercontent.com/45157374/87788260-085a7c80-c878-11ea-9b3f-68e82833ce55.png">
-<img width="300" alt="파일구조 두번째" src="https://user-images.githubusercontent.com/45157374/87788271-0c869a00-c878-11ea-8722-5b5d99108f6a.png">
+<img width="300" alt="파일구조 세번째" src="https://user-images.githubusercontent.com/45157374/87788277-0db7c700-c878-11ea-8103-0c0180c51777.png"><img width="300" alt="파일구조 첫번째" src="https://user-images.githubusercontent.com/45157374/87788260-085a7c80-c878-11ea-9b3f-68e82833ce55.png">
+<img width="300" alt="파일구조 두번째" src="https://user-images.githubusercontent.com/45157374/87788271-0c869a00-c878-11ea-8722-5b5d99108f6a.png">
 
 ## 🔑 Dependency
 
@@ -432,6 +432,7 @@ act_main_btn_store.onlyOneClickListener {
 
 ### 3. Scroll Animation
 
+
 #### 🔥 issue
 
 - 뷰 스크롤시 타이틀 레이아웃이 상단에 고정된채로 RecyclerView가 스크롤 되야한다.
@@ -548,6 +549,7 @@ frag_store_list_appBar.addOnOffsetChangedListener(OnOffsetChangedListener { frag
 <br>
 
 ### 4. 화면을 아래로 당겨서 List Refresh 하기
+<img width="196" alt="스크린샷 2020-07-17 오후 6 26 23" src="https://user-images.githubusercontent.com/37479631/87794783-190ff000-c882-11ea-85ad-adfca9fc704c.gif"><img width="196" alt="스크린샷 2020-07-17 오후 6 26 23" src="https://user-images.githubusercontent.com/37479631/87795498-195cbb00-c883-11ea-93f8-a03a3f1edbf9.gif">
 
 #### 🔥 issue
 
