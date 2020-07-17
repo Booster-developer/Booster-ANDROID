@@ -121,7 +121,6 @@ dependencies {
     // Koin AndroidX Experimental features
     implementation "org.koin:koin-androidx-ext:$koin_version"
 
-
     //파일픽커 라이브러리
     implementation 'com.droidninja:filepicker:2.2.4'
 
@@ -135,16 +134,11 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
-    //네이버 지도 api
-
-    implementation("com.naver.maps:map-sdk:3.8.0")
-
-
     //lifecycle
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-alpha01"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0-beta01"
 
-
+    //Naver map
     implementation "com.naver.maps:map-sdk:3.8.0"
 
     //coordinator layout

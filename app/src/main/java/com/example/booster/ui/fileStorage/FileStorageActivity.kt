@@ -10,6 +10,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -63,6 +64,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
     var permissionlistener: PermissionListener = object : PermissionListener {
         override fun onPermissionGranted() {
         }
+
 
         override fun onPermissionDenied(deniedPermissions: List<String>) {
         }
@@ -129,6 +131,24 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
     override fun onBackPressed() {
         showDeleteDialog()
     }
+
+    fun loading() {
+        //로딩
+        Handler().postDelayed(
+            {
+                val progressDialog = ProgressDialog(this@FileStorageActivity)
+                progressDialog.setIndeterminate(true)
+                progressDialog.setMessage("잠시만 기다려 주세요")
+                progressDialog.show()
+            }, 2000
+        )
+    }
+
+//    fun loadingEnd() {
+//        Handler().postDelayed(
+//            { progressDialog.dismiss() }, 0
+//        )
+//    }
 
     private fun subscribeObservers() {
         fileStorageViewModel.fileLiveData.observe(this, Observer {
@@ -297,6 +317,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                     val handler= android.os.Handler()
                     handler.postDelayed(object :Runnable{
                         override fun run() {
+                            loading()
                             fileStorageViewModel.getPrice(orderIdx)
 
                         }
@@ -369,6 +390,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                 val handler = android.os.Handler()
                 handler.postDelayed(object : Runnable {
                     override fun run() {
+                        loading()
                         fileStorageViewModel.getPrice(orderIdx)
                         progressDialog.dismiss()
                     }

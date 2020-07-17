@@ -1,9 +1,8 @@
 package com.example.booster
 
 import android.app.Application
+import com.example.booster.ui.user.MySharedPreferences
 import com.example.booster.util.UserManager
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.startKoin
 
 class BoosterApplication : Application() {
 
@@ -19,7 +18,8 @@ class BoosterApplication : Application() {
     }
 
     override fun onCreate() {
-        prefs = MySharedPreferences(applicationContext)
+        prefs =
+            MySharedPreferences(applicationContext)
         super.onCreate()
         instance = this
         globalApplication = this
