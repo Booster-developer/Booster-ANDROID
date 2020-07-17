@@ -712,6 +712,123 @@ if(intent.hasExtra("token")){
 
 - 초기에 여러 기능을 구현하고 test를 할 때 동일한 토큰을 사용해서 주문현황 및 상세내역 정보가 굉장히 많아서 보기 힘들었는데, 각 사용자별 토큰을 사용하니 기능 test하기 편해졌고, 사용자별 관리를 할 수 있어 좋았고, 이후 이 기능을 더 배워보고 공부하고 싶다. 
 
+
+### setOnKeyListener 이용해서 focus 
+
+- 맨 마지막의 editText의 경우, setOnFocuseChangeListener만으로는 focus가 해제되지 않는다.
+
+#### 🔥 issue
+
+- 엔터로 넘어갈 시 focus를 해제할 수 있도록 구현한다. 
+
+#### 📒 solution
+
+- setOnFocuseChangeListener와 setOnKeyListener 함께사용하여 focus를 설정 및 해제한다.
+
+JoinActivity.kt
+```kotlin
+join_edt_pw_chk.setOnFocusChangeListener { v, hasFocus ->
+   join_edt_pw_chk.isSelected = hasFocus
+}
+
+join_edt_pw_chk.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                v.clearFocus()
+                val keyboard: InputMethodManager =
+                    getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                keyboard.hideSoftInputFromWindow(join_edt_pw_chk.windowToken, 0)
+                return@OnKeyListener true
+            }
+            false
+        })
+```
+
+#### 🗞 result
+
+- 항상 마지막 editText가 focus가 해제되지 않아 미적으로 매우 찝찝하게 느껴졌는데, KeyEvent를 이용하여 엔터키를 인식시켜 focus를 해제할 수 있음을 배울 수 있어서 좋았다.
+
+
+### addTextChangedListener 이용해서 비밀번호 입력이 일치하는지 실시간으로 체크
+
+- 비밀번호 입력과 비밀번호 확인 입력을 변화에 따른 실시간 비교로 일치하는지를 바로바로 체크한다.
+
+#### 🔥 issue
+
+- 비밀번호 입력과 비밀번호 확인 입력이 일치하는지를 언제 어디서 보여주어야 할지에 대한 어려움이 있었다. 
+
+#### 📒 solution
+
+- addTextChangedListener를 이용하여 입력의 변화를 실시간으로 체크할 수 있게끔 하였다.
+
+JoinActivity.kt
+```kotlin
+join_edt_pw_chk.addTextChangedListener {
+
+                if (join_edt_pw.text.toString() == join_edt_pw_chk.text.toString()) {
+                    join_tv_pw_check_fail.visibility = View.INVISIBLE
+                    pwChk = true
+                } else {
+                    join_tv_pw_check_fail.visibility = View.VISIBLE
+                }
+
+            }
+```
+
+#### 🗞 result
+
+- 입력이 일치하는지의 여부 결과를 언제 알려주어야 할지에 대한 고민이 많았는데, 바로바로 체크할 수 있는 함수가 있다는 것을 알게 되어 좋았다.
+
+
+### putExtra를 이용해서 Fragment와 Activity 간의 데이터를 전달
+
+- putExtra와 getStringExtra를 이용하여 데이터를 전달한다.
+
+#### 🔥 issue
+
+- 단순한 데이터 표시를 위해 불필요하게 api 요청을 하게 되어 코드가 쓸데없이 길어지는 문제가 있었다.
+
+#### 📒 solution
+
+- putExtra와 getStringExtra를 이용하여 Fragment와 Activity간에 데이터를 전달할 수 있게끔 하였다.
+
+MypageFragment.kt
+```kotlin
+override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        mypage_tv_goto_edit.setOnClickListener {
+
+            val intent = Intent(context, EditProfileActivity::class.java)
+            intent.putExtra("id", mypage_tv_id.text.toString())
+            intent.putExtra("univ", univIdx.toString())
+            intent.putExtra("name", mypage_tv_name.text.toString())
+            startActivity(intent)
+        }
+
+        mypage_tv_goto_myengine.setOnClickListener {
+
+            val intent = Intent(context, MyengineActivity::class.java)
+            startActivity(intent)
+        }
+    }
+```
+EditProfileActivity.kt
+```kotlin
+override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_edit_profile)
+        
+        var extraId = intent.getStringExtra("id")
+        var extraUnivIdx = intent.getStringExtra("univ")
+        var extraName = intent.getStringExtra("name")
+}
+```
+
+#### 🗞 result
+
+- 간단히 data를 전달함으로써 쓸데없는 api 요청을 하지 않게 되어 좋았다.
+
+
 ## 👨‍👨‍👧‍👧‍👧 Developer
 
 
