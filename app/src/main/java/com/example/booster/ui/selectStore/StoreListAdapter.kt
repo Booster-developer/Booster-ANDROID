@@ -123,7 +123,7 @@ class StoreListAdapter(val storeListItemClickListener: StoreListItemClickListene
             when (viewType) {
                 LATEST.ordinal -> {
                     itemView.act_select_store_file_tv_recent.visibility = View.VISIBLE
-                    itemView.act_select_store_file_tv_recent.text = "최근 본 매장"
+                    itemView.act_select_store_file_tv_recent.text = "최근 주문 매장"
                     itemView.item_selectstore_file_divider.visibility = View.VISIBLE
                     //adjust bottom margin
                     val params = itemView.constraintLayout9.layoutParams as ViewGroup.MarginLayoutParams
