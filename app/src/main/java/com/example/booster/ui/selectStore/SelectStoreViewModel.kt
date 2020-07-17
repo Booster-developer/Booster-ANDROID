@@ -9,6 +9,7 @@ import com.example.booster.data.datasource.model.StoreList
 import com.example.booster.data.remote.network.BoosterService
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.ui.selectStore.StoreListAdapter.*
+import com.example.booster.util.UserManager
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 
@@ -24,11 +25,12 @@ class SelectStoreViewModel : ViewModel() {
     fun getStoreList() {
         viewModelScope.launch(IO) {
             val response = BoosterServiceImpl.serviceFileUpload.getStoreListByJeongRok(
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8"
+                UserManager.token.toString()
             )
             if (response.status == 200) {
                 val data = response.data
                 Log.e("storeIdx", "check: " + data?.recent_order_store?.store_idx)
+                Log.e("storeIdx", "check: " + data?.favorite_store)
                 val list = mutableListOf<Store>()
                 data?.let {
                     it.recent_order_store?.let { store ->
@@ -70,6 +72,8 @@ class SelectStoreViewModel : ViewModel() {
                     }
                 }
                 _storeListMutableLiveData.postValue(list)
+            } else {
+                Log.e("get selectstorelist error", "message")
             }
         }
     }
