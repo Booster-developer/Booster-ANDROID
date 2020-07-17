@@ -1,6 +1,6 @@
 package com.example.booster.data.datasource.model
 
-data class EngineHistoryData(
+data class EngineListData(
     val status: Int,
     val success: Boolean,
     val message: String,
@@ -9,10 +9,10 @@ data class EngineHistoryData(
 
 data class HistoryResponse(
     val engine_point: Int,
-    val engine_list: ArrayList<EngineList>
+    val engine_list: ArrayList<EngineData>
 )
 
-data class EngineList(
+data class EngineData(
     val engine_sign: Int,
     val engine_cost: Int,
     val engine_time: String,
