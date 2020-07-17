@@ -24,7 +24,7 @@ class MypageFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        BoosterServiceImpl.service.getMyProfile(token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8")
+        BoosterServiceImpl.service.getMyProfile()
             .enqueue(object : Callback<ProfileData> {
                 override fun onFailure(call: Call<ProfileData>, t: Throwable) {
                     Log.e("error", t.toString())
@@ -65,4 +65,3 @@ class MypageFragment : Fragment() {
         }
     }
 }
-
