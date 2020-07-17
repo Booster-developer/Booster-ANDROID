@@ -63,11 +63,10 @@
 
 ## ⚙️ Project Structure
 
-- data,ui,util
+- data,ui,util 의 큰 패키지를 두고, 안에 세부 패키지로 나눔.
 
-#### 1. data
-
- 
+<img width="300" alt="파일구조 세번째" src="https://user-images.githubusercontent.com/45157374/87788277-0db7c700-c878-11ea-8103-0c0180c51777.png"><img width="300" alt="파일구조 첫번째" src="https://user-images.githubusercontent.com/45157374/87788260-085a7c80-c878-11ea-9b3f-68e82833ce55.png">
+<img width="300" alt="파일구조 두번째" src="https://user-images.githubusercontent.com/45157374/87788271-0c869a00-c878-11ea-8722-5b5d99108f6a.png">
 
 ## 🔑 Dependency
 
@@ -1167,4 +1166,4 @@ override fun onCreate(savedInstanceState: Bundle?) {
 - 김찬영 - [ghkdua1829](https://github.com/ghkdua1829)
 - 김지현 - [jiHyeonMon](https://github.com/JiHyeonMon)
 - 서정록 - [chop-sui](https://github.com/chop-sui)
-- 이정민 - [danmin20](
+- 이정민 - [danmin20](https://github.com/danmin20)
