@@ -49,11 +49,6 @@ class StoreDetailMapActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(nMap: NaverMap) {
 
         val uiSettings = nMap.uiSettings
-        uiSettings.isZoomControlEnabled = true
-        uiSettings.isLocationButtonEnabled = true
-
-        nMap.locationSource
-        nMap.locationTrackingMode
         uiSettings.isScaleBarEnabled = false
 
         var cameraUpdate = CameraUpdate.scrollTo(LatLng(x, y))
