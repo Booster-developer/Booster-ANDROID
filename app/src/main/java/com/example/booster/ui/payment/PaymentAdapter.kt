@@ -22,6 +22,7 @@ class PaymentAdapter (private val context : Context) : RecyclerView.Adapter<Paym
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.paymentInfo = data[position] //data를 통째로 xml에 전달
+        holder.binding.itemPaymentFileTvPdf.text = "." + data[position].file_extension
     }
 
     inner class ViewHolder(val binding : ItemPaymentFileBinding) : RecyclerView.ViewHolder(binding.root)

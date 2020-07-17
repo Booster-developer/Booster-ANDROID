@@ -136,10 +136,12 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
     private fun subscribeObservers() {
         fileStorageViewModel.fileLiveData.observe(this, Observer {
             if (it.size == 0) {
+                view.visibility = View.GONE
                 fileStorage_tv_order.visibility = View.GONE
                 fileStorage_tv_cost.visibility = View.GONE
                 fileStorage_tv_cost_amount.visibility = View.GONE
             } else {
+                view.visibility = View.VISIBLE
                 fileStorage_tv_order.visibility = View.VISIBLE
                 fileStorage_tv_cost.visibility = View.VISIBLE
                 fileStorage_tv_cost_amount.visibility = View.VISIBLE
