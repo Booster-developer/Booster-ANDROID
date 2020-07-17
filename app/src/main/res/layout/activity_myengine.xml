@@ -125,14 +125,14 @@
                 android:id="@+id/act_myengine_tv_engineheading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="109dp"
+                android:layout_marginStart="160dp"
                 android:fontFamily="@font/noto_sans_kr_medium"
                 android:lineSpacingExtra="6sp"
                 android:text="엔진"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/act_myengine_tv_dateheading"
-                app:layout_constraintStart_toEndOf="@+id/act_myengine_tv_dateheading"
+                app:layout_constraintStart_toStartOf="@+id/act_myengine_tv_dateheading"
                 app:layout_constraintTop_toTopOf="@+id/act_myengine_tv_dateheading"
                 app:layout_constraintVertical_bias="0.0" />
 
@@ -140,7 +140,7 @@
                 android:id="@+id/act_myengine_tv_infoheading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="99dp"
+                android:layout_marginStart="281dp"
                 android:fontFamily="@font/noto_sans_kr_medium"
                 android:lineSpacingExtra="6sp"
                 android:text="내역"
@@ -148,6 +148,7 @@
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/act_myengine_tv_engineheading"
                 app:layout_constraintStart_toEndOf="@+id/act_myengine_tv_engineheading"
+                app:layout_constraintStart_toStartOf="@+id/act_myengine_tv_dateheading"
                 app:layout_constraintTop_toTopOf="@+id/act_myengine_tv_engineheading"
                 app:layout_constraintVertical_bias="0.0" />
 
