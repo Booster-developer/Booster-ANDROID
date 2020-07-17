@@ -45,6 +45,7 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
+        android:layout_marginTop="9dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
 
@@ -55,6 +56,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/act_myengine_cl2"
+                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
@@ -107,13 +109,13 @@
                 android:id="@+id/act_myengine_tv_dateheading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="일시"
-                android:fontFamily="@font/noto_sans_kr_medium"
-                android:textSize="12sp"
-                android:textColor="@color/black"
-                android:lineSpacingExtra="6sp"
                 android:layout_marginLeft="24dp"
                 android:layout_marginTop="14dp"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:lineSpacingExtra="6sp"
+                android:text="일시"
+                android:textColor="@color/black"
+                android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/act_myengine_cl2" />
 
@@ -122,14 +124,14 @@
                 android:id="@+id/act_myengine_tv_engineheading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="112dp"
                 android:fontFamily="@font/noto_sans_kr_medium"
                 android:lineSpacingExtra="6sp"
                 android:text="엔진"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/act_myengine_tv_dateheading"
-                app:layout_constraintStart_toEndOf="@+id/act_myengine_tv_dateheading"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/act_myengine_tv_dateheading"
                 app:layout_constraintVertical_bias="0.0" />
 
@@ -137,14 +139,14 @@
                 android:id="@+id/act_myengine_tv_infoheading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="116dp"
+                android:layout_marginEnd="62dp"
                 android:fontFamily="@font/noto_sans_kr_medium"
                 android:lineSpacingExtra="6sp"
                 android:text="내역"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/act_myengine_tv_engineheading"
-                app:layout_constraintStart_toEndOf="@+id/act_myengine_tv_engineheading"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/act_myengine_tv_engineheading"
                 app:layout_constraintVertical_bias="0.0" />
 
@@ -152,8 +154,8 @@
                 android:id="@+id/act_myengine_view1"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#f5f5f5"
                 android:layout_marginTop="8dp"
+                android:background="#f5f5f5"
                 app:layout_constraintTop_toBottomOf="@+id/act_myengine_tv_engineheading" />
 
             <androidx.recyclerview.widget.RecyclerView
