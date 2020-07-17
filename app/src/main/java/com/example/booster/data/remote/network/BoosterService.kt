@@ -21,15 +21,6 @@ interface BoosterService {
         @Path("store_idx") storeIdx: Int
     ): Observable<StoreDetailData>
 
-
-    @POST("address")
-    suspend fun uploadFiles(
-        @Header("token") token: String,
-        @Part("order_comment") orderComment: String,
-        @Part fileList: List<File>
-    ): ApiWrapper<String?>
-
-
     @PUT("/stores/{store_idx}/favorite")
     fun putStoreFav(
         @Path("store_idx") storeIdx: Int
