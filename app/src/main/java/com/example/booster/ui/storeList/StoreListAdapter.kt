@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.booster.util.AnimationUtil
 import com.example.booster.data.datasource.model.StoreListInfo
 import com.example.booster.databinding.ItemStoreListBinding
-import com.example.booster.onlyOneClickListener
+import com.example.booster.listener.onlyOneClickListener
 import com.example.booster.ui.bottomtap.BottomTabActivity
 import com.example.booster.ui.storeDetail.StoreDetailViewModel
 

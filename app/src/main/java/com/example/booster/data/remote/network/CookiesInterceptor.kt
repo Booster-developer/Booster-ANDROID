@@ -1,4 +1,4 @@
-package com.example.booster
+package com.example.booster.data.remote.network
 
 import com.example.booster.util.UserManager
 import okhttp3.Interceptor

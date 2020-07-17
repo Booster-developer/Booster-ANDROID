@@ -12,8 +12,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.example.booster.R
-import com.example.booster.onlyOneClickListener
-import kotlinx.android.synthetic.main.activity_store_file_option.*
+import com.example.booster.listener.onlyOneClickListener
 import kotlinx.android.synthetic.main.dialog_store_file_option_range.*
 
 class StoreFileOptionRangeFragment : DialogFragment() {

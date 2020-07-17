@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.booster.util.AnimationUtil
 import com.example.booster.data.datasource.model.OrderList
 import com.example.booster.databinding.ItemOrderListBinding
-import com.example.booster.onlyOneClickListener
+import com.example.booster.listener.onlyOneClickListener
 import kotlinx.android.synthetic.main.item_order_list.view.*
 
 class OrderListAdapter (private val context : Context,

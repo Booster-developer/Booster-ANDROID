@@ -1,19 +1,15 @@
 package com.example.booster.ui.orderList
 
 import android.app.Dialog
-import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.example.booster.R
-import com.example.booster.onlyOneClickListener
-import kotlinx.android.synthetic.main.dialog_item_view.*
+import com.example.booster.listener.onlyOneClickListener
 import kotlinx.android.synthetic.main.dialog_order_cancel.*
 
 class OrderCancelFragment : DialogFragment() {

@@ -14,7 +14,7 @@ import androidx.core.widget.addTextChangedListener
 import com.example.booster.R
 import com.example.booster.data.datasource.model.JoinData
 import com.example.booster.data.remote.network.BoosterServiceImpl
-import com.example.booster.onlyOneClickListener
+import com.example.booster.listener.onlyOneClickListener
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_join.*
