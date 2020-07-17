@@ -474,11 +474,78 @@ var requestBody: RequestBody? = null
         val multipartBody2 =
             MultipartBody.Part.createFormData("thumbnail", "png", requestBody2)
             
-       ```
+```
 
 #### 🗞 result
 
 - MediaType 변환 문구가 틀리고, 불 필요한 헤더를 넣어서 처음엔 시행착오를 많이 겪었지만, 결국 해내서 또 한 번의 성장을 이룩했다.
+
+### 5. pdf 미리보기 기능
+
+#### 🔥 issue
+
+- pdf를 저장소로부터 받아와서 미리보기 기능을 제공한다.
+
+#### 📒 solution
+
+- PdfRenderer 를 이용해서 pdf 미리보기 기능 제공.
+
+```kotlin
+val fileDescriptor: ParcelFileDescriptor?
+        fileDescriptor = ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY)
+
+        //min. API Level 21
+        val pdfRenderer: PdfRenderer?
+        pdfRenderer = PdfRenderer(fileDescriptor)
+        val pageCount: Int = pdfRenderer.pageCount
+        Log.e(
+            "pagecount",
+            "check: " + pageCount.toString() + " " + pdfviewer_act_main_total_page.text
+        )
+        pdfviewer_act_main_total_page.text = pageCount.toString()
+        Toast.makeText(this, "pageCount = $pageCount", Toast.LENGTH_LONG).show()
+
+        val parentlayout = LinearLayout(this)
+        parentlayout.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+        LinearLayout.LayoutParams.WRAP_CONTENT)
+        parentlayout.orientation = LinearLayout.HORIZONTAL
+
+        if (pageCount != 1) {
+            pdfviewer_act_main_hs.removeView(pdfviewer_act_main_ll)
+            pdfviewer_act_main_hs.addView(parentlayout)
+        }
+
+        for (i in 0 until pageCount) {
+            pdfviewer_act_main_cur_page.text = (i + 1).toString()
+            val imageView = ImageView(this)
+            imageView.layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ) // value is in pixels
+            val rendererPage = pdfRenderer.openPage(i)
+            val rendererPageWidth: Int = rendererPage.width
+            val rendererPageHeight: Int = rendererPage.height
+            val bitmap =
+                Bitmap.createBitmap(rendererPageWidth, rendererPageHeight, Bitmap.Config.ARGB_8888)
+            rendererPage.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
+            imageView.setImageBitmap(bitmap)
+
+            if (pageCount == 1) {
+                pdfviewer_act_main_ll.addView(imageView)
+            }else {
+                parentlayout.addView(imageView)
+            }
+
+            rendererPage!!.close()
+        }
+
+        pdfRenderer.close()
+        fileDescriptor.close()
+```
+
+#### 🗞 result
+
+- pdf나 이미지 미리보기를 제공 할 수 있었지만, hwp,ppt 등 오피스 기반 문서들은 제공하기에 까다로웠다. 방법을 찾아보도록 하겠다.
 
 
 ## 👨‍👨‍👧‍👧‍👧 Developer
