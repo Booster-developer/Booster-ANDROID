@@ -15,17 +15,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a2nd_seminar.ui.ItemDecorator
 import com.example.booster.R
-import com.example.booster.data.datasource.model.DefaultData
-import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.databinding.FragmentOrderListBinding
 import com.example.booster.ui.orderDetail.OrderDetailActivity
 import kotlinx.android.synthetic.main.fragment_order_list.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class OrderListFragment : Fragment() {
+    val orderCancelDialog = OrderCancelFragment()
 
     lateinit var viewModel: OrderListViewModel
     lateinit var adapter: OrderListAdapter
@@ -67,6 +63,7 @@ class OrderListFragment : Fragment() {
         }
     }
 
+
     private fun initRv() {
         adapter = OrderListAdapter(requireContext(),
             object : OrderListViewHolder.onClickPickUpListener {
@@ -87,11 +84,11 @@ class OrderListFragment : Fragment() {
         object : OrderListViewHolder.onClickCancelListener{
             override fun onCancel(position: Int) {
                 val idx = viewModel.orderList.value!![position].order_idx
-                val orderCancelDialog = OrderCancelFragment()
                 var bundle = Bundle()
                 bundle.putInt("idx", idx)
                 orderCancelDialog.arguments = bundle
                 orderCancelDialog.show(childFragmentManager, "dialog")
+
             }
 
         })

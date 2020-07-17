@@ -1,13 +1,10 @@
 package com.example.booster.ui.orderList
 
 import android.app.Dialog
-import android.content.Context
-import android.content.DialogInterface
-import android.os.Handler
-import android.util.Log
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -70,6 +67,8 @@ class OrderCancelFragment : DialogFragment() {
                     ) {
                         if (response.isSuccessful) {
                             Log.e("주문 취소 성공", "주문 취소")
+                            (requireParentFragment() as OrderListFragment).viewModel.getOrderList()
+                            dismiss()
                         }
                     }
 
