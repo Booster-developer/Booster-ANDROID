@@ -89,8 +89,8 @@ class AlertActivity : AppCompatActivity() {
     }
 
     fun loadAlert(){
-
-        for(i in 0 .. datas.size-1){
+        datas = alertResponse.data
+        for(i in 0 until datas.size){
             alertAdapter.data.add(datas[i])
         }
         Log.e("alert", datas.toString())
