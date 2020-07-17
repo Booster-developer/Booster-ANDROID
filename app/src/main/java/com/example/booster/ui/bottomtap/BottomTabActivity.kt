@@ -28,13 +28,13 @@ class BottomTabActivity : AppCompatActivity() {
         setAdapter()
         setTabBar()
         click()
-        if(flag==1) bottom_vp.currentItem = 3
+        if (flag == 1) bottom_vp.currentItem = 3
 
-        if(intent.hasExtra("orderIdx")){
+        if (intent.hasExtra("orderIdx")) {
             bottom_vp.currentItem = 3
         }
 
-        if(intent.hasExtra("token")){
+        if (intent.hasExtra("token")) {
             bottom_vp.currentItem = 0
             token = intent.getStringExtra("token")
             univ = intent.getIntExtra("univ", 1)
@@ -75,7 +75,7 @@ class BottomTabActivity : AppCompatActivity() {
         }
     }
 
-    private fun setAdapter(){
+    private fun setAdapter() {
         bottom_vp.adapter =
             BottomTabAdapter(
                 supportFragmentManager,
@@ -99,9 +99,11 @@ class BottomTabActivity : AppCompatActivity() {
 
                 }
             }
+
             override fun onTabUnselected(tab: TabLayout.Tab) {
 
             }
+
             override fun onTabReselected(tab: TabLayout.Tab) {
 
             }
@@ -109,7 +111,7 @@ class BottomTabActivity : AppCompatActivity() {
 
     }
 
-    fun click(){
+    fun click() {
         tab_booster.setOnClickListener {
             val intent = Intent(this, SelectStoreActivity::class.java)
             startActivity(intent)

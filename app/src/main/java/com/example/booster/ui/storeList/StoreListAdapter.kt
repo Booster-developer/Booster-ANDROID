@@ -6,9 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
-import com.example.booster.AnimationUtil
-import com.example.booster.data.datasource.model.StoreList
-import com.example.booster.data.datasource.model.StoreListData
+import com.example.booster.util.AnimationUtil
 import com.example.booster.data.datasource.model.StoreListInfo
 import com.example.booster.databinding.ItemStoreListBinding
 import com.example.booster.onlyOneClickListener

@@ -11,6 +11,7 @@ import com.example.booster.data.datasource.model.StoreFavData
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.data.repository.StoreDetailRepository
 import com.example.booster.data.repository.StoreFavRepository
+import com.example.booster.util.UserManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.Dispatchers
@@ -89,7 +90,7 @@ class StoreDetailViewModel : ViewModel() {
     fun getOrderIdx(storeIdx: Int) {
         viewModelScope.launch(Dispatchers.IO){
             val response = BoosterServiceImpl.serviceFileUpload.getOrderIdx(
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8",
+                UserManager.token.toString(),
                 storeIdx
             )
             if (response.status == 200) {

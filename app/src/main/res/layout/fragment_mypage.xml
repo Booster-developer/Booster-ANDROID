@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/mypage_tv_title"
+            android:id="@+id/frag_mypage_tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
@@ -27,20 +27,20 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/act_order_detail_cl_file_info"
+            android:id="@+id/frag_act_order_detail_cl_file_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_ffffff_round"
-            android:elevation="5dp"
+            android:elevation="1.5dp"
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mypage_tv_title">
+            app:layout_constraintTop_toBottomOf="@+id/frag_mypage_tv_title">
 
             <TextView
-                android:id="@+id/mypage_tv_name"
+                android:id="@+id/frag_mypage_tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_kr_medium"
@@ -51,7 +51,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/mypage_tv_nim"
+                android:id="@+id/frag_mypage_tv_nim"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
@@ -59,12 +59,12 @@
                 android:text="님"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/mypage_tv_name"
-                app:layout_constraintStart_toEndOf="@+id/mypage_tv_name"
+                app:layout_constraintBottom_toBottomOf="@+id/frag_mypage_tv_name"
+                app:layout_constraintStart_toEndOf="@+id/frag_mypage_tv_name"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/mypage_tv_univ"
+                android:id="@+id/frag_mypage_tv_univ"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -73,10 +73,10 @@
                 android:textColor="@color/grey"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mypage_tv_name" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_mypage_tv_name" />
 
             <TextView
-                android:id="@+id/mypage_tv_or"
+                android:id="@+id/frag_mypage_tv_or"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -84,12 +84,12 @@
                 android:text="|"
                 android:textColor="@color/grey"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/mypage_tv_univ"
-                app:layout_constraintStart_toEndOf="@+id/mypage_tv_univ"
-                app:layout_constraintTop_toTopOf="@+id/mypage_tv_univ" />
+                app:layout_constraintBottom_toBottomOf="@+id/frag_mypage_tv_univ"
+                app:layout_constraintStart_toEndOf="@+id/frag_mypage_tv_univ"
+                app:layout_constraintTop_toTopOf="@+id/frag_mypage_tv_univ" />
 
             <TextView
-                android:id="@+id/mypage_tv_id"
+                android:id="@+id/frag_mypage_tv_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -97,12 +97,12 @@
                 android:text="jeongmi7593"
                 android:textColor="@color/grey"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/mypage_tv_or"
-                app:layout_constraintStart_toEndOf="@+id/mypage_tv_or"
-                app:layout_constraintTop_toTopOf="@+id/mypage_tv_or" />
+                app:layout_constraintBottom_toBottomOf="@+id/frag_mypage_tv_or"
+                app:layout_constraintStart_toEndOf="@+id/frag_mypage_tv_or"
+                app:layout_constraintTop_toTopOf="@+id/frag_mypage_tv_or" />
 
             <TextView
-                android:id="@+id/mypage_tv_goto_edit"
+                android:id="@+id/frag_mypage_tv_goto_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_kr_medium"
@@ -115,21 +115,20 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/mypage_tv_goto_myengine"
+            android:id="@+id/frag_mypage_tv_goto_myengine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/bg_ffffff_round"
-            android:elevation="5dp"
+            android:elevation="1.5dp"
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-
-            app:layout_constraintTop_toBottomOf="@+id/act_order_detail_cl_file_info">
+            app:layout_constraintTop_toBottomOf="@+id/frag_act_order_detail_cl_file_info">
 
             <TextView
-                android:id="@+id/mypage_tv_current_engine"
+                android:id="@+id/frag_mypage_tv_current_engine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_kr_medium"
@@ -141,7 +140,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/mypage_tv_P"
+                android:id="@+id/frag_mypage_tv_P"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_kr_medium"
@@ -153,7 +152,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/mypage_tv_point"
+                android:id="@+id/frag_mypage_tv_point"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_kr_medium"
@@ -162,22 +161,22 @@
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/mypage_tv_P"
+                app:layout_constraintEnd_toStartOf="@+id/frag_mypage_tv_P"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/mypage_img_locket"
+                android:id="@+id/frag_mypage_img_locket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="6dp"
                 android:src="@drawable/mypage_ic_engine"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/mypage_tv_point"
+                app:layout_constraintEnd_toStartOf="@+id/frag_mypage_tv_point"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/mypage_cl_2"
+            android:id="@+id/frag_mypage_cl_2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -187,10 +186,10 @@
             android:paddingBottom="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mypage_tv_goto_myengine">
+            app:layout_constraintTop_toBottomOf="@+id/frag_mypage_tv_goto_myengine">
 
             <TextView
-                android:id="@+id/mypage_tv_setting"
+                android:id="@+id/frag_mypage_tv_setting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_kr_regular"
@@ -201,7 +200,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/mypage_tv_popup"
+                android:id="@+id/frag_mypage_tv_popup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
@@ -211,16 +210,16 @@
                 android:textColor="@color/grey"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mypage_tv_setting" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_mypage_tv_setting" />
 
             <Switch
-                android:id="@+id/switch1"
+                android:id="@+id/frag_mypage_switch_popup"
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"
                 android:trackTint="@color/blue"
-                app:layout_constraintBottom_toBottomOf="@+id/mypage_tv_popup"
+                app:layout_constraintBottom_toBottomOf="@+id/frag_mypage_tv_popup"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/mypage_tv_popup" />
+                app:layout_constraintTop_toTopOf="@+id/frag_mypage_tv_popup" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -231,7 +230,7 @@
             android:paddingVertical="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mypage_cl_2">
+            app:layout_constraintTop_toBottomOf="@+id/frag_mypage_cl_2">
 
             <TextView
                 android:id="@+id/logout_btn"
