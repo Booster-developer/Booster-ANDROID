@@ -317,7 +317,6 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                     val handler= android.os.Handler()
                     handler.postDelayed(object :Runnable{
                         override fun run() {
-                            loading()
                             fileStorageViewModel.getPrice(orderIdx)
 
                         }
@@ -390,7 +389,6 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                 val handler = android.os.Handler()
                 handler.postDelayed(object : Runnable {
                     override fun run() {
-                        loading()
                         fileStorageViewModel.getPrice(orderIdx)
                         progressDialog.dismiss()
                     }
