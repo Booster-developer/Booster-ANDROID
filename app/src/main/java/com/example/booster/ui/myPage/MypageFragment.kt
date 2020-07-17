@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import com.example.booster.R
 import com.example.booster.data.datasource.model.ProfileData
 import com.example.booster.data.remote.network.BoosterServiceImpl
-import com.example.booster.util.UserManager
 import kotlinx.android.synthetic.main.fragment_mypage.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -19,13 +18,13 @@ import retrofit2.Response
 
 class MypageFragment : Fragment() {
 
+    var univIdx = -1
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
-        Log.e("tokentest", UserManager.token)
 
         BoosterServiceImpl.service.getMyProfile()
             .enqueue(object : Callback<ProfileData> {
@@ -37,6 +36,7 @@ class MypageFragment : Fragment() {
                     if (response.isSuccessful) {
                         val data = response.body()!!.data
                         mypage_tv_name.text = data.user_name
+                        univIdx = data.univ_idx
                         when (data.univ_idx) {
                             1 -> mypage_tv_univ.text = "숭실대학교"
                             2 -> mypage_tv_univ.text = "중앙대학교"
@@ -58,7 +58,11 @@ class MypageFragment : Fragment() {
         mypage_tv_goto_edit.setOnClickListener {
 
             val intent = Intent(context, EditProfileActivity::class.java)
+            intent.putExtra("id", mypage_tv_id.text.toString())
+            intent.putExtra("univ", univIdx.toString())
+            intent.putExtra("name", mypage_tv_name.text.toString())
             startActivity(intent)
+            Log.e("univvvvvvvvvv", univIdx.toString())
         }
 
         mypage_tv_goto_myengine.setOnClickListener {
@@ -68,4 +72,3 @@ class MypageFragment : Fragment() {
         }
     }
 }
-

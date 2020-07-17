@@ -87,7 +87,7 @@ interface BoosterService {
         @Path("order_idx") orderIdx: Int
     ): Call<OrderDetailData>
 
-  @GET("/stores/{univ_idx}/list")
+    @GET("/stores/{univ_idx}/list")
     fun getStoreList(
         @Path("univ_idx") univIdx: Int
     ): Observable<StoreListData>
@@ -117,12 +117,11 @@ interface BoosterService {
 
     @GET("/mypage/engine/history")
     fun getEngineHistory(
-        @Header("token") token: String
     ): Call<EngineHistoryData>
 
     @GET("/mypage/notice/history")
     fun getAlertList(
-        ): Call<AlertData>
+    ): Call<AlertData>
 
     @POST("/orders/{store_idx}")
     suspend fun getOrderIdx(
@@ -141,8 +140,13 @@ interface BoosterService {
         @Path("order_idx") orderIdx: Int
     ): Call<NoticeData>
 
+    @POST("/mypage/profile/check")
+    fun checkPW(
+        @Body body: JsonObject
+    ): Call<NoticeData>
+
     @GET("/home/orders")
-    fun getHome() : Observable<HomeData>
+    fun getHome(): Observable<HomeData>
 
     @POST("/orders/{order_idx}/request")
     fun postComment(
