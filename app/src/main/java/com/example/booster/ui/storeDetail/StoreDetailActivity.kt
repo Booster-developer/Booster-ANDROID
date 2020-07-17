@@ -49,6 +49,12 @@ class StoreDetailActivity : AppCompatActivity() {
             }
         })
 
+        viewModel.storeDetail.observe(this, Observer{
+            if(it.data.store_open==0){
+                act_store_detail_btn_order.isClickable = false
+            }
+        })
+
         act_store_detail_iv_star.onlyOneClickListener {
             viewModel.putStoreFav(idx)
         }

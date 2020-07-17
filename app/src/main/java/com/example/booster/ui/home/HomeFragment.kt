@@ -15,6 +15,7 @@ import com.example.booster.databinding.FragmentHomeBinding
 import com.example.booster.listener.onlyOneClickListener
 import kotlinx.android.synthetic.main.fragment_home.*
 
+
 class HomeFragment : Fragment() {
     private lateinit var viewModel: HomeViewModel
     lateinit var binding : FragmentHomeBinding
@@ -64,20 +65,24 @@ class HomeFragment : Fragment() {
         }
     }
 
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
-        if (isVisibleToUser) {
-            viewModel.getHome()
-            frag_home_lt.playAnimation()
-        }
-    }
-
     override fun onResume() {
         super.onResume()
         viewModel.getHome()
         frag_home_lt.playAnimation()
 //        Log.e("onResume", "실행")
     }
+
+//    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+//        super.setUserVisibleHint(isVisibleToUser)
+//        isVisible = isVisibleToUser
+//
+//        // Make sure that fragment is currently visible
+//        if (!isVisible && isResumed) {
+//            // Call code when Fragment not visible
+//        } else if (isVisible && isResumed) {
+//            // Call code when Fragment becomes visible.
+//        }
+//    }
 
     fun setClick(){
         frag_home_btn_alert.onlyOneClickListener {

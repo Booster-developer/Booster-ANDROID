@@ -115,7 +115,7 @@ class JoinActivity : AppCompatActivity() {
         }
 
         // 회원가입 request
-        act_join_btn_join.onlyOneClickListener {
+        act_join_btn_pay.onlyOneClickListener {
             join()
         }
     }
@@ -194,10 +194,10 @@ class JoinActivity : AppCompatActivity() {
     // 회원가입 버튼 활성화
     fun checkJoin() {
         if (nameChk && idChk && pwChk && univIdx != 0 && checkChk) {
-            act_join_btn_join.setBackgroundResource(R.drawable.bg_btn_gradation)
-            act_join_btn_join.setTextColor(getColor(R.color.white))
+            act_join_btn_pay.setBackgroundResource(R.drawable.bg_btn_gradation)
+            act_join_btn_pay.setTextColor(getColor(R.color.white))
         } else {
-            act_join_btn_join.setBackgroundResource(R.drawable.join_btn_2)
+            act_join_btn_pay.setBackgroundResource(R.drawable.join_btn_2)
         }
     }
 }

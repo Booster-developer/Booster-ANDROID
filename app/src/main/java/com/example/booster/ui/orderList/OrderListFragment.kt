@@ -60,6 +60,7 @@ class OrderListFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        Log.e("orderListFrag", "onResume")
         viewModel.getOrderList()
     }
 
@@ -79,6 +80,7 @@ class OrderListFragment : Fragment() {
                     Log.e("orderIdx -> ", orderIdx.toString())
                     viewModel.putPickUp(orderIdx)
                     Log.e("orderlistorderidx", orderIdx.toString())
+                    viewModel.getOrderList()
                     Handler().postDelayed({ viewModel.getOrderList() }, 500)
                 }
 

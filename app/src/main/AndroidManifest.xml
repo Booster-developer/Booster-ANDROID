@@ -39,7 +39,8 @@
         <activity android:name=".ui.bottomtap.BottomTabActivity" />
         <activity android:name=".ui.storeDetail.StoreDetailActivity" />
         <activity android:name=".ui.user.LoginActivity" />
-        <activity android:name=".ui.user.JoinActivity" />
+        <activity android:name=".ui.user.JoinActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name=".ui.selectStore.SelectStoreActivity" />
 
         <meta-data
