@@ -108,12 +108,10 @@ interface BoosterService {
 
     @GET("/mypage/profile/list")
     fun getMyProfile(
-        @Header("token") token: String
     ): Call<ProfileData>
 
     @PUT("/mypage/profile")
     fun editMyProfile(
-        @Header("token") token: String,
         @Body body: JsonObject
     ): Call<EditProfileData>
 
@@ -140,12 +138,17 @@ interface BoosterService {
 
     @PUT("/mypage/notice/{order_idx}")
     fun checkNotice(
-        @Header("token") token: String,
         @Path("order_idx") orderIdx: Int
     ): Call<NoticeData>
 
     @GET("/home/orders")
     fun getHome() : Observable<HomeData>
+
+    @POST("/orders/{order_idx}/request")
+    fun postComment(
+        @Path("order_idx") orderIdx: Int,
+        @Body() body: JsonObject
+    ): Call<DefaultData>
 
     @PUT("/stores/{store_idx}/favorite")
     fun putStoreFavRetrofit(

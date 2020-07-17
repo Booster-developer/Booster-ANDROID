@@ -14,12 +14,20 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a2nd_seminar.ui.ItemDecorator
 import com.example.booster.R
+import com.example.booster.data.datasource.model.DefaultData
+import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.databinding.ActivityPaymentBinding
 import com.example.booster.ui.bottomtap.BottomTabActivity
 import com.example.booster.ui.home.HomeActivity
 import com.example.booster.ui.orderList.OrderListAdapter
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_payment.*
 import kotlinx.android.synthetic.main.fragment_order_list.*
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class PaymentActivity : AppCompatActivity() {
 
@@ -28,6 +36,8 @@ class PaymentActivity : AppCompatActivity() {
     lateinit var adapter: PaymentAdapter
 
     var orderIdx = 0
+    val requestToServer = BoosterServiceImpl
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,12 +66,9 @@ class PaymentActivity : AppCompatActivity() {
 
         viewModel.paymentInfo.observe(this, Observer {
             adapter.data = it.data.fileOption
-            Log.e("patment1", it.data.toString())
             act_payment_tv_name.text =it.data.store_name
             act_payment_tv_order_idx.text = orderIdx.toString()
 
-
-            Log.e("patment2", it.data.fileOption.toString())
             adapter.notifyDataSetChanged()
         })
     }
@@ -88,13 +95,41 @@ class PaymentActivity : AppCompatActivity() {
 
         //결제완료하고 주문현황 넘어가기
         act_payment_btn_pay.setOnClickListener {
-            val intent = Intent(this, BottomTabActivity::class.java)
-            intent.putExtra("orderIdx", orderIdx)
-            startActivity(intent)
+
+
+            val jsonData = JSONObject()
+
+            jsonData.put("order_comment", act_payment_et_req.text)
+
+            val body = JsonParser.parseString(jsonData.toString()) as JsonObject
+
+            requestToServer.service.postComment(
+                orderIdx = orderIdx,
+                body = body
+            ).enqueue(object : Callback<DefaultData> {
+                override fun onFailure(call: Call<DefaultData>, t: Throwable) {
+                    //통신 실패
+                    Log.e("payment통신 실패", "통신 실패")
+                }
+
+                override fun onResponse(call: Call<DefaultData>, response: Response<DefaultData>) {
+                    if(response.isSuccessful){
+                        Success()
+                    }
+                }
+
+            })
+
         }
 
         act_payment_iv_back.setOnClickListener{
             finish()
         }
+    }
+
+    fun Success(){
+        val intent = Intent(this, BottomTabActivity::class.java)
+        intent.putExtra("orderIdx", orderIdx)
+        startActivity(intent)
     }
 }

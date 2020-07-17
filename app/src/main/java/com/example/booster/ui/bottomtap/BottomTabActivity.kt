@@ -11,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.booster.BoosterApplication
 import com.example.booster.R
 import com.example.booster.ui.selectStore.SelectStoreActivity
+import com.example.booster.util.UserManager
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import kotlinx.android.synthetic.main.activity_bottom_tab.*
@@ -18,7 +19,7 @@ import kotlinx.android.synthetic.main.tab_layout.*
 
 class BottomTabActivity : AppCompatActivity() {
     var flag = 0
-    var token = ""
+    var token = UserManager.token
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +39,8 @@ class BottomTabActivity : AppCompatActivity() {
             bottom_vp.currentItem = 0
             token = intent.getStringExtra("token")
             Log.e("token", token)
-            BoosterApplication.prefs.isLoggedIn = token
+            UserManager.token = token
+
         }
     }
 
