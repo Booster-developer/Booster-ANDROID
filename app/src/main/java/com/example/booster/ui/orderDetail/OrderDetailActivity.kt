@@ -52,6 +52,7 @@ class OrderDetailActivity : AppCompatActivity() {
                 object : OrderDetailViewHolder.onClickOrderItemListener {
                     override fun onClickOrderItem(position: Int) {
 
+
                         //item option fragment로 띄우기
                         val args = Bundle()
                         val color = datas[position].file_color
@@ -121,11 +122,17 @@ class OrderDetailActivity : AppCompatActivity() {
         act_order_detail_txt_price.text = orderDetailResponse.order_price.toString() + "원"
         act_order_detail_request.text = orderDetailResponse.order_comment
 
+        Log.e("datas= orderDetailResponse", orderDetailResponse.toString())
+
         datas = orderDetailResponse.order_file_list
+        Log.e("datas= orderDetailResponse의 order_file_list", datas.toString())
+
+
 
         for(i in 0 .. datas.size-1){
             orderAdapter.data.add(datas[i])
         }
+
         orderAdapter.notifyDataSetChanged()
 
     }

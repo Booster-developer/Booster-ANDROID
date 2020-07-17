@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.booster.R
 import com.example.booster.data.datasource.model.DefaultData
@@ -70,10 +71,13 @@ class OrderCancelFragment : DialogFragment() {
                             (requireParentFragment() as OrderListFragment).viewModel.getOrderList()
                             dismiss()
                         }
+
                     }
 
                 })
             }
+
+            dismiss()
         }
     }
 }
