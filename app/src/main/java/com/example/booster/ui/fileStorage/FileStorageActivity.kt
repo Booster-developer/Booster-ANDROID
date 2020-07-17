@@ -261,7 +261,9 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                 fileStorageViewModel.deleteItem(item)
                 val progressDialog = ProgressDialog(this)
                 progressDialog.setMessage("파일 삭제 중입니다..")
+                progressDialog.setCancelable(false)
                 progressDialog.show()
+
                 val handler = android.os.Handler()
                 handler.postDelayed(object : Runnable {
                     override fun run() {
@@ -314,10 +316,15 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                 }
                 FINISH_SETTING_OPTION -> {
                     Log.e("check orderIdx", "after returning: " + orderIdx)
-                    val handler= android.os.Handler()
+                    val progressDialog = ProgressDialog(this)
+                    progressDialog.setMessage("파일 옵션 변경 중 입니다..")
+                    progressDialog.setCancelable(false)
+                    progressDialog.show()
+                    val handler= Handler()
                     handler.postDelayed(object :Runnable{
                         override fun run() {
                             fileStorageViewModel.getPrice(orderIdx)
+                            progressDialog.dismiss()
 
                         }
                     },2000)
@@ -384,6 +391,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 
                 }
                 progressDialog.setMessage("파일 업로드 중입니다..")
+                progressDialog.setCancelable(false)
                 progressDialog.show()
 
                 val handler = android.os.Handler()
@@ -415,6 +423,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 
                 }
                 progressDialog.setMessage("파일 업로드 중입니다..")
+                progressDialog.setCancelable(false)
                 progressDialog.show()
                 val handler = android.os.Handler()
                 handler.postDelayed(object : Runnable {
