@@ -65,7 +65,7 @@
 
 - application,bindingadapter,data,listener,ui,util 의 큰 패키지를 두고, 안에 세부 패키지로 나눔.
 
-<img width="370" alt="1" src="https://user-images.githubusercontent.com/45157374/87797082-30041180-c885-11ea-9d33-42dd03383092.png"><img width="370" alt="스크린샷 2020-07-17 오후 11 29 11" src="https://user-images.githubusercontent.com/45157374/87797200-575ade80-c885-11ea-8375-62caedd9af73.png"><img width="370" alt="3" src="https://user-images.githubusercontent.com/45157374/87797097-35615c00-c885-11ea-8a58-4f54b3b3f98d.png">
+<img width="370" alt="1" src="https://user-images.githubusercontent.com/45157374/87797082-30041180-c885-11ea-9d33-42dd03383092.png"><img width="370" alt="스크린샷 2020-07-17 오후 11 29 11" src="https://user-images.githubusercontent.com/45157374/87797200-575ade80-c885-11ea-8375-62caedd9af73.png"><img width="370" alt="3" src="https://user-images.githubusercontent.com/45157374/87797097-35615c00-c885-11ea-8a58-4f54b3b3f98d.png">
 
 
 
@@ -432,7 +432,7 @@ act_main_btn_store.onlyOneClickListener {
 <br>
 
 ### 3. Scroll Animation
-
+<img width="196" alt="스크린샷 2020-07-17 오후 6 26 23" src="https://user-images.githubusercontent.com/37479631/87797736-12837780-c886-11ea-882c-f45847c686a4.gif">
 
 #### 🔥 issue
 
@@ -550,7 +550,7 @@ frag_store_list_appBar.addOnOffsetChangedListener(OnOffsetChangedListener { frag
 <br>
 
 ### 4. 화면을 아래로 당겨서 List Refresh 하기
-<img width="196" alt="스크린샷 2020-07-17 오후 6 26 23" src="https://user-images.githubusercontent.com/37479631/87794783-190ff000-c882-11ea-85ad-adfca9fc704c.gif"><img width="196" alt="스크린샷 2020-07-17 오후 6 26 23" src="https://user-images.githubusercontent.com/37479631/87795498-195cbb00-c883-11ea-93f8-a03a3f1edbf9.gif">
+<img width="196" alt="스크린샷 2020-07-17 오후 6 26 23" src="https://user-images.githubusercontent.com/37479631/87795498-195cbb00-c883-11ea-93f8-a03a3f1edbf9.gif">
 
 #### 🔥 issue
 
@@ -600,6 +600,7 @@ private fun refresh(){
 <br>
 
 ### 5. 로컬 디바이스에서 파일 가져오기
+<img width="196" alt="스크린샷 2020-07-17 오후 6 26 23" src="https://user-images.githubusercontent.com/37479631/87798181-a3f2e980-c886-11ea-851a-c6b299207328.gif">
 
 #### 🔥 issue
 
