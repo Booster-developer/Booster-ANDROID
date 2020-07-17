@@ -116,8 +116,8 @@ interface BoosterService {
     ): Call<EditProfileData>
 
     @GET("/mypage/engine/history")
-    fun getEngineHistory(
-    ): Call<EngineHistoryData>
+    fun getEngineList(
+    ): Call<EngineListData>
 
     @GET("/mypage/notice/history")
     fun getAlertList(
