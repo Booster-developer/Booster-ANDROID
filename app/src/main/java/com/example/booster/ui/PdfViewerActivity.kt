@@ -58,7 +58,6 @@ class PdfViewerActivity : AppCompatActivity() {
             "check: " + pageCount.toString() + " " + pdfviewer_act_main_total_page.text
         )
         pdfviewer_act_main_total_page.text = pageCount.toString()
-        Toast.makeText(this, "pageCount = $pageCount", Toast.LENGTH_LONG).show()
 
         val parentlayout = LinearLayout(this)
         parentlayout.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,

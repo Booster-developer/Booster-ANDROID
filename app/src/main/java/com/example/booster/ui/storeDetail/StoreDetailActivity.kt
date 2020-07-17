@@ -84,5 +84,9 @@ class StoreDetailActivity : AppCompatActivity() {
             intent.putExtra("storeAddress", viewModel.storeDetail.value?.data?.store_address)
             startActivity(intent)
         }
+
+        act_store_detail_iv_back.onlyOneClickListener {
+            finish()
+        }
     }
 }

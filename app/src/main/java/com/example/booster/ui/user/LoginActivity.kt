@@ -102,7 +102,6 @@ class LoginActivity : AppCompatActivity() {
                         response: Response<LoginData>
                     ) {
                         val message = response.body()!!.message
-                        Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT).show()
 
                         if (response.isSuccessful) {
                             if (response.body()!!.success) {
