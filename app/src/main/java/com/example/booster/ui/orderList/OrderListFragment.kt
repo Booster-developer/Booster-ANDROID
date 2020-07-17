@@ -91,8 +91,10 @@ class OrderListFragment : Fragment() {
         frag_order_condition_rv.addItemDecoration(ItemDecorator(24))
 
         viewModel.orderList.observe(viewLifecycleOwner, Observer {
-            adapter.data = it
-            adapter.notifyDataSetChanged()
+            if(it!=null){
+                adapter.data = it
+                adapter.notifyDataSetChanged()
+            }
         })
     }
 }

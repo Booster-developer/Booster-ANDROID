@@ -13,6 +13,8 @@ import com.example.booster.data.datasource.model.Wait
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.util.BoosterUtil
 import com.google.android.material.internal.ContextUtils.getActivity
+import com.example.booster.util.UserManager
+import kotlinx.android.synthetic.main.activity_file_storage.*
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import okhttp3.MediaType
@@ -53,7 +55,7 @@ class FileStorageViewModel : ViewModel() {
     fun getOrderIdx(storeIdx: Int){
         viewModelScope.launch(IO){
             val response = BoosterServiceImpl.serviceFileUpload.getOrderIdx(
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8",
+                UserManager.token.toString(),
                 storeIdx
             )
             if (response.status == 200) {
@@ -66,7 +68,7 @@ class FileStorageViewModel : ViewModel() {
     fun getPrice(orderIdx: Int){
         viewModelScope.launch(IO) {
             val response = BoosterServiceImpl.serviceFileUpload.getFileList(
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8",
+                UserManager.token.toString(),
                 orderIdx
             )
             if (response.status == 200) {
@@ -80,8 +82,8 @@ class FileStorageViewModel : ViewModel() {
     fun getPopupOption(fileIdx: Int) {
         viewModelScope.launch(IO) {
             val response = BoosterServiceImpl.serviceFileUpload.getPopupOption(
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8",
-                fileIdx
+                UserManager.token.toString()
+                ,fileIdx
             )
             if (response.status == 200) {
                 val data = response.data
@@ -95,7 +97,7 @@ class FileStorageViewModel : ViewModel() {
         val list = _fileMutableLiveData.value
         viewModelScope.launch(IO) {
             val response = BoosterServiceImpl.serviceFileUpload.deleteFile(
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8",
+                UserManager.token.toString(),
                 item.file_idx
             )
             if (response.status == 200) {
@@ -181,7 +183,7 @@ class FileStorageViewModel : ViewModel() {
 
         viewModelScope.launch(IO) {
             val response = BoosterServiceImpl.serviceFileUpload.postUploadFile(
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8",
+                UserManager.token.toString(),
                 orderIdx,
                 multipartBody,
                 multipartBody2
