@@ -2,6 +2,7 @@ package com.example.booster.ui.fileStorage
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.DialogInterface
@@ -9,6 +10,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +26,6 @@ import com.example.booster.R
 import com.example.booster.data.datasource.model.File
 import com.example.booster.data.datasource.model.PopupOptionInfo
 import com.example.booster.data.datasource.model.Wait
-import com.example.booster.data.datasource.model.*
 import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.PdfViewerActivity
 import com.example.booster.ui.payment.PaymentActivity
@@ -46,7 +47,6 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-
 private const val FINISH_SETTING_OPTION = 1000
 private const val FINISH_PDF_VIEW = 1001
 
@@ -62,12 +62,12 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 
     var permissionlistener: PermissionListener = object : PermissionListener {
         override fun onPermissionGranted() {
-            Toast.makeText(this@FileStorageActivity, "Permission Granted", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this@FileStorageActivity, "Permission Granted", Toast.LENGTH_SHORT).show()
         }
 
         override fun onPermissionDenied(deniedPermissions: List<String>) {
-            Toast.makeText(
-                this@FileStorageActivity, "Permission Denied\n$deniedPermissions", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(
+//                this@FileStorageActivity, "Permission Denied\n$deniedPermissions", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -132,6 +132,24 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
     override fun onBackPressed() {
         showDeleteDialog()
     }
+
+    fun loading() {
+        //로딩
+        Handler().postDelayed(
+            {
+                val progressDialog = ProgressDialog(this@FileStorageActivity)
+                progressDialog.setIndeterminate(true)
+                progressDialog.setMessage("잠시만 기다려 주세요")
+                progressDialog.show()
+            }, 2000
+        )
+    }
+
+//    fun loadingEnd() {
+//        Handler().postDelayed(
+//            { progressDialog.dismiss() }, 0
+//        )
+//    }
 
     private fun subscribeObservers() {
         fileStorageViewModel.fileLiveData.observe(this, Observer {
@@ -242,13 +260,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         builder.setView(dialogView)
             .setPositiveButton("예") { dialog: DialogInterface?, which: Int ->
                 fileStorageViewModel.deleteItem(item)
-                val handler= android.os.Handler()
-                handler.postDelayed(object :Runnable{
-                    override fun run() {
-                        fileStorageViewModel.getPrice(orderIdx)
-
-                    }
-                },2000)
+                fileStorageViewModel.getPrice(orderIdx)
                 Log.e("orderIdx on Delete", "check: " + orderIdx)
             }
             .setNegativeButton("아니오") { dialog: DialogInterface?, which: Int ->
@@ -297,6 +309,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                     val handler= android.os.Handler()
                     handler.postDelayed(object :Runnable{
                         override fun run() {
+                            loading()
                             fileStorageViewModel.getPrice(orderIdx)
 
                         }
@@ -360,6 +373,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                 val handler= android.os.Handler()
                 handler.postDelayed(object :Runnable{
                     override fun run() {
+                        loading()
                         fileStorageViewModel.getPrice(orderIdx)
 
                     }

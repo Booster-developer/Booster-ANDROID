@@ -24,24 +24,19 @@ import java.io.IOException
 
 class FileStorageViewModel : ViewModel() {
     private val _fileMutableLiveData: MutableLiveData<ArrayList<File>> = MutableLiveData()
-    val fileLiveData: LiveData<ArrayList<File>>
-        get() = _fileMutableLiveData
+    val fileLiveData: LiveData<ArrayList<File>> get() = _fileMutableLiveData
 
     private val _popupOptionMutableLiveData: MutableLiveData<PopupOptionInfo> = MutableLiveData()
-    val popupOptionLiveData: LiveData<PopupOptionInfo>
-        get() = _popupOptionMutableLiveData
+    val popupOptionLiveData: LiveData<PopupOptionInfo> get() = _popupOptionMutableLiveData
 
     private val _waitlistMutableLiveData: MutableLiveData<Wait> = MutableLiveData()
-    val waitlistLiveData: LiveData<Wait>
-        get() = _waitlistMutableLiveData
+    val waitlistLiveData: LiveData<Wait> get() = _waitlistMutableLiveData
 
     private val _responseMessageMutableLiveData: MutableLiveData<String> = MutableLiveData()
-    val responseMessageLiveData: LiveData<String>
-        get() = _responseMessageMutableLiveData
+    val responseMessageLiveData: LiveData<String> get() = _responseMessageMutableLiveData
 
     private val _orderIdxMutableLiveData: MutableLiveData<Int> = MutableLiveData()
-    val orderIdxMutableLiveData: LiveData<Int>
-        get() = _orderIdxMutableLiveData
+    val orderIdxMutableLiveData: LiveData<Int> get() = _orderIdxMutableLiveData
 
 
     //private lateinit var arrList: ArrayList<File>
