@@ -14,7 +14,6 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.booster.R
 import com.example.booster.onlyOneClickListener
-import kotlinx.android.synthetic.main.activity_pdf_text.*
 import kotlinx.android.synthetic.main.activity_pdf_viewer.*
 import kotlinx.android.synthetic.main.my_file.view.*
 import java.io.IOException
