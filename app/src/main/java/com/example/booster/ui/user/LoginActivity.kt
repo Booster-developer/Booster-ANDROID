@@ -101,8 +101,6 @@ class LoginActivity : AppCompatActivity() {
                         call: Call<LoginData>,
                         response: Response<LoginData>
                     ) {
-                        val message = response.body()!!.message
-
                         if (response.isSuccessful) {
                             if (response.body()!!.success) {
                                 val intent =
@@ -110,13 +108,18 @@ class LoginActivity : AppCompatActivity() {
                                 intent.putExtra("univ", response.body()!!.data.university_idx)
                                 intent.putExtra("token", response.body()!!.data.accessToken)
                                 startActivity(intent)
-                                Log.e("tokttttttttt", response.body()!!.data.accessToken)
                                 UserManager.token = response.body()!!.data.accessToken
                                 isLoggedIn.isLoggedIn = "isLoggedIn"
                                 finish()
+                            } else {
+                                val message = response.body()!!.message
+                                Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT)
+                                    .show()
                             }
                         } else {
-                            Log.e("onReponse else", response.toString())
+                            val message = response.body()!!.message
+                            Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT)
+                                .show()
                         }
                     }
 
