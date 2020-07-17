@@ -51,7 +51,6 @@ class AlertActivity : AppCompatActivity() {
                     if(datas[position].notice_confirm==1){
                         read(position)
                         requestToServer.service.checkNotice(
-                            token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MiwiaWF0IjoxNTk0MjQzNDgxLCJleHAiOjE1OTc4NDM0ODEsImlzcyI6IkJvb3N0ZXIifQ.PoBiw8rnQY5SYZLVxQDcO3wnpfyHyM1V7ae-xAVloq0",
                             orderIdx = datas[position].notice_idx
                         ).enqueue(object : Callback<NoticeData>{
                             override fun onFailure(call: Call<NoticeData>, t: Throwable) {

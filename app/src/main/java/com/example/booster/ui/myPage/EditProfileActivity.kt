@@ -157,6 +157,7 @@ class EditProfileActivity : AppCompatActivity() {
         }
 
         val body = JsonParser.parseString(editJsonData.toString()) as JsonObject
+<<<<<<< HEAD
         BoosterServiceImpl.service.editMyProfile(
             body = body
         )
@@ -178,5 +179,21 @@ class EditProfileActivity : AppCompatActivity() {
                 }
 
             })
+=======
+//        BoosterServiceImpl.service.editMyProfile(body = body, token = "")
+//            .enqueue(object : Callback<EditProfileData> {
+//                override fun onFailure(call: Call<EditProfileData>, t: Throwable) {
+//                    Log.e("error", t.toString())
+//                }
+//
+//                override fun onResponse(
+//                    call: Call<EditProfileData>,
+//                    response: Response<EditProfileData>
+//                ) {
+//                    TODO("Not yet implemented")
+//                }
+//
+//            })
+>>>>>>> 7946f2f1c195c8399b0a3693f54c1f75aa74a9fa
     }
 }
