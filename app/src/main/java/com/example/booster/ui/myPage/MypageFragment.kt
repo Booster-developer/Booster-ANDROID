@@ -75,6 +75,7 @@ class MypageFragment : Fragment() {
         logout_btn.onlyOneClickListener {
             val intent = Intent(requireActivity(), LoginActivity::class.java)
             startActivity(intent)
+            requireActivity().finish()
         }
     }
 
