@@ -144,7 +144,7 @@ implementation 'com.github.barteksc:pdfium-android:1.9.0'
 - 대부분의 레이아웃을 ConstraintLayout으로 구성
 - chain 과 match_parent 를 적극 활용하여 뷰 구성
 
-<center><img width="196" alt="스크린샷 2020-07-17 오후 6 26 23" src="https://user-images.githubusercontent.com/37479631/87776681-19e55980-c863-11ea-8ab0-47fd592889c8.jpg"></center>
+<img width="196" alt="스크린샷 2020-07-17 오후 6 26 23" src="https://user-images.githubusercontent.com/37479631/87776681-19e55980-c863-11ea-8ab0-47fd592889c8.jpg"><img width="196" alt="스크린샷 2020-07-17 오후 6 26 23" src="https://user-images.githubusercontent.com/37479631/87797173-4d38e000-c885-11ea-82d3-c29686fd23a9.png">
 
 item_order_condition.xml
 
