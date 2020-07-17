@@ -1,4 +1,4 @@
-package com.example.booster
+package com.example.booster.ui.user
 
 import android.app.Activity
 import android.content.Context
@@ -11,10 +11,11 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import com.example.booster.R
 import com.example.booster.data.datasource.model.LoginData
 import com.example.booster.data.remote.network.BoosterServiceImpl
+import com.example.booster.onlyOneClickListener
 import com.example.booster.ui.bottomtap.BottomTabActivity
-import com.example.booster.ui.home.HomeActivity
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_login.*

@@ -43,8 +43,8 @@
         <activity android:name=".ui.orderList.OrderListActivity" />
         <activity android:name=".ui.storeList.StoreListActivity" />
         <activity android:name=".ui.MainActivity"/>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".JoinActivity" />
+        <activity android:name=".ui.user.LoginActivity" />
+        <activity android:name=".ui.user.JoinActivity" />
         <activity android:name=".ui.selectStore.SelectStoreActivity" />
 
         <meta-data
