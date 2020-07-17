@@ -47,21 +47,5 @@ class BoosterUtil(var context: Context = globalApplication) {
         }
     }
 
-    fun getFileImage(type: String?): Int {
-
-        if (type == null) {
-            return R.drawable.ic_file_others
-        }
-
-        return when (type.toLowerCase()) {
-            ".doc" -> R.drawable.ic_file_docx
-            ".docx" -> R.drawable.ic_file_docx
-            ".pdf" -> R.drawable.ic_file_pdf
-            ".ppt" -> R.drawable.ic_file_pptx
-            ".pptx" -> R.drawable.ic_file_pptx
-            else -> R.drawable.ic_file_others
-        }
-    }
-
 
 }
