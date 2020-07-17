@@ -1,17 +1,14 @@
 package com.example.booster.ui
 
-import android.Manifest
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import com.example.booster.*
 import com.example.booster.ui.bottomtap.BottomTabActivity
+import com.example.booster.ui.home.SplashActivity
 import com.example.booster.ui.orderList.OrderListActivity
 import com.example.booster.ui.payment.PaymentActivity
 import com.example.booster.ui.selectStore.SelectStoreActivity
-import com.gun0912.tedpermission.PermissionListener
-import com.gun0912.tedpermission.TedPermission
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
