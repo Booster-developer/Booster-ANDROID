@@ -62,7 +62,6 @@ class MypageFragment : Fragment() {
             intent.putExtra("univ", univIdx.toString())
             intent.putExtra("name", mypage_tv_name.text.toString())
             startActivity(intent)
-            Log.e("univvvvvvvvvv", univIdx.toString())
         }
 
         mypage_tv_goto_myengine.setOnClickListener {
@@ -70,5 +69,31 @@ class MypageFragment : Fragment() {
             val intent = Intent(context, MyengineActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        BoosterServiceImpl.service.getMyProfile()
+            .enqueue(object : Callback<ProfileData> {
+                override fun onFailure(call: Call<ProfileData>, t: Throwable) {
+                    Log.e("error", t.toString())
+                }
+
+                override fun onResponse(call: Call<ProfileData>, response: Response<ProfileData>) {
+                    if (response.isSuccessful) {
+                        val data = response.body()!!.data
+                        mypage_tv_name.text = data.user_name
+                        univIdx = data.univ_idx
+                        when (data.univ_idx) {
+                            1 -> mypage_tv_univ.text = "숭실대학교"
+                            2 -> mypage_tv_univ.text = "중앙대학교"
+                            3 -> mypage_tv_univ.text = "서울대학교"
+                        }
+                        mypage_tv_id.text = data.user_id
+                        mypage_tv_point.text = data.user_point.toString()
+                    }
+                }
+
+            })
     }
 }
