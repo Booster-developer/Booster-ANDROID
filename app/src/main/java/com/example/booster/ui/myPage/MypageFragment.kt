@@ -12,6 +12,7 @@ import com.example.booster.LoginActivity
 import com.example.booster.R
 import com.example.booster.data.datasource.model.ProfileData
 import com.example.booster.data.remote.network.BoosterServiceImpl
+import com.example.booster.onlyOneClickListener
 import kotlinx.android.synthetic.main.fragment_mypage.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -51,12 +52,6 @@ class MypageFragment : Fragment() {
 
             })
 
-        // 로그아웃 버튼 클릭 시 로그인 페이지로 이동
-        logout_btn.setOnClickListener {
-            val intent = Intent(context, LoginActivity::class.java)
-            startActivity(intent)
-        }
-
         return inflater.inflate(R.layout.fragment_mypage, container, false)
     }
 
@@ -75,6 +70,12 @@ class MypageFragment : Fragment() {
         mypage_tv_goto_myengine.setOnClickListener {
 
             val intent = Intent(context, MyengineActivity::class.java)
+            startActivity(intent)
+        }
+
+        // 로그아웃 버튼 클릭 시 로그인 페이지로 이동
+        logout_btn.onlyOneClickListener {
+            val intent = Intent(requireActivity(), LoginActivity::class.java)
             startActivity(intent)
         }
     }
