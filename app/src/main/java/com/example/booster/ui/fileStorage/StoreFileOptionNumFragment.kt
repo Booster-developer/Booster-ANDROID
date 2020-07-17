@@ -49,7 +49,7 @@ class StoreFileOptionNumFragment : DialogFragment() {
 
             printOption = edt_printNum.text.toString().toInt() - 1
             if(printOption<1){
-                Toast.makeText(context, "다시 입력해주세요.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "최소 1부 이상 선택가능합니다.", Toast.LENGTH_SHORT).show()
                 printOption = 1
             }
             else{
