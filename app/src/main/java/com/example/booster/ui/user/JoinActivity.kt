@@ -1,4 +1,4 @@
-package com.example.booster
+package com.example.booster.ui.user
 
 import android.app.Activity
 import android.content.Context
@@ -11,8 +11,10 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
+import com.example.booster.R
 import com.example.booster.data.datasource.model.JoinData
 import com.example.booster.data.remote.network.BoosterServiceImpl
+import com.example.booster.onlyOneClickListener
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_join.*
