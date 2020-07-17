@@ -24,14 +24,14 @@ class StoreDetailActivity : AppCompatActivity() {
     var idx : Int = 0
     var store = ""
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         Log.e("User token", UserManager.token)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_store_detail)
-        viewModel = ViewModelProvider(this@StoreDetailActivity).get(StoreDetailViewModel::class.java)
+        viewModel =
+            ViewModelProvider(this@StoreDetailActivity).get(StoreDetailViewModel::class.java)
 
         binding.lifecycleOwner = this
         binding.vm = (this@StoreDetailActivity).viewModel
@@ -40,12 +40,27 @@ class StoreDetailActivity : AppCompatActivity() {
         idx = intent.getIntExtra("storeIdx", 0)
         viewModel.getStoreDetail(idx)
 
+        viewModel.storeDetail.observe(this, Observer {
+            when (it.data.store_open) {
+                0 -> {
+                    act_store_detail_btn_order.isClickable = false
+                }
+                else -> {
+                }
+            }
+        })
         viewModel.favStatus.observe(this, Observer {
             Log.e("result -> ", it.message)
-            if(it.status==200){
+            if (it.status == 200) {
                 act_store_detail_iv_star.setImageResource(R.drawable.store_detail_ic_star_inactive)
-            } else if(it.status==201){
+            } else if (it.status == 201) {
                 act_store_detail_iv_star.setImageResource(R.drawable.store_detail_ic_star_active)
+            }
+        })
+
+        viewModel.storeDetail.observe(this, Observer{
+            if(it.data.store_open==0){
+                act_store_detail_btn_order.isClickable = false
             }
         })
 

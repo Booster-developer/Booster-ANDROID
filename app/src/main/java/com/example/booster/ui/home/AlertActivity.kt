@@ -40,7 +40,7 @@ class AlertActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<AlertData>, response: Response<AlertData>) {
                 alertResponse = response.body()!!
-                loadAlert()
+                if (response.body()!!.data!=null) loadAlert()
             }
 
         })
@@ -89,9 +89,8 @@ class AlertActivity : AppCompatActivity() {
     }
 
     fun loadAlert(){
-
-        datas = alertResponse.data
-        for(i in 0 .. datas.size-1){
+        datas = this.alertResponse.data!!
+        for(i in 0 until datas.size){
             alertAdapter.data.add(datas[i])
         }
         Log.e("alert", datas.toString())

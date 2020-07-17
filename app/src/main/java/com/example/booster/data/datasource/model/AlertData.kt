@@ -4,7 +4,7 @@ data class AlertData(
     val status : Int,
     val success: Boolean,
     val message: String,
-    val data: ArrayList<AlertDataInfo>
+    val data: ArrayList<AlertDataInfo>?
 )
 
 data class AlertDataInfo(

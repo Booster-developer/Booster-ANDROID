@@ -7,118 +7,128 @@
     android:background="@color/white"
     tools:context=".ui.user.LoginActivity">
 
-    <ImageView
-        android:id="@+id/act_login_img_logo"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/login_img_logo" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/act_login_edt_id"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/join_input"
-        android:ems="10"
-        android:fontFamily="@font/noto_sans_kr_regular"
-        android:hint="아이디를 입력해 주세요"
-        android:inputType="textPersonName"
-        android:padding="12dp"
-        android:textColorHint="@color/tab_grey"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/act_login_tv_id" />
+        <ImageView
+            android:id="@+id/act_login_img_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="76dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/login_img_logo" />
 
-    <EditText
-        android:id="@+id/act_login_edt_pw"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/join_input"
-        android:ems="10"
-        android:fontFamily="@font/noto_sans_kr_regular"
-        android:hint="비밀번호를 입력해 주세요"
-        android:inputType="textPassword"
-        android:padding="12dp"
-        android:textColorHint="@color/tab_grey"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/act_login_edt_id"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/act_login_edt_id"
-        app:layout_constraintTop_toBottomOf="@+id/act_login_tv_pw" />
+        <EditText
+            android:id="@+id/act_login_edt_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/join_input"
+            android:ems="10"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:hint="아이디를 입력해 주세요"
+            android:inputType="textPersonName"
+            android:padding="12dp"
+            android:textColorHint="@color/tab_grey"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/act_login_tv_id" />
 
-    <TextView
-        android:id="@+id/act_login_tv_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="75dp"
-        android:fontFamily="@font/noto_sans_kr_medium"
-        android:text="ID"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/act_login_img_logo" />
+        <EditText
+            android:id="@+id/act_login_edt_pw"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/join_input"
+            android:ems="10"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:hint="비밀번호를 입력해 주세요"
+            android:inputType="textPassword"
+            android:padding="12dp"
+            android:textColorHint="@color/tab_grey"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/act_login_edt_id"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="@+id/act_login_edt_id"
+            app:layout_constraintTop_toBottomOf="@+id/act_login_tv_pw" />
 
-    <TextView
-        android:id="@+id/act_login_tv_pw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/noto_sans_kr_medium"
-        android:text="비밀번호"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/act_login_edt_id" />
+        <TextView
+            android:id="@+id/act_login_tv_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="75dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:text="ID"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/act_login_img_logo" />
 
-    <Button
-        android:id="@+id/act_login_button_login"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="21dp"
-        android:background="@drawable/bg_btn_gradation"
-        android:fontFamily="@font/noto_sans_kr_medium"
-        android:lineHeight="25sp"
-        android:text="로그인"
-        android:textColor="@color/white"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="@+id/act_login_edt_pw"
-        app:layout_constraintStart_toStartOf="@+id/act_login_edt_pw"
-        app:layout_constraintTop_toBottomOf="@+id/act_login_edt_pw" />
+        <TextView
+            android:id="@+id/act_login_tv_pw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:text="비밀번호"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/act_login_edt_id" />
 
-    <TextView
-        android:id="@+id/act_login_tv_ask"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/noto_sans_kr_regular"
-        android:text="Booster가 처음이신가요?"
-        android:textColorHint="@color/tab_grey"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/act_login_button_login" />
+        <Button
+            android:id="@+id/act_login_button_login"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="21dp"
+            android:background="@drawable/bg_btn_gradation"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:lineHeight="25sp"
+            android:text="로그인"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="@+id/act_login_edt_pw"
+            app:layout_constraintStart_toStartOf="@+id/act_login_edt_pw"
+            app:layout_constraintTop_toBottomOf="@+id/act_login_edt_pw" />
 
-    <TextView
-        android:id="@+id/act_login_tv_goto_join"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/noto_sans_kr_regular"
-        android:lineHeight="16sp"
-        android:text="@string/goto_join"
-        android:textColor="#2435ff"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/act_login_tv_ask"
-        app:layout_constraintStart_toStartOf="@+id/act_login_tv_ask"
-        app:layout_constraintTop_toBottomOf="@+id/act_login_tv_ask" />
+        <TextView
+            android:id="@+id/act_login_tv_ask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:text="Booster가 처음이신가요?"
+            android:textColorHint="@color/tab_grey"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/act_login_button_login" />
+
+        <TextView
+            android:id="@+id/act_login_tv_goto_join"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:lineHeight="16sp"
+            android:text="@string/goto_join"
+            android:textColor="#2435ff"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/act_login_tv_ask"
+            app:layout_constraintStart_toStartOf="@+id/act_login_tv_ask"
+            app:layout_constraintTop_toBottomOf="@+id/act_login_tv_ask" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

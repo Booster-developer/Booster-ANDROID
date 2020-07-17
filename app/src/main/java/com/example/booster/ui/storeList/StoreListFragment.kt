@@ -21,6 +21,7 @@ import com.example.booster.databinding.FragmentStoreListBinding
 import com.example.booster.listener.onlyOneClickListener
 import com.example.booster.ui.storeDetail.StoreDetailActivity
 import com.example.booster.ui.storeDetail.StoreDetailViewModel
+import com.example.booster.util.UserManager
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.fragment_store_list.*
 import retrofit2.Call
@@ -36,7 +37,7 @@ class StoreListFragment : Fragment() {
     lateinit var adapter: StoreListAdapter
     lateinit var binding: FragmentStoreListBinding
     var markers = arrayListOf<MarkerData>()
-    var univIdx = 1
+    var univIdx = UserManager.univ
     var status = 0
 
     override fun onCreateView(
@@ -50,7 +51,7 @@ class StoreListFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.getStoreList(univIdx)
+        univIdx?.let { viewModel.getStoreList(it) }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -58,17 +59,19 @@ class StoreListFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(StoreListViewModel::class.java)
         viewModel2 = ViewModelProvider(this).get(StoreDetailViewModel::class.java)
 
+        univIdx?.let { viewModel.getStoreList(it) }
+
         initRv()
         setClick()
         setAppBar()
-        viewModel.getStoreList(univIdx)
+        setUnivTv()
         refresh()
     }
 
     private fun refresh(){
         frag_store_list_srl.apply{
             setOnRefreshListener {
-                viewModel.getStoreList(univIdx)
+                univIdx?.let { viewModel.getStoreList(it) }
                 this@apply.isRefreshing = false
             }
         }
@@ -107,7 +110,7 @@ class StoreListFragment : Fragment() {
         if(resultCode == DIALOG_FRAGMENT) {
             univIdx = bundle!!.getInt("univIdx")
             Log.e("univIdx", univIdx.toString())
-            viewModel.getStoreList(univIdx)
+            viewModel.getStoreList(univIdx!!)
             setUnivTv()
             Log.e("onactResult", bundle.getInt("univIdx").toString())
         }else{
@@ -141,11 +144,11 @@ class StoreListFragment : Fragment() {
                             val data = response.body()!!.status
                             if(data==201) {
                                 imageView.setImageResource(R.drawable.store_ic_active_star)
-                                viewModel.getStoreList(univIdx)
+                                univIdx?.let { viewModel.getStoreList(it) }
                             }
                             else if (data==200) {
                                 imageView.setImageResource(R.drawable.store_ic_inactive_star)
-                                viewModel.getStoreList(univIdx)
+                                univIdx?.let { viewModel.getStoreList(it) }
                             }
                         }
 
