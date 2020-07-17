@@ -41,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
         login_edt_pw.setOnFocusChangeListener { v, hasFocus ->
             login_edt_pw.isSelected = hasFocus
         }
-      
+
         login_edt_pw.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
                 v.clearFocus()
@@ -98,9 +98,10 @@ class LoginActivity : AppCompatActivity() {
                         call: Call<LoginData>,
                         response: Response<LoginData>
                     ) {
+                        val message = response.body()!!.message
+                        Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT).show()
+
                         if (response.isSuccessful) {
-                            val message = response.body()!!.message
-//                            Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT).show()
                             if (response.body()!!.success) {
                                 val intent =
                                     Intent(this@LoginActivity, BottomTabActivity::class.java)
