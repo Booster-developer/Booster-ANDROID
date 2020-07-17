@@ -50,6 +50,7 @@ import kotlin.collections.ArrayList
 private const val FINISH_SETTING_OPTION = 1000
 private const val FINISH_PDF_VIEW = 1001
 
+@Suppress("DEPRECATION")
 class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener {
     private lateinit var fileStorageViewModel: FileStorageViewModel
     private lateinit var mAdapter: FileAdapter
@@ -62,12 +63,10 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 
     var permissionlistener: PermissionListener = object : PermissionListener {
         override fun onPermissionGranted() {
-//            Toast.makeText(this@FileStorageActivity, "Permission Granted", Toast.LENGTH_SHORT).show()
         }
 
+
         override fun onPermissionDenied(deniedPermissions: List<String>) {
-//            Toast.makeText(
-//                this@FileStorageActivity, "Permission Denied\n$deniedPermissions", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -260,13 +259,16 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         builder.setView(dialogView)
             .setPositiveButton("예") { dialog: DialogInterface?, which: Int ->
                 fileStorageViewModel.deleteItem(item)
-                val handler= android.os.Handler()
-                handler.postDelayed(object :Runnable{
+                val progressDialog = ProgressDialog(this)
+                progressDialog.setMessage("파일 삭제 중입니다..")
+                progressDialog.show()
+                val handler = android.os.Handler()
+                handler.postDelayed(object : Runnable {
                     override fun run() {
                         fileStorageViewModel.getPrice(orderIdx)
-
+                        progressDialog.dismiss()
                     }
-                },500)
+                }, 2000)
                 Log.e("orderIdx on Delete", "check: " + orderIdx)
             }
             .setNegativeButton("아니오") { dialog: DialogInterface?, which: Int ->
@@ -376,14 +378,23 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 //                file.type = "img"
                 fileStorageViewModel.addItem(file)
                 fileStorageViewModel.order(orderIdx)
-                val handler= android.os.Handler()
-                handler.postDelayed(object :Runnable{
+
+                val progressDialog = ProgressDialog(this)
+                for (i in 0..4) {
+                    progressDialog.progress = i * 30
+
+                }
+                progressDialog.setMessage("파일 업로드 중입니다..")
+                progressDialog.show()
+
+                val handler = android.os.Handler()
+                handler.postDelayed(object : Runnable {
                     override fun run() {
                         loading()
                         fileStorageViewModel.getPrice(orderIdx)
-
+                        progressDialog.dismiss()
                     }
-                },2000)
+                }, 2000)
             }
         } else if (!flag) {
             for (docUri in docPaths) {
@@ -394,23 +405,29 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                 val bitmap = getBitmap(file)
 
 
-                file.thumbnail =  bitmap?.let { bitmapToFile(it) }
+                file.thumbnail = bitmap?.let { bitmapToFile(it) }
                 //Log.e("thumbnail File", "Check: " + file.thumbnail + " " + java.io.File(file.file_path))
 
                 fileStorageViewModel.addItem(file)
                 fileStorageViewModel.order(orderIdx)
-                val handler= android.os.Handler()
-                handler.postDelayed(object :Runnable{
+
+                val progressDialog = ProgressDialog(this)
+                for (i in 0..4) {
+                    progressDialog.progress = i * 30
+
+                }
+                progressDialog.setMessage("파일 업로드 중입니다..")
+                progressDialog.show()
+                val handler = android.os.Handler()
+                handler.postDelayed(object : Runnable {
                     override fun run() {
                         fileStorageViewModel.getPrice(orderIdx)
-
+                        progressDialog.dismiss()
                     }
-                },2000)
+                }, 2000)
             }
         }
         fileStorage_rv_file_add.adapter?.notifyDataSetChanged()
-//        Toast.makeText(this, "Num of files selected: " + filePaths.size, Toast.LENGTH_SHORT)
-//            .show()
     }
 
     fun onClick(view: View) {

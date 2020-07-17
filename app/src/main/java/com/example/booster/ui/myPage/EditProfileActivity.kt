@@ -32,7 +32,7 @@ class EditProfileActivity : AppCompatActivity() {
         setContentView(R.layout.activity_edit_profile)
 
         // 뒤로가기 버튼
-        edit_profile_img_back.setOnClickListener {
+        act_edit_profile_img_back.setOnClickListener {
             finish()
         }
 
@@ -41,87 +41,87 @@ class EditProfileActivity : AppCompatActivity() {
         var extraUnivIdx = intent.getStringExtra("univ")
         var extraName = intent.getStringExtra("name")
 
-        edit_profile_edt_id.setText(extraId)
-        edit_profile_edt_name.setText(extraName)
+        act_edit_profile_edt_id.setText(extraId)
+        act_edit_profile_edt_name.setText(extraName)
 
         when (extraUnivIdx) {
             "1" -> {
-                edit_profile_tv_univ_select.text = "숭실대학교"
+                act_edit_profile_tv_univ_select.text = "숭실대학교"
                 univIdx = 1
             }
             "2" -> {
-                edit_profile_tv_univ_select.text = "중앙대학교"
+                act_edit_profile_tv_univ_select.text = "중앙대학교"
                 univIdx = 2
             }
             "3" -> {
-                edit_profile_tv_univ_select.text = "서울대학교"
+                act_edit_profile_tv_univ_select.text = "서울대학교"
                 univIdx = 3
             }
         }
 
         // 대학교 선택
-        edit_profile_tv_univ_select_btn.setOnClickListener {
-            edit_profile_ll_univ.visibility = View.VISIBLE
+        act_edit_profile_tv_univ_select_btn.setOnClickListener {
+            act_edit_profile_ll_univ.visibility = View.VISIBLE
         }
 
-        edit_profile_tv_univ_1.setOnClickListener {
-            edit_profile_tv_univ_select.text = "숭실대학교"
+        act_edit_profile_tv_univ_1.setOnClickListener {
+            act_edit_profile_tv_univ_select.text = "숭실대학교"
             univIdx = 1
-            edit_profile_ll_univ.visibility = View.GONE
+            act_edit_profile_ll_univ.visibility = View.GONE
         }
-        edit_profile_tv_univ_2.setOnClickListener {
-            edit_profile_tv_univ_select.text = "중앙대학교"
+        act_edit_profile_tv_univ_2.setOnClickListener {
+            act_edit_profile_tv_univ_select.text = "중앙대학교"
             univIdx = 2
-            edit_profile_ll_univ.visibility = View.GONE
+            act_edit_profile_ll_univ.visibility = View.GONE
         }
-        edit_profile_tv_univ_3.setOnClickListener {
-            edit_profile_tv_univ_select.text = "서울대학교"
+        act_edit_profile_tv_univ_3.setOnClickListener {
+            act_edit_profile_tv_univ_select.text = "서울대학교"
             univIdx = 3
-            edit_profile_ll_univ.visibility = View.GONE
+            act_edit_profile_ll_univ.visibility = View.GONE
         }
 
         // 수정완료 클릭
-        edit_profile_button_edit.setOnClickListener {
+        act_edit_profile_button_edit.setOnClickListener {
             edit()
         }
 
         // 이름입력 focused
-        edit_profile_edt_name.setOnFocusChangeListener { v, hasFocus ->
-            edit_profile_edt_name.isSelected = hasFocus
+        act_edit_profile_edt_name.setOnFocusChangeListener { v, hasFocus ->
+            act_edit_profile_edt_name.isSelected = hasFocus
         }
 
         // 현재 비밀번호 입력 focused
-        edit_profile_edt_pw_now.setOnFocusChangeListener { v, hasFocus ->
-            edit_profile_edt_pw_now.isSelected = hasFocus
+        act_edit_profile_edt_pw_now.setOnFocusChangeListener { v, hasFocus ->
+            act_edit_profile_edt_pw_now.isSelected = hasFocus
         }
 
         // 새 비밀번호 입력 focused
-        edit_profile_edt_pw_new.setOnFocusChangeListener { v, hasFocus ->
-            edit_profile_edt_pw_new.isSelected = hasFocus
+        act_edit_profile_edt_pw_new.setOnFocusChangeListener { v, hasFocus ->
+            act_edit_profile_edt_pw_new.isSelected = hasFocus
         }
 
         // 비밀번호확인입력 focused
-        edit_profile_edt_pw_chk.setOnFocusChangeListener { v, hasFocus ->
-            edit_profile_edt_pw_chk.isSelected = hasFocus
+        act_edit_profile_edt_pw_chk.setOnFocusChangeListener { v, hasFocus ->
+            act_edit_profile_edt_pw_chk.isSelected = hasFocus
             // 비밀번호 체크
-            edit_profile_edt_pw_chk.addTextChangedListener {
+            act_edit_profile_edt_pw_chk.addTextChangedListener {
 
-                if (edit_profile_edt_pw_new.text.toString() == edit_profile_edt_pw_chk.text.toString()) {
-                    edit_profile_pw_chk_txt2.visibility = View.INVISIBLE
+                if (act_edit_profile_edt_pw_new.text.toString() == act_edit_profile_edt_pw_chk.text.toString()) {
+                    act_edit_profile_pw_chk_txt2.visibility = View.INVISIBLE
                     chkNewPW = true
                 } else {
-                    edit_profile_pw_chk_txt2.visibility = View.VISIBLE
+                    act_edit_profile_pw_chk_txt2.visibility = View.VISIBLE
                     chkNewPW = false
                 }
 
             }
         }
-        edit_profile_edt_pw_chk.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+        act_edit_profile_edt_pw_chk.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
                 v.clearFocus()
                 val keyboard: InputMethodManager =
                     getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                keyboard.hideSoftInputFromWindow(edit_profile_edt_pw_chk.windowToken, 0)
+                keyboard.hideSoftInputFromWindow(act_edit_profile_edt_pw_chk.windowToken, 0)
                 return@OnKeyListener true
             }
             false
@@ -132,7 +132,7 @@ class EditProfileActivity : AppCompatActivity() {
 
         // 현재 비밀번호 체크
         val pwJsonData = JSONObject()
-        pwJsonData.put("user_pw", edit_profile_edt_pw_now.text.toString())
+        pwJsonData.put("user_pw", act_edit_profile_edt_pw_now.text.toString())
 
         val body = JsonParser.parseString(pwJsonData.toString()) as JsonObject
 
@@ -146,8 +146,8 @@ class EditProfileActivity : AppCompatActivity() {
 
                 override fun onResponse(call: Call<NoticeData>, response: Response<NoticeData>) {
                     if (response.body()!!.success) {
-                        edit_profile_pw_chk_txt.visibility = View.INVISIBLE
-                        if (!edit_profile_edt_name.text.isNullOrBlank() && chkNewPW) {
+                        act_edit_profile_pw_chk_txt.visibility = View.INVISIBLE
+                        if (!act_edit_profile_edt_name.text.isNullOrBlank() && chkNewPW) {
                             requestEdit()
                         } else {
                             Toast.makeText(
@@ -158,7 +158,7 @@ class EditProfileActivity : AppCompatActivity() {
                                 .show()
                         }
                     } else {
-                        edit_profile_pw_chk_txt.visibility = View.VISIBLE
+                        act_edit_profile_pw_chk_txt.visibility = View.VISIBLE
                     }
                 }
 
@@ -167,14 +167,14 @@ class EditProfileActivity : AppCompatActivity() {
 
     fun requestEdit() {
         val editJsonData = JSONObject()
-        editJsonData.put("user_name", edit_profile_edt_name.text.toString())
+        editJsonData.put("user_name", act_edit_profile_edt_name.text.toString())
         editJsonData.put("user_university", univIdx)
 
         // 새로운 비밀번호 입력 안 할 경우, 기존의 비밀번호로 요청
-        if (edit_profile_edt_pw_new.text.isNullOrBlank()) {
-            editJsonData.put("user_pw", edit_profile_edt_pw_now.text.toString())
+        if (act_edit_profile_edt_pw_new.text.isNullOrBlank()) {
+            editJsonData.put("user_pw", act_edit_profile_edt_pw_now.text.toString())
         } else {
-            editJsonData.put("user_pw", edit_profile_edt_pw_new.text.toString())
+            editJsonData.put("user_pw", act_edit_profile_edt_pw_new.text.toString())
         }
 
         val body = JsonParser.parseString(editJsonData.toString()) as JsonObject
