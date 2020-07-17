@@ -8,6 +8,4 @@ interface FragmentToActivity {
     fun communicateNum(num:Int)
     fun sendType(type: String, frag: DialogFragment)
 
-     fun cancel(iscancel: Int)
-
 }

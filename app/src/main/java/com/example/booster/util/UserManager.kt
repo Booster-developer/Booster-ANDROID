@@ -15,6 +15,14 @@ object UserManager {
             it.putString("token", value)
         }
 
+    var univ: Int?
+    get() = pref.getInt("univ", 1)
+    set(value) = pref.edit{
+        if (value != null) {
+            it.putInt("univ", value)
+        }
+    }
+
     fun logOut(){
         token = null
     }

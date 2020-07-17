@@ -100,8 +100,6 @@ class LoginActivity : AppCompatActivity() {
                         response: Response<LoginData>
                     ) {
                         if (response.isSuccessful) {
-                            val message = response.body()!!.message
-//                            Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT).show()
                             if (response.body()!!.success) {
                                 val intent =
                                     Intent(this@LoginActivity, BottomTabActivity::class.java)
