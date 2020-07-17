@@ -2,6 +2,7 @@ package com.example.booster.ui.storeList
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.annotation.UiThread
 import androidx.fragment.app.FragmentActivity
 import com.example.booster.R
@@ -72,6 +73,7 @@ class MapActivity : FragmentActivity(), OnMapReadyCallback {
 
     fun draw(nMap: NaverMap){
         for(i in 0 until markers.size){
+            Log.e("marker", markers[i].toString())
             repeat(1000) {
                 array.plusAssign(Marker().apply {
                     position = LatLng(markers[i].latitude!!.toDouble(), markers[i].longitude!!.toDouble())

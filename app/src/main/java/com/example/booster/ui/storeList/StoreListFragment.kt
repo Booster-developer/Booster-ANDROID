@@ -163,6 +163,7 @@ class StoreListFragment : Fragment() {
             adapter.data = it
             adapter.notifyDataSetChanged()
             markers.clear()
+
             for(i in 0 .. it.size-1){
                 markers.add(
                     MarkerData(

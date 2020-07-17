@@ -57,9 +57,10 @@ class StoreFileOptionActivity : AppCompatActivity(),
 
         // 이미지일 경우 deafult 값
         if (fileType != ".pdf") {
+            order_option_btn_range.isEnabled = false
             rangeMin = 1
             rangeMax = 1
-        }
+        }else order_option_btn_range.isEnabled = true
 
         storeFileOptionViewModel = ViewModelProvider(this).get(StoreFileOptionViewModel::class.java)
 
@@ -227,6 +228,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
                 combine = 16
             } else combineReset()
         }
+
 
         order_option_btn_range.onlyOneClickListener {
             val fileRangeDialog = StoreFileOptionRangeFragment()
