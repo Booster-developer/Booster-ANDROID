@@ -18,13 +18,15 @@ import retrofit2.Response
 
 class MypageFragment : Fragment() {
 
+    var univIdx = -1
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
 
-        BoosterServiceImpl.service.getMyProfile(token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkeCI6MSwiaWF0IjoxNTk0MDI1NzE2LCJleHAiOjE1OTc2MjU3MTYsImlzcyI6IkJvb3N0ZXIifQ.FtWfnt4rlyYH9ZV3TyOjLZXOkeR7ya96afmA0zJqTI8")
+        BoosterServiceImpl.service.getMyProfile()
             .enqueue(object : Callback<ProfileData> {
                 override fun onFailure(call: Call<ProfileData>, t: Throwable) {
                     Log.e("error", t.toString())
@@ -34,6 +36,7 @@ class MypageFragment : Fragment() {
                     if (response.isSuccessful) {
                         val data = response.body()!!.data
                         mypage_tv_name.text = data.user_name
+                        univIdx = data.univ_idx
                         when (data.univ_idx) {
                             1 -> mypage_tv_univ.text = "숭실대학교"
                             2 -> mypage_tv_univ.text = "중앙대학교"
@@ -55,7 +58,11 @@ class MypageFragment : Fragment() {
         mypage_tv_goto_edit.setOnClickListener {
 
             val intent = Intent(context, EditProfileActivity::class.java)
+            intent.putExtra("id", mypage_tv_id.text.toString())
+            intent.putExtra("univ", univIdx.toString())
+            intent.putExtra("name", mypage_tv_name.text.toString())
             startActivity(intent)
+            Log.e("univvvvvvvvvv", univIdx.toString())
         }
 
         mypage_tv_goto_myengine.setOnClickListener {
@@ -65,4 +72,3 @@ class MypageFragment : Fragment() {
         }
     }
 }
-

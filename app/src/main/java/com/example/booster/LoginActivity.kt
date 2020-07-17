@@ -14,7 +14,6 @@ import android.widget.Toast
 import com.example.booster.data.datasource.model.LoginData
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.ui.bottomtap.BottomTabActivity
-import com.example.booster.ui.home.HomeActivity
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_login.*
@@ -42,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
         login_edt_pw.setOnFocusChangeListener { v, hasFocus ->
             login_edt_pw.isSelected = hasFocus
         }
-      
+
         login_edt_pw.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
                 v.clearFocus()
@@ -99,10 +98,10 @@ class LoginActivity : AppCompatActivity() {
                         call: Call<LoginData>,
                         response: Response<LoginData>
                     ) {
+                        val message = response.body()!!.message
+                        Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT).show()
+
                         if (response.isSuccessful) {
-                            val message = response.body()!!.message
-                            Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT)
-                                .show()
                             if (response.body()!!.success) {
                                 val intent =
                                     Intent(this@LoginActivity, BottomTabActivity::class.java)

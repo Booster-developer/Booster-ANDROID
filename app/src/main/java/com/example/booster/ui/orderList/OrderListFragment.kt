@@ -13,13 +13,16 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener
 import com.example.a2nd_seminar.ui.ItemDecorator
 import com.example.booster.R
+import com.example.booster.data.datasource.model.DefaultData
+import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.databinding.FragmentOrderListBinding
 import com.example.booster.ui.orderDetail.OrderDetailActivity
 import kotlinx.android.synthetic.main.fragment_order_list.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class OrderListFragment : Fragment() {
@@ -27,6 +30,8 @@ class OrderListFragment : Fragment() {
     private lateinit var viewModel: OrderListViewModel
     lateinit var adapter: OrderListAdapter
     lateinit var binding: FragmentOrderListBinding
+
+    val requestToServer = BoosterServiceImpl
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -84,6 +89,39 @@ class OrderListFragment : Fragment() {
                 startActivity(intent)
             }
 
+        },
+        object : OrderListViewHolder.onClickCancelListener{
+            override fun onCancel(position: Int) {
+
+                val orderCancelDialog = OrderCancelFragment()
+                orderCancelDialog.show(
+                    childFragmentManager,
+                    "file option range fragment"
+                )
+
+                viewModel.orderList.value?.get(position)?.order_idx?.let {
+                    requestToServer.service.deleteOrder(
+                        it
+                    ).enqueue(object : Callback<DefaultData>{
+                        override fun onFailure(call: Call<DefaultData>, t: Throwable) {
+                            //통신 실패
+                            Log.e("orderlistdelete", "통신 실패")
+                        }
+
+                        override fun onResponse(
+                            call: Call<DefaultData>,
+                            response: Response<DefaultData>
+                        ) {
+                            if(response.isSuccessful){
+                                Log.e("주문 취소 성공", "${viewModel.orderList.value?.get(position)?.order_idx} 주문 취소")
+                            }
+                        }
+
+                    })
+                }
+                Handler().postDelayed({ viewModel.getOrderList() }, 500)
+            }
+
         })
 
         frag_order_condition_rv.adapter = adapter
@@ -91,8 +129,11 @@ class OrderListFragment : Fragment() {
         frag_order_condition_rv.addItemDecoration(ItemDecorator(24))
 
         viewModel.orderList.observe(viewLifecycleOwner, Observer {
-            adapter.data = it
-            adapter.notifyDataSetChanged()
+            if(it!=null){
+                adapter.data = it
+                adapter.notifyDataSetChanged()
+            }
         })
     }
+
 }

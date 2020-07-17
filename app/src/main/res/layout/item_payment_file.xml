@@ -25,8 +25,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="16dp"
-            android:ellipsize="end"
             android:fontFamily="@font/noto_sans_kr_medium"
+            android:maxEms="11"
+            android:ellipsize="end"
             android:singleLine="true"
             android:text="@{paymentInfo.file_name}"
             android:textColor="@color/black"
@@ -151,10 +152,11 @@
                 android:textSize="12sp" />
 
             <TextView
+                android:id="@+id/payment_all_or_part"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_kr_regular"
-                android:text="p"
+                android:text=""
                 android:textColor="@color/tab_grey"
                 android:textSize="12sp" />
 

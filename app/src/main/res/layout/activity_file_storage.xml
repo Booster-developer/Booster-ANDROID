@@ -25,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="14dp"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
                 android:onClick="onClick"
                 android:src="@drawable/close_24px"
@@ -36,20 +36,23 @@
                 android:id="@+id/fileStorage_tv_heading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
                 android:fontFamily="@font/noto_sans_kr_medium"
                 android:text="대기리스트"
                 android:textColor="#131313"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@id/fileStorage_img_close"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <View
                 android:id="@+id/fileStorage_divider1"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="15dp"
                 android:background="#d5d5d5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fileStorage_tv_heading" />
 
             <TextView
@@ -57,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/noto_sans_kr_regular"
                 android:text="내가 선택한 매장"
                 android:textColor="#304fff"
@@ -70,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
                 android:fontFamily="@font/noto_sans_kr_medium"
                 android:textColor="#131313"
                 android:textSize="24sp"

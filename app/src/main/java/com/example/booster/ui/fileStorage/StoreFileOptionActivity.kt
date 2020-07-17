@@ -370,6 +370,10 @@ class StoreFileOptionActivity : AppCompatActivity(),
         frag.arguments = bundle
     }
 
+    override fun cancel(iscancel: Int) {
+
+    }
+
     override fun communicateRange(r: String, min: Int, max: Int) {
         range = r
         rangeMin = min
