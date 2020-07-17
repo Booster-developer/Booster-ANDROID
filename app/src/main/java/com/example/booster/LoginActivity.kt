@@ -4,16 +4,17 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.booster.data.datasource.model.LoginData
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.ui.bottomtap.BottomTabActivity
+import com.example.booster.util.UserManager
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_login.*
@@ -108,7 +109,8 @@ class LoginActivity : AppCompatActivity() {
                                 intent.putExtra("univ", response.body()!!.data.university_idx)
                                 intent.putExtra("token", response.body()!!.data.accessToken)
                                 startActivity(intent)
-
+                                Log.e("tokttttttttt", response.body()!!.data.accessToken)
+                               UserManager.token=  response.body()!!.data.accessToken
                                 isLoggedIn.isLoggedIn = "isLoggedIn"
                                 finish()
                             }
