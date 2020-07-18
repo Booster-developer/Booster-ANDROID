@@ -1,5 +1,6 @@
 package com.example.booster.ui.home
 
+import android.animation.Animator
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -13,12 +14,13 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.booster.R
 import com.example.booster.databinding.FragmentHomeBinding
 import com.example.booster.listener.onlyOneClickListener
+import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
 
 class HomeFragment : Fragment() {
     private lateinit var viewModel: HomeViewModel
-    lateinit var binding : FragmentHomeBinding
+    lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,17 +35,17 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
-
+        binding.vm = (this@HomeFragment).viewModel
         setClick()
         viewModel.getHome()
-        viewModel.homeRes.observe(requireActivity() , Observer {
+        viewModel.homeRes.observe(requireActivity(), Observer {
             frag_home_user_name.text = it.data.user_name
             when (it.data.home_state) {
                 0 -> {
                     frag_home_lt.setAnimation("home_s8_1.json")
                     frag_home_txt2.text = "인쇄를 시작해볼까요?"
                 }
-                1,2 -> {
+                1, 2 -> {
                     frag_home_lt.setAnimation("home_s8_2.json")
                     frag_home_txt2.text = "인쇄 진행 중이에요."
                 }
@@ -54,37 +56,31 @@ class HomeFragment : Fragment() {
             }
         })
 
-        binding.vm = (this@HomeFragment).viewModel
-        frag_home_lt.repeatCount = 2
-        frag_home_lt.playAnimation()
+//        setLottie()
 
-        parentFragmentManager.addOnBackStackChangedListener {
-            viewModel.getHome()
-            frag_home_lt.playAnimation()
-            Log.e("onResume", "실행")
-        }
+//        frag_home_lt.loop(true)
+//        frag_home_lt.playAnimation()
+//        frag_home_lt.run {
+//            loop(true)
+//            playAnimation()
+//        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        frag_home_lt.cancelAnimation()
+
     }
 
     override fun onResume() {
         super.onResume()
         viewModel.getHome()
+        frag_home_lt.loop(true)
         frag_home_lt.playAnimation()
-//        Log.e("onResume", "실행")
+        Log.e("HomeFrag", "onResume")
     }
 
-//    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-//        super.setUserVisibleHint(isVisibleToUser)
-//        isVisible = isVisibleToUser
-//
-//        // Make sure that fragment is currently visible
-//        if (!isVisible && isResumed) {
-//            // Call code when Fragment not visible
-//        } else if (isVisible && isResumed) {
-//            // Call code when Fragment becomes visible.
-//        }
-//    }
-
-    fun setClick(){
+    fun setClick() {
         frag_home_btn_alert.onlyOneClickListener {
             val intent = Intent(activity, AlertActivity::class.java)
             startActivity(intent)

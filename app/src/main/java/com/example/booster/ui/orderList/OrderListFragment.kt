@@ -72,7 +72,6 @@ class OrderListFragment : Fragment(), DialogInterface.OnDismissListener {
         }
     }
 
-
     private fun initRv() {
         adapter = OrderListAdapter(requireContext(),
             object : OrderListViewHolder.onClickPickUpListener {
@@ -99,7 +98,6 @@ class OrderListFragment : Fragment(), DialogInterface.OnDismissListener {
                 orderCancelDialog.show(childFragmentManager, "dialog")
 
             }
-
         })
 
 

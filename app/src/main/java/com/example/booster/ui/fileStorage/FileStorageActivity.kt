@@ -123,6 +123,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                 intent.putExtra("order_idx", this.orderIdx)
                 Log.e("orderidxfilesto", this.orderIdx.toString())
                 startActivity(intent)
+                finish()
             }
         }
         setClick()
@@ -138,7 +139,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
 
     override fun onBackPressed() {
         if(fileStorageViewModel.fileLiveData.value!!.size!=0) showDeleteDialog()
-        finish()
+        else finish()
     }
 
     private fun subscribeObservers() {

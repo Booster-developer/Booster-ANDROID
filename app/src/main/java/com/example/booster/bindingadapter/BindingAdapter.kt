@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.example.booster.R
+import kotlinx.android.synthetic.main.my_file.view.*
 
 @BindingAdapter("changeCircleF")
 fun ImageView.changeCircleF(status : Int) {
@@ -138,5 +139,11 @@ fun TextView.setBtnActive(close : Int?) {
     }else{
         setBackgroundResource(R.drawable.bg_btn_gradation)
     }
+}
+
+@BindingAdapter("setFileName")
+fun TextView.setFileName(name: String?){
+    Log.e("setFileName -----> ", name)
+    setFileName(name!!.substring(0, name.length-4))
 }
 
