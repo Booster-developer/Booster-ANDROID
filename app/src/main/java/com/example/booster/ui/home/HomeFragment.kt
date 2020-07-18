@@ -54,9 +54,6 @@ class HomeFragment : Fragment() {
                 }
             }
         })
-//        frag_home_lt.onlyOneClickListener {
-//            frag_home_lt.playAnimation()
-//        }
         binding.fragHomeLt.onlyOneClickListener {
             frag_home_lt.playAnimation()
         }

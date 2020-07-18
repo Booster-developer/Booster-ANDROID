@@ -116,6 +116,7 @@ class MapActivity : FragmentActivity(), OnMapReadyCallback {
                         }
                     }
                     startActivity(intent)
+                    finish()
                     false
 
                 }

@@ -64,7 +64,7 @@ fun TextView.setPickUpBtn(status : Int) {
 
 @BindingAdapter("setCancelVisible")
 fun TextView.setCancelVisible(status : Int) {
-    if (status!=1){
+    if (status==2 || status==3){
         visibility = GONE
     }
 }

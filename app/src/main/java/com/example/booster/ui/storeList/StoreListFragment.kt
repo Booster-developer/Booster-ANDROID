@@ -46,7 +46,7 @@ class StoreListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_store_list, container, false)
-        binding.lifecycleOwner = this@StoreListFragment
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
