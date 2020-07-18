@@ -40,6 +40,9 @@ class OrderListAdapter (private val context : Context,
         val status = holder.binding.orderListRes!!.order_state
         if(status==1 || status==2){
             holder.binding.itemOrderListTvDonePick.isClickable = false
+        }else{
+            holder.binding.itemOrderListTvDonePick.isClickable = true
+
         }
 
     }

@@ -37,10 +37,10 @@ class OrderListFragment : Fragment(), DialogInterface.OnDismissListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_order_list, container, false)
+//        val rootView = inflater.inflate(R.layout.fragment_order_list, container, false)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_list, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
-        return rootView
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -55,6 +55,8 @@ class OrderListFragment : Fragment(), DialogInterface.OnDismissListener {
         })
         binding.vm = (this@OrderListFragment).viewModel
         refresh()
+
+//        binding.fragOrderListTvName.text = viewModel.orderInfo.value!!.user_name
     }
 
     override fun onResume() {
