@@ -27,8 +27,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_repeatCount="2"/>
+            app:lottie_loop="true"/>
 
         <ImageView
             android:id="@+id/frag_home_btn_alert"
