@@ -63,8 +63,8 @@ class OrderListFragment : Fragment(), DialogInterface.OnDismissListener {
         viewModel.getOrderList()
     }
 
-    private fun refresh(){
-        frag_order_list_srl.apply{
+    private fun refresh() {
+        frag_order_list_srl.apply {
             setOnRefreshListener {
                 viewModel.getOrderList()
                 this@apply.isRefreshing = false
@@ -77,28 +77,29 @@ class OrderListFragment : Fragment(), DialogInterface.OnDismissListener {
             object : OrderListViewHolder.onClickPickUpListener {
                 override fun onClickPickUp(position: Int, textView: TextView, orderIdx: Int) {
                     Log.e("orderIdx -> ", orderIdx.toString())
+//                    viewModel.putPickUp(orderIdx)
                     viewModel.putPickUp(orderIdx)
-                    Log.e("orderlistorderidx", orderIdx.toString())
                     Handler().postDelayed({ viewModel.getOrderList() }, 1000)
                 }
-            },
-        object : OrderListViewHolder.onClickDetailListener{
-            override fun onClickDetail(position: Int) {
-                val intent = Intent(context, OrderDetailActivity::class.java)
-                intent.putExtra("idx", viewModel.orderList.value!![position].order_idx.toString())
-                startActivity(intent)
-            }
-        },
-        object : OrderListViewHolder.onClickCancelListener{
-            override fun onCancel(position: Int) {
-                val idx = viewModel.orderList.value!![position].order_idx
-                var bundle = Bundle()
-                bundle.putInt("idx", idx)
-                orderCancelDialog.arguments = bundle
-                orderCancelDialog.show(childFragmentManager, "dialog")
+            }, object : OrderListViewHolder.onClickDetailListener {
+                override fun onClickDetail(position: Int) {
+                    val intent = Intent(context, OrderDetailActivity::class.java)
+                    intent.putExtra(
+                        "idx",
+                        viewModel.orderList.value!![position].order_idx.toString()
+                    )
+                    startActivity(intent)
+                }
+            }, object : OrderListViewHolder.onClickCancelListener {
+                override fun onCancel(position: Int) {
+                    val idx = viewModel.orderList.value!![position].order_idx
+                    var bundle = Bundle()
+                    bundle.putInt("idx", idx)
+                    orderCancelDialog.arguments = bundle
+                    orderCancelDialog.show(childFragmentManager, "dialog")
 
-            }
-        })
+                }
+            })
 
 
         frag_order_condition_rv.adapter = adapter
@@ -116,6 +117,7 @@ class OrderListFragment : Fragment(), DialogInterface.OnDismissListener {
                 adapter.notifyDataSetChanged()
             }
         })
+
     }
 
 }

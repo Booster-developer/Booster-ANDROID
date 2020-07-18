@@ -1,6 +1,5 @@
 package com.example.booster.ui.home
 
-import android.animation.Animator
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -14,8 +13,8 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.booster.R
 import com.example.booster.databinding.FragmentHomeBinding
 import com.example.booster.listener.onlyOneClickListener
-import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.koin.android.ext.android.bind
 
 
 class HomeFragment : Fragment() {
@@ -26,10 +25,9 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_home, container, false)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-        binding.lifecycleOwner = this
-        return rootView
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -37,46 +35,38 @@ class HomeFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
         binding.vm = (this@HomeFragment).viewModel
         setClick()
+
         viewModel.getHome()
         viewModel.homeRes.observe(requireActivity(), Observer {
             frag_home_user_name.text = it.data.user_name
             when (it.data.home_state) {
                 0 -> {
-                    frag_home_lt.setAnimation("home_s8_1.json")
+                    binding.fragHomeLt.setAnimation("home_s8_1.json")
                     frag_home_txt2.text = "인쇄를 시작해볼까요?"
                 }
                 1, 2 -> {
-                    frag_home_lt.setAnimation("home_s8_2.json")
+                    binding.fragHomeLt.setAnimation("home_s8_2.json")
                     frag_home_txt2.text = "인쇄 진행 중이에요."
                 }
                 else -> {
-                    frag_home_lt.setAnimation("home_s8_3.json")
+                    binding.fragHomeLt.setAnimation("home_s8_3.json")
                     frag_home_txt2.text = "인쇄가 완료되었어요 :)"
                 }
             }
         })
-
-//        setLottie()
-
-//        frag_home_lt.loop(true)
-//        frag_home_lt.playAnimation()
-//        frag_home_lt.run {
-//            loop(true)
-//            playAnimation()
+//        frag_home_lt.onlyOneClickListener {
+//            frag_home_lt.playAnimation()
 //        }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        frag_home_lt.cancelAnimation()
-
+        binding.fragHomeLt.onlyOneClickListener {
+            frag_home_lt.playAnimation()
+        }
     }
 
     override fun onResume() {
         super.onResume()
+
         viewModel.getHome()
-        frag_home_lt.loop(true)
-        frag_home_lt.playAnimation()
+        binding.fragHomeLt.playAnimation()
         Log.e("HomeFrag", "onResume")
     }
 
