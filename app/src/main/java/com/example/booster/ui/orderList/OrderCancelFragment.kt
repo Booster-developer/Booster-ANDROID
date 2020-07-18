@@ -1,6 +1,7 @@
 package com.example.booster.ui.orderList
 
 import android.app.Dialog
+import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -68,10 +69,8 @@ class OrderCancelFragment : DialogFragment() {
                     ) {
                         if (response.isSuccessful) {
                             Log.e("주문 취소 성공", "주문 취소")
-                            (requireParentFragment() as OrderListFragment).viewModel.getOrderList()
                             dismiss()
                         }
-
                     }
 
                 })
@@ -79,5 +78,14 @@ class OrderCancelFragment : DialogFragment() {
 
             dismiss()
         }
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        val parentFragment: Fragment? = parentFragment
+        if (parentFragment is DialogInterface.OnDismissListener) {
+            (parentFragment as DialogInterface.OnDismissListener?)!!.onDismiss(dialog)
+        }
+
     }
 }
