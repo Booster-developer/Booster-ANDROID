@@ -140,6 +140,7 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
     override fun onBackPressed() {
         if(fileStorageViewModel.fileLiveData.value!!.size!=0) showDeleteDialog()
         else finish()
+
     }
 
     private fun subscribeObservers() {
