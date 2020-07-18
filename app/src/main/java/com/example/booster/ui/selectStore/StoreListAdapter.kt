@@ -138,6 +138,7 @@ class StoreListAdapter(val storeListItemClickListener: StoreListItemClickListene
                     if (storeItem.store_idx == -1) { //없을때
                         itemView.item_selectstore_file_tv_no_favorite_stores.visibility = View.VISIBLE
                         itemView.constraintLayout9.visibility = View.INVISIBLE
+                        itemView.isEnabled = false
                     } else { //있을때
                         itemView.item_selectstore_file_tv_no_favorite_stores.visibility = View.GONE
                         itemView.constraintLayout9.visibility = View.VISIBLE

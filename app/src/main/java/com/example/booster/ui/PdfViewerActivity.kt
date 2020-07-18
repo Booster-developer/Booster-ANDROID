@@ -54,7 +54,7 @@ class PdfViewerActivity : AppCompatActivity() {
             "pagecount",
             "check: " + pageCount.toString() + " " + pdfviewer_act_main_total_page.text
         )
-        pdfviewer_act_main_total_page.text = pageCount.toString()
+        pdfviewer_act_main_total_page.text = "총 " + pageCount.toString() + " 페이지"
 
         val parentlayout = LinearLayout(this)
         parentlayout.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
@@ -67,7 +67,7 @@ class PdfViewerActivity : AppCompatActivity() {
         }
 
         for (i in 0 until pageCount) {
-            pdfviewer_act_main_cur_page.text = (i + 1).toString()
+            //pdfviewer_act_main_cur_page.text = (i + 1).toString()
             val imageView = ImageView(this)
             imageView.layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
