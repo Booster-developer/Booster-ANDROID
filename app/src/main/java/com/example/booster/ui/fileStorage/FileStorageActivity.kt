@@ -123,14 +123,24 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
                 intent.putExtra("order_idx", this.orderIdx)
                 Log.e("orderidxfilesto", this.orderIdx.toString())
                 startActivity(intent)
+                finish()
             }
         }
+        setClick()
+    }
 
+    fun setClick(){
+        fileStorage_img_close.onlyOneClickListener {
+            if(fileStorageViewModel.fileLiveData.value!!.size!=0) showDeleteDialog()
+            else finish()
+        }
+        fileStorage_iv_file_add.onlyOneClickListener { fileAdd() }
     }
 
     override fun onBackPressed() {
         if(fileStorageViewModel.fileLiveData.value!!.size!=0) showDeleteDialog()
-        //finish()
+        else finish()
+
     }
 
     private fun subscribeObservers() {
@@ -421,20 +431,6 @@ class FileStorageActivity : AppCompatActivity(), FileRecyclerViewOnClickListener
         }
         fileStorage_rv_file_add.adapter?.notifyDataSetChanged()
     }
-
-    fun onClick(view: View) {
-//        when (view) {
-//            fileStorage_img_close -> showDeleteDialog()
-//            fileStorage_iv_file_add -> fileAdd()
-//            //fileStorage_tv_order -> fileStorageViewModel.order()
-//        }
-        fileStorage_img_close.setOnClickListener {
-            if(fileStorageViewModel.fileLiveData.value!!.size!=0) showDeleteDialog()
-            else finish()
-        }
-        fileStorage_iv_file_add.setOnClickListener { fileAdd() }
-    }
-
 
     private fun fileAdd() {
         val builder: AlertDialog.Builder =

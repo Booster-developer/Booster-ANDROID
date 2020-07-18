@@ -23,6 +23,7 @@ import com.example.booster.ui.storeDetail.StoreDetailActivity
 import com.example.booster.ui.storeDetail.StoreDetailViewModel
 import com.example.booster.util.UserManager
 import com.google.android.material.appbar.AppBarLayout
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_store_list.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -52,6 +53,7 @@ class StoreListFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         univIdx?.let { viewModel.getStoreList(it) }
+        Log.e("stroeListFrag", "onResume")
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -141,14 +143,15 @@ class StoreListFragment : Fragment() {
                         ) {
                             //통신 성공
                             Log.e("putStoreFavRetrofit", response.body().toString())
+
                             val data = response.body()!!.status
                             if(data==201) {
                                 imageView.setImageResource(R.drawable.store_ic_active_star)
-                                univIdx?.let { viewModel.getStoreList(it) }
+//                                univIdx?.let { viewModel.getStoreList(it) }
                             }
                             else if (data==200) {
                                 imageView.setImageResource(R.drawable.store_ic_inactive_star)
-                                univIdx?.let { viewModel.getStoreList(it) }
+//                                univIdx?.let { viewModel.getStoreList(it) }
                             }
                         }
 
@@ -163,6 +166,7 @@ class StoreListFragment : Fragment() {
             adapter.data = it
             adapter.notifyDataSetChanged()
             markers.clear()
+
             for(i in 0 .. it.size-1){
                 markers.add(
                     MarkerData(

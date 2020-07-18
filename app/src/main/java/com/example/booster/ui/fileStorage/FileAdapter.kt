@@ -109,10 +109,6 @@ class FileAdapter(
             itemView.iv_file.onlyOneClickListener {
                 fileRecyclerViewOnClickListener?.pdfviewer(file, bindingAdapterPosition)
             }
-
-
-
-
         }
     }
 

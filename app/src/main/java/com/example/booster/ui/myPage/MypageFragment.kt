@@ -81,6 +81,7 @@ class MypageFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        Log.e("mayPageFrag", "onResume")
         BoosterServiceImpl.service.getMyProfile()
             .enqueue(object : Callback<ProfileData> {
                 override fun onFailure(call: Call<ProfileData>, t: Throwable) {
