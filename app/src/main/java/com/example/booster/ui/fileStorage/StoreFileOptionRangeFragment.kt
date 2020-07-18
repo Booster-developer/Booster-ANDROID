@@ -23,9 +23,6 @@ class StoreFileOptionRangeFragment : DialogFragment() {
     var printMinNum = 0
     var printMaxNum = 0
 
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
