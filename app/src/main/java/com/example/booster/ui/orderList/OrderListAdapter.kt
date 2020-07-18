@@ -51,15 +51,15 @@ class OrderListViewHolder(val binding : ItemOrderListBinding,
                           val cancel: onClickCancelListener) : RecyclerView.ViewHolder(binding.root){
     init {
         binding.itemOrderListTvDonePick.onlyOneClickListener {
-            clickPickUp.onClickPickUp(adapterPosition,
+            clickPickUp.onClickPickUp(bindingAdapterPosition,
                 binding.itemOrderListTvDonePick,
             binding.orderListRes!!.order_idx)
         }
         itemView.item_order_list_detail.onlyOneClickListener{
-            clickDetail.onClickDetail(adapterPosition)
+            clickDetail.onClickDetail(bindingAdapterPosition)
         }
         itemView.item_order_list_cancel.onlyOneClickListener {
-            cancel.onCancel(adapterPosition)
+            cancel.onCancel(bindingAdapterPosition)
         }
     }
 

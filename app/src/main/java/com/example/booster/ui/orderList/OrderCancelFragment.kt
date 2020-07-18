@@ -108,8 +108,8 @@ class OrderCancelFragment : DialogFragment() {
                     ) {
                         if (response.isSuccessful) {
                             Log.e("주문 취소 성공", "주문 취소")
-                            (requireParentFragment() as OrderListFragment).viewModel.getOrderList()
-//                            dismiss()
+                            //(requireParentFragment() as OrderListFragment).viewModel.getOrderList()
+                            //dismiss()
                         }
 
                     }

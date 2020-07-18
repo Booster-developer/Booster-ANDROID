@@ -4,13 +4,18 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.booster.data.datasource.model.DefaultData
+import com.example.booster.data.datasource.model.File
 import com.example.booster.data.datasource.model.Order
 import com.example.booster.data.datasource.model.OrderList
-import com.example.booster.data.datasource.model.OrderListData
+import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.data.repository.OrderListRepository
+import com.example.booster.util.UserManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class OrderListViewModel : ViewModel() {
 
@@ -26,6 +31,7 @@ class OrderListViewModel : ViewModel() {
     var orderInfo = MutableLiveData<Order>()
 
     fun getOrderList(){
+
         disposables.add(orderListRepository.getOrderList()
             .observeOn(AndroidSchedulers.mainThread())
             // 구독할 때 수행할 작업을 구현
@@ -50,6 +56,7 @@ class OrderListViewModel : ViewModel() {
                 // onFailure
                 Log.e("통신 실패 error : ", it.message!!)
             })
+
     }
 
     fun putPickUp(orderIdx : Int){
