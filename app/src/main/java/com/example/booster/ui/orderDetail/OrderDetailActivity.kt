@@ -126,7 +126,7 @@ class OrderDetailActivity : AppCompatActivity() {
         for(i in 0 .. datas.size-1){
             orderAdapter.data.add(datas[i])
         }
-        Log.e("Added data check", datas.toString())
+        //Log.e("Added data check")
         orderAdapter.notifyDataSetChanged()
 
     }
