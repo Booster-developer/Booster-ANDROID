@@ -1,5 +1,6 @@
 package com.example.booster.ui.orderList
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -20,17 +21,25 @@ import com.example.booster.ui.orderDetail.OrderDetailActivity
 import kotlinx.android.synthetic.main.fragment_order_list.*
 
 
-class OrderListFragment : Fragment() {
+class OrderListFragment : Fragment(), DialogInterface.OnDismissListener {
+    override fun onDismiss(dialog: DialogInterface?) {
+        viewModel.getOrderList()
+    }
+
     val orderCancelDialog = OrderCancelFragment()
 
     lateinit var viewModel: OrderListViewModel
     lateinit var adapter: OrderListAdapter
     lateinit var binding: FragmentOrderListBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val rootView = inflater.inflate(R.layout.fragment_order_list, container, false)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_list, container, false)
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
         return rootView
     }
 
@@ -41,8 +50,8 @@ class OrderListFragment : Fragment() {
         initRv()
         viewModel.getOrderList()
         viewModel.orderInfo.observe(viewLifecycleOwner, Observer {
-            frag_order_list_tv_name.text = it.user_name
-            frag_order_list_tv_count.text = it.booster_count.toString()
+            binding.fragOrderListTvName.text = it.user_name
+            binding.fragOrderListTvCount.text = it.booster_count.toString()
         })
         binding.vm = (this@OrderListFragment).viewModel
         refresh()
@@ -91,17 +100,18 @@ class OrderListFragment : Fragment() {
             }
         })
 
+
         frag_order_condition_rv.adapter = adapter
         frag_order_condition_rv.layoutManager = LinearLayoutManager(requireContext())
         frag_order_condition_rv.addItemDecoration(ItemDecorator(24))
 
         viewModel.orderList.observe(viewLifecycleOwner, Observer {
-            if(it!=null){
-            Log.e("viewModel.orderList.observe", "오오오오오ㅗ오오오오ㅗ오옹")
+            if (it != null) {
+                Log.e("viewModel.orderList.observe", "오오오오오ㅗ오오오오ㅗ오옹")
 
                 adapter.data = it
                 adapter.notifyDataSetChanged()
-            } else{
+            } else {
                 adapter.data.clear()
                 adapter.notifyDataSetChanged()
             }
