@@ -35,12 +35,12 @@ class EngineListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(engineData: EngineData) {
 
         if (engineData.engine_sign == 1) {
-            itemView.item_engine_tv_point.text = "+" + engineData.engine_cost.toString() + "P"
-            itemView.item_engine_tv_point.setTextColor(Color.parseColor("#467fff"))
+            itemView.engine_item_tv_point.text = "+" + engineData.engine_cost.toString() + "P"
+            itemView.engine_item_tv_point.setTextColor(Color.parseColor("#467fff"))
         } else {
-            itemView.item_engine_tv_point.text = "-" + engineData.engine_cost.toString() + "P"
+            itemView.engine_item_tv_point.text = "-" + engineData.engine_cost.toString() + "P"
         }
-        itemView.item_engine_tv_date.text = engineData.engine_time
-        itemView.item_engine_tv_store.text = engineData.engine_store_name
+        itemView.engine_item_tv_date.text = engineData.engine_time
+        itemView.engine_item_tv_store.text = engineData.engine_store_name
     }
 }
