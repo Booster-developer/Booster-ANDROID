@@ -5,11 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.booster.AnimationUtil
+import com.example.booster.util.AnimationUtil
 import com.example.booster.data.datasource.model.OrderList
 import com.example.booster.databinding.ItemOrderListBinding
-import com.example.booster.onlyOneClickListener
-import com.example.booster.ui.storeList.StoreListViewHolder
+import com.example.booster.listener.onlyOneClickListener
 import kotlinx.android.synthetic.main.item_order_list.view.*
 
 class OrderListAdapter (private val context : Context,
@@ -41,6 +40,9 @@ class OrderListAdapter (private val context : Context,
         val status = holder.binding.orderListRes!!.order_state
         if(status==1 || status==2){
             holder.binding.itemOrderListTvDonePick.isClickable = false
+        }else{
+            holder.binding.itemOrderListTvDonePick.isClickable = true
+
         }
 
     }
@@ -52,15 +54,15 @@ class OrderListViewHolder(val binding : ItemOrderListBinding,
                           val cancel: onClickCancelListener) : RecyclerView.ViewHolder(binding.root){
     init {
         binding.itemOrderListTvDonePick.onlyOneClickListener {
-            clickPickUp.onClickPickUp(adapterPosition,
+            clickPickUp.onClickPickUp(bindingAdapterPosition,
                 binding.itemOrderListTvDonePick,
             binding.orderListRes!!.order_idx)
         }
         itemView.item_order_list_detail.onlyOneClickListener{
-            clickDetail.onClickDetail(adapterPosition)
+            clickDetail.onClickDetail(bindingAdapterPosition)
         }
         itemView.item_order_list_cancel.onlyOneClickListener {
-            cancel.onCancel(adapterPosition)
+            cancel.onCancel(bindingAdapterPosition)
         }
     }
 

@@ -15,17 +15,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a2nd_seminar.ui.ItemDecorator
 import com.example.booster.R
 import com.example.booster.data.datasource.model.MarkerData
-import com.example.booster.data.datasource.model.NoticeData
 import com.example.booster.data.datasource.model.StoreFavData
-import com.example.booster.data.remote.network.BoosterService
 import com.example.booster.data.remote.network.BoosterServiceImpl
-import com.example.booster.data.remote.network.BoosterServiceImpl.service
 import com.example.booster.databinding.FragmentStoreListBinding
-import com.example.booster.onlyOneClickListener
+import com.example.booster.listener.onlyOneClickListener
 import com.example.booster.ui.storeDetail.StoreDetailActivity
 import com.example.booster.ui.storeDetail.StoreDetailViewModel
+import com.example.booster.util.UserManager
 import com.google.android.material.appbar.AppBarLayout
-import kotlinx.android.synthetic.main.fragment_order_list.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_store_list.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -40,7 +38,7 @@ class StoreListFragment : Fragment() {
     lateinit var adapter: StoreListAdapter
     lateinit var binding: FragmentStoreListBinding
     var markers = arrayListOf<MarkerData>()
-    var univIdx = 1
+    var univIdx = UserManager.univ
     var status = 0
 
     override fun onCreateView(
@@ -48,13 +46,14 @@ class StoreListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_store_list, container, false)
-        binding.lifecycleOwner = this@StoreListFragment
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
     override fun onResume() {
         super.onResume()
-        viewModel.getStoreList(univIdx)
+        univIdx?.let { viewModel.getStoreList(it) }
+        Log.e("stroeListFrag", "onResume")
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -62,17 +61,19 @@ class StoreListFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(StoreListViewModel::class.java)
         viewModel2 = ViewModelProvider(this).get(StoreDetailViewModel::class.java)
 
+        univIdx?.let { viewModel.getStoreList(it) }
+
         initRv()
         setClick()
         setAppBar()
-        viewModel.getStoreList(univIdx)
+        setUnivTv()
         refresh()
     }
 
     private fun refresh(){
         frag_store_list_srl.apply{
             setOnRefreshListener {
-                viewModel.getStoreList(univIdx)
+                univIdx?.let { viewModel.getStoreList(it) }
                 this@apply.isRefreshing = false
             }
         }
@@ -111,7 +112,7 @@ class StoreListFragment : Fragment() {
         if(resultCode == DIALOG_FRAGMENT) {
             univIdx = bundle!!.getInt("univIdx")
             Log.e("univIdx", univIdx.toString())
-            viewModel.getStoreList(univIdx)
+            viewModel.getStoreList(univIdx!!)
             setUnivTv()
             Log.e("onactResult", bundle.getInt("univIdx").toString())
         }else{
@@ -142,9 +143,16 @@ class StoreListFragment : Fragment() {
                         ) {
                             //통신 성공
                             Log.e("putStoreFavRetrofit", response.body().toString())
+
                             val data = response.body()!!.status
-                            if(data==201) imageView.setImageResource(R.drawable.store_ic_active_star)
-                            else if (data==200) imageView.setImageResource(R.drawable.store_ic_inactive_star)
+                            if(data==201) {
+                                imageView.setImageResource(R.drawable.store_ic_active_star)
+//                                univIdx?.let { viewModel.getStoreList(it) }
+                            }
+                            else if (data==200) {
+                                imageView.setImageResource(R.drawable.store_ic_inactive_star)
+//                                univIdx?.let { viewModel.getStoreList(it) }
+                            }
                         }
 
                     })
@@ -158,6 +166,7 @@ class StoreListFragment : Fragment() {
             adapter.data = it
             adapter.notifyDataSetChanged()
             markers.clear()
+
             for(i in 0 .. it.size-1){
                 markers.add(
                     MarkerData(

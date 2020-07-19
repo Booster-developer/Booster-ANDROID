@@ -36,9 +36,9 @@
                     android:id="@+id/act_payment_iv_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
                     android:backgroundTint="#FFFFFF"
                     android:src="@drawable/nav_btn_back_black"
-                    android:layout_marginLeft="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -64,10 +64,10 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/white"
-            app:layout_constraintTop_toBottomOf="@id/act_payment_appBar"
             app:layout_constraintBottom_toTopOf="@id/act_payment_bottom_appBar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/act_payment_appBar">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -117,9 +117,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_sans_kr_regular"
                             android:lineSpacingExtra="17sp"
                             android:text="주문번호"
-                            android:fontFamily="@font/noto_sans_kr_regular"
                             android:textColor="#7d7d7d"
                             android:textSize="13sp" />
 
@@ -127,9 +127,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
+                            android:fontFamily="@font/noto_sans_kr_regular"
                             android:lineSpacingExtra="17sp"
                             android:text="no."
-                            android:fontFamily="@font/noto_sans_kr_regular"
                             android:textColor="#7d7d7d"
                             android:textSize="13sp" />
 
@@ -176,8 +176,8 @@
                         android:id="@+id/act_payment_rv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="3dp"
                         android:layout_marginBottom="24dp"
+                        android:paddingTop="3dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/act_payment_tv_list" />
 
@@ -216,9 +216,10 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="16dp"
-                        android:maxLines="1"
                         android:background="@drawable/border_bbbbbb_1dp"
+                        android:fontFamily="@font/noto_sans_kr_regular"
                         android:hint="사장님께 요청사항을 작성해주세요"
+                        android:maxLines="1"
                         android:paddingStart="12dp"
                         android:textSize="14sp"
                         app:layout_constraintTop_toBottomOf="@id/act_payment_tv_req" />
@@ -245,9 +246,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
+                        android:fontFamily="@font/noto_sans_kr_medium"
                         android:text="엔진 사용하기"
                         android:textColor="#467fff"
-                        android:fontFamily="@font/noto_sans_kr_medium"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -260,7 +261,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="16dp"
                         android:background="@drawable/bg_ffffff_round"
-                        android:elevation="5dp"
+                        android:elevation="1.5dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/act_payment_tv_engine">
@@ -271,9 +272,9 @@
                             android:layout_marginStart="12dp"
                             android:layout_marginTop="16dp"
                             android:layout_marginBottom="16dp"
+                            android:fontFamily="@font/noto_sans_kr_medium"
                             android:lineSpacingExtra="12sp"
                             android:text="현재 내 엔진 "
-                            android:fontFamily="@font/noto_sans_kr_medium"
                             android:textColor="@color/black"
                             android:textSize="18sp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -283,10 +284,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_sans_kr_medium"
                             android:text="@{String.valueOf(vm.paymentInfo.data.user_point)}"
                             android:textColor="@color/black"
                             android:textSize="18sp"
-                            android:fontFamily="@font/noto_sans_kr_medium"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/act_payment_won_1"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -296,13 +297,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="12dp"
+                            android:fontFamily="@font/noto_sans_kr_medium"
                             android:text="원"
                             android:textColor="@color/black"
                             android:textSize="18sp"
-                            android:fontFamily="@font/noto_sans_kr_medium"
-                            app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent" />
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -314,7 +315,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="16dp"
                         android:background="@drawable/bg_ffffff_round"
-                        android:elevation="5dp"
+                        android:elevation="1.5dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/act_payment_cl_engine_1">
@@ -325,11 +326,11 @@
                             android:layout_marginStart="12dp"
                             android:layout_marginTop="16dp"
                             android:layout_marginBottom="16dp"
+                            android:fontFamily="@font/noto_sans_kr_medium"
                             android:lineSpacingExtra="12sp"
                             android:text="총 결제 금액"
                             android:textColor="#467fff"
                             android:textSize="18sp"
-                            android:fontFamily="@font/noto_sans_kr_medium"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -337,10 +338,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_sans_kr_medium"
                             android:text="@{String.valueOf(vm.paymentInfo.data.order_price)}"
                             android:textColor="#467fff"
                             android:textSize="18sp"
-                            android:fontFamily="@font/noto_sans_kr_medium"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/act_payment_won_2"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -350,13 +351,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="12dp"
+                            android:fontFamily="@font/noto_sans_kr_medium"
                             android:text="원"
                             android:textColor="@color/black"
                             android:textSize="18sp"
-                            android:fontFamily="@font/noto_sans_kr_medium"
-                            app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent" />
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -369,7 +370,7 @@
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="24dp"
                         android:background="@drawable/bg_ffffff_round"
-                        android:elevation="5dp"
+                        android:elevation="1.5dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -381,11 +382,11 @@
                             android:layout_marginStart="12dp"
                             android:layout_marginTop="16dp"
                             android:layout_marginBottom="16dp"
+                            android:fontFamily="@font/noto_sans_kr_medium"
                             android:lineSpacingExtra="12sp"
                             android:text="결제 후 엔진"
                             android:textColor="@color/black"
                             android:textSize="18sp"
-                            android:fontFamily="@font/noto_sans_kr_medium"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -393,26 +394,26 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_sans_kr_medium"
                             android:text="@{String.valueOf(vm.paymentInfo.data.user_remain_point)}"
                             android:textColor="@color/black"
                             android:textSize="18sp"
-                            android:fontFamily="@font/noto_sans_kr_medium"
-                            app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/act_payment_won_3" />
+                            app:layout_constraintEnd_toStartOf="@+id/act_payment_won_3"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/act_payment_won_3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="12dp"
+                            android:fontFamily="@font/noto_sans_kr_medium"
                             android:text="원"
                             android:textColor="@color/black"
                             android:textSize="18sp"
-                            android:fontFamily="@font/noto_sans_kr_medium"
-                            app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent" />
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -421,12 +422,12 @@
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/pay_img_recipt"
                     android:scaleType="fitXY"
+                    android:src="@drawable/pay_img_recipt"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/act_payment_cl_engine"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/act_payment_cl_engine" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -437,19 +438,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:elevation="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <Button
+            <TextView
                 android:id="@+id/act_payment_btn_pay"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="12dp"
                 android:background="@drawable/bg_btn_gradation"
                 android:fontFamily="@font/noto_sans_kr_medium"
+                android:gravity="center"
                 android:text="결제하기"
                 android:textColor="@color/white"
                 android:textSize="20sp" />

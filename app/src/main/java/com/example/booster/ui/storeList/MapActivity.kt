@@ -7,7 +7,7 @@ import androidx.annotation.UiThread
 import androidx.fragment.app.FragmentActivity
 import com.example.booster.R
 import com.example.booster.data.datasource.model.MarkerData
-import com.example.booster.onlyOneClickListener
+import com.example.booster.listener.onlyOneClickListener
 import com.example.booster.ui.storeDetail.StoreDetailActivity
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
@@ -52,11 +52,7 @@ class MapActivity : FragmentActivity(), OnMapReadyCallback {
     override fun onMapReady(nMap: NaverMap) {
 
         val uiSettings = nMap.uiSettings
-        uiSettings.isZoomControlEnabled = true
-        uiSettings.isLocationButtonEnabled = true
 
-        nMap.locationSource
-        nMap.locationTrackingMode
         uiSettings.isScaleBarEnabled = false
 
         if (university == "숭실대학교"){
@@ -77,6 +73,7 @@ class MapActivity : FragmentActivity(), OnMapReadyCallback {
 
     fun draw(nMap: NaverMap){
         for(i in 0 until markers.size){
+            Log.e("marker", markers[i].toString())
             repeat(1000) {
                 array.plusAssign(Marker().apply {
                     position = LatLng(markers[i].latitude!!.toDouble(), markers[i].longitude!!.toDouble())
@@ -119,6 +116,7 @@ class MapActivity : FragmentActivity(), OnMapReadyCallback {
                         }
                     }
                     startActivity(intent)
+                    finish()
                     false
 
                 }

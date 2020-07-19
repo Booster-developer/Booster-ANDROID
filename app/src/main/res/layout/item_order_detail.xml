@@ -1,107 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
-    android:background="@drawable/bg_ffffff_round"
-    android:elevation="1dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/iv_order_detail"
-        android:layout_width="48dp"
-        android:layout_height="64dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/order_wait_img_1" />
+    <data>
 
-    <TextView
-        android:id="@+id/tv_order_detail_file_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="12dp"
-        android:fontFamily="@font/noto_sans_kr_medium"
-        android:text="파일이름파일이름파일이름"
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        android:maxEms="8"
-        android:ellipsize="end"
-        android:singleLine="true"
-        app:layout_constraintStart_toEndOf="@id/iv_order_detail"
-        app:layout_constraintTop_toTopOf="parent" />
+        <variable
+            name="orderDetailRes"
+            type="com.example.booster.data.datasource.model.OrderOption" />
 
-    <TextView
-        android:id="@+id/tv_order_detail_file_pdf"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/noto_sans_kr_medium"
-        android:text=".pdf"
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        android:maxEms="10"
-        android:ellipsize="end"
-        android:singleLine="true"
-        app:layout_constraintStart_toEndOf="@+id/tv_order_detail_file_name"
-        app:layout_constraintTop_toTopOf="@+id/tv_order_detail_file_name"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_order_detail_file_name"/>
-
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/noto_sans_kr_medium"
-        android:lineSpacingExtra="18sp"
-        android:text="결제금액"
-        android:textColor="#7d7d7d"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/tv_order_detail_file_name"
-        app:layout_constraintTop_toBottomOf="@+id/tv_order_detail_file_name" />
-
-    <TextView
-        android:id="@+id/tv_order_detail_file_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/noto_sans_kr_regular"
-        android:lineSpacingExtra="18sp"
-        android:textColor="#7d7d7d"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView16"
-        app:layout_constraintStart_toEndOf="@+id/textView16"
-        app:layout_constraintTop_toTopOf="@+id/textView16"
-        tools:text="1700" />
-
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/dial_item_order_detail"
-        android:layout_width="68dp"
-        android:layout_height="44dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/bg_ffffff_round"
+        android:elevation="1.5dp">
+
+        <ImageView
+            android:id="@+id/iv_order_detail"
+            android:layout_width="48dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/order_wait_img_1" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_order_detail_file_name"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
             android:fontFamily="@font/noto_sans_kr_medium"
-            android:lineSpacingExtra="20sp"
-            android:text="옵션보기"
-            android:textColor="#467fff"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            setFileName="@{orderDetailRes.file_name}"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:maxEms="8"
+            android:ellipsize="end"
+            android:singleLine="true"
+            app:layout_constraintStart_toEndOf="@id/iv_order_detail"
             app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_order_detail_file_pdf"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:text=".pdf"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:maxEms="10"
+            android:ellipsize="end"
+            android:singleLine="true"
+            app:layout_constraintStart_toEndOf="@+id/tv_order_detail_file_name"
+            app:layout_constraintTop_toTopOf="@+id/tv_order_detail_file_name"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_order_detail_file_name" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:lineSpacingExtra="18sp"
+            android:text="결제금액"
+            android:textColor="#7d7d7d"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_order_detail_file_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_order_detail_file_name" />
+
+        <TextView
+            android:id="@+id/tv_order_detail_file_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/noto_sans_kr_regular"
+            android:lineSpacingExtra="18sp"
+            android:textColor="#7d7d7d"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView16"
+            app:layout_constraintStart_toEndOf="@+id/textView16"
+            app:layout_constraintTop_toTopOf="@+id/textView16"
+            tools:text="1700" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/dial_item_order_detail"
+            android:layout_width="68dp"
+            android:layout_height="44dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_sans_kr_medium"
+                android:lineSpacingExtra="20sp"
+                android:text="옵션보기"
+                android:textColor="#467fff"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

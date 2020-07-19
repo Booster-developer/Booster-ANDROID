@@ -103,7 +103,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
-                        android:fontFamily="@font/noto_sans_kr_medium"
+                        android:fontFamily="@font/noto_sans_kr_regular"
                         android:paddingBottom="3dp"
                         android:text="주변의 부스터 매장을 찾아보세요."
                         android:textColor="#7d7d7d"

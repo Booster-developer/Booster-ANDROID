@@ -5,7 +5,7 @@ import androidx.annotation.UiThread
 import androidx.appcompat.app.AppCompatActivity
 import com.example.booster.R
 import com.example.booster.data.datasource.model.MarkerData
-import com.example.booster.onlyOneClickListener
+import com.example.booster.listener.onlyOneClickListener
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.MapFragment
@@ -49,11 +49,6 @@ class StoreDetailMapActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(nMap: NaverMap) {
 
         val uiSettings = nMap.uiSettings
-        uiSettings.isZoomControlEnabled = true
-        uiSettings.isLocationButtonEnabled = true
-
-        nMap.locationSource
-        nMap.locationTrackingMode
         uiSettings.isScaleBarEnabled = false
 
         var cameraUpdate = CameraUpdate.scrollTo(LatLng(x, y))

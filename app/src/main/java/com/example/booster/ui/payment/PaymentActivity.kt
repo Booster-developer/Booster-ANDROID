@@ -18,13 +18,9 @@ import com.example.booster.data.datasource.model.DefaultData
 import com.example.booster.data.remote.network.BoosterServiceImpl
 import com.example.booster.databinding.ActivityPaymentBinding
 import com.example.booster.ui.bottomtap.BottomTabActivity
-import com.example.booster.ui.home.HomeActivity
-import com.example.booster.ui.orderList.OrderListAdapter
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_payment.*
-import kotlinx.android.synthetic.main.fragment_order_list.*
-import kotlinx.android.synthetic.main.item_payment_file.*
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -100,7 +96,6 @@ class PaymentActivity : AppCompatActivity() {
         //결제완료하고 주문현황 넘어가기
         act_payment_btn_pay.setOnClickListener {
 
-
             val jsonData = JSONObject()
 
             jsonData.put("order_comment", act_payment_et_req.text)
@@ -118,12 +113,10 @@ class PaymentActivity : AppCompatActivity() {
 
                 override fun onResponse(call: Call<DefaultData>, response: Response<DefaultData>) {
                     if(response.isSuccessful){
-                        Success()
+                        success()
                     }
                 }
-
             })
-
         }
 
         act_payment_iv_back.setOnClickListener{
@@ -131,9 +124,10 @@ class PaymentActivity : AppCompatActivity() {
         }
     }
 
-    fun Success(){
+    private fun success(){
         val intent = Intent(this, BottomTabActivity::class.java)
         intent.putExtra("orderIdx", orderIdx)
         startActivity(intent)
+        finish()
     }
 }

@@ -7,16 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.ParcelFileDescriptor
 import android.util.Log
-import android.view.Gravity
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.booster.R
-import com.example.booster.onlyOneClickListener
-import kotlinx.android.synthetic.main.activity_pdf_text.*
+import com.example.booster.listener.onlyOneClickListener
 import kotlinx.android.synthetic.main.activity_pdf_viewer.*
-import kotlinx.android.synthetic.main.my_file.view.*
 import java.io.IOException
 
 class PdfViewerActivity : AppCompatActivity() {
@@ -58,8 +54,7 @@ class PdfViewerActivity : AppCompatActivity() {
             "pagecount",
             "check: " + pageCount.toString() + " " + pdfviewer_act_main_total_page.text
         )
-        pdfviewer_act_main_total_page.text = pageCount.toString()
-        Toast.makeText(this, "pageCount = $pageCount", Toast.LENGTH_LONG).show()
+        pdfviewer_act_main_total_page.text = "총 " + pageCount.toString() + " 페이지"
 
         val parentlayout = LinearLayout(this)
         parentlayout.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
@@ -72,7 +67,7 @@ class PdfViewerActivity : AppCompatActivity() {
         }
 
         for (i in 0 until pageCount) {
-            pdfviewer_act_main_cur_page.text = (i + 1).toString()
+            //pdfviewer_act_main_cur_page.text = (i + 1).toString()
             val imageView = ImageView(this)
             imageView.layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,

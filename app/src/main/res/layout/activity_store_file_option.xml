@@ -26,9 +26,9 @@
                 android:id="@+id/act_store_file_option_btn_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
                 android:backgroundTint="#FFFFFF"
                 android:src="@drawable/nav_btn_back_black"
-                android:layout_marginLeft="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -711,8 +711,8 @@
                     android:id="@+id/option5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="범위변경"
                     android:fontFamily="@font/noto_sans_kr_medium"
+                    android:text="범위변경"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@+id/linearrange"
@@ -722,9 +722,9 @@
                     android:id="@+id/textView14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_sans_kr_medium"
                     android:lineSpacingExtra="16sp"
                     android:text="부수변경"
-                    android:fontFamily="@font/noto_sans_kr_medium"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@+id/linearnum"
@@ -746,6 +746,7 @@
                         android:id="@+id/order_option_btn_range"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:focusableInTouchMode="true"
                         app:srcCompat="@drawable/btn_whole_pressed" />
 
                     <TextView
@@ -798,7 +799,6 @@
         android:id="@+id/act_store_file_option_bottombar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="5dp"
         android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -807,17 +807,17 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#d5d5d5"
-            />
+            android:background="#d5d5d5" />
 
-        <Button
+        <TextView
             android:id="@+id/act_store_file_option_btn_option"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="12dp"
             android:background="@drawable/bg_btn_gradation"
             android:fontFamily="@font/noto_sans_kr_medium"
+            android:gravity="center"
             android:text="선택완료"
             android:textColor="@color/white"
             android:textSize="20sp" />

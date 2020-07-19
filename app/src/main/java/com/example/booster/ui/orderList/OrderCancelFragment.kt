@@ -1,22 +1,30 @@
 package com.example.booster.ui.orderList
 
 import android.app.Dialog
-import android.content.Context
+import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.booster.R
-import com.example.booster.onlyOneClickListener
-import kotlinx.android.synthetic.main.dialog_item_view.*
+import com.example.booster.data.datasource.model.DefaultData
+import com.example.booster.data.remote.network.BoosterServiceImpl
+import com.example.booster.listener.onlyOneClickListener
 import kotlinx.android.synthetic.main.dialog_order_cancel.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class OrderCancelFragment : DialogFragment() {
+
+    val requestToServer = BoosterServiceImpl
+    private lateinit var viewModel: OrderListViewModel
 
 
     override fun onCreateView(
@@ -35,36 +43,91 @@ class OrderCancelFragment : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+//        viewModel = ViewModelProvider(this).get(OrderListViewModel::class.java)
+//        dialog_order_cancel_back.onlyOneClickListener {
+//            dismiss()
+//        }
 //
-//        val mArgs = arguments
-//        val color = mArgs!!.getString("fileColor")
-//        val direction = mArgs.getString("fileDir")
-//        val side = mArgs.getString("fileSide")
-//        val collect = mArgs.getString("fileCollect")
-//        val start = mArgs.getString("fileStart")
-//        val end = mArgs.getString("fileEnd")
-//        val copy = mArgs.getString("fileCopy")
+//        val args = arguments
+//        val orderIdx = args?.getInt("idx")
 //
-//        dial_item_view_tv_color2.text = color
-//        dial_item_view_tv_orientation2.text = direction
-//        dial_item_view_tv_sided2.text = side
-//        dial_item_view_tv_multiple2.text = collect
-//        if(start=="0"&&end=="0"){
-//            dial_item_view_tv_partial2.text ="전체"
-//        }else dial_item_view_tv_partial2.text = start + " ~ " + end + "p"
+//        dialog_order_cancel_cancel.onlyOneClickListener {
 //
-//        dial_item_view_tv_number2.text = copy
+//            if (orderIdx != null) {
+//                requestToServer.service.deleteOrder(
+//                    orderIdx
+//                ).enqueue(object : Callback<DefaultData> {
+//                    override fun onFailure(call: Call<DefaultData>, t: Throwable) {
+//                        //통신 실패
+//                        Log.e("orderlistdelete", "통신 실패")
+//                    }
+//
+//                    override fun onResponse(
+//                        call: Call<DefaultData>,
+//                        response: Response<DefaultData>
+//                    ) {
+//                        if (response.isSuccessful) {
+//                            Log.e("주문 취소 성공", "주문 취소")
+//                            (requireParentFragment() as OrderListFragment).viewModel.getOrderList()
+//                            dismiss()
+//                        }
+//
+//                    }
+//
+//                })
+//            }
+//
+//            dismiss()
+//        }
+    }
 
-        dialog_order_cancel_cancel.onlyOneClickListener {
-
-
-        }
-
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProvider(this).get(OrderListViewModel::class.java)
         dialog_order_cancel_back.onlyOneClickListener {
             dismiss()
         }
 
+        val args = arguments
+        val orderIdx = args?.getInt("idx")
+
+        dialog_order_cancel_cancel.onlyOneClickListener {
+
+            if (orderIdx != null) {
+                requestToServer.service.deleteOrder(
+                    orderIdx
+                ).enqueue(object : Callback<DefaultData> {
+                    override fun onFailure(call: Call<DefaultData>, t: Throwable) {
+                        //통신 실패
+                        Log.e("orderlistdelete", "통신 실패")
+                    }
+
+                    override fun onResponse(
+                        call: Call<DefaultData>,
+                        response: Response<DefaultData>
+                    ) {
+                        if (response.isSuccessful) {
+                            Log.e("주문 취소 성공", "주문 취소")
+
+                            dismiss()
+
+                        }
+                    }
+
+                })
+            }
+
+            dismiss()
+        }
     }
 
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        val parentFragment: Fragment? = parentFragment
+        if (parentFragment is DialogInterface.OnDismissListener) {
+            (parentFragment as DialogInterface.OnDismissListener?)!!.onDismiss(dialog)
+        }
 
+    }
 }

@@ -1,7 +1,6 @@
 package com.example.booster.data.remote.network
 
 import com.example.booster.BuildConfig
-import com.example.booster.CookiesInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

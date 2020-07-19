@@ -1,4 +1,4 @@
-package com.example.booster
+package com.example.booster.ui.user
 
 import android.app.Activity
 import android.content.Context
@@ -10,9 +10,11 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import com.example.booster.R
 import androidx.appcompat.app.AppCompatActivity
 import com.example.booster.data.datasource.model.LoginData
 import com.example.booster.data.remote.network.BoosterServiceImpl
+import com.example.booster.listener.onlyOneClickListener
 import com.example.booster.ui.bottomtap.BottomTabActivity
 import com.example.booster.util.UserManager
 import com.google.gson.JsonObject
@@ -35,35 +37,36 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         // 아이디입력 focused
-        login_edt_id.setOnFocusChangeListener { v, hasFocus ->
-            login_edt_id.isSelected = hasFocus
+        act_login_edt_id.setOnFocusChangeListener { v, hasFocus ->
+            act_login_edt_id.isSelected = hasFocus
         }
 
-        login_edt_pw.setOnFocusChangeListener { v, hasFocus ->
-            login_edt_pw.isSelected = hasFocus
+        act_login_edt_pw.setOnFocusChangeListener { v, hasFocus ->
+            act_login_edt_pw.isSelected = hasFocus
         }
 
-        login_edt_pw.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+        act_login_edt_pw.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
                 v.clearFocus()
                 val keyboard: InputMethodManager =
                     getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                keyboard.hideSoftInputFromWindow(login_edt_pw.windowToken, 0)
+                keyboard.hideSoftInputFromWindow(act_login_edt_pw.windowToken, 0)
                 return@OnKeyListener true
             }
             false
         })
 
         // 로그인 request
-        login_button_login.onlyOneClickListener {
+        act_login_button_login.onlyOneClickListener {
             login()
         }
 
-        login_tv_goto_join.onlyOneClickListener {
+        act_login_tv_goto_join.onlyOneClickListener {
             val intent = Intent(this, JoinActivity::class.java)
             startActivityForResult(intent, 100)
         }
     }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -72,8 +75,8 @@ class LoginActivity : AppCompatActivity() {
                 100 -> {
                     val savedId = data?.getStringExtra("id").toString()
                     val savedPw = data?.getStringExtra("password").toString()
-                    login_edt_id.setText(savedId)
-                    login_edt_pw.setText(savedPw)
+                    act_login_edt_id.setText(savedId)
+                    act_login_edt_pw.setText(savedPw)
                 }
             }
         }
@@ -81,11 +84,11 @@ class LoginActivity : AppCompatActivity() {
 
     fun login() {
         val loginJsonData = JSONObject()
-        loginJsonData.put("user_id", login_edt_id.text.toString())
-        loginJsonData.put("user_pw", login_edt_pw.text.toString())
+        loginJsonData.put("user_id", act_login_edt_id.text.toString())
+        loginJsonData.put("user_pw", act_login_edt_pw.text.toString())
 
         val body = JsonParser.parseString(loginJsonData.toString()) as JsonObject
-        if (login_edt_id.text.isNullOrBlank() || login_edt_pw.text.isNullOrBlank()) {
+        if (act_login_edt_id.text.isNullOrBlank() || act_login_edt_pw.text.isNullOrBlank()) {
             Toast.makeText(this, "아이디와 비밀번호를 입력하세요", Toast.LENGTH_SHORT).show()
         } else {
             BoosterServiceImpl.service.requestLogin(body)
@@ -99,9 +102,6 @@ class LoginActivity : AppCompatActivity() {
                         call: Call<LoginData>,
                         response: Response<LoginData>
                     ) {
-                        val message = response.body()!!.message
-                        Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT).show()
-
                         if (response.isSuccessful) {
                             if (response.body()!!.success) {
                                 val intent =
@@ -109,13 +109,18 @@ class LoginActivity : AppCompatActivity() {
                                 intent.putExtra("univ", response.body()!!.data.university_idx)
                                 intent.putExtra("token", response.body()!!.data.accessToken)
                                 startActivity(intent)
-                                Log.e("tokttttttttt", response.body()!!.data.accessToken)
-                               UserManager.token=  response.body()!!.data.accessToken
+                                UserManager.token = response.body()!!.data.accessToken
                                 isLoggedIn.isLoggedIn = "isLoggedIn"
                                 finish()
+                            } else {
+                                val message = response.body()!!.message
+                                Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT)
+                                    .show()
                             }
                         } else {
-                            Log.e("onReponse else", response.toString())
+                            val message = response.body()!!.message
+                            Toast.makeText(this@LoginActivity, message, Toast.LENGTH_SHORT)
+                                .show()
                         }
                     }
 

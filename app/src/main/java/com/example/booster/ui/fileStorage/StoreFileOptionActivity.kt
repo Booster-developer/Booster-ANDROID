@@ -5,13 +5,11 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.booster.R
 import com.example.booster.data.datasource.model.PopupOptionInfo
-import com.example.booster.data.remote.network.BoosterServiceImpl
-import com.example.booster.onlyOneClickListener
+import com.example.booster.listener.onlyOneClickListener
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import kotlinx.android.synthetic.main.activity_store_file_option.*
@@ -59,9 +57,10 @@ class StoreFileOptionActivity : AppCompatActivity(),
 
         // 이미지일 경우 deafult 값
         if (fileType != ".pdf") {
+            order_option_btn_range.isEnabled = false
             rangeMin = 1
             rangeMax = 1
-        }
+        }else order_option_btn_range.isEnabled = true
 
         storeFileOptionViewModel = ViewModelProvider(this).get(StoreFileOptionViewModel::class.java)
 
@@ -230,6 +229,7 @@ class StoreFileOptionActivity : AppCompatActivity(),
             } else combineReset()
         }
 
+
         order_option_btn_range.onlyOneClickListener {
             val fileRangeDialog = StoreFileOptionRangeFragment()
             //Log.e("what is this filetype", "check: " + fileType)
@@ -370,9 +370,6 @@ class StoreFileOptionActivity : AppCompatActivity(),
         frag.arguments = bundle
     }
 
-    override fun cancel(iscancel: Int) {
-
-    }
 
     override fun communicateRange(r: String, min: Int, max: Int) {
         range = r

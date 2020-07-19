@@ -1,4 +1,4 @@
-package com.example.booster
+package com.example.booster.bindingadapter
 
 import android.content.res.ColorStateList
 import android.graphics.Color
@@ -10,6 +10,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.example.booster.R
+import kotlinx.android.synthetic.main.my_file.view.*
 
 @BindingAdapter("changeCircleF")
 fun ImageView.changeCircleF(status : Int) {
@@ -62,7 +64,7 @@ fun TextView.setPickUpBtn(status : Int) {
 
 @BindingAdapter("setCancelVisible")
 fun TextView.setCancelVisible(status : Int) {
-    if (status!=1){
+    if (status==2 || status==3){
         visibility = GONE
     }
 }
@@ -134,6 +136,14 @@ fun setStoreCloseTxt(view: TextView, open : Int?) {
 fun TextView.setBtnActive(close : Int?) {
     if (close == 0){
         setBackgroundResource(R.drawable.bg_dddddd_round)
+    }else{
+        setBackgroundResource(R.drawable.bg_btn_gradation)
     }
+}
+
+@BindingAdapter("setFileName")
+fun TextView.setFileName(name: String?){
+    Log.e("setFileName -----> ", name)
+    setFileName(name!!.substring(0, name.length-4))
 }
 

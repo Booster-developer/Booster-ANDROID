@@ -83,6 +83,7 @@
                     android:background="@drawable/edittext_inactive_start"
                     android:gravity="center_horizontal"
                     android:text="1"
+                    android:focusableInTouchMode="false"
                     android:inputType="number"
                     app:layout_constraintEnd_toStartOf="@+id/order_option_btn_plus"
                     app:layout_constraintStart_toEndOf="@+id/order_option_btn_minus"

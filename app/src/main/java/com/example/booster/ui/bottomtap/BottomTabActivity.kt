@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.example.booster.R
+import com.example.booster.ui.home.HomeFragment
 import com.example.booster.ui.selectStore.SelectStoreActivity
 import com.example.booster.util.UserManager
 import com.google.android.material.tabs.TabLayout
@@ -15,9 +17,11 @@ import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import kotlinx.android.synthetic.main.activity_bottom_tab.*
 import kotlinx.android.synthetic.main.tab_layout.*
 
+
 class BottomTabActivity : AppCompatActivity() {
     var flag = 0
     var token = ""
+    var myUniv = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,10 +40,29 @@ class BottomTabActivity : AppCompatActivity() {
         if (intent.hasExtra("token")) {
             bottom_vp.currentItem = 0
             token = intent.getStringExtra("token")
+            myUniv = intent.getIntExtra("univ", 1)
             Log.e("token", token)
             UserManager.token = token
-
+            UserManager.univ = myUniv
         }
+
+//        bottom_vp.setOnPageChangeListener(object : OnPageChangeListener {
+//            override fun onPageScrollStateChanged(state: Int) {
+//            }
+//
+//            override fun onPageScrolled(
+//                position: Int,
+//                positionOffset: Float,
+//                positionOffsetPixels: Int
+//            ) {
+//            }
+//
+//            override fun onPageSelected(position: Int) {
+//                if(position==0){
+//                    HomeFragment().userVisibleHint = true
+//                }
+//            }
+//        })
     }
 
     private fun setTabBar() {
@@ -93,19 +116,15 @@ class BottomTabActivity : AppCompatActivity() {
                     startActivity(intent)
                 } else {
                     bottom_vp!!.currentItem = tab.position
-
                 }
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
-
             }
 
             override fun onTabReselected(tab: TabLayout.Tab) {
-
             }
         })
-
     }
 
     fun click() {

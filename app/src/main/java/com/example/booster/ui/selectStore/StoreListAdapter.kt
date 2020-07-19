@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.booster.R
 import com.example.booster.data.datasource.model.Store
-import com.example.booster.onlyOneClickListener
+import com.example.booster.listener.onlyOneClickListener
 import com.example.booster.ui.selectStore.StoreListAdapter.ViewType.*
 import kotlinx.android.synthetic.main.item_selectstore_file.view.*
 
@@ -123,7 +123,7 @@ class StoreListAdapter(val storeListItemClickListener: StoreListItemClickListene
             when (viewType) {
                 LATEST.ordinal -> {
                     itemView.act_select_store_file_tv_recent.visibility = View.VISIBLE
-                    itemView.act_select_store_file_tv_recent.text = "최근 본 매장"
+                    itemView.act_select_store_file_tv_recent.text = "최근 주문 매장"
                     itemView.item_selectstore_file_divider.visibility = View.VISIBLE
                     //adjust bottom margin
                     val params = itemView.constraintLayout9.layoutParams as ViewGroup.MarginLayoutParams
@@ -138,6 +138,7 @@ class StoreListAdapter(val storeListItemClickListener: StoreListItemClickListene
                     if (storeItem.store_idx == -1) { //없을때
                         itemView.item_selectstore_file_tv_no_favorite_stores.visibility = View.VISIBLE
                         itemView.constraintLayout9.visibility = View.INVISIBLE
+                        itemView.isEnabled = false
                     } else { //있을때
                         itemView.item_selectstore_file_tv_no_favorite_stores.visibility = View.GONE
                         itemView.constraintLayout9.visibility = View.VISIBLE

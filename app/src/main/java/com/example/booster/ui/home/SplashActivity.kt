@@ -4,9 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
-import com.example.booster.LoginActivity
+import com.example.booster.ui.user.LoginActivity
 import com.example.booster.R
-import com.example.booster.ui.bottomtap.BottomTabActivity
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity() {
