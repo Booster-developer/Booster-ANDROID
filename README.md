@@ -732,14 +732,9 @@ var requestBody: RequestBody? = null
 val fileDescriptor: ParcelFileDescriptor?
         fileDescriptor = ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY)
 
-        //min. API Level 21
         val pdfRenderer: PdfRenderer?
         pdfRenderer = PdfRenderer(fileDescriptor)
         val pageCount: Int = pdfRenderer.pageCount
-        Log.e(
-            "pagecount",
-            "check: " + pageCount.toString() + " " + pdfviewer_act_main_total_page.text
-        )
         pdfviewer_act_main_total_page.text = pageCount.toString()
         Toast.makeText(this, "pageCount = $pageCount", Toast.LENGTH_LONG).show()
 
@@ -759,7 +754,6 @@ val fileDescriptor: ParcelFileDescriptor?
             imageView.layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
-            ) // value is in pixels
             val rendererPage = pdfRenderer.openPage(i)
             val rendererPageWidth: Int = rendererPage.width
             val rendererPageHeight: Int = rendererPage.height
@@ -792,7 +786,6 @@ object PDFThumbnailUtils {
             val currentPage = pdfRenderer?.openPage(pageNumber)
             val bitmap = Bitmap.createBitmap(currentPage?.width!!, currentPage?.height!!, Bitmap.Config.ARGB_8888)
             currentPage?.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
-            // Here, we render the page onto the Bitmap.
             return bitmap
         } else {
             TODO("VERSION.SDK_INT < LOLLIPOP")
@@ -807,9 +800,6 @@ object PDFThumbnailUtils {
 inner class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
         fun bind(file: File) {
-            //Log.e("uri", file.uri.path.toString())
-
-            Log.e("file", file.file_name + " " + file.file_extension)
             if (file.file_extension == ".png" || file.file_extension == ".jpeg" || file.file_extension == ".jpg") {
                 Glide.with(itemView.context).load(file.file_path).into(itemView.iv_file)
             } else {
@@ -823,7 +813,6 @@ inner class ViewHolder(itemView: View) :
                         )
                     if (bitmap != null) {
                         itemView.iv_file.setImageBitmap(bitmap)
-                        //Log.e("context check: ", " " + itemView.context + " " + itemView.context.javaClass.name)
                     }
 ```
 
@@ -848,7 +837,6 @@ private fun bitmapToFile(bitmap:Bitmap): java.io.File? {
         // Get the context wrapper
         val wrapper = ContextWrapper(applicationContext)
 
-        // Initialize a new file instance to save bitmap object
         var file = wrapper.getDir("Images",Context.MODE_PRIVATE)
         file = java.io.File(file,"${UUID.randomUUID()}.png")
 
