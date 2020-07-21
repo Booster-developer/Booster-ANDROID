@@ -146,7 +146,7 @@ implementation 'com.github.barteksc:pdfium-android:1.9.0'
 - 대부분의 레이아웃을 ConstraintLayout으로 구성
 - chain 과 match_parent 를 적극 활용하여 뷰 구성
 
-<img width="196" alt="스크린샷 2020-07-17 오후 6 26 23" src="https://user-images.githubusercontent.com/37479631/87776681-19e55980-c863-11ea-8ab0-47fd592889c8.jpg"><img width="196" alt="스크린샷 2020-07-17 오후 6 26 23" src="https://user-images.githubusercontent.com/37479631/87797173-4d38e000-c885-11ea-82d3-c29686fd23a9.png">
+<img width="250" alt="스크린샷 2020-07-17 오후 6 26 23" src="https://user-images.githubusercontent.com/37479631/87776681-19e55980-c863-11ea-8ab0-47fd592889c8.jpg"><img width="250" alt="스크린샷 2020-07-17 오후 6 26 23" src="https://user-images.githubusercontent.com/37479631/87797173-4d38e000-c885-11ea-82d3-c29686fd23a9.png">
 
 item_order_condition.xml
 
@@ -188,7 +188,7 @@ item_order_condition.xml
 
 - Constraint Chain을 이용해 가운데 정렬로 배치 
 
-<img width="196" alt="스크린샷 2020-07-17 오후 6 26 23" src="https://user-images.githubusercontent.com/37479631/87776082-22896000-c862-11ea-8968-35ccd393b2c6.jpg"><img width="196" alt="스크린샷 2020-07-17 오후 6 26 23" src="https://user-images.githubusercontent.com/37479631/87775776-9a0abf80-c861-11ea-9470-a51dae3f9eb0.png">
+<img width="250" alt="스크린샷 2020-07-17 오후 6 26 23" src="https://user-images.githubusercontent.com/37479631/87776082-22896000-c862-11ea-8968-35ccd393b2c6.jpg"><img width="250" alt="스크린샷 2020-07-17 오후 6 26 23" src="https://user-images.githubusercontent.com/37479631/87775776-9a0abf80-c861-11ea-9470-a51dae3f9eb0.png">
 
 activity_store_file_option.kt
 
@@ -433,7 +433,7 @@ act_main_btn_store.onlyOneClickListener {
 <br>
 
 ### 3. Scroll Animation
-<img width="196" alt="스크린샷 2020-07-17 오후 6 26 23" src="https://user-images.githubusercontent.com/37479631/87797736-12837780-c886-11ea-882c-f45847c686a4.gif">
+<img width="250" alt="스크린샷 2020-07-17 오후 6 26 23" src="https://user-images.githubusercontent.com/37479631/87797736-12837780-c886-11ea-882c-f45847c686a4.gif">
 
 #### 🔥 issue
 
@@ -551,7 +551,7 @@ frag_store_list_appBar.addOnOffsetChangedListener(OnOffsetChangedListener { frag
 <br>
 
 ### 4. 화면을 아래로 당겨서 List Refresh 하기
-<img width="196" alt="스크린샷 2020-07-17 오후 6 26 23" src="https://user-images.githubusercontent.com/37479631/87795498-195cbb00-c883-11ea-93f8-a03a3f1edbf9.gif">
+<img width="250" alt="스크린샷 2020-07-17 오후 6 26 23" src="https://user-images.githubusercontent.com/37479631/87795498-195cbb00-c883-11ea-93f8-a03a3f1edbf9.gif">
 
 #### 🔥 issue
 
@@ -601,7 +601,7 @@ private fun refresh(){
 <br>
 
 ### 5. 로컬 디바이스에서 파일 가져오기
-<img width="196" alt="스크린샷 2020-07-17 오후 6 26 23" src="https://user-images.githubusercontent.com/37479631/87798181-a3f2e980-c886-11ea-851a-c6b299207328.gif">
+<img width="250" alt="스크린샷 2020-07-17 오후 6 26 23" src="https://user-images.githubusercontent.com/37479631/87798181-a3f2e980-c886-11ea-851a-c6b299207328.gif">
 
 #### 🔥 issue
 
